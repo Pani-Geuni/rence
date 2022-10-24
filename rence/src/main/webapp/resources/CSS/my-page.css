@@ -1,0 +1,249 @@
+.my-page-wrap{
+    width: 100%;
+    height: 76vh;
+
+    display: flex;
+    flex-direction: column;
+}
+.my-page-wrap * {
+    font-family: 'MICEGothic';
+}
+
+.my-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-section{
+    height: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.profile{
+    display: flex;
+    width: 820px;
+    height: 150px;
+
+    border-radius: 5px;
+    box-shadow: 0.9px 0.9px 4px 3px #e4e4e4;
+}
+.profile-img-wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 220px;
+    height: 100%;
+}
+.profile-img{
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
+    margin-bottom: 5px;
+}
+.img-update-txt{
+    font-size: 11px;
+    text-decoration: underline;
+    color: #73777B;
+    cursor: pointer;
+}
+
+
+.profile-info-wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 600px;
+    height: 100%;
+}
+.info-name-section{
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+.info-etc-section{
+    margin-bottom: 4px;
+    font-size: 13px;
+    font-weight: 100;
+}
+.info-name{
+    font-size: 22px;
+}
+.pw-update-txt{
+    margin-left: 5px;
+    font-size: 11px;
+    text-decoration: underline;
+    color: #73777B;
+    cursor: pointer;
+}
+
+.my-page-menu-section{
+    width: 820px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.menu-box{
+    width: 400px;
+    height: 165px;
+
+    border-radius: 5px;
+    box-shadow: 0.9px 0.9px 4px 3px #e4e4e4;
+
+    cursor: pointer;
+}
+.left-menu{
+    margin-right: 20px;
+}
+.menu-top{
+    margin-bottom: 15px;
+}
+.menu-box-img-section{
+    width: 100%;
+    height: 52%;
+
+    display: flex;
+    align-items: center;
+
+    box-sizing: border-box;
+    padding-left: 30px;
+}
+.menu-box-txt-section{
+    width: 100%;
+    height: 48%;
+
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+    padding-left: 30px;
+}
+.menu-box-img{
+    width: 50px;
+    height: 50px;
+}
+.menu-box-txt-wrap{
+    margin-bottom: 0px;
+    
+    display: flex;
+    align-items: flex-start;
+}
+.menu-box-title{
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.point-txt{
+    font-size: 13px;
+    margin-left: 10px;
+}
+.menu-box-txt{
+    font-size: 14px;
+}
+
+
+/* ************** */
+/* MODIFY SECTION */
+/* ************** */
+.modify-section{
+    width: 420px;
+    height: 333px;
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+
+
+.modify-guide-txt{
+    font-size: 13px;
+    font-weight: 800;
+}
+.modify-error-txt{
+    margin-left: 6px;
+    
+    font-size: 8px;
+    font-weight: 800;
+    color: #FF5C5C;
+}
+
+.modify-popup-title-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90px;
+    
+    font-size: 25px;
+    font-weight: bold;
+}
+.modify-popup-title-section *{
+    font-family: "OTWelcome";
+}
+
+.modify-popup-input-section{
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    height: 192px;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+}
+.modify-popup-input-section *{
+    font-family: "MonoplexKR";
+}
+
+.modify-popup-input-list{
+    margin-bottom: 15px;
+}
+.modify-popup-input-list-title{
+    display: flex;
+    height: auto;
+    margin-bottom: 8px;
+}
+.modify-popup-input{
+    width: 100%;
+    height: 29px;
+
+    box-sizing: border-box;
+    padding: 0px 0px 0px 6px;
+
+    font-size: 13px;
+    border-radius: 4px;
+}
+.modify-popup-input:focus{
+    border: 2px solid #2EE49D;
+}
+
+.modify-popup-btn-section{
+    width: 420px;
+    height: 50px;
+    
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
+}
+.modify-btn{
+    height: 100%;
+    
+    text-align: center;
+    box-sizing: border-box;
+    padding-top: 15.2px;
+
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
+    background-color: #2EE49D;
+
+    font-weight: 500;
+    color: #ffffff;
+
+    cursor: pointer;
+}
+
+.warning-border{
+    border: 2px solid #FF5C5C;
+}

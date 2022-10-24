@@ -2,7 +2,23 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
-	
-	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+
+	<!-- tiles 정의한 파일들 선언하는 bean -->
+	<bean id="tilesConfig"
+		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>WEB-INF/tiles_home.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id=""
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="order" value="0"></property> <!-- 우선순위 설정 -->
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles2.TilesView"></property>
+		<property name="viewNames" value=".*"></property>
+	</bean>
+
 </beans>
