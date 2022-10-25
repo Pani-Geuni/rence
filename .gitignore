@@ -12,4 +12,5 @@ target/*
 */target/**
 META-INF/*
 
+.classpath
 .settings/
