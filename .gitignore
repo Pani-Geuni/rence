@@ -1,14 +1,14 @@
+.DS_Store
+
 /.metadata/
-# .MANIFEST.MF
-# .pom.properties
+
+MANIFEST.MF
+pom.properties
+
+# Servers
+Servers/*
 
 #충돌되는 폴더 전부 제거
 META-INF/*
 target/*
 */target/**
-
-# Servers
-Servers/*
-
-
-.DS_Store
