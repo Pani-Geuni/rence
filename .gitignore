@@ -11,4 +11,6 @@ Servers/*
 target/*
 */target/**
 META-INF/*
-
+.classpath
+.project
+.settings/
