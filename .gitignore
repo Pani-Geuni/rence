@@ -8,9 +8,6 @@ pom.properties
 Servers/*
 
 #충돌되는 폴더 전부 제거
+META-INF/*
 target/*
 */target/**
-META-INF/*
-
-.classpath
-.settings/
