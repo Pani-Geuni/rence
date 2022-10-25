@@ -129,7 +129,10 @@
         <!-- START LOGOUT CONFIRM POPUP -->
         <div id ="logout-popup" class="confirm-popup blind">
             <section class="confirm-txt-section">
-                <span>로그아웃 하시겠습니까?</span>
+                <span class="logout-txt">
+                	로그아웃 하시겠습니까?<br>
+                    로그아웃 시 메인페이지로 이동됩니다.
+                </span>
             </section>
             <section class="confirm-btn-section">
                 <div class="confirm-yesBtn">로그아웃</div>

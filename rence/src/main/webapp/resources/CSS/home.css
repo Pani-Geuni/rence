@@ -1,6 +1,6 @@
 .homeWrap{
     width: 100%;
-    height: 73vh;
+    height: calc(100vh - 95px - 76px);
 
     display: flex;
     flex-direction: column;
