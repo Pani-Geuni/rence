@@ -1,6 +1,12 @@
 /.metadata/
-.MANIFEST.MF
-.pom.properties
+MANIFEST.MF
+pom.properties
+
+# Servers
+Servers/*
 
 #충돌되는 폴더 전부 제거
+target/*
+*/target/**
 META-INF/*
+
