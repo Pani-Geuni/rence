@@ -1,6 +1,6 @@
 .my-page-wrap{
     width: 100%;
-    height: 76vh;
+    height: calc(100% - 95px - 75px);
 
     display: flex;
     flex-direction: column;

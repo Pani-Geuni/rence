@@ -14,7 +14,10 @@
     font-family : "MICEGothic"
 }
 
+
+/*****************/
 /* LOGIN SECTION */
+/*****************/
 #login-section{
     width: 440px;
     height: 330px;
@@ -274,4 +277,7 @@
 
 #logout-popup{
     height: 150px;
+}
+.logout-txt{
+    font-size: 16px;
 }
