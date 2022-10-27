@@ -23,12 +23,12 @@
                 <section class="box-section">
                     <div class = "reserve-box">
                         <section class="box-img-section">
-                            <img src="../IMG/reserve-list/default-space.svg" alt ="default-space-img" class="space-img" />
+                            <img src="${path}/resources/IMG/reserve-list/default-space.svg" alt ="default-space-img" class="space-img" />
                         </section>
                         <section class="box-txt-section">
                             <span class="b-office-name">오라운트</span>
                             <span  class="b-office-location">
-                                <img src = "../IMG/reserve-list/location-icon.svg" alt="location-icon" class ="location-icon" />
+                                <img src = "${path}/resources/IMG/reserve-list/location-icon.svg" alt="location-icon" class ="location-icon" />
                                 <span class="location-name">경기도 광주시</span>
                             </span>
                             <span class="reserve-time">
@@ -47,12 +47,12 @@
                     </div>
                     <div class = "reserve-box">
                         <section class="box-img-section">
-                            <img src="../IMG/reserve-list/default-space.svg" alt ="default-space-img" class="space-img" />
+                            <img src="${path}/resources/IMG/reserve-list/default-space.svg" alt ="default-space-img" class="space-img" />
                         </section>
                         <section class="box-txt-section">
                             <span class="b-office-name">오라운트</span>
                             <span  class="b-office-location">
-                                <img src = "../IMG/reserve-list/location-icon.svg" alt="location-icon" class ="location-icon" />
+                                <img src = "${path}/resources/IMG/reserve-list/location-icon.svg" alt="location-icon" class ="location-icon" />
                                 <span class="location-name">경기도 광주시</span>
                             </span>
                             <span class="reserve-time">

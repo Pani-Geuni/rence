@@ -34,7 +34,7 @@
         <!-- START LOGIN SECTION -->
         <div id="login-section" class="blind">
             <section class="login-popup-logo-section">
-                <img src="../IMG/common/RENCE.svg" class="popup-logo">
+                <img src="${path}/resources/IMG/common/RENCE.svg" class="popup-logo">
             </section>
             <section class="login-popup-input-section">
                 <input type="text" id="login-id" class="login-popup-input" placeholder="아이디를 입력하세요." autocomplete="off"/>
@@ -132,18 +132,28 @@
         <div id ="logout-popup" class="confirm-popup blind">
             <section class="confirm-txt-section">
                 <span class="logout-txt">
-                	로그아웃 하시겠습니까?<br>
+                	로그아웃 하시겠습니까?<br><br>
                     로그아웃 시 메인페이지로 이동됩니다.
                 </span>
             </section>
             <section class="confirm-btn-section">
-                <div class="confirm-yesBtn">로그아웃</div>
+                <div id="logout-btn" class="confirm-yesBtn">로그아웃</div>
                 <div id="logout-closeBtn" class="confirm-noBtn">닫기</div>
             </section>
         </div>
     </div>
 
     <div class="popup-background blind">
+    	<!-- START COMMON CUSTOM ALERT POPUP -->
+        <div id ="common-alert-popup" class="alert-popup blind">
+            <section class="alert-txt-section">
+                <span class="common-alert-txt"></span>
+            </section>
+            <section id = "common-alert-btn" class="alert-btn-section">
+                <span>확인</span>
+            </section>
+        </div>
+        
         <!-- START SUCCESS CUSTOM ALERT POPUP -->
         <div id ="success-alert-popup" class="alert-popup blind">
             <section class="alert-txt-section">

@@ -21,8 +21,8 @@ $(function(){
         //로그인 시도
         if($("#login-id").val().length > 0 && $("#login-pw").val().length > 0){
             $.ajax({
-                url : "/rence/user_loginOK.do",
-                type : "GET",
+                url : "/rence/user_loginOK",
+                type : "POST",
                 dataType : 'json',
                 data : {
                     user_id : $("#login-id").val(),
@@ -43,7 +43,7 @@ $(function(){
                         $("#login-section").addClass("blind");
                         $(".popup-background:eq(0)").addClass("blind");
 
-                        location.reload();
+                        location.href="/rence/";
                     }else{
                         $(".popup-background:eq(1)").removeClass("blind");
                         $("#common-alert-popup").removeClass("blind");
@@ -242,13 +242,15 @@ $(function(){
         $("#fail-alert-popup").addClass("blind");
     });
 
+    
+    /*********** 로그아웃 팝업 ************/
     // 로그아웃 창닫기 버튼 클릭 이벤트
     $("#logout-closeBtn").click(function(){
         $("#logout-popup").addClass("blind");
         $(".popup-background:eq(0)").addClass("blind");
     });
     $("#logout-btn").click(function(){
-
+        location.href="/rence/user_logoutOK";
     });
 
 });
