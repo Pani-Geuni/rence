@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- tiles 정의한 파일들 선언하는 bean -->
@@ -42,8 +43,12 @@
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds"></property>
 		<property name="mapperLocations">
-			<value>classpath:jdbc/sqlMapper_backoffice.xml</value>
-		</property>
+         <list>
+            <value>classpath:jdbc/sqlMapper_backoffice.xml</value>
+            <value>classpath:jdbc/sqlMapper_office.xml</value>
+            <value>classpath:jdbc/sqlMapper_user.xml</value>
+         </list>
+      </property>
 	</bean>
 
 	<bean id="sqlSessionTemplate"
@@ -90,6 +95,13 @@
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
 		<!-- <property name="defaultLocale" value="en"></property> -->
 		<property name="defaultLocale" value="ko"></property>
+	</bean>
+	
+	<!--ModelAndView >> jsonView 키워드 설정 -->
+	<bean id="viewResolver" p:order="0" class="org.springframework.web.servlet.view.BeanNameViewResolver"></bean>
+	
+	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+		<property name="contentType" value="application/json;charset=UTF-8"></property>
 	</bean>
 
 </beans>

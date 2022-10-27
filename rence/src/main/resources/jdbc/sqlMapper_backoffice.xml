@@ -3,7 +3,26 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="test.com.rence.backoffice">
-
+	<insert id="SQL_INSERT_BACKOFFICE_AUTH" parameterType="test.com.rence.sendemail.AuthVO">
+  	INSERT INTO auth(auth_no, user_email, auth_code, auth_stime, auth_etime) values('A'||seq_auth.nextval, #{user_email}, #{auth_code}, SYSDATE, SYSDATE + 2/(24*60))
+  	</insert>
   
+   	<insert id="SQL_INSERT_BACKOFFICE" parameterType="test.com.rence.backoffice.BackOfficeVO">
+  	INSERT INTO backofficeinfo(backoffice_no, owner_name, backoffice_id, backoffice_name, company_name, backoffice_tel, backoffice_email, auth_code, auth_no, zipcode, roadname_address, number_address, detail_address, backoffice_tag, backoffice_info, backoffice_option, backoffice_around, backoffice_image, backoffice_state) 
+  	values('B'||seq_backoffice.nextval, #{owner_name}, #{backoffice_id}, #{backoffice_name}, #{company_name}, #{backoffice_tel},#{backoffice_email},#{auth_code},#{auth_no},#{zipcode},#{roadname_address},#{number_address},#{detail_address},#{backoffice_tag},#{backoffice_info},#{backoffice_option},#{backoffice_around},#{backoffice_image},'W')
+<!--   	where auth_no in(select auth_no from auth where auth_no=#{auth_no} and auth_code=#{auth_code} and user_email=#{backoffice_email}) -->
+	</insert>
+	
+   	<insert id="SQL_INSERT_OPERRATING_TIME" parameterType="test.com.rence.backoffice.BackOfficeVO">
+  	INSERT INTO BackOfficeOperationgTime(opetime_no, mon_stime, mon_etime, tue_stime, tue_etime, wed_stime, wed_etime, thu_stime, thu_etime, fri_stime, fri_etime, sat_stime, sat_etime, sun_stime, sun_etime, backoffice_no) 
+  	values('O'||seq_backofficeoperatingtime.nextval, #{mon_stime}, #{mon_etime}, #{tue_stime}, #{tue_etime}, #{wed_stime},#{wed_etime},#{thu_stime},#{thu_etime},#{fri_stime},#{fri_etime},#{sat_stime},#{sat_etime},#{sun_stime},#{sun_etime},#{backoffice_no})
+	</insert>
+	
+	<select id="SQL_SELECT_BACKOFFICE_AUTH" resultType="test.com.rence.sendemail.AuthVO">
+  	SELECT * from auth where auth_code=#{auth_code} and auth_no=#{auth_no} and user_email=#{backoffice_email}
+  	</select>
+<!--   	<if test="(SYSDATE - auth_stime) * 24 * 60 > 2">
+  		delete from auth where user_email=#{backoffice_email}
+  	</if> -->
   
 </mapper>
