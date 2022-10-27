@@ -30,4 +30,12 @@
 		userinfo where user_id=#{user_id}
 	</select>
 
+
+	<!-- 유저로그인 -->
+	<select id="SQL_USER_LOGIN"
+		resultType="test.com.rence.user.UserVO">
+		select * from
+		userinfo where user_id=#{user_id} and user_pw=#{user_pw}
+	</select>
+
 </mapper>

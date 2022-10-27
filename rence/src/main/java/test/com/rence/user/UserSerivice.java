@@ -40,4 +40,9 @@ public class UserSerivice {
 		return null;
 	}
 
-}// end clas
+	public UserVO User_loginOK(UserVO uvo) {
+		logger.info("User_loginOK().....");
+		return dao.User_loginOK(uvo);
+	}
+
+}// end class

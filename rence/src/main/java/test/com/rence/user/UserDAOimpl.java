@@ -6,10 +6,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
 @Repository
 public class UserDAOimpl implements UserDAO {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(UserDAOimpl.class);
 	@Autowired
 	SqlSession sqlSession;
@@ -18,25 +17,25 @@ public class UserDAOimpl implements UserDAO {
 	public int user_insertOK(UserVO uvo) {
 		logger.info("user_insert().....");
 		logger.info("{}", uvo);
-		
+
 		int flag = sqlSession.insert("SQL_INSERT", uvo);
-		
+
 		return flag;
 	}
 
 	@Override
 	public UserVO idCheckOK(UserVO uvo) {
 		logger.info("idCheckOK().....");
-		UserVO uvo2 = sqlSession.selectOne("SQL_ID_CHECK",uvo);
-		
+		UserVO uvo2 = sqlSession.selectOne("SQL_ID_CHECK", uvo);
+
 		return uvo2;
 	}
 
 	@Override
 	public UserVO emailCheckOK(UserVO uvo) {
 		logger.info("emailCheckOK().....");
-		UserVO uvo2 = sqlSession.selectOne("SQL_EMAIL_CHECK",uvo);
-		
+		UserVO uvo2 = sqlSession.selectOne("SQL_EMAIL_CHECK", uvo);
+
 		return uvo2;
 	}
 
@@ -45,9 +44,14 @@ public class UserDAOimpl implements UserDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
-	
-	
-	
+
+	@Override
+	public UserVO User_loginOK(UserVO uvo) {
+		logger.info("User_login().....");
+		UserVO uvo2 = sqlSession.selectOne("SQL_USER_LOGIN", uvo);
+
+		return uvo2;
+
+	}
+
 }
