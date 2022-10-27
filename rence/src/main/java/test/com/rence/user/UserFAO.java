@@ -1,4 +1,4 @@
-package test.com.user;
+package test.com.rence.user;
 
 public interface UserFAO {
 

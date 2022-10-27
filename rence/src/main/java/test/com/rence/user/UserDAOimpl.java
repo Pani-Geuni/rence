@@ -1,4 +1,4 @@
-package test.com.user;
+package test.com.rence.user;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;

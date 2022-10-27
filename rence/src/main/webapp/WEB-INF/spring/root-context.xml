@@ -1,109 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:p="http://www.springframework.org/schema/p"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<!-- tiles 정의한 파일들 선언하는 bean -->
-	<bean id="tilesConfig"
-		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
-		<property name="definitions">
-			<list>
-				<value>WEB-INF/tiles_home.xml</value>
-			</list>
-		</property>
-	</bean>
+   <!-- tiles 정의한 파일들 선언하는 bean -->
+   <bean id="tilesConfig"
+      class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+      <property name="definitions">
+         <list>
+            <value>WEB-INF/tiles_home.xml</value>
+         </list>
+      </property>
+   </bean>
 
-	<!-- tiles -->
-	<bean id=""
-		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-		<property name="order" value="0"></property> <!-- 우선순위 설정 -->
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.tiles2.TilesView"></property>
-		<property name="viewNames" value=".*"></property>
-	</bean>
+   <!-- tiles -->
+   <bean id=""
+      class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+      <property name="order" value="0"></property> <!-- 우선순위 설정 -->
+      <property name="viewClass"
+         value="org.springframework.web.servlet.view.tiles2.TilesView"></property>
+      <property name="viewNames" value=".*"></property>
+   </bean>
 
-	<!--DB -->
-	<bean id="propertyPlaceholderConfigurer"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<value>classpath:jdbc/oracle.properties</value>
-		</property>
-	</bean>
+   <!--DB -->
+   <bean id="propertyPlaceholderConfigurer"
+      class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+      <property name="locations">
+         <value>classpath:jdbc/oracle.properties</value>
+      </property>
+   </bean>
 
-	<bean id="ds" class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName"
-			value="${oracle.DRIVER_NAME}"></property>
-		<property name="url" value="${oracle.URL}"></property>
-		<property name="username" value="${oracle.USER}"></property>
-		<property name="password" value="${oracle.PASSWORD}"></property>
-	</bean>
+   <bean id="ds" class="org.apache.commons.dbcp.BasicDataSource">
+      <property name="driverClassName"
+         value="${oracle.DRIVER_NAME}"></property>
+      <property name="url" value="${oracle.URL}"></property>
+      <property name="username" value="${oracle.USER}"></property>
+      <property name="password" value="${oracle.PASSWORD}"></property>
+   </bean>
 
-	<bean id="sqlSessionFactoryBean"
-		class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="ds"></property>
-		<property name="mapperLocations">
+   <bean id="sqlSessionFactoryBean"
+      class="org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="dataSource" ref="ds"></property>
+      <property name="mapperLocations">
          <list>
             <value>classpath:jdbc/sqlMapper_backoffice.xml</value>
             <value>classpath:jdbc/sqlMapper_office.xml</value>
             <value>classpath:jdbc/sqlMapper_user.xml</value>
          </list>
       </property>
-	</bean>
+   </bean>
 
-	<bean id="sqlSessionTemplate"
-		class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg ref="sqlSessionFactoryBean"></constructor-arg>
-	</bean>
+   <bean id="sqlSessionTemplate"
+      class="org.mybatis.spring.SqlSessionTemplate">
+      <constructor-arg ref="sqlSessionFactoryBean"></constructor-arg>
+   </bean>
 
-	<!-- email -->
-	<bean id="mailSender"
-		class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com"></property>
-		<property name="port" value="587"></property>
-		<property name="username" value="choetruth44@gmail.com"></property>
-		<property name="password" value="dnucdjkyczfurnte"></property>
-		<property name="javaMailProperties">
-			<props>
-				<prop key="mail.smtp.starttls.enable">true</prop>
-			</props>
-		</property>
-	</bean>
+   <!-- email -->
+   <bean id="mailSender"
+      class="org.springframework.mail.javamail.JavaMailSenderImpl">
+      <property name="host" value="smtp.gmail.com"></property>
+      <property name="port" value="587"></property>
+      <property name="username" value="choetruth44@gmail.com"></property>
+      <property name="password" value="dnucdjkyczfurnte"></property>
+      <property name="javaMailProperties">
+         <props>
+            <prop key="mail.smtp.starttls.enable">true</prop>
+         </props>
+      </property>
+   </bean>
 
-	<!-- 파일 업로드 -->
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="-1"></property>
-	</bean>
+   <!-- 파일 업로드 -->
+   <bean id="multipartResolver"
+      class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+      <property name="maxUploadSize" value="-1"></property>
+   </bean>
 
-	<!-- 트랜잭션 -->
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="ds"></property>
-	</bean>
-
-
-	<!-- 메세지 -->
-	<bean id="messageSource"
-		class="org.springframework.context.support.ResourceBundleMessageSource">
-		<property name="basenames">
-			<list>
-				<value>language.message</value>
-			</list>
-		</property>
-	</bean>
-
-	<bean id="localeResolver"
-		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
-		<!-- <property name="defaultLocale" value="en"></property> -->
-		<property name="defaultLocale" value="ko"></property>
-	</bean>
-	
-	<!--ModelAndView >> jsonView 키워드 설정 -->
-	<bean id="viewResolver" p:order="0" class="org.springframework.web.servlet.view.BeanNameViewResolver"></bean>
-	
-	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
-		<property name="contentType" value="application/json;charset=UTF-8"></property>
-	</bean>
+   <!-- 트랜잭션 -->
+   <bean id="transactionManager"
+      class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+      <property name="dataSource" ref="ds"></property>
+   </bean>
+   
+   
+   <!-- 메세지 -->
+   <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+      <property name="basenames">
+         <list>
+            <value>language.message</value>
+         </list>
+      </property>
+   </bean>   
+   
+   <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+      <!-- <property name="defaultLocale" value="en"></property> -->
+      <property name="defaultLocale" value="ko"></property>
+   </bean>
+   
+   <!--ModelAndView >> jsonView 키워드 설정 -->
+   <bean id="viewResolver" p:order="0" class="org.springframework.web.servlet.view.BeanNameViewResolver"></bean>
+   
+   <bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+      <property name="contentType" value="application/json;charset=UTF-8"></property>
+   </bean>
 
 </beans>
