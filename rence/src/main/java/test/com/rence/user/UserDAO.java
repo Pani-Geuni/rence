@@ -10,6 +10,8 @@ public interface UserDAO {
 	
 	public UserVO authCheckOK(UserVO uvo); //이메일인증
 
+	public UserVO User_loginOK(UserVO uvo); // 로그인
+
 //	public UserVO user_selectOne(UserVO uvo);// 
 //
 //	public int user_update(UserVO uvo); //회원정보 수정
@@ -22,7 +24,7 @@ public interface UserDAO {
 //
 //	public String selectOne_pw(String email); //비밀번호 찾기
 //
-//	public UserVO login(UserVO uvo); // 로그인
+
 //
 //	public UserVO selectOne_mypage(String no); // 마이페이지
 	
