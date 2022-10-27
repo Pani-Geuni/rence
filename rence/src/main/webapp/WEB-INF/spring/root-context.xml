@@ -10,6 +10,7 @@
       <property name="definitions">
          <list>
             <value>WEB-INF/tiles_home.xml</value>
+            <value>WEB-INF/tiles_myPage.xml</value>
          </list>
       </property>
    </bean>
@@ -31,7 +32,7 @@
       </property>
    </bean>
 
-   <bean id="ds" class="org.apache.commons.dbcp.BasicDataSource">
+    <bean id="ds" class="org.apache.commons.dbcp.BasicDataSource">
       <property name="driverClassName"
          value="${oracle.DRIVER_NAME}"></property>
       <property name="url" value="${oracle.URL}"></property>

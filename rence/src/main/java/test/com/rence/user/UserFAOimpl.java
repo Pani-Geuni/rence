@@ -9,7 +9,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class UserFAOimpl implements UserFAO {
 	private static final Logger logger = LoggerFactory.getLogger(UserFAOimpl.class);
 	@Autowired
@@ -27,8 +29,9 @@ public class UserFAOimpl implements UserFAO {
 
 			File saveFile = new File(dir_path + "/", vo.getUser_image());
 
-			String formatName = vo.getUser_image().substring(vo.getUser_image().lastIndexOf(".") + 1); // ���� ���˵�����
-																										// ex)png,jpg
+			//파일포맷추출 ex)png,jpg
+			String formatName = vo.getUser_image().substring(vo.getUser_image().lastIndexOf(".") + 1); 
+																							 
 			logger.info("formatName: {}", formatName);
 
 			try {

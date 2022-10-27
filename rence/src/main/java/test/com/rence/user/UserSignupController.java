@@ -1,5 +1,5 @@
 /**
-	 *  ȸ�����Կ� ���õ� ��Ʈ�ѷ�
+	 *  회원가입 처리 컨트롤러
 	 */
 
 package test.com.rence.user;
@@ -8,15 +8,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+@Controller
 public class UserSignupController {
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -26,8 +27,48 @@ public class UserSignupController {
 	UserFileuploadService fileuploadService;
 	@Autowired
 	ServletContext context;
-	@Autowired
-	HttpServletResponse response;
+
+	// 아이디 중복 체크
+	@RequestMapping(value = "/user_idCheckOK", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, String> user_idCheckOK(UserVO uvo) {
+		logger.info("Welcome! user_idCheckOK");
+		logger.info("result: {}", uvo);
+
+		UserVO uvo2 = service.idCheckOK(uvo);
+
+		Map<String, String> map = new HashMap<String, String>();
+
+		// uvo가 null이 아니면 아이디 존재
+		if (uvo2 != null) {
+			map.put("result", "0"); // 아이디 존재("NOT OK")
+		} else {
+			map.put("result", "1"); // 아이디 사용가능("OK")
+		}
+
+		return map;
+	}
+
+	// 이메일 중복 체크
+	@RequestMapping(value = "/user_emailCheckOK", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, String> user_emailCheckOK(UserVO uvo) {
+		logger.info("Welcome! user_emailCheckOK");
+		logger.info("result: {}", uvo);
+
+		UserVO uvo2 = service.emailCheckOK(uvo);
+
+		Map<String, String> map = new HashMap<String, String>();
+
+		// uvo가 null이 아니면 이메일 존재
+		if (uvo2 != null) {
+			map.put("result", "0"); // 이메일 존재("NOT OK")
+		} else {
+			map.put("result", "1"); // 이메일 사용가능("OK")
+		}
+
+		return map;
+	}
 
 	// 회원가입 페이지 요청
 	@RequestMapping(value = "/user_insert", method = RequestMethod.GET)
@@ -37,9 +78,9 @@ public class UserSignupController {
 	}
 
 	// 회원가압완료
-	@RequestMapping(value = "/insertOK", method = RequestMethod.POST)
+	@RequestMapping(value = "/user_insertOK", method = RequestMethod.POST)
 	public String insertOK(UserVO uvo) {
-		logger.info("Welcome! insertOK");
+		logger.info("Welcome! user_insertOK");
 		logger.info("result: {}", uvo);
 
 		// 사진(파일)업로드
@@ -50,37 +91,8 @@ public class UserSignupController {
 		int result = service.user_insertOK(uvo);
 		logger.info("result: {}", result);
 
-		return "home"; // 회원가입후 로그인을 위한 홈화면 이동
+		return "redirect:/"; // 회원가입후 로그인을 위한 홈화면 이동
 
 	}
-	
-	
-
-	// 아이디 체크
-	@RequestMapping(value = "/user_idCheckOK", method = RequestMethod.POST)
-	@ResponseBody
-		public Map<String, String> user_idCheckOK(UserVO uvo) {
-			logger.info("Welcome! user_idCheckOK");
-			logger.info("result: {}", uvo);
-			
-			
-		    //uvo.setUser_id(request.getParameter("id"));
-			
-		    UserVO uvo2 = service.idCheckOK(uvo);
-		    
-		    Map<String, String> map = new HashMap<String, String>();
-		    
-		    
-		    response.addHeader("Access-Control-Allow-Origin", "*");
-		    response.addHeader("Access-Control-Allow-Credentials", "true");
-		    //uvo가 null이 아니면 아이디 존재
-		    if(uvo2 != null){
-		    	map.put("result", "0"); //아이디 존재("NOT OK")
-		    }else{
-		    	map.put("result", "1"); //아이디 사용가능("OK")
-		    }
-		    
-		    return map;
-		}
 
 }// end class

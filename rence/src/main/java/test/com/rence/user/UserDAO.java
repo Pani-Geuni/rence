@@ -2,29 +2,29 @@ package test.com.rence.user;
 
 public interface UserDAO {
 
-	public int user_insertOK(UserVO uvo); // ȸ������
+	public int user_insertOK(UserVO uvo); // 회원가입완료	
 
-	public UserVO idCheckOK(UserVO uvo); //ȸ������ - ���̵� üũ
+	public UserVO idCheckOK(UserVO uvo); //아이디중복체크
 
-	public UserVO emailCheckOK(UserVO uvo); //ȸ������ -�̸��� üũ
+	public UserVO emailCheckOK(UserVO uvo); //이메일중복체크
 	
-	public UserVO authCheckOK(UserVO uvo); //ȸ������ -������ȣ üũ
+	public UserVO authCheckOK(UserVO uvo); //이메일인증
 
 //	public UserVO user_selectOne(UserVO uvo);// 
 //
-//	public int user_update(UserVO uvo); //ȸ������ ������Ʈ(����)
+//	public int user_update(UserVO uvo); //회원정보 수정
 //
-//	public int user_delete(UserVO uvo); //ȸ��Ż��
+//	public int user_delete(UserVO uvo); //회원탈퇴
 //
 //	public String selectOne_name(String no);
 //
-//	public String selectOne_id(String email); //���̵� ã��
+//	public String selectOne_id(String email); //아이디 찾기
 //
-//	public String selectOne_pw(String email); //��й�ȣ ã��
+//	public String selectOne_pw(String email); //비밀번호 찾기
 //
-//	public UserVO login(UserVO uvo); // �α���
+//	public UserVO login(UserVO uvo); // 로그인
 //
-//	public UserVO selectOne_mypage(String no); // ����������
+//	public UserVO selectOne_mypage(String no); // 마이페이지
 	
 	
 }// end interface
