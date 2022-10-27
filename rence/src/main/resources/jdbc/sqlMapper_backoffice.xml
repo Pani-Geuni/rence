@@ -29,5 +29,9 @@
 	<select id="SQL_SELECT_BACKOFFICE_ID_EMAIL" resultType="test.com.rence.backoffice.BackOfficeVO">
   	select * from backofficeinfo where backoffice_id=#{backoffice_id} and backoffice_email=#{backoffice_email}
   	</select>
+  	
+  	<update id="SQL_UPDATE_BACKOFFICE_PW_FINDOK" parameterType="test.com.rence.backoffice.BackOfficeVO">
+  	UPDATE backofficeinfo SET backoffice_pw=#{backoffice_pw}where backoffice_id=#{backoffice_id}
+  </update>
   
 </mapper>

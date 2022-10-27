@@ -74,4 +74,14 @@ public class BackOfficeDAOImpl implements BackOfficeDAO {
 		
 		return vo2;
 	}
+
+	@Override
+	public int backoffice_pw_findOK(BackOfficeVO vo) {
+		logger.info("backoffice_pw_findOK()...");
+		logger.info("{}", vo);
+
+		int flag = sqlSession.update("SQL_UPDATE_BACKOFFICE_PW_FINDOK",vo);
+
+		return flag;
+	}
 }
