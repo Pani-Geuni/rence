@@ -1,8 +1,5 @@
 package test.com.rence.user;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import test.com.rence.backoffice.BackOfficeVO;
-import test.com.rence.sendemail.BackOfficeSendEmail;
 import test.com.rence.sendemail.EmailVO;
 import test.com.rence.sendemail.UserSendEmail;
 
@@ -100,9 +95,6 @@ public class UserController {
 		logger.info("result: {}", vo);
 		
 		JSONObject jsonObject = new JSONObject();
-		
-		
-		vo.setUser_email(vo.getUser_email());
 		
 		UserVO uvo2 = service.user_email_select(vo);
 		
