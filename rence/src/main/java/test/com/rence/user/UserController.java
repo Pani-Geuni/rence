@@ -99,7 +99,7 @@ public class UserController {
 		UserVO uvo2 = service.user_email_select(vo);
 		
 		if(uvo2!=null) {
-			uvo2 = authSendEmail.findId(uvo2,evo);
+			uvo2 = authSendEmail.findId(uvo2,evo); // 유저의 메일로 아이디 전송
 			
 			if (uvo2 !=null) {
 				logger.info("user_fine_id successed...");
@@ -135,10 +135,25 @@ public class UserController {
 	 * 비밀번호 수정페이지완료
 	 */
 	@RequestMapping(value = "/user_pw_upddateOK", method = RequestMethod.POST)
-	public String user_pw_upddateOK() {
+	public JSONObject user_pw_upddateOK(UserVO uvo) {
 		logger.info("user_pw_upddateOK()...");
+		logger.info("result: {}", uvo);
 		
-		return "redirect:/go_my_page"; // 비밀번호 수정이 성공 마이페이지로 이동
+		JSONObject jsonObject = new JSONObject();
+		
+		int result = service.user_pw_updateOK(uvo);
+		
+		if (result==1) {
+			logger.info("user_pw_upddate successed...");
+			jsonObject.put("result", "1");
+		}
+		
+		else {
+			logger.info("user_pw_upddate failed...");
+			jsonObject.put("result", "0");
+		}
+		
+		return jsonObject; 
 	}
 	
 	

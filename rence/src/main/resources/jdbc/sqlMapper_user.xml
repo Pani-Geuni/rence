@@ -51,5 +51,12 @@
 		select * from userinfo where user_id=#{user_id}
 	</select>
 
+	<!-- 비밀번호 찾기 -->
+
+	<!-- 비밀번호 수정 -->
+	<update id="SQL_USER_UPDATE_PW"
+		parameterType="test.com.rence.user.UserVO">
+		update userinfo set user_pw=#{user_pw}where user_id=#{user_id}
+	</update>
 
 </mapper>

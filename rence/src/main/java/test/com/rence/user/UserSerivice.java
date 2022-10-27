@@ -57,5 +57,10 @@ public class UserSerivice {
 		logger.info("user_id_findOK().....");
 		return dao.user_id_findOK(uvo);
 	}
+	
+	public int user_pw_updateOK(UserVO uvo) {
+		logger.info("user_pw_updateOK().....");
+		return dao.user_pw_updateOK(uvo);
+	}
 
 }// end class
