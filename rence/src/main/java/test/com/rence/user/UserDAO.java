@@ -14,7 +14,7 @@ public interface UserDAO {
 
 //	public UserVO user_selectOne(UserVO uvo);// 
 //
-//	public int user_update(UserVO uvo); //회원정보 수정
+	public int user_pw_updateOK(UserVO uvo); //회원정보-비밀번호 수정
 //
 //	public int user_delete(UserVO uvo); //회원탈퇴
 //

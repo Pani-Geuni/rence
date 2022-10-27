@@ -4,11 +4,9 @@
 
 package test.com.rence.user;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.ServletContext;
 
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,50 +29,50 @@ public class UserSignupController {
 	// 아이디 중복 체크
 	@RequestMapping(value = "/user_idCheckOK", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, String> user_idCheckOK(UserVO uvo) {
+	public JSONObject user_idCheckOK(UserVO uvo) {
 		logger.info("Welcome! user_idCheckOK");
 		logger.info("result: {}", uvo);
 
 		UserVO uvo2 = service.idCheckOK(uvo);
 
-		Map<String, String> map = new HashMap<String, String>();
+		JSONObject jsonObject = new JSONObject();
 
 		// uvo가 null이 아니면 아이디 존재
 		if (uvo2 != null) {
-			map.put("result", "0"); // 아이디 존재("NOT OK")
+			jsonObject.put("result", "0"); // 아이디 존재("NOT OK")
 		} else {
-			map.put("result", "1"); // 아이디 사용가능("OK")
+			jsonObject.put("result", "1"); // 아이디 사용가능("OK")
 		}
 
-		return map;
+		return jsonObject;
 	}
 
 	// 이메일 중복 체크
 	@RequestMapping(value = "/user_emailCheckOK", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, String> user_emailCheckOK(UserVO uvo) {
+	public JSONObject user_emailCheckOK(UserVO uvo) {
 		logger.info("Welcome! user_emailCheckOK");
 		logger.info("result: {}", uvo);
 
 		UserVO uvo2 = service.emailCheckOK(uvo);
 
-		Map<String, String> map = new HashMap<String, String>();
+		JSONObject jsonObject = new JSONObject();
 
 		// uvo가 null이 아니면 이메일 존재
 		if (uvo2 != null) {
-			map.put("result", "0"); // 이메일 존재("NOT OK")
+			jsonObject.put("result", "0"); // 이메일 존재("NOT OK")
 		} else {
-			map.put("result", "1"); // 이메일 사용가능("OK")
+			jsonObject.put("result", "1"); // 이메일 사용가능("OK")
 		}
 
-		return map;
+		return jsonObject;
 	}
 
 	// 회원가입 페이지 요청
 	@RequestMapping(value = "/user_insert", method = RequestMethod.GET)
 	public String user_insert() {
 		logger.info("Welcome! user_insert");
-		return "user/signup"; // ȸ������ ��������...
+		return "user/signup"; //회원가입페이지 이동(임시).
 	}
 
 	// 회원가압완료
@@ -90,6 +88,9 @@ public class UserSignupController {
 		// insert(성공시 1)
 		int result = service.user_insertOK(uvo);
 		logger.info("result: {}", result);
+		
+		
+		
 
 		return "redirect:/"; // 회원가입후 로그인을 위한 홈화면 이동
 

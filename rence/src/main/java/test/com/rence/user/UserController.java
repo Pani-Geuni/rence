@@ -1,19 +1,14 @@
 package test.com.rence.user;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -49,7 +44,7 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/user_loginOK", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject user_loginOK(UserVO uvo, Model model) {
+	public JSONObject user_loginOK(UserVO uvo) {
 		logger.info("user_loginOK()...");
 		UserVO uvo2 = service.User_loginOK(uvo);
 		logger.info("result: {}.", uvo2);
@@ -58,7 +53,7 @@ public class UserController {
 		
 		if (uvo2 != null) {
 			session.setAttribute("user_id", uvo2.getUser_id());
-			model.addAttribute("vo2", uvo2);
+			
 			
 			logger.info("User Login success.....");
 			jsonObject.put("result", "1"); //로그인 성공

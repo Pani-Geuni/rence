@@ -42,7 +42,7 @@ public class UserVO implements Serializable{
 	}
 
 
-	//����&����
+	//게터&세터
 	public String getUser_no() {
 		return user_no;
 	}

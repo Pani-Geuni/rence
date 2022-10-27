@@ -15,7 +15,7 @@ public class UserDAOimpl implements UserDAO {
 
 	@Override
 	public int user_insertOK(UserVO uvo) {
-		logger.info("user_insert().....");
+		logger.info("user_insertOK().....");
 		logger.info("{}", uvo);
 
 		int flag = sqlSession.insert("SQL_INSERT", uvo);
@@ -53,5 +53,18 @@ public class UserDAOimpl implements UserDAO {
 		return uvo2;
 
 	}
+
+	@Override
+	public int user_pw_updateOK(UserVO uvo) {
+		logger.info("user_pw_updateOK().....");
+		logger.info("{}", uvo);
+
+		int flag = sqlSession.insert("SQL_INSERT", uvo);
+
+		return flag;
+		
+	}
+	
+	
 
 }
