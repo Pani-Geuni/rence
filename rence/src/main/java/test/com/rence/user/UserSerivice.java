@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import test.com.rence.backoffice.BackOfficeVO;
+
 @Service
 public class UserSerivice {
 
@@ -43,6 +45,17 @@ public class UserSerivice {
 	public UserVO User_loginOK(UserVO uvo) {
 		logger.info("User_loginOK().....");
 		return dao.User_loginOK(uvo);
+	}
+	
+	public UserVO user_email_select(UserVO uvo) {
+		logger.info("user_email_select().....");
+		return dao.user_email_select(uvo);
+	}
+
+
+	public int user_id_findOK(UserVO uvo) {
+		logger.info("user_id_findOK().....");
+		return dao.user_id_findOK(uvo);
 	}
 
 }// end class

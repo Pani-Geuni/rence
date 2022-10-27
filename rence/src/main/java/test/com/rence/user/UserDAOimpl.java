@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import test.com.rence.backoffice.BackOfficeVO;
+
 @Repository
 public class UserDAOimpl implements UserDAO {
 
@@ -63,6 +65,24 @@ public class UserDAOimpl implements UserDAO {
 
 		return flag;
 		
+	}
+
+	@Override
+	public UserVO user_email_select(UserVO uvo) {
+		logger.info("user_email_select().....");
+		UserVO uvo2 = sqlSession.selectOne("SQL_SELECT_EMAIL",uvo);
+
+		return uvo2;
+	}
+
+	@Override
+	public int user_id_findOK(UserVO uvo) {
+		logger.info("user_id_findOK()...");
+		logger.info("{}", uvo);
+
+		int flag = sqlSession.update("SQL_UPDATE_USER_ID_FINDOK",uvo);
+
+		return flag;
 	}
 	
 	

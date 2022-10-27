@@ -1,5 +1,8 @@
 package test.com.rence.user;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,6 +15,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import test.com.rence.backoffice.BackOfficeVO;
+import test.com.rence.sendemail.BackOfficeSendEmail;
+import test.com.rence.sendemail.EmailVO;
+import test.com.rence.sendemail.UserSendEmail;
 
 /**
  * Handles requests for the application home page.
@@ -29,6 +37,9 @@ public class UserController {
 
 	@Autowired
 	HttpSession session;
+	
+	@Autowired
+	UserSendEmail authSendEmail;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -77,6 +88,46 @@ public class UserController {
         session.removeAttribute("user_id");
 		return "redirect:/"; //홈페이지로 이동
 	}
+	
+	
+	/**
+	 * 아이디 찾기
+	 */
+	@RequestMapping(value = "/find_id", method = RequestMethod.GET)
+	@ResponseBody
+	public JSONObject user_find_id (UserVO vo, EmailVO evo) {
+		logger.info("user_find_id ()...");
+		logger.info("result: {}", vo);
+		
+		JSONObject jsonObject = new JSONObject();
+		
+		
+		vo.setUser_email(vo.getUser_email());
+		
+		UserVO uvo2 = service.user_email_select(vo);
+		
+		if(uvo2!=null) {
+			uvo2 = authSendEmail.findId(uvo2,evo);
+			
+			if (uvo2 !=null) {
+				logger.info("user_fine_id successed...");
+				jsonObject.put("result", "1");
+				
+			}else {
+				logger.info("user_fine_id failed...");
+				jsonObject.put("result", "0");
+			}
+		}
+		
+		return jsonObject;
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	/**
 	 * 비밀번호 수정페이지 요청
