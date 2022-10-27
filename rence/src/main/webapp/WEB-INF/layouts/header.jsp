@@ -6,7 +6,7 @@
     
  <section class ="headerWrap">
      <div class = "logo-section">
-         <img src="../IMG/common/RENCE.svg" class="logo-mku">
+         <img src="${path}/resources/IMG/common/RENCE.svg" class="logo-mku">
      </div>
      <div class = "searchBar-section">
          <div class="searchBar-wrap">

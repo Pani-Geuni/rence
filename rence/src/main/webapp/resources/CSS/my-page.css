@@ -1,6 +1,6 @@
 .my-page-wrap{
     width: 100%;
-    height: calc(100% - 95px - 75px);
+    height: calc(100vh - 95px - 76px);
 
     display: flex;
     flex-direction: column;
@@ -10,6 +10,9 @@
 }
 
 .my-page{
+    width: 100%;
+    height: calc(100vh - 95px - 76px);
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -246,4 +249,52 @@
 
 .warning-border{
     border: 2px solid #FF5C5C;
+}
+
+
+/* **************************** */
+/* MODIFY PROFILE IMAGE SECTION */
+/* **************************** */
+#modify-img-section{
+    height: 140px;
+    width: 300px;
+}
+
+.review-upload-section{
+    height: 80%;
+
+    box-sizing: border-box;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.review-upload-btn{
+    width: 75px;
+    padding: 4px 10px 4px 10px;
+
+    background-color: #2EE49D;
+    
+    font-family: 'HallymGothic';
+    font-weight: 900;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+}
+input[type="file"] {
+    display: none;
+}
+.review-upload-value{
+    max-width: 160px;
+    height: 20px;
+    
+    white-space : nowrap;
+    overflow : hidden;
+    text-overflow : ellipsis;
+    
+    border: 2px solid #e4e4e4;
+
+    margin-right: 5px;
 }
