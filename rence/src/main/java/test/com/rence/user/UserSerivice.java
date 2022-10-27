@@ -1,4 +1,4 @@
-package test.com.user;
+package test.com.rence.user;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package test.com.user;
+package test.com.rence.user;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -6,17 +6,17 @@ import java.util.Date;
 import org.springframework.web.multipart.MultipartFile;
 
 public class UserVO implements Serializable{
-	private String user_no; //À¯Àú °íÀ¯¹øÈ£
-	private String user_image; //À¯Àú ÇÁ·ÎÇÊ
-	private String user_id; //À¯Àú ¾ÆÀÌµğ
-	private String user_pw; //À¯Àú ºñ¹Ğ¹øÈ£
-	private String user_name; //À¯Àú ½Ç¸í
-	private String user_email; //À¯Àú ÀÌ¸ŞÀÏ
-	private String user_tel; //À¯Àú ÀüÈ­¹øÈ£
-	private Date user_birth; //À¯Àú »ı³â¿ùÀÏ
-	private String user_state; //À¯Àú È¸¿ø»óÅÂ(°¡ÀÔ,Å»Åğ)
-	private String auth_no; // ÀÎÁõ¹øÈ£
-	private  MultipartFile multipartFile; // ÀÌ¹ÌÁö 
+	private String user_no; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+	private String user_image; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String user_id; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½
+	private String user_pw; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ğ¹ï¿½È£
+	private String user_name; //ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¸ï¿½
+	private String user_email; //ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½
+	private String user_tel; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½È£
+	private Date user_birth; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String user_state; //ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½,Å»ï¿½ï¿½)
+	private String auth_no; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+	private  MultipartFile multipartFile; // ï¿½Ì¹ï¿½ï¿½ï¿½ 
 	
 	
 	public UserVO() {
@@ -42,7 +42,7 @@ public class UserVO implements Serializable{
 	}
 
 
-	//°ÔÅÍ&¼¼ÅÍ
+	//ï¿½ï¿½ï¿½ï¿½&ï¿½ï¿½ï¿½ï¿½
 	public String getUser_no() {
 		return user_no;
 	}

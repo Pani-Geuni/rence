@@ -2,19 +2,20 @@
 	 *  ȸ�����Կ� ���õ� ��Ʈ�ѷ�
 	 */
 
-package test.com.user;
+package test.com.rence.user;
 
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 public class UserSignupController {
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -25,6 +26,8 @@ public class UserSignupController {
 	UserFileuploadService fileuploadService;
 	@Autowired
 	ServletContext context;
+	@Autowired
+	HttpServletResponse response;
 
 	// 회원가입 페이지 요청
 	@RequestMapping(value = "/user_insert", method = RequestMethod.GET)
@@ -55,23 +58,29 @@ public class UserSignupController {
 
 	// 아이디 체크
 	@RequestMapping(value = "/user_idCheckOK", method = RequestMethod.POST)
-		public Map<String, String> user_idCheck(UserVO uvo) {
+	@ResponseBody
+		public Map<String, String> user_idCheckOK(UserVO uvo) {
 			logger.info("Welcome! user_idCheckOK");
 			logger.info("result: {}", uvo);
 			
 			
-		    uvo.setUser_id(request.getParameter("id"));
+		    //uvo.setUser_id(request.getParameter("id"));
 			
 		    UserVO uvo2 = service.idCheckOK(uvo);
 		    
 		    Map<String, String> map = new HashMap<String, String>();
 		    
+		    
+		    response.addHeader("Access-Control-Allow-Origin", "*");
+		    response.addHeader("Access-Control-Allow-Credentials", "true");
 		    //uvo가 null이 아니면 아이디 존재
 		    if(uvo2 != null){
 		    	map.put("result", "0"); //아이디 존재("NOT OK")
 		    }else{
 		    	map.put("result", "1"); //아이디 사용가능("OK")
 		    }
+		    
+		    return map;
 		}
 
 }// end class
