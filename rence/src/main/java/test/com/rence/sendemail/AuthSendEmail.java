@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
+import test.com.rence.backoffice.BackOfficeVO;
+
 @Component
 public class AuthSendEmail {
 	private static final Logger logger = LoggerFactory.getLogger(AuthSendEmail.class);
@@ -48,6 +50,32 @@ public class AuthSendEmail {
 			vo = null;
 		}
 		return vo;
+	}
+
+	///////////////////////////////
+	//******* 비밀번호 찾기 *******//
+	//////////////////////////////
+	public BackOfficeVO findPw(BackOfficeVO vo, EmailVO evo) {
+		//이메일 제목, 내용 설정
+				evo.setSubject("[rence] 이메일 인증코드");
+				evo.setContent("해당 코드를 인증번호 란에 기입 후, 인증확인을 마쳐주세요.");
+				
+				//비밀번호 재설정 
+				
+				try {
+					
+					//전송
+					MimeMessage msg = javaMailSender.createMimeMessage();
+					msg.setSubject(evo.getSubject());
+					msg.setText(evo.getContent(),"인증 코드 : "+vo.getAuth_code());
+					msg.setRecipient(RecipientType.TO, new InternetAddress(vo.getBackoffice_email()));
+					
+					javaMailSender.send(msg);
+				} catch (MessagingException e) {
+					// TODO: handle exception
+					vo = null;
+				}
+				return vo;
 	}
 	
 }

@@ -54,4 +54,14 @@ public class BackOfficeDAOImpl implements BackOfficeDAO {
 		
 		return vo2;
 	}
+
+	@Override
+	public BackOfficeVO backoffice_login(BackOfficeVO vo) {
+		logger.info("backoffice_login()...");
+		logger.info("{}", vo);
+
+		BackOfficeVO vo2 = sqlSession.selectOne("SQL_BACKOFFICE_LOGIN", vo);	
+		
+		return vo2;
+	}
 }

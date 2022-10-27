@@ -16,7 +16,9 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +31,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import test.com.rence.sendemail.AuthSendEmail;
 import test.com.rence.sendemail.AuthVO;
+import test.com.rence.sendemail.EmailVO;
 
 /**
  * Handles requests for the application home page.
@@ -50,15 +53,27 @@ public class BackOfficeController {
 	@Autowired
 	OperatingTime operatingTime;
 	
+	@Autowired
+	HttpSession session;
+	
 //	@Autowired
 //	HttpServletResponse response;
+	
+	/**
+	 * 백오피스 랜딩
+	 */
+	@RequestMapping(value = "/backoffice_landing", method = RequestMethod.GET)
+	public String backoffice_landing() {
+
+		return "backoffice/main";
+	}
 	
 	/**
 	 * 백오피스 신청 폼 출력
 	 */
 	@RequestMapping(value = "/backoffice_insert", method = RequestMethod.GET)
 	public String backoffice_insert() {
-
+		
 		return "backoffice/insert";
 	}
 
@@ -66,7 +81,7 @@ public class BackOfficeController {
 	 * 백오피스 신청 처리
 	 * @throws ParseException 
 	 */
-	@RequestMapping(value = "/backoffice_insertOK", method = RequestMethod.GET)
+	@RequestMapping(value = "/backoffice_insertOK", method = RequestMethod.POST)
 	public String backoffice_insertOK(BackOfficeVO vo, BackOfficeOperationgTimeVO ovo) throws ParseException {
 		
 		//백오피스 이미지
@@ -199,4 +214,84 @@ public class BackOfficeController {
 		return map;
 	}
 
+//	/**
+//	 * 로그인 폼페이지 요청
+//	 */
+//	@RequestMapping(value = "/backoffice_login", method = RequestMethod.GET)
+//	public String login() {
+//		logger.info("login()...");
+//		
+//		return "backoffice/login";
+//	}
+	
+	
+	/**
+	 * 로그인 처리
+	 */
+	@RequestMapping(value = "/backoffice_loginOK", method = RequestMethod.POST)
+	public String backoffice_loginOK(BackOfficeVO vo, Model model) {
+		logger.info("backoffice_loginOK()...");
+		BackOfficeVO vo2 = service.backoffice_login(vo);
+		logger.info("result: {}.",vo2);
+		
+		if (vo2 != null) {
+			session.setAttribute("backoffice_id", vo2.getBackoffice_id());
+			model.addAttribute("vo2",vo2);
+			logger.info("success...............");
+			return "redirect:/selectAll";
+		} else {
+			logger.info("failed...............");
+			return "redirect:backoffice_loginOK";
+		}
+		
+	}
+	
+	/**
+	 * 로그아웃 처리
+	 */
+	@RequestMapping(value = "/backoffice_logout", method = RequestMethod.GET)
+	public String backoffice_logout( HttpServletRequest request) {
+		logger.info("backoffice_logout()...");
+		session = request.getSession();
+        session.removeAttribute("backoffice_id");
+		return "redirect:/"; //백오피스 랜딩으로 이동
+	}
+	
+	/**
+	 * 비밀번호 찾기
+	 */
+	@RequestMapping(value = "/backoffice_findOK_pw ", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, String> backoffice_findOK_pw (BackOfficeVO vo, EmailVO evo) {
+		logger.info("backoffice_findOK_pw ()...");
+		logger.info("{}", vo);
+		
+		Map<String, String> map = new HashMap<String, String>();
+		
+		vo.setBackoffice_id(vo.getBackoffice_id());
+		vo.setBackoffice_email(vo.getBackoffice_email());
+		
+		int result = service.backoffice_id_email_select(vo);
+		
+		if(result==1) {
+			vo = authSendEmail.findPw(vo,evo);
+			
+			if (vo !=null) {
+//			service.backoffice_auth_insert(avo);
+				logger.info("successed...");
+				map.put("result", "1");
+//			map.put("auth_code", avo.getAuth_code());
+//			map.put("backoffice_email", avo.getUser_email());
+//	    	map.put("auth_no", avo.getAuth_no());
+				
+			}else {
+				logger.info("failed...");
+				map.put("result", "0");
+			}
+		}
+		
+		return map;
+	}
+	
+	
 }
