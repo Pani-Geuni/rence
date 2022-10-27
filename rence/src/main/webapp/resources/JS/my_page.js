@@ -1,0 +1,14 @@
+$(function(){
+    $("#now-reserve-menu").click(function(){
+        location.href="/rence/go_now_reserve";
+    });
+    $("#before-reserve-menu").click(function(){
+        location.href="/rence/go_before_reserve";
+    });
+    $("#mileage-menu").click(function(){
+        location.href="/rence/go_mileage";
+    });
+    $("#question-menu").click(function(){
+        location.href="/rence/go_question_list";
+    });
+});

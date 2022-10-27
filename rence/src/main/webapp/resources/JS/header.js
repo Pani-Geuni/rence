@@ -3,6 +3,10 @@ $(function(){
     let city = [];
     let town = [];
 
+    $(".logo-mku").click(function(){
+        location.href="/rence/";
+    });
+
     $("#before_userMenu").click(function(){
         $("#before_login>.custom-select-user").toggleClass("blind");
     });
@@ -23,7 +27,7 @@ $(function(){
 
     $("#go-myPage").click(function(){
         $("#after_login>.custom-select-user").addClass("blind");
-        // 페이지 이동
+        location.href="/rence/go_my_page";
     });
     $("#go-logOut").click(function(){
         $("#after_login>.custom-select-user").addClass("blind");

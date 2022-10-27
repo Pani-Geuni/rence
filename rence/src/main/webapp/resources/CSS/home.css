@@ -12,13 +12,13 @@
 .homeTitle-wrap{
     width: 1080px;
 
-    margin-top: 45px;
+    margin-top: 60px;
     margin-bottom: 30px;
     margin-left: auto;
     margin-right: auto;
 }
 .homeTitle{
-    font-size: 23px;
+    font-size: 25px;
     font-weight: bold;
 }
 .type-list-wrap{

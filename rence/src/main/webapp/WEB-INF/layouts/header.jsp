@@ -38,26 +38,10 @@
                  <!-- START Location SELECT -->
                  <div id = "custom-location-select" class="location-select-wrap blind">
                      <ul id = "location-city" class="location-select">
-                         <li class="location-select-list">데스크</li>
-                         <li class="location-select-list">회의실</li>
-                         <li class="location-select-list">오피스</li>
-                         <li class="location-select-list">데스크</li>
-                         <li class="location-select-list">회의실</li>
-                         <li class="location-select-list">오피스</li>
-                         <li class="location-select-list">데스크</li>
-                         <li class="location-select-list">회의실</li>
-                         <li class="location-select-list">오피스</li>
+                         <li class="location-select-list sample blind">데스크</li>
                      </ul>
-                     <ul id = "location-town" class="location-select">
-                         <li class="location-select-list">데스크</li>
-                         <li class="location-select-list">회의실</li>
-                         <li class="location-select-list">오피스</li>
-                         <li class="location-select-list">데스크</li>
-                         <li class="location-select-list">회의실</li>
-                         <li class="location-select-list">오피스</li>
-                         <li class="location-select-list">데스크</li>
-                         <li class="location-select-list">회의실</li>
-                         <li class="location-select-list">오피스</li>
+                     <ul id = "location-town" class="location-select blind">
+                         <li class="location-select-list sample blind">데스크</li>
                      </ul>
                  </div>
                  <!-- END TYPE SELECT -->
@@ -66,7 +50,7 @@
      </div>
      <div class="userMenu-section ">
          <!-- 로그인 전 유저 메뉴 -->
-         <section id="before_login" class="">
+         <section id="before_login" class="blind">
              <div id = "before_userMenu" class ="userMenu">
                  <img src="${path}/resources/IMG/header/user_menu.svg" alt="user_menu_img" class="user_menu_img"/>
                  <img src="${path}/resources/IMG/header/bx_user-circle.png" alt="user_profile_img" class="user_profile_img"/>
@@ -83,7 +67,7 @@
          </section>
          
          <!-- 로그인 후 유저 메뉴 -->
-         <section id="after_login"  class="blind">
+         <section id="after_login"  class="">
              <div id = "after_userMenu" class ="userMenu">
                  <img src="${path}/resources/IMG/header/user_menu.svg" alt="user_menu_img" class="user_menu_img"/>
                  <img src="${path}/resources/IMG/header/loopy.jpg" alt="user_profile_img" class="user_profile_img"/>
