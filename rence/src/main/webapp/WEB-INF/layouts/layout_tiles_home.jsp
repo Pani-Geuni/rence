@@ -37,7 +37,7 @@
                 <img src="../IMG/common/RENCE.svg" class="popup-logo">
             </section>
             <section class="login-popup-input-section">
-                <input type="text" id="login-id" class="login-popup-input" placeholder="아이디를 입력하세요."/>
+                <input type="text" id="login-id" class="login-popup-input" placeholder="아이디를 입력하세요." autocomplete="off"/>
                 <input type="password" id="login-pw" class="login-popup-input" placeholder="비밀번호를 입력하세요."/>
             </section>
             <section class="login-popup-btn-section">
@@ -45,7 +45,7 @@
                 <div class="txt-btn-wrap">
                     <span id="go-find-id" class="txt-btn">아이디 찾기</span>
                     <span id="go-find-pw" class="txt-btn">비밀번호 찾기</span>
-    				<span class="txt-btn login-close">창닫기</span>
+					<span class="txt-btn login-close">창닫기</span>
                 </div>
             </section>
         </div>
@@ -59,30 +59,30 @@
             <section class="join-popup-input-section">
                 <div class="input-wrap">
                     <div class="input-check">
-                        <input type="email" id="join-email" class="join-popup-input-short" placeholder="이메일"/>
+                        <input type="email" id="join-email" class="join-popup-input-short" placeholder="이메일" autocomplete="off"/>
                         <input type = "button" id="check_email" class="join-popup-check-btn" value="인증하기"/>
                     </div>
                     <span class="warning-text blind">다시 시도해주세요.</span>
                 </div>
                 <div class="input-wrap">
                     <div class="input-check">
-                        <input type="text" id="join-email-code" class="join-popup-input-short" placeholder="인증번호"/>
+                        <input type="text" id="join-email-code" class="join-popup-input-short" placeholder="인증번호" autocomplete="off"/>
                         <input type = "button" id="check_email-code" class="join-popup-check-btn" value="확인"/>
                     </div>
                     <span class="warning-text blind">다시 시도해주세요.</span>
                 </div>
                 <div class="input-wrap">
                     <div class="input-check">
-                        <input type="text" id="join-id" class="join-popup-input-short" placeholder="아이디"/>
+                        <input type="text" id="join-id" class="join-popup-input-short" placeholder="아이디" autocomplete="off"/>
                         <input type = "button" id="check_id" class="join-popup-check-btn" value="중복확인"/>
                     </div>
                     <span class="warning-text">이미 아이디가 존재합니다.</span>
                 </div>
                 <input type="password" id="join-pw" class="join-popup-input" placeholder="비밀번호"/>
                 <input type="password" id="join-re-pw" class="join-popup-input" placeholder="비밀번호 재입력"/>
-                <input type="text" id="join-name" class="join-popup-input" placeholder="이름"/>
-                <input type="text" id="join-tel" class="join-popup-input" placeholder="전화번호(-없이 입력)"/>
-                <input type="text" id="join-birth" class="join-popup-input" placeholder="생년월일(숫자로만 입력)"/>
+                <input type="text" id="join-name" class="join-popup-input" placeholder="이름" autocomplete="off"/>
+                <input type="text" id="join-tel" class="join-popup-input" placeholder="전화번호(-없이 입력)" autocomplete="off"/>
+                <input type="text" id="join-birth" class="join-popup-input" placeholder="생년월일(숫자로만 입력)" autocomplete="off"/>
             </section>
             <section class="join-popup-btn-section">
                 <input type="button" id="join-btn" value="회원가입">
@@ -97,7 +97,7 @@
             </section>
             <section class="find-popup-input-section">
                 <span class="find-guide-txt">회원가입 시 입력한 이메일을 입력해주세요.</span>
-                <input type="email" id="find-id-email" class="find-popup-input" placeholder="이메일을 입력하세요."/>
+                <input type="email" id="find-id-email" class="find-popup-input" placeholder="이메일을 입력하세요." autocomplete="off"/>
             </section>
             <section class="find-popup-btn-section">
                 <input type="button" id="find-id-btn" class="find-btn" value="메일 보내기">
@@ -114,11 +114,11 @@
             <section class="find-popup-input-section">
                 <div class="email-wrap">
                     <span class="find-guide-txt">회원가입 시 입력한 이메일을 입력해주세요.</span>
-                    <input type="email" id="find-pw-email" class="find-popup-input" placeholder="이메일을 입력하세요."/>
+                    <input type="email" id="find-pw-email" class="find-popup-input" placeholder="이메일을 입력하세요." autocomplete="off"/>
                 </div>
                 <div>
                     <span class="find-guide-txt">회원가입 시 입력한 아이디를 입력해 주세요.</span>
-                    <input type="text" id="find-pw-id" class="find-popup-input" placeholder="비밀번호를 입력하세요."/>
+                    <input type="text" id="find-pw-id" class="find-popup-input" placeholder="아이디를 입력하세요." autocomplete="off"/>
                 </div>
             </section>
             <section class="find-popup-btn-section">

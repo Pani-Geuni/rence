@@ -50,7 +50,7 @@
      </div>
      <div class="userMenu-section ">
          <!-- 로그인 전 유저 메뉴 -->
-         <section id="before_login" class="blind">
+         <section id="before_login" class="">
              <div id = "before_userMenu" class ="userMenu">
                  <img src="${path}/resources/IMG/header/user_menu.svg" alt="user_menu_img" class="user_menu_img"/>
                  <img src="${path}/resources/IMG/header/bx_user-circle.png" alt="user_profile_img" class="user_profile_img"/>
@@ -67,7 +67,7 @@
          </section>
          
          <!-- 로그인 후 유저 메뉴 -->
-         <section id="after_login"  class="">
+         <section id="after_login"  class="blind">
              <div id = "after_userMenu" class ="userMenu">
                  <img src="${path}/resources/IMG/header/user_menu.svg" alt="user_menu_img" class="user_menu_img"/>
                  <img src="${path}/resources/IMG/header/loopy.jpg" alt="user_profile_img" class="user_profile_img"/>
