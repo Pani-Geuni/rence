@@ -2,35 +2,26 @@ package test.com.rence.backoffice;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 
-import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import test.com.rence.sendemail.BackOfficeSendEmail;
 import test.com.rence.sendemail.AuthVO;
+import test.com.rence.sendemail.BackOfficeSendEmail;
 import test.com.rence.sendemail.EmailVO;
 
 /**
@@ -155,11 +146,11 @@ public class BackOfficeController {
 	 */
 	@RequestMapping(value = "/backoffice_auth", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, String> backoffice_auth(AuthVO avo, BackOfficeVO bvo, EmailVO evo) {
+	public JSONObject backoffice_auth(AuthVO avo, BackOfficeVO bvo, EmailVO evo) {
 		logger.info("Welcome sendMailOK.do");
 		logger.info("{}", bvo);
 		
-		Map<String, String> map = new HashMap<String, String>();
+		JSONObject jsonObject = new JSONObject();
 		
 		avo.setUser_email(bvo.getBackoffice_email());
 
@@ -168,17 +159,17 @@ public class BackOfficeController {
 			
 			service.backoffice_auth_insert(avo);
 			logger.info("successed...");
-			map.put("result", "1");
-			map.put("auth_code", avo.getAuth_code());
-			map.put("backoffice_email", avo.getUser_email());
-	    	map.put("auth_no", avo.getAuth_no());
+			jsonObject.put("result", "1");
+			jsonObject.put("auth_code", avo.getAuth_code());
+			jsonObject.put("backoffice_email", avo.getUser_email());
+			jsonObject.put("auth_no", avo.getAuth_no());
 			
 		}else {
 			logger.info("failed...");
-			map.put("result", "0");
+			jsonObject.put("result", "0");
 		}
 		
-		return map;
+		return jsonObject;
 	}
 
 	/**
@@ -186,22 +177,21 @@ public class BackOfficeController {
 	 */
 	@RequestMapping(value = "/backoffice_authOK", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, String> backoffice_authOK(BackOfficeVO vo) {
+	public JSONObject backoffice_authOK(BackOfficeVO vo) {
 		 
 		AuthVO avo = service.backoffice_auth_select(vo);
 
-		Map<String, String> map = new HashMap<String, String>();
-		
+		JSONObject jsonObject = new JSONObject();
 
 	    if(avo != null){
 	    	logger.info("successed...");
-	    	map.put("result", "1");
+	    	jsonObject.put("result", "1");
 
 	    }else{
 	    	logger.info("failed...");
-	    	map.put("result", "0");
+	    	jsonObject.put("result", "0");
 	    }
-		return map;
+		return jsonObject;
 	}
 	
 	
@@ -210,23 +200,23 @@ public class BackOfficeController {
 	 */
 	@RequestMapping(value = "/backoffice_loginOK", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, String> backoffice_loginOK(BackOfficeVO vo) {
+	public JSONObject backoffice_loginOK(BackOfficeVO vo) {
 		logger.info("backoffice_loginOK()...");
 		BackOfficeVO vo2 = service.backoffice_login(vo);
 		logger.info("result: {}.",vo2);
 		
-		Map<String, String> map = new HashMap<String, String>();
+		JSONObject jsonObject = new JSONObject();
 		
 		if (vo2 != null) {
 			session.setAttribute("backoffice_id", vo2.getBackoffice_id());
-			map.put("result", "1");
+			jsonObject.put("result", "1");
 	    	logger.info("successed...");
 		} else {
 			logger.info("failed...");
-	    	map.put("result", "0");
+			jsonObject.put("result", "0");
 		}
 		
-		return map;
+		return jsonObject;
 		
 	}
 	
@@ -246,14 +236,11 @@ public class BackOfficeController {
 	 */
 	@RequestMapping(value = "/backoffice_find_pw ", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, String> backoffice_find_pw (BackOfficeVO vo, EmailVO evo) {
+	public JSONObject backoffice_find_pw (BackOfficeVO vo, EmailVO evo) {
 		logger.info("backoffice_find_pw ()...");
 		logger.info("{}", vo);
 		
-		Map<String, String> map = new HashMap<String, String>();
-		
-		vo.setBackoffice_id(vo.getBackoffice_id());
-		vo.setBackoffice_email(vo.getBackoffice_email());
+		JSONObject jsonObject = new JSONObject();
 		
 		BackOfficeVO vo2 = service.backoffice_id_email_select(vo);
 		
@@ -262,15 +249,15 @@ public class BackOfficeController {
 			
 			if (vo2 !=null) {
 				logger.info("successed...");
-				map.put("result", "1");
+				jsonObject.put("result", "1");
 				
 			}else {
 				logger.info("failed...");
-				map.put("result", "0");
+				jsonObject.put("result", "0");
 			}
 		}
 		
-		return map;
+		return jsonObject;
 	}
 	
 	/**
@@ -285,29 +272,27 @@ public class BackOfficeController {
 	/**
 	 * 비밀번호 변경
 	 */
-	@RequestMapping(value = "/backoffice_findOK_pw ", method = RequestMethod.GET)
+	@RequestMapping(value = "/backoffice_findOK_pw ", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, String> backoffice_findOK_pw (BackOfficeVO vo) {
+	public JSONObject backoffice_findOK_pw (BackOfficeVO vo) {
 		logger.info("backoffice_findOK_pw ()...");
 		logger.info("{}", vo);
 		
-		Map<String, String> map = new HashMap<String, String>();
-		
-		vo.setBackoffice_pw(vo.getBackoffice_pw());
+		JSONObject jsonObject = new JSONObject();
 		
 		int result = service.backoffice_pw_findOK(vo);
 		
 		if (result==1) {
 			logger.info("successed...");
-			map.put("result", "1");
+			jsonObject.put("result", "1");
 		}
 		
 		else {
 			logger.info("failed...");
-			map.put("result", "0");
+			jsonObject.put("result", "0");
 		}
 		
-		return map;
+		return jsonObject;
 	}
 	
 	
