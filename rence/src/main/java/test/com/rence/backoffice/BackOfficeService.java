@@ -43,4 +43,16 @@ public class BackOfficeService {
 		return dao.backoffice_operating_insert(ovo);
 	}
 
+	//로그인
+	public BackOfficeVO backoffice_login(BackOfficeVO vo) {
+		logger.info("backoffice_login()...");
+		return dao.backoffice_login(vo);
+	}
+
+	//비밀번호 찾기 전, 이메일 아이디 일치 판단
+	public BackOfficeVO backoffice_id_email_select(BackOfficeVO vo) {
+		logger.info("backoffice_id_email_select()...");
+		return dao.backoffice_id_email_select(vo);
+	}
+
 }
