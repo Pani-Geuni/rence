@@ -183,6 +183,7 @@
 			</section>
 			<section class="modify-popup-btn-section">
 				<div id="modify-btn" class="modify-btn">수정</div>
+				<div id="modify-close-btn" class="modify-btn">닫기</div>
 			</section>
 		</div>
 		<!-- END MODIFY-PW SECTION -->
