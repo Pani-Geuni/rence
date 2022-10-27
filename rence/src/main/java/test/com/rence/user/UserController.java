@@ -88,7 +88,7 @@ public class UserController {
 	/**
 	 * 아이디 찾기
 	 */
-	@RequestMapping(value = "/find_id", method = RequestMethod.GET)
+	@RequestMapping(value = "/find_id", method = RequestMethod.POST)
 	@ResponseBody
 	public JSONObject user_find_id (UserVO vo, EmailVO evo) {
 		logger.info("user_find_id ()...");

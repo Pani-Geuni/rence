@@ -28,7 +28,7 @@ public class UserSendEmail {
 	public UserVO findId(UserVO uvo, EmailVO evo) {
 		// 이메일 제목, 내용 설정
 		evo.setSubject("[rence] User 아이디 재설정");
-		evo.setContent("귀하의 아이디는 다음과 같습니다.");
+//		evo.setContent("귀하의 아이디는 다음과 같습니다.");
 
 		// 비밀번호 재설정
 
