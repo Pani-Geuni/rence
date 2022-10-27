@@ -51,16 +51,18 @@ public class UserSerivice {
 		logger.info("user_email_select().....");
 		return dao.user_email_select(uvo);
 	}
-
-
-	public int user_id_findOK(UserVO uvo) {
-		logger.info("user_id_findOK().....");
-		return dao.user_id_findOK(uvo);
-	}
 	
+	public UserVO user_id_email_select(UserVO uvo) {
+		logger.info("user_id_email_select().....");
+		return dao.user_id_email_select(uvo);
+	}
+
+
 	public int user_pw_updateOK(UserVO uvo) {
 		logger.info("user_pw_updateOK().....");
 		return dao.user_pw_updateOK(uvo);
 	}
+
+	
 
 }// end class

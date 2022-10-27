@@ -14,10 +14,9 @@ public interface UserDAO {
 
 	public UserVO User_loginOK(UserVO uvo); // 로그인
 	
-	public UserVO user_email_select(UserVO uvo); // 아이디 찾기에서 이메일 가져오기
+	public UserVO user_email_select(UserVO uvo); // 아이디 찾기에서 이메일 확인
 
-	public int user_id_findOK(UserVO uvo); //아이디 찾기
-
+	public UserVO user_id_email_select(UserVO uvo); //비밀번호 찾기에서 아이디,이메일 확인
 //	public UserVO user_selectOne(UserVO uvo);// 
 //
 	public int user_pw_updateOK(UserVO uvo); //회원정보-비밀번호 수정
@@ -30,6 +29,7 @@ public interface UserDAO {
 //
 //	public String selectOne_pw(String email); //비밀번호 찾기
 //
+
 
 
 //
