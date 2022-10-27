@@ -11,23 +11,23 @@
 		values('U'||SEQ_TEST_USER.nextval,#{auth_no},
 		#{user_id},#{user_pw},#{user_name},#{user_tel},#{user_birth})
 	</insert>
-	
 
-<!-- Email 중복체크 SQL -->
+
+	<!-- Email 중복체크 SQL -->
 	<select id="SQL_EMAIL_CHECK"
 		resultType="test.com.rence.user.UserVO">
 		select * from
 		userinfo where user_email=#{user_email}
 	</select>
 
-<!-- 인증번호 보내고 DB저장 SQL -->
-<!-- 인증번호 확인 SQL -->
+	<!-- 인증번호 보내고 DB저장 SQL -->
+	<!-- 인증번호 확인 SQL -->
 
-<!-- 아이디 중복체크 SQL -->
-<select id="SQL_ID_CHECK"
+	<!-- 아이디 중복체크 SQL -->
+	<select id="SQL_ID_CHECK"
 		resultType="test.com.rence.user.UserVO">
 		select * from
 		userinfo where user_id=#{user_id}
 	</select>
- 
+
 </mapper>

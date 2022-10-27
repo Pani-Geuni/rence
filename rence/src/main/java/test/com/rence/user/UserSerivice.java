@@ -31,7 +31,7 @@ public class UserSerivice {
 	
 	public UserVO emailCheckOK(UserVO uvo) {
 		logger.info("emailCheckOK().....");
-		return null;
+		return dao.emailCheckOK(uvo);
 	}
 
 	

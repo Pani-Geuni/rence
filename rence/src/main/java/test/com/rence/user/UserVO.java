@@ -6,17 +6,17 @@ import java.util.Date;
 import org.springframework.web.multipart.MultipartFile;
 
 public class UserVO implements Serializable{
-	private String user_no; //���� ������ȣ
-	private String user_image; //���� ������
-	private String user_id; //���� ���̵�
-	private String user_pw; //���� ��й�ȣ
-	private String user_name; //���� �Ǹ�
-	private String user_email; //���� �̸���
-	private String user_tel; //���� ��ȭ��ȣ
-	private Date user_birth; //���� �������
-	private String user_state; //���� ȸ������(����,Ż��)
-	private String auth_no; // ������ȣ
-	private  MultipartFile multipartFile; // �̹��� 
+	private String user_no; //사용자 고유번호
+	private String user_image; //프로필 이미지
+	private String user_id; //아이디
+	private String user_pw; //패스워드
+	private String user_name; //실명
+	private String user_email; //이메일
+	private String user_tel; //전화번호
+	private Date user_birth; //생년월일
+	private String user_state; //회원상태
+	private String auth_no; // 인증고유번호
+	private  MultipartFile multipartFile; //사진저장
 	
 	
 	public UserVO() {

@@ -27,18 +27,17 @@ public class UserDAOimpl implements UserDAO {
 	@Override
 	public UserVO idCheckOK(UserVO uvo) {
 		logger.info("idCheckOK().....");
-		
-		
 		UserVO uvo2 = sqlSession.selectOne("SQL_ID_CHECK",uvo);
-		
 		
 		return uvo2;
 	}
 
 	@Override
 	public UserVO emailCheckOK(UserVO uvo) {
-		// TODO Auto-generated method stub
-		return null;
+		logger.info("emailCheckOK().....");
+		UserVO uvo2 = sqlSession.selectOne("SQL_EMAIL_CHECK",uvo);
+		
+		return uvo2;
 	}
 
 	@Override
