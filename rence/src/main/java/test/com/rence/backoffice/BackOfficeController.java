@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -295,5 +296,70 @@ public class BackOfficeController {
 		return jsonObject;
 	}
 	
+	/**
+	 * 환경설정 페이지 출력
+	 */
+	@RequestMapping(value = "/backoffice_setting", method = RequestMethod.GET)
+	public String backoffice_setting(BackOfficeVO vo, Model model) {
+		logger.info("backoffice_setting()...");
+		BackOfficeVO vo2 = service.backoffice_setting_selectOne(vo);
+		logger.info("result: {}.",vo2);
+		
+		model.addAttribute("vo2",vo2);
+		
+		return "backoffice/setting";
+	}
+	
+	/**
+	 * 환경설정에서 비밀번호 수정
+	 */
+	@RequestMapping(value = "/backoffice_setting_pw ", method = RequestMethod.POST)
+	@ResponseBody
+	public JSONObject backoffice_setting_pw (BackOfficeVO vo) {
+		logger.info("backoffice_setting_pw ()...");
+		logger.info("{}", vo);
+		
+		JSONObject jsonObject = new JSONObject();
+		
+		int result = service.backoffice_setting_pw(vo);
+		
+		if (result==1) {
+			logger.info("successed...");
+			jsonObject.put("result", "1");
+		}
+		
+		else {
+			logger.info("failed...");
+			jsonObject.put("result", "0");
+		}
+		
+		return jsonObject;
+	}
+	
+	/**
+	 * 환경설정에서 업체 삭제 요청
+	 */
+	@RequestMapping(value = "/backoffice_setting_delete ", method = RequestMethod.POST)
+	@ResponseBody
+	public JSONObject backoffice_setting_delete (BackOfficeVO vo) {
+		logger.info("backoffice_setting_delete ()...");
+		logger.info("{}", vo);
+		
+		JSONObject jsonObject = new JSONObject();
+		
+		int result = service.backoffice_setting_delete(vo);
+		
+		if (result==1) {
+			logger.info("successed...");
+			jsonObject.put("result", "1");
+		}
+		
+		else {
+			logger.info("failed...");
+			jsonObject.put("result", "0");
+		}
+		
+		return jsonObject;
+	}
 	
 }

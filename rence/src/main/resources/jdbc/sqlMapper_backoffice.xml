@@ -32,6 +32,18 @@
   	
   	<update id="SQL_UPDATE_BACKOFFICE_PW_FINDOK" parameterType="test.com.rence.backoffice.BackOfficeVO">
   	UPDATE backofficeinfo SET backoffice_pw=#{backoffice_pw}where backoffice_id=#{backoffice_id}
-  </update>
+  	</update>
+  	
+  	<select id="SQL_SELECTONE_BACKOFFICE_SETTING" resultType="test.com.rence.backoffice.BackOfficeVO">
+  	SELECT * from backofficeinfo where backoffice_no=#{backoffice_no}
+  	</select>
+  	
+  	<update id="SQL_UPDATE_BACKOFFICE_SETTING_PW" parameterType="test.com.rence.backoffice.BackOfficeVO">
+  	UPDATE backofficeinfo SET backoffice_pw=#{backoffice_pw} where backoffice_no=#{backoffice_no}
+  	</update>
+  	
+  	<update id="SQL_UPDATE_BACKOFFICE_SETTING_O" parameterType="test.com.rence.backoffice.BackOfficeVO">
+  	UPDATE backofficeinfo SET backoffice_state='O' where backoffice_no=#{backoffice_no}
+  	</update>
   
 </mapper>

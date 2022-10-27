@@ -84,4 +84,34 @@ public class BackOfficeDAOImpl implements BackOfficeDAO {
 
 		return flag;
 	}
+
+	@Override
+	public BackOfficeVO backoffice_setting_selectOne(BackOfficeVO vo) {
+		logger.info("backoffice_setting_selectOne()..");
+		logger.info("{}", vo);
+		
+		BackOfficeVO vo2 = sqlSession.selectOne("SQL_SELECTONE_BACKOFFICE_SETTING",vo);
+		
+		return vo2;
+	}
+
+	@Override
+	public int backoffice_setting_pw(BackOfficeVO vo) {
+		logger.info("backoffice_pw_findOK()...");
+		logger.info("{}", vo);
+
+		int flag = sqlSession.update("SQL_UPDATE_BACKOFFICE_SETTING_PW",vo);
+
+		return flag;
+	}
+
+	@Override
+	public int backoffice_setting_delete(BackOfficeVO vo) {
+		logger.info("backoffice_setting_delete()...");
+		logger.info("{}", vo);
+
+		int flag = sqlSession.update("SQL_UPDATE_BACKOFFICE_SETTING_O",vo);
+
+		return flag;
+	}
 }

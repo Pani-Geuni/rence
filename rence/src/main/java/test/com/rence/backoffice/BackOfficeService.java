@@ -61,4 +61,21 @@ public class BackOfficeService {
 		return dao.backoffice_pw_findOK(vo);
 	}
 
+	//환경설정 페이지 출력
+	public BackOfficeVO backoffice_setting_selectOne(BackOfficeVO vo) {
+		logger.info("selectOne()...");
+		return dao.backoffice_setting_selectOne(vo);
+	}
+
+	//환경설정에서 비밀번호 변경
+	public int backoffice_setting_pw(BackOfficeVO vo) {
+		logger.info("backoffice_setting_pw()...");
+		return dao.backoffice_setting_pw(vo);
+	}
+
+	public int backoffice_setting_delete(BackOfficeVO vo) {
+		logger.info("backoffice_setting_delete()...");
+		return dao.backoffice_setting_delete(vo);
+	}
+
 }

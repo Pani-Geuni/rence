@@ -25,7 +25,7 @@ public class BackOfficeLogin extends HandlerInterceptorAdapter {
 		
 		if(sPath.equals("/backoffice_main") || sPath.equals("/backoffice_insert_room") || sPath.equals("/backoffice_insertOK_room ") ||sPath.equals("/backoffice_room") ||sPath.equals("/backoffice_update_room") || sPath.equals("/backoffice_updateOK_room ") || sPath.equals("/backoffice_deleteOK_room") || sPath.equals("/backoffice_qna") ||
 				sPath.equals("/backoffice_insert_comment") || sPath.equals("/backoffice_insertOK_comment") || sPath.equals("/backoffice_update_comment") || sPath.equals("/backoffice_updateOK_comment") || sPath.equals("/backoffice_deleteOK_comment") || sPath.equals("/backoffice_review") || sPath.equals("/backoffice_reserve") || sPath.equals("/backoffice_daysales") || 
-				sPath.equals("/backoffice_weeksales") || sPath.equals("/backoffice_month_sales") || sPath.equals("/backoffice_updateOK_sales") || sPath.equals("/backoffice_setting") || sPath.equals("/backoffice_updateOK_pw") || sPath.equals("/backoffice_deleteOK")) {
+				sPath.equals("/backoffice_weeksales") || sPath.equals("/backoffice_month_sales") || sPath.equals("/backoffice_updateOK_sales") || sPath.equals("/backoffice_setting") || sPath.equals("/backoffice_setting_pw") || sPath.equals("/backoffice_setting_delete")) {
 			if(backoffice_id==null) {
 				response.sendRedirect("backoffice_login");
 				return false;

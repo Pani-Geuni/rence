@@ -17,5 +17,11 @@ public interface BackOfficeDAO {
 	public BackOfficeVO backoffice_id_email_select(BackOfficeVO vo);
 
 	public int backoffice_pw_findOK(BackOfficeVO vo);
+
+	public BackOfficeVO backoffice_setting_selectOne(BackOfficeVO vo);
+
+	public int backoffice_setting_pw(BackOfficeVO vo);
+
+	public int backoffice_setting_delete(BackOfficeVO vo);
 	
 }
