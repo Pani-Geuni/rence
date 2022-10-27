@@ -174,7 +174,7 @@ $(function(){
     $("#find-pw-btn").click(function(){
         if($("#find-pw-email").val().length > 0 && $("#find-pw-id").val().length > 0){
             $.ajax({
-                url : "/rence/find_id",
+                url : "/rence/find_pw",
                 type : "POST",
                 dataType : 'json',
                 data : {
