@@ -13,5 +13,7 @@ public interface BackOfficeDAO {
 	public AuthVO backoffice_auth_select(BackOfficeVO vo);
 
 	public BackOfficeVO backoffice_login(BackOfficeVO vo);
+
+	public BackOfficeVO backoffice_id_email_select(BackOfficeVO vo);
 	
 }

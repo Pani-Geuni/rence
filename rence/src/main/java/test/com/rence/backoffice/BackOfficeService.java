@@ -49,9 +49,10 @@ public class BackOfficeService {
 		return dao.backoffice_login(vo);
 	}
 
-	public int backoffice_id_email_select(BackOfficeVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+	//비밀번호 찾기 전, 이메일 아이디 일치 판단
+	public BackOfficeVO backoffice_id_email_select(BackOfficeVO vo) {
+		logger.info("backoffice_id_email_select()...");
+		return dao.backoffice_id_email_select(vo);
 	}
 
 }

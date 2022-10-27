@@ -260,10 +260,10 @@ public class BackOfficeController {
 	/**
 	 * 비밀번호 찾기
 	 */
-	@RequestMapping(value = "/backoffice_findOK_pw ", method = RequestMethod.GET)
+	@RequestMapping(value = "/backoffice_find_pw ", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, String> backoffice_findOK_pw (BackOfficeVO vo, EmailVO evo) {
-		logger.info("backoffice_findOK_pw ()...");
+	public Map<String, String> backoffice_find_pw (BackOfficeVO vo, EmailVO evo) {
+		logger.info("backoffice_find_pw ()...");
 		logger.info("{}", vo);
 		
 		Map<String, String> map = new HashMap<String, String>();
@@ -271,12 +271,12 @@ public class BackOfficeController {
 		vo.setBackoffice_id(vo.getBackoffice_id());
 		vo.setBackoffice_email(vo.getBackoffice_email());
 		
-		int result = service.backoffice_id_email_select(vo);
+		BackOfficeVO vo2 = service.backoffice_id_email_select(vo);
 		
-		if(result==1) {
-			vo = authSendEmail.findPw(vo,evo);
+		if(vo2!=null) {
+			vo2 = authSendEmail.findPw(vo2,evo);
 			
-			if (vo !=null) {
+			if (vo2 !=null) {
 //			service.backoffice_auth_insert(avo);
 				logger.info("successed...");
 				map.put("result", "1");
