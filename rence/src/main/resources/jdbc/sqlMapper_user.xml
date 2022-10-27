@@ -45,13 +45,12 @@
 		select * from userinfo where user_email=#{user_email}
 	</select>
 
-	<!-- 아이디 찾기 -->
-	<select id="SQL_USER_ID_FINDOK"
-		parameterType="test.com.rence.user.UserVO">
-		select * from userinfo where user_id=#{user_id}
-	</select>
 
-	<!-- 비밀번호 찾기 -->
+	<!-- 비밀번호 찾기를 위한 아이디 이메일 -->
+	<!-- 	and 연산자를 통해서 아이디와 이메일 모두가 존재하여야 select가 가능함 -->
+	<select id="SQL_SELECT_USER_ID_EMAIL" resultType="test.com.rence.user.UserVO">
+  	select * from userinfo where user_id=#{user_id} and user_email=#{user_email}
+  	</select>
 
 	<!-- 비밀번호 수정 -->
 	<update id="SQL_USER_UPDATE_PW"
