@@ -36,7 +36,7 @@
 	</div>
 
 	<div class="popup-background blind">
-		        <!-- START LOGIN SECTION -->
+       <!-- START LOGIN SECTION -->
         <div id="login-section" class="blind">
             <section class="login-popup-logo-section">
                 <img src="../IMG/common/RENCE.svg" class="popup-logo">
