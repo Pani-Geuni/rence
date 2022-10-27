@@ -15,6 +15,7 @@ public class UserDAOimpl implements UserDAO {
 	@Autowired
 	SqlSession sqlSession;
 
+	//회원가입완료
 	@Override
 	public int user_insertOK(UserVO uvo) {
 		logger.info("user_insertOK().....");
@@ -24,7 +25,9 @@ public class UserDAOimpl implements UserDAO {
 
 		return flag;
 	}
-
+	
+	
+	//아이디 중복체크
 	@Override
 	public UserVO idCheckOK(UserVO uvo) {
 		logger.info("idCheckOK().....");
@@ -32,7 +35,8 @@ public class UserDAOimpl implements UserDAO {
 
 		return uvo2;
 	}
-
+	
+	//이메일 중복체크
 	@Override
 	public UserVO emailCheckOK(UserVO uvo) {
 		logger.info("emailCheckOK().....");
@@ -41,12 +45,14 @@ public class UserDAOimpl implements UserDAO {
 		return uvo2;
 	}
 
+	//이메일 인증
 	@Override
 	public UserVO authCheckOK(UserVO uvo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	//로그인
 	@Override
 	public UserVO User_loginOK(UserVO uvo) {
 		logger.info("User_login().....");
@@ -55,18 +61,8 @@ public class UserDAOimpl implements UserDAO {
 		return uvo2;
 
 	}
-
-	@Override
-	public int user_pw_updateOK(UserVO uvo) {
-		logger.info("user_pw_updateOK().....");
-		logger.info("{}", uvo);
-
-		int flag = sqlSession.insert("SQL_INSERT", uvo);
-
-		return flag;
-		
-	}
-
+	
+	//아이디 찾기를 위한 이메일 체크
 	@Override
 	public UserVO user_email_select(UserVO uvo) {
 		logger.info("user_email_select().....");
@@ -74,7 +70,8 @@ public class UserDAOimpl implements UserDAO {
 
 		return uvo2;
 	}
-
+	
+	//아이디 찾기
 	@Override
 	public int user_id_findOK(UserVO uvo) {
 		logger.info("user_id_findOK()...");
@@ -84,6 +81,17 @@ public class UserDAOimpl implements UserDAO {
 
 		return flag;
 	}
+	
+	//마이페이지-비밀번호 수정
+		@Override
+		public int user_pw_updateOK(UserVO uvo) {
+			logger.info("user_pw_updateOK().....");
+			logger.info("{}", uvo);
+
+			int flag = sqlSession.insert("SQL_USER_UPDATE_PW", uvo);
+			
+			return flag;		
+		}
 	
 	
 
