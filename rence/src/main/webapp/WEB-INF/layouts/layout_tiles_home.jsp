@@ -34,7 +34,7 @@
         <!-- START LOGIN SECTION -->
         <div id="login-section" class="blind">
             <section class="login-popup-logo-section">
-                <span>LOGO</span>
+                <img src="../IMG/common/RENCE.svg" class="popup-logo">
             </section>
             <section class="login-popup-input-section">
                 <input type="text" id="login-id" class="login-popup-input" placeholder="아이디를 입력하세요."/>
@@ -43,9 +43,9 @@
             <section class="login-popup-btn-section">
                 <input type="button" id="login-btn" value="로그인">
                 <div class="txt-btn-wrap">
-                    <span class="txt-btn">아이디 찾기</span>
-                    <span class="txt-btn">비밀번호 찾기</span>
-                    <span class="txt-btn">회원가입</span>
+                    <span id="go-find-id" class="txt-btn">아이디 찾기</span>
+                    <span id="go-find-pw" class="txt-btn">비밀번호 찾기</span>
+    				<span class="txt-btn login-close">창닫기</span>
                 </div>
             </section>
         </div>
@@ -97,10 +97,11 @@
             </section>
             <section class="find-popup-input-section">
                 <span class="find-guide-txt">회원가입 시 입력한 이메일을 입력해주세요.</span>
-                <input type="email" id="find-id-email" class="find-id-popup-input" placeholder="이메일을 입력하세요."/>
+                <input type="email" id="find-id-email" class="find-popup-input" placeholder="이메일을 입력하세요."/>
             </section>
             <section class="find-popup-btn-section">
                 <input type="button" id="find-id-btn" class="find-btn" value="메일 보내기">
+                <input type="button" id="find-id-close" class="p-close" value="창닫기">
             </section>
         </div>
         <!-- END FIND-ID SECTION -->
@@ -122,6 +123,7 @@
             </section>
             <section class="find-popup-btn-section">
                 <input type="button" id="find-pw-btn" class="find-btn" value="비밀번호 찾기">
+                <input type="button" id="find-pw-close" class="p-close" value="창닫기">
             </section>
         </div>
         <!-- END FIND-PW SECTION -->

@@ -4,7 +4,7 @@
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 
 <tiles-definitions>
-  <definition name=".my_page/*" template="/WEB-INF/layouts/layout_tiles_home.jsp">
+  <definition name=".my_page/*" template="/WEB-INF/layouts/layout_tiles_myPage.jsp">
     <put-attribute name="title" value="RENCE" /> <!--  title 글자 세팅 -->
     <put-attribute name="header" value="/WEB-INF/layouts/header.jsp" />
     <put-attribute name="content" value="/WEB-INF/views/office/my_page/{1}.jsp" />

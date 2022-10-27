@@ -14,10 +14,7 @@
     font-family : "MICEGothic"
 }
 
-
-/*****************/
 /* LOGIN SECTION */
-/*****************/
 #login-section{
     width: 440px;
     height: 330px;
@@ -58,6 +55,9 @@
 #login-pw{
     margin-bottom: 20px;
 }
+.null-input-border{
+    border: 2px solid #FF5C5C;
+}
 .login-popup-btn-section{
     height: 35%;
     display: flex;
@@ -92,6 +92,12 @@
     font-size: 13px;
     font-weight: bolder;
     cursor: pointer;
+}
+.login-close{
+    padding: 5px 10px 5px 10px;
+    background-color: #42C2FF;
+    color: white;
+    border-radius: 13px;
 }
 
 
@@ -202,13 +208,15 @@
 /* FIND SECTION */
 /* ************* */
 .find-section{
-    width: 460px;
-    height: 320px;
+    width: 400px;
     background-color: #ffffff;
     border-radius: 5px;
 }
 #find-pw-section{
-    height: 370px;
+    height: 400px;
+}
+#find-id-section{
+    height: 300px;
 }
 
 .find-section *{
@@ -255,17 +263,19 @@
 }
 .find-popup-btn-section{
     display: flex;
+    flex-direction: column;
     justify-content: center;
 
     box-sizing: border-box;
     padding-left: 10px;
 }
 .find-btn{
-    width: 309px;
+    width: 280px;
     height: 35px;
 
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 6px;
 
     border-radius: 9px;
     background-color: #2EE49D;
@@ -273,6 +283,18 @@
 
     font-weight: 500;
     color: #ffffff;
+}
+.p-close{
+    width: 280px;
+    height: 35px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    border-radius: 9px;
+    border: none;
+
+    font-weight: 500;
 }
 
 #logout-popup{
