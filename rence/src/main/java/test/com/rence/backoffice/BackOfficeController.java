@@ -50,8 +50,8 @@ public class BackOfficeController {
 	@Autowired
 	OperatingTime operatingTime;
 	
-	@Autowired
-	HttpServletResponse response;
+//	@Autowired
+//	HttpServletResponse response;
 	
 	/**
 	 * 백오피스 신청 폼 출력
@@ -132,7 +132,7 @@ public class BackOfficeController {
 
 		String rt = "redirect:selectAll";
 		if(result==0) {
-			return "redirect:backoffice_insertOK";
+			return "redirect:backoffice_insert";
 		}
 		
 		return rt;
@@ -143,20 +143,25 @@ public class BackOfficeController {
 	 */
 	@RequestMapping(value = "/backoffice_auth", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, String> backoffice_auth(AuthVO avo) {
+	public Map<String, String> backoffice_auth(AuthVO avo, BackOfficeVO bvo) {
 		logger.info("Welcome sendMailOK.do");
-		logger.info("{}", avo);
+		logger.info("{}", bvo);
 		
 		Map<String, String> map = new HashMap<String, String>();
+		
+		avo.setUser_email(bvo.getBackoffice_email());
 
 		avo = authSendEmail.sendEmail(avo);
 		if (avo !=null) {
-			response.addHeader("Access-Control-Allow-Origin", "*");
-			response.addHeader("Access-Control-Allow-Credentials", "true");
+//			response.addHeader("Access-Control-Allow-Origin", "*");
+//			response.addHeader("Access-Control-Allow-Credentials", "true");
 			
 			service.backoffice_auth_insert(avo);
 			logger.info("successed...");
 			map.put("result", "1");
+			map.put("auth_code", avo.getAuth_code());
+			map.put("backoffice_email", avo.getUser_email());
+	    	map.put("auth_no", avo.getAuth_no());
 			
 		}else {
 			logger.info("failed...");
@@ -171,22 +176,24 @@ public class BackOfficeController {
 	 */
 	@RequestMapping(value = "/backoffice_authOK", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, String> backoffice_authOK(BackOfficeVO vo,Model model) {
+	public Map<String, String> backoffice_authOK(BackOfficeVO vo) {
 		 
 		AuthVO avo = service.backoffice_auth_select(vo);
-		vo.setAuth_no(avo.getAuth_no());
-		model.addAttribute("vo", vo);
+//		vo.setAuth_no(avo.getAuth_no());
+//		model.addAttribute("vo", vo);
 
 		Map<String, String> map = new HashMap<String, String>();
 		
-		//이메일, 인증코드를 프론트에 같이 넘기고 싶음..
-		response.addHeader("Access-Control-Allow-Origin", "*");
-		response.addHeader("Access-Control-Allow-Credentials", "true");
+//		response.addHeader("Access-Control-Allow-Origin", "*");
+//		response.addHeader("Access-Control-Allow-Credentials", "true");
 	    if(avo != null){
 	    	map.put("result", "1");
-	    	map.put("auth_code", avo.getAuth_code());
-	    	map.put("backoffice_email", avo.getUser_email());
+	    	logger.info("successed...");
+//	    	map.put("auth_code", avo.getAuth_code());
+//	    	map.put("backoffice_email", avo.getUser_email());
+//	    	map.put("auth_no", avo.getAuth_no());
 	    }else{
+	    	logger.info("failed...");
 	    	map.put("result", "0");
 	    }
 		return map;
