@@ -7,6 +7,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,25 +49,26 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/user_loginOK", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, String> user_loginOK(UserVO uvo, Model model) {
+	public JSONObject user_loginOK(UserVO uvo, Model model) {
 		logger.info("user_loginOK()...");
 		UserVO uvo2 = service.User_loginOK(uvo);
 		logger.info("result: {}.", uvo2);
-
+		JSONObject jsonObject = new JSONObject();
 		
-		Map<String, String> map = new HashMap<String, String>();
+		
 		if (uvo2 != null) {
 			session.setAttribute("user_id", uvo2.getUser_id());
 			model.addAttribute("vo2", uvo2);
 			
 			logger.info("User Login success.....");
-			map.put("result", "1"); //로그인 성공
+			jsonObject.put("result", "1"); //로그인 성공
 		} else {
 			logger.info("User Login failed.....");
-			map.put("result", "0"); //로그인 실패
+			jsonObject.put("result", "0"); //로그인 실패
 			
 		}
-		return map;
+		
+		return jsonObject;
 	}
 	
 	
