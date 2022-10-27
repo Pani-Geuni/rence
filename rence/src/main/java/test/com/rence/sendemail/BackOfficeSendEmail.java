@@ -22,6 +22,9 @@ public class BackOfficeSendEmail {
 	@Autowired
 	JavaMailSender javaMailSender;
 
+	@Autowired
+	AES256Util aes;
+
 	///////////////////////////////
 	// ******* 인증 코드 전송 *******//
 	//////////////////////////////
@@ -34,7 +37,7 @@ public class BackOfficeSendEmail {
 		// 인증코드 생성
 		int RANDOM_BOUND = 100000;
 		ThreadLocalRandom random = ThreadLocalRandom.current();
-		vo.setAuth_code(String.valueOf(random.nextInt(RANDOM_BOUND,RANDOM_BOUND*10)));
+		vo.setAuth_code(String.valueOf(random.nextInt(RANDOM_BOUND, RANDOM_BOUND * 10)));
 
 		try {
 
@@ -55,6 +58,17 @@ public class BackOfficeSendEmail {
 	// ******* 비밀번호 찾기 *******//
 	//////////////////////////////
 	public BackOfficeVO findPw(BackOfficeVO vo, EmailVO evo) {
+		
+//		BackOfficeSendEmail aesUtil = new BackOfficeSendEmail();
+
+		String originText = vo.getBackoffice_id();
+
+//		String encText = aes.encryptAES("0123456789abcdefghij0123456789ab", originText, false);
+//        System.out.println("encText (encodeBase64) : " + encText);
+
+		String encText = aes.encryptAES("0123456789abcdefghij0123456789ab", originText, true);
+		logger.info("encText (encodeBase64URLSafeString) : " + encText);
+
 		// 이메일 제목, 내용 설정
 		evo.setSubject("[rence] 비밀번호 재설정");
 		evo.setContent("아래의 링크에 접속하여 비밀번호를 재설정 해주시길 바랍니다.");
@@ -65,8 +79,8 @@ public class BackOfficeSendEmail {
 			// 전송
 			MimeMessage msg = javaMailSender.createMimeMessage();
 			msg.setSubject(evo.getSubject());
-			msg.setText(
-					"비밀번호 재설정 링크 : " + "http://localhost:8090/rence/backoffice_update_pw?backoffice_id="+vo.getBackoffice_id());
+			msg.setText("비밀번호 재설정 링크 : " + "http://localhost:8090/rence/backoffice_update_pw?backoffice_id="
+					+ encText);
 			msg.setRecipient(RecipientType.TO, new InternetAddress(vo.getBackoffice_email()));
 
 			javaMailSender.send(msg);
