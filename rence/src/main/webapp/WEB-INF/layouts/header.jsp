@@ -49,38 +49,42 @@
          </div>
      </div>
      <div class="userMenu-section ">
-         <!-- 로그인 전 유저 메뉴 -->
-         <section id="before_login" class="">
-             <div id = "before_userMenu" class ="userMenu">
-                 <img src="${path}/resources/IMG/header/user_menu.svg" alt="user_menu_img" class="user_menu_img"/>
-                 <img src="${path}/resources/IMG/header/bx_user-circle.png" alt="user_profile_img" class="user_profile_img"/>
-             </div>
-             
-             <!-- CUSTOM SELECT -->
-             <div class = "custom-select-user blind">
-                 <ul class="user-select-wrap">
-                     <li id = "go-login" class="user-select-list">로그인</li>
-                     <li id = "go-join" class="user-select-list">회원가입</li>
-                     <li id = "go-backOffice" class="user-select-list">공간등록신청</li>
-                 </ul>
-             </div>
-         </section>
+     	<c:if test="${user_id eq null}">
+	         <!-- 로그인 전 유저 메뉴 -->
+	         <section id="before_login" class="">
+	             <div id = "before_userMenu" class ="userMenu">
+	                 <img src="${path}/resources/IMG/header/user_menu.svg" alt="user_menu_img" class="user_menu_img"/>
+	                 <img src="${path}/resources/IMG/header/bx_user-circle.png" alt="user_profile_img" class="user_profile_img"/>
+	             </div>
+	             
+	             <!-- CUSTOM SELECT -->
+	             <div class = "custom-select-user blind">
+	                 <ul class="user-select-wrap">
+	                     <li id = "go-login" class="user-select-list">로그인</li>
+	                     <li id = "go-join" class="user-select-list">회원가입</li>
+	                     <li id = "go-backOffice" class="user-select-list">공간등록신청</li>
+	                 </ul>
+	             </div>
+	         </section>
+     	</c:if>
          
-         <!-- 로그인 후 유저 메뉴 -->
-         <section id="after_login"  class="blind">
-             <div id = "after_userMenu" class ="userMenu">
-                 <img src="${path}/resources/IMG/header/user_menu.svg" alt="user_menu_img" class="user_menu_img"/>
-                 <img src="${path}/resources/IMG/header/loopy.jpg" alt="user_profile_img" class="user_profile_img"/>
-             </div>
-
-             <!-- CUSTOM SELECT -->
-             <div class = "custom-select-user blind">
-                 <ul class="user-select-wrap">
-                     <li id = "go-myPage" class="user-select-list">마이페이지</li>
-                     <li id = "go-backOffice" class="user-select-list">공간등록신청</li>
-                     <li id = "go-logOut" class="user-select-list">로그아웃</li>
-                 </ul>
-             </div>
-         </section>
+       	<c:if test="${user_id ne null}">
+	         <!-- 로그인 후 유저 메뉴 -->
+	         <section id="after_login"  class="">
+	             <div id = "after_userMenu" class ="userMenu">
+	                 <img src="${path}/resources/IMG/header/user_menu.svg" alt="user_menu_img" class="user_menu_img"/>
+	                 <img src="${path}/resources/IMG/header/loopy.jpg" alt="user_profile_img" class="user_profile_img"/>
+	             </div>
+	
+	             <!-- CUSTOM SELECT -->
+	             <div class = "custom-select-user blind">
+	                 <ul class="user-select-wrap">
+	                     <li id = "go-myPage" class="user-select-list">마이페이지</li>
+	                     <li id = "go-backOffice" class="user-select-list">공간등록신청</li>
+	                     <li id = "go-logOut" class="user-select-list">로그아웃</li>
+	                 </ul>
+	             </div>
+	         </section>
+         </c:if>
      </div>
  </section>
