@@ -21,8 +21,9 @@
 	<select id="SQL_SELECT_BACKOFFICE_AUTH" resultType="test.com.rence.sendemail.AuthVO">
   	SELECT * from auth where auth_code=#{auth_code} and auth_no=#{auth_no} and user_email=#{backoffice_email}
   	</select>
-<!--   	<if test="(SYSDATE - auth_stime) * 24 * 60 > 2">
-  		delete from auth where user_email=#{backoffice_email}
-  	</if> -->
+	
+	<select id="SQL_BACKOFFICE_LOGIN" resultType="test.com.rence.backoffice.BackOfficeVO">
+  	select * from backofficeinfo where backoffice_id=#{backoffice_id} and backoffice_pw=#{backoffice_pw}
+  	</select>
   
 </mapper>

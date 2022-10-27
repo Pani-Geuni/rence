@@ -43,4 +43,15 @@ public class BackOfficeService {
 		return dao.backoffice_operating_insert(ovo);
 	}
 
+	//로그인
+	public BackOfficeVO backoffice_login(BackOfficeVO vo) {
+		logger.info("backoffice_login()...");
+		return dao.backoffice_login(vo);
+	}
+
+	public int backoffice_id_email_select(BackOfficeVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
