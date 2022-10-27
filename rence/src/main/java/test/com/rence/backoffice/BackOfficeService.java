@@ -55,4 +55,10 @@ public class BackOfficeService {
 		return dao.backoffice_id_email_select(vo);
 	}
 
+	//비밀번호 변경
+	public int backoffice_pw_findOK(BackOfficeVO vo) {
+		logger.info("backoffice_pw_findOK()...");
+		return dao.backoffice_pw_findOK(vo);
+	}
+
 }

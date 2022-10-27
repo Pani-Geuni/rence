@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import test.com.rence.sendemail.AuthSendEmail;
+import test.com.rence.sendemail.BackOfficeSendEmail;
 import test.com.rence.sendemail.AuthVO;
 import test.com.rence.sendemail.EmailVO;
 
@@ -48,7 +48,7 @@ public class BackOfficeController {
 	BackOfficeService service;
 
 	@Autowired
-	AuthSendEmail authSendEmail;
+	BackOfficeSendEmail authSendEmail;
 
 	@Autowired
 	OperatingTime operatingTime;
@@ -136,16 +136,13 @@ public class BackOfficeController {
 		
 		//운영시간
 		ovo = operatingTime.operatingTime(ovo);
-		 
-		//이메일 인증 코드 유효 확인
-		//service.backoffice_auth_select(vo);
 		
 		service.backoffice_insertOK(vo);
 		ovo.setBackoffice_no(vo.getBackoffice_no());
 		
 		int result = service.backoffice_operating_insert(ovo);
 
-		String rt = "redirect:selectAll";
+		String rt = "redirect:/";
 		if(result==0) {
 			return "redirect:backoffice_insert";
 		}
@@ -158,7 +155,7 @@ public class BackOfficeController {
 	 */
 	@RequestMapping(value = "/backoffice_auth", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, String> backoffice_auth(AuthVO avo, BackOfficeVO bvo) {
+	public Map<String, String> backoffice_auth(AuthVO avo, BackOfficeVO bvo, EmailVO evo) {
 		logger.info("Welcome sendMailOK.do");
 		logger.info("{}", bvo);
 		
@@ -166,10 +163,8 @@ public class BackOfficeController {
 		
 		avo.setUser_email(bvo.getBackoffice_email());
 
-		avo = authSendEmail.sendEmail(avo);
+		avo = authSendEmail.sendEmail(avo,evo);
 		if (avo !=null) {
-//			response.addHeader("Access-Control-Allow-Origin", "*");
-//			response.addHeader("Access-Control-Allow-Credentials", "true");
 			
 			service.backoffice_auth_insert(avo);
 			logger.info("successed...");
@@ -194,55 +189,44 @@ public class BackOfficeController {
 	public Map<String, String> backoffice_authOK(BackOfficeVO vo) {
 		 
 		AuthVO avo = service.backoffice_auth_select(vo);
-//		vo.setAuth_no(avo.getAuth_no());
-//		model.addAttribute("vo", vo);
 
 		Map<String, String> map = new HashMap<String, String>();
 		
-//		response.addHeader("Access-Control-Allow-Origin", "*");
-//		response.addHeader("Access-Control-Allow-Credentials", "true");
+
 	    if(avo != null){
-	    	map.put("result", "1");
 	    	logger.info("successed...");
-//	    	map.put("auth_code", avo.getAuth_code());
-//	    	map.put("backoffice_email", avo.getUser_email());
-//	    	map.put("auth_no", avo.getAuth_no());
+	    	map.put("result", "1");
+
 	    }else{
 	    	logger.info("failed...");
 	    	map.put("result", "0");
 	    }
 		return map;
 	}
-
-//	/**
-//	 * 로그인 폼페이지 요청
-//	 */
-//	@RequestMapping(value = "/backoffice_login", method = RequestMethod.GET)
-//	public String login() {
-//		logger.info("login()...");
-//		
-//		return "backoffice/login";
-//	}
 	
 	
 	/**
 	 * 로그인 처리
 	 */
 	@RequestMapping(value = "/backoffice_loginOK", method = RequestMethod.POST)
-	public String backoffice_loginOK(BackOfficeVO vo, Model model) {
+	@ResponseBody
+	public Map<String, String> backoffice_loginOK(BackOfficeVO vo) {
 		logger.info("backoffice_loginOK()...");
 		BackOfficeVO vo2 = service.backoffice_login(vo);
 		logger.info("result: {}.",vo2);
 		
+		Map<String, String> map = new HashMap<String, String>();
+		
 		if (vo2 != null) {
 			session.setAttribute("backoffice_id", vo2.getBackoffice_id());
-			model.addAttribute("vo2",vo2);
-			logger.info("success...............");
-			return "redirect:/selectAll";
+			map.put("result", "1");
+	    	logger.info("successed...");
 		} else {
-			logger.info("failed...............");
-			return "redirect:backoffice_loginOK";
+			logger.info("failed...");
+	    	map.put("result", "0");
 		}
+		
+		return map;
 		
 	}
 	
@@ -277,17 +261,50 @@ public class BackOfficeController {
 			vo2 = authSendEmail.findPw(vo2,evo);
 			
 			if (vo2 !=null) {
-//			service.backoffice_auth_insert(avo);
 				logger.info("successed...");
 				map.put("result", "1");
-//			map.put("auth_code", avo.getAuth_code());
-//			map.put("backoffice_email", avo.getUser_email());
-//	    	map.put("auth_no", avo.getAuth_no());
 				
 			}else {
 				logger.info("failed...");
 				map.put("result", "0");
 			}
+		}
+		
+		return map;
+	}
+	
+	/**
+	 * 비밀번호 변경 폼 출력
+	 */
+	@RequestMapping(value = "/backoffice_update_pw", method = RequestMethod.GET)
+	public String backoffice_update_pw() {
+		
+		return "backoffice/pw_update";
+	}
+	
+	/**
+	 * 비밀번호 변경
+	 */
+	@RequestMapping(value = "/backoffice_findOK_pw ", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, String> backoffice_findOK_pw (BackOfficeVO vo) {
+		logger.info("backoffice_findOK_pw ()...");
+		logger.info("{}", vo);
+		
+		Map<String, String> map = new HashMap<String, String>();
+		
+		vo.setBackoffice_pw(vo.getBackoffice_pw());
+		
+		int result = service.backoffice_pw_findOK(vo);
+		
+		if (result==1) {
+			logger.info("successed...");
+			map.put("result", "1");
+		}
+		
+		else {
+			logger.info("failed...");
+			map.put("result", "0");
 		}
 		
 		return map;

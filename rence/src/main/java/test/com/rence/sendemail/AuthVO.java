@@ -9,29 +9,20 @@ public class AuthVO {
 	private String auth_code;
 	private Date auth_stime;
 	private Date auth_etime;
-
-	private String reciver;
-	private String subject;
-	private String content;
 	
 	
 	public AuthVO() {
 		// TODO Auto-generated constructor stub
 	}
-	
 
 
-	public AuthVO(String auth_no, String user_email, String auth_code, Date auth_stime, Date auth_etime, String reciver,
-			String subject, String content) {
+	public AuthVO(String auth_no, String user_email, String auth_code, Date auth_stime, Date auth_etime) {
 		super();
 		this.auth_no = auth_no;
 		this.user_email = user_email;
 		this.auth_code = auth_code;
 		this.auth_stime = auth_stime;
 		this.auth_etime = auth_etime;
-		this.reciver = reciver;
-		this.subject = subject;
-		this.content = content;
 	}
 
 
@@ -85,44 +76,6 @@ public class AuthVO {
 	}
 
 
-	public String getReciver() {
-		return reciver;
-	}
-
-
-	public void setReciver(String reciver) {
-		this.reciver = reciver;
-	}
-
-
-	public String getSubject() {
-		return subject;
-	}
-
-
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
-
-
-	public String getContent() {
-		return content;
-	}
-
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-
-	@Override
-	public String toString() {
-		return "AuthVO [auth_no=" + auth_no + ", user_email=" + user_email + ", auth_code=" + auth_code
-				+ ", auth_stime=" + auth_stime + ", auth_etime=" + auth_etime + ", reciver=" + reciver + ", subject="
-				+ subject + ", content=" + content + "]";
-	}
-
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -131,9 +84,6 @@ public class AuthVO {
 		result = prime * result + ((auth_etime == null) ? 0 : auth_etime.hashCode());
 		result = prime * result + ((auth_no == null) ? 0 : auth_no.hashCode());
 		result = prime * result + ((auth_stime == null) ? 0 : auth_stime.hashCode());
-		result = prime * result + ((content == null) ? 0 : content.hashCode());
-		result = prime * result + ((reciver == null) ? 0 : reciver.hashCode());
-		result = prime * result + ((subject == null) ? 0 : subject.hashCode());
 		result = prime * result + ((user_email == null) ? 0 : user_email.hashCode());
 		return result;
 	}
@@ -168,21 +118,6 @@ public class AuthVO {
 				return false;
 		} else if (!auth_stime.equals(other.auth_stime))
 			return false;
-		if (content == null) {
-			if (other.content != null)
-				return false;
-		} else if (!content.equals(other.content))
-			return false;
-		if (reciver == null) {
-			if (other.reciver != null)
-				return false;
-		} else if (!reciver.equals(other.reciver))
-			return false;
-		if (subject == null) {
-			if (other.subject != null)
-				return false;
-		} else if (!subject.equals(other.subject))
-			return false;
 		if (user_email == null) {
 			if (other.user_email != null)
 				return false;
@@ -190,7 +125,13 @@ public class AuthVO {
 			return false;
 		return true;
 	}
-	
+
+
+	@Override
+	public String toString() {
+		return "AuthVO [auth_no=" + auth_no + ", user_email=" + user_email + ", auth_code=" + auth_code
+				+ ", auth_stime=" + auth_stime + ", auth_etime=" + auth_etime + "]";
+	}
 	
 	
 }
