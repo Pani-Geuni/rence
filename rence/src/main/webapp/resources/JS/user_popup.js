@@ -423,11 +423,11 @@ $(function(){
                 user_id : $("#join-id").val().trim()
             },
             success : function(res) {
-                console.log(res);
                 // 아이디 중복 성공
                 if(res.result == 1){
-                    $("#check_id").attr("check", "true");
+                    $("#check_id").prop("check", true);
                     $("#join-id").attr("readonly", true);
+                    $("#join-id").addClass("readOnly");
                 }else{
                     $(".warning-text:eq(2)").removeClass("blind");
                     $(".warning-text:eq(2)").text("이미 존재하는 아이디입니다.");
@@ -458,7 +458,7 @@ $(function(){
                     $(this).prop("check", true);
                 }else if(res.result == 2){
                     $(".warning-text:eq(0)").removeClass("blind");
-                    $(".warning-text:eq(0)").text("이미 존재하는 아이디입니다.");
+                    $(".warning-text:eq(0)").text("이미 존재하는 이메일입니다.");
                 }else{
                     $(".popup-background:eq(1)").removeClass("blind");
                     $("#common-alert-popup").removeClass("blind");

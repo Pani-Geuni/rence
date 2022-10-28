@@ -202,10 +202,8 @@
     font-size: 18px;
     font-weight: bolder;
 }
-.non-click{
+.readOnly{
     background-color: #e4e4e4;
-    color: black;
-    cursor: none;
 }
 
 
