@@ -83,7 +83,7 @@
                     </div>
                     <span class="warning-text">이미 아이디가 존재합니다.</span>
                 </div>
-                <input type="password" id="join-pw" class="join-popup-input" placeholder="비밀번호"/>
+                <input type="password" id="join-pw" class="join-popup-input" placeholder="비밀번호(영문+숫자+특수문자 = 8~10글자)"/>
                 <input type="password" id="join-re-pw" class="join-popup-input" placeholder="비밀번호 재입력"/>
                 <input type="text" id="join-name" class="join-popup-input" placeholder="이름" autocomplete="off"/>
                 <input type="text" id="join-tel" class="join-popup-input" placeholder="전화번호(-없이 입력)" autocomplete="off"/>
@@ -149,44 +149,41 @@
 
 		<!-- !!! MY PAGE !!! -->
 		<!-- START MODIFY-PW SECTION -->
-		<div id="modify-pw-section" class="modify-section blind">
-			<section class="modify-popup-title-section">
-				<span>비밀번호 변경</span>
-			</section>
-			<section class="modify-popup-input-section">
-				<div class="modify-popup-input-list">
-					<div class="modify-popup-input-list-title">
-						<span class="modify-guide-txt">현재 비밀번호</span> <span
-							class="modify-error-txt blind">현재 비밀번호와 일치하지않습니다.</span>
-					</div>
-					<input type="email" id="modify-pw-now" class="modify-popup-input"
-						placeholder="현재 비밀번호를 입력하세요." />
-				</div>
+        <div id="modify-pw-section" class="modify-section blind">
+            <section class="modify-popup-title-section">
+                <span>비밀번호 변경</span>
+            </section>
+            <section class="modify-popup-input-section">
+                <div class="modify-popup-input-list">
+                    <div class="modify-popup-input-list-title">
+                        <span class="modify-guide-txt">현재 비밀번호</span>
+                        <span class="modify-error-txt blind">현재 비밀번호와 일치하지않습니다.</span>
+                    </div>
+                    <input type="email" id="modify-pw-now" class="modify-popup-input" placeholder="현재 비밀번호를 입력하세요."/>
+                </div>
 
-				<div class="modify-popup-input-list">
-					<div class="modify-popup-input-list-title">
-						<span class="modify-guide-txt">새 비밀번호 확인</span> <span
-							class="modify-error-txt blind">비밀번호가 일치하지않습니다.</span>
-					</div>
-					<input type="text" id="modify-pw-new" class="modify-popup-input"
-						placeholder="변경할 비밀번호를 입력해 주세요." />
-				</div>
+                <div class="modify-popup-input-list">
+                    <div class="modify-popup-input-list-title">
+                        <span class="modify-guide-txt">새 비밀번호 확인</span>
+                        <span class="modify-error-txt blind">비밀번호 조건에 일치하지않습니다.</span>
+                    </div>
+                    <input type="text" id="modify-pw-new" class="modify-popup-input" placeholder="비밀번호(영문+숫자+특수문자 = 8~10글자)"/>
+                </div>
 
-				<div>
-					<div class="modify-popup-input-list-title">
-						<span class="modify-guide-txt">새 비밀번호 확인</span> <span
-							class="modify-error-txt blind">비밀번호가 일치하지않습니다.</span>
-					</div>
-					<input type="text" id="modify-pw-renew" class="modify-popup-input"
-						placeholder="변경할 비밀번호를 확인해 주세요." />
-				</div>
-			</section>
-			<section class="modify-popup-btn-section">
-				<div id="modify-btn" class="modify-btn">수정</div>
-				<div id="modify-close-btn" class="modify-btn">닫기</div>
-			</section>
-		</div>
-		<!-- END MODIFY-PW SECTION -->
+                <div>
+                    <div class="modify-popup-input-list-title">
+                        <span class="modify-guide-txt">새 비밀번호 확인</span>
+                        <span class="modify-error-txt blind">비밀번호가 일치하지않습니다.</span>
+                    </div>
+                    <input type="text" id="modify-pw-renew" class="modify-popup-input" placeholder="변경할 비밀번호를 확인해 주세요."/>
+                </div>
+            </section>
+            <section class="modify-popup-btn-section">
+                <div id="modify-btn" class="modify-btn">수정</div>
+                <div id="modify-close-btn" class="modify-btn">닫기</div>
+            </section>
+        </div>
+        <!-- END MODIFY-PW SECTION -->
 
 		<!-- START MODIFY PROFILE IMAGE -->
 		<div id="modify-img-section" class="confirm-popup blind">
