@@ -73,6 +73,9 @@
     font-size: 13px;
     font-weight: 100;
 }
+.info-etc-section-second{
+    margin-bottom: 10px;
+}
 .info-name{
     font-size: 22px;
 }
@@ -81,6 +84,25 @@
     font-size: 11px;
     text-decoration: underline;
     color: #73777B;
+    cursor: pointer;
+}
+.user-delete-section{
+    display: flex;
+}
+.user-delete-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: auto;
+    padding: 3px 8px 3px 8px;
+
+    font-size: 12px;
+    font-weight: 400;
+    background-color: #FF5C5C;
+    color: #ffffff;
+    letter-spacing: 0.3px;
+
     cursor: pointer;
 }
 
@@ -305,4 +327,12 @@ input[type="file"] {
     border: 2px solid #e4e4e4;
 
     margin-right: 5px;
+}
+
+
+/* ******************* */
+/* USER DELETE SECTION */
+/* ******************* */
+#user-delete-confirm-popup{
+    height: 130px;
 }

@@ -109,7 +109,7 @@ input[type=button]{
 }
 .confirm-txt-section{
     height: 80%;
-    font-size: 13px;
+    font-size: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
