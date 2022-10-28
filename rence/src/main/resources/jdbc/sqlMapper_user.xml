@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="test.com.rence">
+<mapper namespace="test.com.rence.user.UserVO">
 	<!-- 회원가입처리 SQL -->
 	<insert id="SQL_INSERT"
 		parameterType="test.com.rence.user.UserVO">
@@ -90,6 +90,7 @@
   	</insert>
   	
 <!--   	인증테이블에 사용자 이메일이 들어갔는지 체크하고 이메일 가져오는 용도 -->
+<!-- avo2 = auth 테이블에 정보 저장 후, select -->
   	<select id="SQL_SELECT_USER_AUTH" resultType="test.com.rence.sendemail.AuthVO">
   	SELECT auth_no, auth_code, user_email from auth where user_email=#{user_email}
   	</select>
