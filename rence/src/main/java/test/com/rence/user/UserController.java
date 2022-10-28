@@ -171,7 +171,7 @@ public class UserController {
 	/**
 	 * 마이페이지 -프로필 수정
 	 */
-	@RequestMapping(value = "/user_img_updateOK", method = RequestMethod.GET)
+	@RequestMapping(value = "/user_img_updateOK", method = RequestMethod.POST)
 	public JSONObject user_img_updateOK(UserVO uvo) {
 		logger.info("user_img_updateOK()...");
 		logger.info("result: {}", uvo);
@@ -204,7 +204,7 @@ public class UserController {
 	 * 회원탈퇴
 	 */
 	
-	@RequestMapping(value = "/secedeOK", method = RequestMethod.GET)
+	@RequestMapping(value = "/secedeOK", method = RequestMethod.POST)
 	public JSONObject user_secedeOK (UserVO uvo) {
 		logger.info("user_secedeOK()...");
 		logger.info("result: {}", uvo);
