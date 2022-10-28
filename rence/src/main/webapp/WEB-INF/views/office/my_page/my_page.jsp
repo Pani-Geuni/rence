@@ -14,18 +14,18 @@
 				</div>
 				<div class="profile-info-wrap">
 					<section class="info-name-section">
-						<span class="info-name">김예은</span> 
+						<span class="info-name">${umvo.user_name}</span>
 						<span class="pw-update-txt">비밀번호 수정</span>
 					</section>
 					<section class="info-etc-section">
-						<span>qjspdl8</span> 
+						<span>${umvo.user_id}</span> 
 						<span>•</span> 
-						<span>qjspdl8@naver.com</span>
+						<span>${umvo.user_email}</span>
 					</section>
 					<section class="info-etc-section info-etc-section-second">
-						<span>010-1234-5678</span> 
+						<span>${umvo.user_tel}</span> 
 						<span>•</span> 
-						<span>1998-01-31</span>
+						<span>${umvo.user_birth}</span>
 					</section>
 					<section class="user-delete-section">
 						<span class="user-delete-btn">탈퇴하기</span>
@@ -63,7 +63,7 @@
 				<section class="menu-box-txt-section">
 					<div class="menu-box-txt-wrap">
 						<span class="menu-box-title">마일리지 조회</span> 
-						<span class="point-txt">내 마일리지 : 5,742원</span>
+						<span class="point-txt">내 마일리지 : ${umvo.total_mileage}원</span>
 					</div>
 					<span class="menu-box-txt">쌓인 마일리지를 조회할 수 있어요.</span>
 				</section>
