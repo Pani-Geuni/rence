@@ -1,6 +1,3 @@
-/**
-* @author : 김예은
-*/
 $(function(){
     /*********************************/ 
     /******* 버튼 클릭 이벤트 *********/ 
@@ -56,44 +53,11 @@ $(function(){
         $(".review-upload-value").val(fArr[fArr.length - 1]);
     });
 
-    $("#modify-img-modifyBtn").click(function(){
-        // 파일 선택안하고
+    $("#modify-img-modifyBtn").submit(function(){
+        // 파일 선택안하고 시도
         if($(".review-upload-value").val().length == 0){
             $(".review-upload-value").addClass("null-input-border");
-        }else{
-            $.ajax({
-                url:"/rence/user_img_updateOK",
-                type : "POST",
-                dataType : 'json',
-                data : {
-                    user_no : $.cookie("user_no"),
-                    user_pw : $("#modify-pw-renew").val().trim(),
-                    multipartFile : $(".file").val()
-                },
-                success : function(res) {
-                    // 프로필 사진 변경 성공
-                    if(res.result == 1){
-                        // 팝업 관련창 닫음
-                        $(".popup-background:eq(0)").addClass("blind");
-                        $("#modify-img-section").addClass("blind");
-
-                        // 성공 알림창
-                        $(".popup-background:eq(1)").removeClass("blind");
-                        $("#common-alert-popup").removeClass("blind");
-                        $(".common-alert-txt").text("프로필 사진이 정상적으로 변경되었습니다.");
-                    }else{
-                        $(".popup-background:eq(1)").removeClass("blind");
-                        $("#common-alert-popup").removeClass("blind");
-                        $(".common-alert-txt").text("예상치못한 오류로 프로필 사진 변경에 실패하였습니다.");
-                    }
-                },
-                error : function(error) {
-                    console.log(error);
-                    $(".popup-background:eq(1)").removeClass("blind");
-                    $("#common-alert-popup").removeClass("blind");
-                    $(".common-alert-txt").text("오류 발생으로 인해 처리에 실패하였습니다.");
-                }
-            });
+            return false;
         }
     });
 

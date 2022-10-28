@@ -68,7 +68,7 @@
 	<!-- 프로필이미지 수정 -->
 	<update id="SQL_USER_UPDATE_IMG"
 		parameterType="test.com.rence.user.UserVO">
-		update userinfo set user_image=#{user_image}where user_id=#{user_id}
+		update userinfo set user_image=#{user_image}where user_no=#{user_no}
 	</update>
 	
 	<!-- 회원탈퇴에 따른 회원상태 수정 -->
