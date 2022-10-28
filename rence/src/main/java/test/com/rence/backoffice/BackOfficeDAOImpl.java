@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import test.com.rence.sendemail.AES256Util;
 import test.com.rence.sendemail.AuthVO;
 
 @Repository
@@ -14,6 +15,9 @@ public class BackOfficeDAOImpl implements BackOfficeDAO {
 
 	@Autowired
 	SqlSession sqlSession;
+	
+	@Autowired
+	AES256Util aes;
 
 	@Override
 	public BackOfficeVO backoffice_email_check(BackOfficeVO bvo) {
@@ -85,6 +89,13 @@ public class BackOfficeDAOImpl implements BackOfficeDAO {
 		logger.info("backoffice_login()...");
 		logger.info("{}", bvo);
 
+		String originText = bvo.getBackoffice_pw();
+
+		String encText = aes.encryptAES("0123456789abcdefghij0123456789ab", originText, true);
+		logger.info("encText (encodeBase64URLSafeString) : " + encText);
+		
+		bvo.setBackoffice_pw(encText);
+		
 		BackOfficeVO bvo2 = sqlSession.selectOne("SQL_BACKOFFICE_LOGIN", bvo);	
 		
 		return bvo2;
@@ -105,6 +116,13 @@ public class BackOfficeDAOImpl implements BackOfficeDAO {
 		logger.info("backoffice_settingOK_pw()...");
 		logger.info("{}", bvo);
 
+		String originText = bvo.getBackoffice_pw();
+
+		String encText = aes.encryptAES("0123456789abcdefghij0123456789ab", originText, true);
+		logger.info("encText (encodeBase64URLSafeString) : " + encText);
+		
+		bvo.setBackoffice_pw(encText);
+		
 		int flag = sqlSession.update("SQL_UPDATE_BACKOFFICE_SETTINGOK_PW",bvo);
 
 		return flag;
@@ -125,6 +143,13 @@ public class BackOfficeDAOImpl implements BackOfficeDAO {
 		logger.info("backoffice_pw_findOK()...");
 		logger.info("{}", bvo);
 
+		String originText = bvo.getBackoffice_pw();
+
+		String encText = aes.encryptAES("0123456789abcdefghij0123456789ab", originText, true);
+		logger.info("encText (encodeBase64URLSafeString) : " + encText);
+		
+		bvo.setBackoffice_pw(encText);
+		
 		BackOfficeVO bvo2 = sqlSession.selectOne("SQL_SELECT_BACKOFFICE_PW",bvo);
 
 		return bvo2;

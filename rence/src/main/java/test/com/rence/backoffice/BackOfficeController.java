@@ -78,8 +78,9 @@ public class BackOfficeController {
 	 * 백오피스 신청 처리
 	 * @throws ParseException 
 	 */
-	@RequestMapping(value = "/backoffice_insertOK", method = RequestMethod.POST)
+	@RequestMapping(value = "/backoffice_insertOK", method = RequestMethod.GET)
 	public String backoffice_insertOK(BackOfficeVO vo, BackOfficeOperationgTimeVO ovo) throws ParseException {
+		logger.info("vo::::::::::::::::::::::::::{}",vo);
 		
 		//백오피스 이미지
 		logger.info("{} byte", vo.getMultipartFile().getSize());
@@ -92,7 +93,7 @@ public class BackOfficeController {
 
 			vo.setBackoffice_image(bimg);
 		} else {
-			vo.setBackoffice_image("img_001.jpg"); // null 기본 이미지
+			vo.setBackoffice_image("img_room_001.jpg"); // null 기본 이미지
 		}
 		String dir_path = context.getRealPath("resources/upload");
 		logger.info(dir_path);
@@ -137,7 +138,10 @@ public class BackOfficeController {
 		service.backoffice_insertOK(vo);
 		ovo.setBackoffice_no(vo.getBackoffice_no());
 		
+		logger.info("vo::::::::::::::::::::::::::{}",vo);
+		
 		int result = service.backoffice_operating_insert(ovo);
+		logger.info("ovo::::::::::::::::::::::::::{}",ovo);
 
 		String rt = "redirect:/";
 		if(result==0) {
