@@ -1,3 +1,6 @@
+/**
+* @author : 김예은
+*/
 $(function(){
     
     //인풋 창 클릭 시 NULL을 알렸던 CSS제거 처리

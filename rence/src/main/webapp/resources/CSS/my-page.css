@@ -336,3 +336,6 @@ input[type="file"] {
 #user-delete-confirm-popup{
     height: 130px;
 }
+input[type=submit]{
+    border: none;
+}

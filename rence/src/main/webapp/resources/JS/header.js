@@ -1,3 +1,6 @@
+/**
+* @author : 김예은
+*/
 $(function(){
     let cityObject = [];
     let city = [];
