@@ -19,14 +19,14 @@ $(function(){
     //로그인 버튼 클릭
     $("#login-btn").click(function(){
         //로그인 시도
-        if($("#login-id").val().length > 0 && $("#login-pw").val().length > 0){
+        if($("#login-id").val().trim().length > 0 && $("#login-pw").val().trim().length > 0){
             $.ajax({
                 url : "/rence/user_loginOK",
                 type : "POST",
                 dataType : 'json',
                 data : {
-                    user_id : $("#login-id").val(),
-                    user_pw : $("#login-pw").val()
+                    user_id : $("#login-id").val().trim(),
+                    user_pw : $("#login-pw").val().trim()
                 },
                 success : function(res) {
                     console.log(res);
@@ -61,11 +61,11 @@ $(function(){
         }
         // 로그인 실패
         else{
-            if($("#login-id").val().length == 0){
+            if($("#login-id").val().trim().length == 0){
                 console.log($("#login-id"));
                 $("#login-id").addClass("null-input-border");
             }
-            if($("#login-pw").val().length == 0){
+            if($("#login-pw").val().trim().length == 0){
                 $("#login-pw").addClass("null-input-border");
             }
         }
@@ -107,13 +107,13 @@ $(function(){
         $(".popup-background:eq(0)").addClass("blind");
     });
     $("#find-id-btn").click(function(){
-        if($("#find-id-email").val().length > 0){
+        if($("#find-id-email").val().trim().length > 0){
             $.ajax({
                 url : "/rence/find_id",
                 type : "POST",
                 dataType : 'json',
                 data : {
-                    user_email : $("#find-id-email").val()
+                    user_email : $("#find-id-email").val().trim()
                 },
                 success : function(res) {
                     console.log(res);
@@ -172,17 +172,18 @@ $(function(){
         $(".popup-background:eq(0)").addClass("blind");
     });
     $("#find-pw-btn").click(function(){
-        if($("#find-pw-email").val().length > 0 && $("#find-pw-id").val().length > 0){
+        if($("#find-pw-email").val().trim().length > 0 && $("#find-pw-id").val().trim().length > 0){
             $.ajax({
                 url : "/rence/find_pw",
                 type : "POST",
                 dataType : 'json',
                 data : {
-                    user_email : $("#find-id-email").val()
+                    user_email : $("#find-pw-email").val().trim(),
+                    user_id : $("#find-pw-id").val().trim()
                 },
                 success : function(res) {
                     console.log(res);
-                    // 아이디 찾기 성공
+                    // 비밀번호 찾기 성공
                     if(res.result == 1){
                         //INPUT 초기화
                         $("#find-pw-email").val("");
@@ -215,10 +216,10 @@ $(function(){
                 }
             });
         }else{
-            if($("#find-pw-email").val().length == 0){
+            if($("#find-pw-email").val().trim().length == 0){
                 $("#find-pw-email").addClass("null-input-border");
             }
-            if($("#find-pw-id").val().length == 0){
+            if($("#find-pw-id").val().trim().length == 0){
                 $("#find-pw-id").addClass("null-input-border");
             }
         }

@@ -78,7 +78,7 @@
                     </div>
                     <span class="warning-text">이미 아이디가 존재합니다.</span>
                 </div>
-                <input type="password" id="join-pw" class="join-popup-input" placeholder="비밀번호"/>
+                <input type="password" id="join-pw" class="join-popup-input" placeholder="비밀번호(영문+숫자+특수문자 = 8~10글자)"/>
                 <input type="password" id="join-re-pw" class="join-popup-input" placeholder="비밀번호 재입력"/>
                 <input type="text" id="join-name" class="join-popup-input" placeholder="이름" autocomplete="off"/>
                 <input type="text" id="join-tel" class="join-popup-input" placeholder="전화번호(-없이 입력)" autocomplete="off"/>
