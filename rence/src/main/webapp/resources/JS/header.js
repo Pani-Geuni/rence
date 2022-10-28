@@ -24,6 +24,10 @@ $(function(){
         $(".popup-background:eq(0)").removeClass("blind");
         $("#join-section").removeClass("blind");
     });
+    
+    $("#go-backOffice").click(function(){
+        location.href="/rence/backoffice_landing";
+    });
 
     $("#go-myPage").click(function(){
         $("#after_login>.custom-select-user").addClass("blind");
