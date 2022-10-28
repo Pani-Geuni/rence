@@ -54,12 +54,14 @@ public class UserJoinController {
 		
 		//이메일 중복 체크
 		UserVO emailCheck = service.emailCheckOK(uvo);
-		if(emailCheck!=null) {
+		logger.info("{}", emailCheck);
+		if(emailCheck==null) {
 			
 			avo.setUser_email(uvo.getUser_email());
 			
 			//이메일 전송
 			avo = authSendEmail.sendEmail(avo,evo);
+			logger.info("메일이 전송되었습니다.C_avo: {}",avo);
 			if (avo !=null) {
 				
 				//avo2 = auth 테이블에 정보 저장 후, select 해온 결과값
@@ -74,7 +76,7 @@ public class UserJoinController {
 				jsonObject.put("result", "0");
 			}
 		}
-		//이메일 중복체크시 이메일이 있음
+		//이메일 중복체크시 이메일이 있으면 2
 		else {
 			logger.info("user_auth failed...(email check NOT OK)");
 			jsonObject.put("result", "2");
@@ -90,6 +92,7 @@ public class UserJoinController {
 	@RequestMapping(value = "/user_authOK", method = RequestMethod.GET)
 	@ResponseBody
 	public JSONObject user_authOK(UserVO uvo) {
+		
 		logger.info("Welcome user_authOK");
 		logger.info("{}", uvo);
 		 

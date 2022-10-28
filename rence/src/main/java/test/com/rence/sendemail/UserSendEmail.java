@@ -36,7 +36,7 @@ public class UserSendEmail {
 		int RANDOM_BOUND = 100000;
 		ThreadLocalRandom random = ThreadLocalRandom.current();
 		vo.setAuth_code(String.valueOf(random.nextInt(RANDOM_BOUND, RANDOM_BOUND * 10)));
-
+		logger.info("RANDOM_BOUND: {}", RANDOM_BOUND);
 		try {
 
 			// 전송
