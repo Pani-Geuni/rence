@@ -69,17 +69,17 @@ public class UserJoinController {
 				logger.info("user_auth successed...");
 				logger.info("=============avo2:{}",avo2);
 				
-				jsonObject.put("result", "1");
+				jsonObject.put("authNum", "1");
 				
 			}else {
 				logger.info("user_auth failed...");
-				jsonObject.put("result", "0");
+				jsonObject.put("authNum", "0");
 			}
 		}
 		//이메일 중복체크시 이메일이 있으면 2
 		else {
 			logger.info("user_auth failed...(email check NOT OK)");
-			jsonObject.put("result", "2");
+			jsonObject.put("authNum", "2");
 		}
 		
 		
@@ -91,12 +91,12 @@ public class UserJoinController {
 	 */
 	@RequestMapping(value = "/user_authOK", method = RequestMethod.GET)
 	@ResponseBody
-	public JSONObject user_authOK(UserVO uvo) {
+	public JSONObject user_authOK(String email_code) {
 		
 		logger.info("Welcome user_authOK");
-		logger.info("{}", uvo);
+		logger.info("{}", email_code);
 		 
-		AuthVO avo = service.user_authOK_select(uvo);
+		AuthVO avo = service.user_authOK_select(email_code);
 
 		JSONObject jsonObject = new JSONObject();
 

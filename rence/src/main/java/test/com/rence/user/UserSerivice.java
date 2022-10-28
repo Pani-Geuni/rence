@@ -90,9 +90,9 @@ public class UserSerivice {
 		return dao.user_auth_insert(avo);
 	}
 
-	public AuthVO user_authOK_select(UserVO uvo) {
+	public AuthVO user_authOK_select(String email_code) {
 		logger.info("user_authOK_select().....");
-		return dao.user_authOK_select(uvo);
+		return dao.user_authOK_select(email_code);
 	}
 	
 	

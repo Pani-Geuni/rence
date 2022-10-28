@@ -67,11 +67,11 @@ public class UserDAOimpl implements UserDAO {
 		}
 
 		@Override
-		public AuthVO user_authOK_select(UserVO uvo) {
+		public AuthVO user_authOK_select(String email_code) {
 			logger.info("user_authOK_select()...");
-			logger.info("{}", uvo);
+			logger.info("{}", email_code);
 
-			AuthVO avo2 = sqlSession.selectOne("SQL_SELECT_USER_AUTHOK",uvo);
+			AuthVO avo2 = sqlSession.selectOne("SQL_SELECT_USER_AUTHOK",email_code);
 			
 			return avo2;
 		}
@@ -166,6 +166,8 @@ public class UserDAOimpl implements UserDAO {
 		return flag;
 	}
 
+	
+	//마이페이지에 정보 뿌려주기
 	@Override
 	public UserMypageVO user_mypage_select(UserVO uvo) {
 		logger.info("user_mypage_select().....");
