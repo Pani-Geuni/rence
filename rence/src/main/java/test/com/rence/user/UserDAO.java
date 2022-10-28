@@ -1,6 +1,6 @@
 package test.com.rence.user;
 
-import test.com.rence.backoffice.BackOfficeVO;
+import test.com.rence.sendemail.AuthVO;
 
 public interface UserDAO {
 
@@ -10,8 +10,6 @@ public interface UserDAO {
 
 	public UserVO emailCheckOK(UserVO uvo); //이메일중복체크
 	
-	public UserVO authCheckOK(UserVO uvo); //이메일인증
-
 	public UserVO User_loginOK(UserVO uvo); // 로그인
 	
 	public UserVO user_email_select(UserVO uvo); // 아이디 찾기에서 이메일 확인
@@ -27,6 +25,10 @@ public interface UserDAO {
 	public int user_secedeOK(UserVO uvo); //회원탈퇴 
 	
 	public UserMypageVO user_mypage_select(UserVO uvo); // 마이페이지에 정보를 넘겨주는 기능
+
+	public AuthVO user_auth_insert(AuthVO avo); //이메일 인증 인증번호 저장
+
+	public AuthVO user_authOK_select(UserVO uvo); //이메일 인증 인증번호 비교
 
 	
 	

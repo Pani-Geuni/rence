@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import test.com.rence.sendemail.AuthVO;
+
 @Repository
 public class UserDAOimpl implements UserDAO {
 
@@ -44,12 +46,32 @@ public class UserDAOimpl implements UserDAO {
 		return uvo2;
 	}
 
-	// 이메일 인증
-	@Override
-	public UserVO authCheckOK(UserVO uvo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+	//회원가입 - 인증시 인증번호 테이블에 저장
+		@Override
+		public AuthVO user_auth_insert(AuthVO avo) {
+			logger.info("user_auth_insert()...");
+			logger.info("{}", avo);
+
+			AuthVO avo2 = null;
+			int result = sqlSession.insert("SQL_INSERT_USER_AUTH",avo);
+			if (result == 1) {
+				avo2 = sqlSession.selectOne("SQL_SELECT_USER_AUTH",avo);
+				logger.info("avo:{}",avo2);
+			}
+
+			return avo2;
+		}
+
+		@Override
+		public AuthVO user_authOK_select(UserVO uvo) {
+			logger.info("user_authOK_select()...");
+			logger.info("{}", uvo);
+
+			AuthVO avo2 = sqlSession.selectOne("SQL_SELECT_USER_AUTHOK",uvo);
+			
+			return avo2;
+		}
 
 	// 로그인
 	@Override
@@ -148,6 +170,8 @@ public class UserDAOimpl implements UserDAO {
 
 		return umvo;
 	}
+	
+	
 	
 	
 

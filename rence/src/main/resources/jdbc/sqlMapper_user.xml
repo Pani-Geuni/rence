@@ -84,8 +84,19 @@
 		select * from user_mypage_view where user_no=#{user_no}
 	</select>
 	
-	
-	
-	
-	
+<!-- 	회워가입시 인증번호 전송후 테이블에 저장 -->
+	<insert id="SQL_INSERT_USER_AUTH" parameterType="test.com.rence.user.UserVO">
+  	INSERT INTO auth(auth_no, user_email, auth_code) values('A'||seq_auth.nextval, #{user_email}, #{auth_code})
+  	</insert>
+  	
+<!--   	회원가입시 인증번호 동일한지 체크 -->
+  	<select id="SQL_SELECT_USER_AUTH" resultType="test.com.rence.user.UserVO">
+  	SELECT auth_no, auth_code, user_email from auth where user_email=#{user_email}
+  	</select>
+  	
+  	<!--   	회원가입시 인증번호 동일한지 체크 -->
+  	<select id="SQL_SELECT_USER_AUTHOK" resultType="test.com.rence.sendemail.AuthVO">
+  	SELECT * from auth where auth_code=#{auth_code} and auth_no=#{auth_no} and user_email=#{user_email}
+  	</select>
+
 </mapper>

@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import test.com.rence.sendemail.AuthVO;
+
 @Service
 public class UserSerivice {
 
@@ -81,6 +83,16 @@ public class UserSerivice {
 		logger.info("user_mypage_select().....");
 		return dao.user_mypage_select(uvo);
 		
+	}
+
+	public AuthVO user_auth_insert(AuthVO avo) {
+		logger.info("user_auth_insert().....");
+		return dao.user_auth_insert(avo);
+	}
+
+	public AuthVO user_authOK_select(UserVO uvo) {
+		logger.info("user_authOK_select().....");
+		return dao.user_authOK_select(uvo);
 	}
 	
 	
