@@ -1,14 +1,27 @@
-/**
-* @author : 김예은
-*/
 $(function(){
     
-    //인풋 창 클릭 시 NULL을 알렸던 CSS제거 처리
+    /**** **************************************** ****/
+    /**** 인풋 창 클릭 시 NULL을 알렸던 CSS제거 처리 ****/
+    /**** **************************************** ****/
+    //로그인
     $(".login-popup-input").click(function(){
         if($(this).hasClass("null-input-border")){
             $(this).removeClass("null-input-border");
         }
     });
+
+    //회원가입
+    $(".join-popup-input-short").click(function(){
+        if($(this).hasClass("null-input-border")){
+            $(this).removeClass("null-input-border");
+        }
+    });
+    $(".join-popup-input").click(function(){
+        if($(this).hasClass("null-input-border")){
+            $(this).removeClass("null-input-border");
+        }
+    });
+
 
     /*********************************/ 
     /******* 버튼 클릭 이벤트 *********/ 
@@ -29,7 +42,7 @@ $(function(){
                 dataType : 'json',
                 data : {
                     user_id : $("#login-id").val().trim(),
-                    user_pw : $("#login-pw").val().trim()
+                    user_pw : window.atob($("#login-pw").val().trim())
                 },
                 success : function(res) {
                     console.log(res);
@@ -119,7 +132,6 @@ $(function(){
                     user_email : $("#find-id-email").val().trim()
                 },
                 success : function(res) {
-                    console.log(res);
                     // 아이디 찾기 성공
                     if(res.result == 1){
                         //INPUT 초기화
@@ -144,7 +156,6 @@ $(function(){
                     }
                 },
                 error : function(error) {
-                    console.log(error);
                     $(".popup-background:eq(1)").removeClass("blind");
                     $("#common-alert-popup").removeClass("blind");
                     $(".common-alert-txt").text("오류 발생으로 인해 처리에 실패하였습니다.");
@@ -185,7 +196,6 @@ $(function(){
                     user_id : $("#find-pw-id").val().trim()
                 },
                 success : function(res) {
-                    console.log(res);
                     // 비밀번호 찾기 성공
                     if(res.result == 1){
                         //INPUT 초기화
@@ -212,7 +222,6 @@ $(function(){
                     }
                 },
                 error : function(error) {
-                    console.log(error);
                     $(".popup-background:eq(1)").removeClass("blind");
                     $("#common-alert-popup").removeClass("blind");
                     $(".common-alert-txt").text("오류 발생으로 인해 처리에 실패하였습니다.");
@@ -232,8 +241,236 @@ $(function(){
     /*********** 회원가입 팝업 ************/
     //회원가입 버튼 클릭
     $("#join-btn").click(function(){
-        $("#join-section").addClass("blind");
-        $(".popup-background:eq(0)").addClass("blind");
+        if(
+            $("#join-email").val().trim().length > 0
+            && $("#join-email-code").val().trim().length > 0
+            && $("#join-id").val().trim().length > 0
+            && $("#join-pw").val().trim().length > 0
+            && $("#join-re-pw").val().trim().length > 0
+            && $("#join-name").val().trim().length > 0
+            && $("#join-tel").val().trim().length > 0
+            && $("#join-birth").val().trim().length > 0)
+        {
+            $("#join-section").addClass("blind");
+            $(".popup-background:eq(0)").addClass("blind");
+
+            var arr = $(".warning-text");
+            var tmp = true;
+            for(var i = 0; i < arr.length; i++){
+                if(!$(arr[i]).hasClass("blind")){
+                    tmp = false;
+                    break;
+                }
+            }
+
+            if(tmp == "t"){
+                if($("#check_email").prop("check", true)){
+                    if($("#check_email-code").prop("check", true)){
+                        if($("#check_id").prop("check", true)){
+                            // 회원가입 로직 처리
+                            $.ajax({
+                                url : "/rence/user_pw_updateOK",
+                                type : "POST",
+                                dataType : 'json',
+                                data : {
+                                    user_no : $.cookie("user_no"),
+                                    user_pw : $("#modify-pw-renew").val().trim()
+                                },
+                                success : function(res) {
+                                    console.log(res);
+
+                                    // 비밀번호 변경 성공
+                                    if(res.result == 1){
+                                        //INPUT 초기화
+                                        $(".modify-popup-input").val("");
+
+                                        // 팝업 관련창 닫음
+                                        $("#modify-pw-section").addClass("blind");
+                                        $(".popup-background:eq(0)").addClass("blind");
+
+                                        $.cookie("user_pw", windows.btoa($("#modify-pw-renew").val().trim()))
+
+                                        // 성공 알림창
+                                        $(".popup-background:eq(1)").removeClass("blind");
+                                        $("#common-alert-popup").removeClass("blind");
+                                        $(".common-alert-txt").text("비밀번호가 변경되었습니다.");
+                                    }else{
+                                        $(".popup-background:eq(1)").removeClass("blind");
+                                        $("#common-alert-popup").removeClass("blind");
+                                        $(".common-alert-txt").text("예상치못한 오류로 비밀번호 변경에 실패하였습니다.");
+                                    }
+                                },
+                                error : function(error) {
+                                    console.log(error);
+                                    $(".popup-background:eq(1)").removeClass("blind");
+                                    $("#common-alert-popup").removeClass("blind");
+                                    $(".common-alert-txt").text("오류 발생으로 인해 처리에 실패하였습니다.");
+                                }
+                            })
+                        }else{
+                            $(".popup-background:eq(1)").removeClass("blind");
+                            $("#common-alert-popup").removeClass("blind");
+                            $(".common-alert-txt").text("아이디 중복체크를 완료하세요.");
+                        }
+                    }
+                    else{
+                        $(".popup-background:eq(1)").removeClass("blind");
+                        $("#common-alert-popup").removeClass("blind");
+                        $(".common-alert-txt").text("인증번호 확인을 완료하세요.");
+                    }
+                }else{
+                    $(".popup-background:eq(1)").removeClass("blind");
+                    $("#common-alert-popup").removeClass("blind");
+                    $(".common-alert-txt").text("이메일 인증을 완료하세요.");
+                }
+            }
+
+        }
+        else{
+            if($("#join-email").val().trim().length == 0){
+                $("#join-email").addClass("null-input-border");
+            }
+            if($("#join-email-code").val().trim().length == 0){
+                $("#join-email-code").addClass("null-input-border");
+            }
+            if($("#join-id").val().trim().length == 0){
+                $("#join-id").addClass("null-input-border");
+            }
+            if($("#join-pw").val().trim().length == 0){
+                $("#join-pw").addClass("null-input-border");
+            }
+            if($("#join-re-pw").val().trim().length == 0){
+                $("#join-re-pw").addClass("null-input-border");
+            }
+            if($("#join-name").val().trim().length == 0){
+                $("#join-name").addClass("null-input-border");
+            }
+            if($("#join-tel").val().trim().length == 0){
+                $("#join-tel").addClass("null-input-border");
+            }
+            if($("#join-birth").val().trim().length == 0){
+                $("#join-birth").addClass("null-input-border");
+            }
+        }
+    });
+
+    $(".join-popup-input").on('keydown keyup', function(){
+        if($(this).attr("id")=="join-pw"){
+            var password = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,10}$/;
+            if(!password.test($(this).val().trim())){
+                $(".warning-text:eq(3)").removeClass("blind");
+                $(".warning-text:eq(3)").text("비밀번호 조건과 일치하지않습니다.");
+            }else{
+                $(".warning-text:eq(3)").addClass("blind");
+            }
+        }else if($(this).attr("id")=="join-re-pw"){
+            if($(this).val().trim() != $("#join-pw").val().trim()){
+                $(".warning-text:eq(4)").removeClass("blind");
+                $(".warning-text:eq(4)").text("위 비밀번호와 일치하지않습니다.");
+            }else{
+                $(".warning-text:eq(4)").addClass("blind");
+            }
+        }else if($(this).attr("id")=="join-tel"){
+            var phoneReg = /^01(0|1[6-9])(\d{3,4})(\d{4})$/;
+            if(!phoneReg.test($(this).val().trim())){
+                $(".warning-text:eq(5)").removeClass("blind");
+                $(".warning-text:eq(5)").text("전화번호 형식이 아닙니다.");
+            }else{
+                $(".warning-text:eq(5)").addClass("blind");
+            }
+        }
+        if($(this).attr("id")=="join-birth"){
+            var birthReg = /^[0-9]{8}$/;
+            if(!birthReg.test($(this).val().trim())){
+                $(".warning-text:eq(6)").removeClass("blind");
+                $(".warning-text:eq(6)").text("지정된 생년월일 형식이 아닙니다.");
+            }else{
+                $(".warning-text:eq(6)").addClass("blind");
+            }
+        }
+    });
+    
+    $(".join-popup-input-short").on('keydown keyup', function(){
+        // 이메일 형식인지 확인
+        if($(this).attr("id")=="join-email"){
+            var email = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+$/;
+            if(!email.test($(this).val().trim())){
+                $(".warning-text:eq(0)").removeClass("blind");
+                $(".warning-text:eq(0)").text("이메일 형식이 아닙니다.");
+            }else{
+                $(".warning-text:eq(0)").addClass("blind");
+            }
+        }
+        // 아이디 형식에 맞는지 확인
+        else if($(this).attr("id")=="join-id"){
+            var regExp = /^[a-z]+[a-z0-9]{4,5}$/g;            
+            if(!regExp.test($(this).val().trim())){
+                $(".warning-text:eq(2)").removeClass("blind");
+                $(".warning-text:eq(2)").text("아이디 형식이 아닙니다.");
+            }else{
+                $(".warning-text:eq(2)").addClass("blind");
+            }
+        }
+    });
+
+    // 아이디 중복 체크 버튼 클릭 이벤트
+    $("#check_id").click(function(){
+        $.ajax({
+            url:"/rence/user_idCheckOK",
+            type : "POST",
+            dataType : 'json',
+            data : {
+                user_id : $("#join-id").val().trim()
+            },
+            success : function(res) {
+                console.log(res);
+                // 아이디 중복 성공
+                if(res.result == 1){
+                    $(this).prop("check", true);
+                }else{
+                    $(".warning-text:eq(2)").removeClass("blind");
+                    $(".warning-text:eq(2)").text("이미 존재하는 아이디입니다.");
+                }
+            },
+            error : function(res) {
+                console.log(error);
+                $(".popup-background:eq(1)").removeClass("blind");
+                $("#common-alert-popup").removeClass("blind");
+                $(".common-alert-txt").text("오류 발생으로 인해 처리에 실패하였습니다.");
+            }            
+        })
+    });
+
+    // 이메일 인증 버튼 클릭 이벤트
+    $("#check_email").click(function(){
+        $.ajax({
+            url:"/rence/user_auth",
+            type : "POST",
+            dataType : 'json',
+            data : {
+                user_email : $("#join-email").val().trim()
+            },
+            success : function(res) {
+                console.log(res);
+                // 아이디 중복 성공
+                if(res.result == 1){
+                    $(this).prop("check", true);
+                }else if(res.result == 2){
+                    $(".warning-text:eq(0)").removeClass("blind");
+                    $(".warning-text:eq(0)").text("이미 존재하는 아이디입니다.");
+                }else{
+                    $(".popup-background:eq(1)").removeClass("blind");
+                    $("#common-alert-popup").removeClass("blind");
+                    $(".common-alert-txt").text("오류 발생으로 인해 이메일 인증번호 발송에 실패하였습니다.");
+                }
+            },
+            error : function(res) {
+                console.log(error);
+                $(".popup-background:eq(1)").removeClass("blind");
+                $("#common-alert-popup").removeClass("blind");
+                $(".common-alert-txt").text("오류 발생으로 인해 처리에 실패하였습니다.");
+            }            
+        })
     });
 
     // 팝업 알러트 버튼 클릭 이벤트

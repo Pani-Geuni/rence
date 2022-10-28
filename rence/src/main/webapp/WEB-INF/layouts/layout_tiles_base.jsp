@@ -1,6 +1,3 @@
-/**
-* @author : 김예은
-*/
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
@@ -80,19 +77,33 @@
                         <input type="text" id="join-id" class="join-popup-input-short" placeholder="아이디(소문자, 숫자만 입력 = 5~10자))" autocomplete="off"/>
                         <input type = "button" id="check_id" class="join-popup-check-btn" value="중복확인"/>
                     </div>
-                    <span class="warning-text">이미 아이디가 존재합니다.</span>
+                    <span class="warning-text blind">이미 아이디가 존재합니다.</span>
                 </div>
-                <input type="password" id="join-pw" class="join-popup-input" placeholder="비밀번호(영문+숫자+특수문자 = 8~10글자)"/>
-                <input type="password" id="join-re-pw" class="join-popup-input" placeholder="비밀번호 재입력"/>
-                <input type="text" id="join-name" class="join-popup-input" placeholder="이름" autocomplete="off"/>
-                <input type="text" id="join-tel" class="join-popup-input" placeholder="전화번호(-없이 입력)" autocomplete="off"/>
-                <input type="text" id="join-birth" class="join-popup-input" placeholder="생년월일(숫자로만 입력)" autocomplete="off"/>
+                <div class="input-wrap">
+                    <input type="password" id="join-pw" class="join-popup-input" placeholder="비밀번호(영문+숫자+특수문자 = 8~10글자)"/>
+                    <span class="warning-text blind">다시 시도해주세요.</span>
+                </div>
+                <div class="input-wrap">
+                    <input type="password" id="join-re-pw" class="join-popup-input" placeholder="비밀번호 재입력"/>
+                    <span class="warning-text blind">다시 시도해주세요.</span>
+                </div>
+                <div class="input-wrap">
+                    <input type="text" id="join-name" class="join-popup-input" placeholder="이름" autocomplete="off"/>
+                </div>
+                <div class="input-wrap">
+                    <input type="text" id="join-tel" class="join-popup-input" placeholder="전화번호(-없이 입력)" autocomplete="off"/>
+                    <span class="warning-text blind">-없이 입력하세요.</span>
+                </div>
+                <div class="input-wrap">
+                    <input type="text" id="join-birth" class="join-popup-input" placeholder="생년월일(숫자로만 입력)" autocomplete="off"/>
+                    <span class="warning-text blind">숫자로만 입력가능합니다.</span>
+                </div>
             </section>
             <section class="join-popup-btn-section">
                 <input type="button" id="join-btn" value="회원가입">
             </section>
         </div>
-        <!-- END LOGIN SECTION -->
+        <!-- END JOIN SECTION -->
 
         <!-- START FIND-ID SECTION -->
         <div id="find-id-section" class="find-section blind">
