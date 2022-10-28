@@ -42,7 +42,7 @@ $(function(){
                 dataType : 'json',
                 data : {
                     user_id : $("#login-id").val().trim(),
-                    user_pw : window.atob($("#login-pw").val().trim())
+                    user_pw : window.btoa($("#login-pw").val().trim())
                 },
                 success : function(res) {
                     console.log(res);
@@ -415,31 +415,37 @@ $(function(){
 
     // 아이디 중복 체크 버튼 클릭 이벤트
     $("#check_id").click(function(){
-        $.ajax({
-            url:"/rence/user_idCheckOK",
-            type : "POST",
-            dataType : 'json',
-            data : {
-                user_id : $("#join-id").val().trim()
-            },
-            success : function(res) {
-                // 아이디 중복 성공
-                if(res.result == 1){
-                    $("#check_id").prop("check", true);
-                    $("#join-id").attr("readonly", true);
-                    $("#join-id").addClass("readOnly");
-                }else{
-                    $(".warning-text:eq(2)").removeClass("blind");
-                    $(".warning-text:eq(2)").text("이미 존재하는 아이디입니다.");
-                }
-            },
-            error : function(error) {
-                console.log(error);
-                $(".popup-background:eq(1)").removeClass("blind");
-                $("#common-alert-popup").removeClass("blind");
-                $(".common-alert-txt").text("오류 발생으로 인해 처리에 실패하였습니다.");
-            }            
-        })
+        if($(".warning-text:eq(2)").hasClass("blind")){
+            $.ajax({
+                url:"/rence/user_idCheckOK",
+                type : "POST",
+                dataType : 'json',
+                data : {
+                    user_id : $("#join-id").val().trim()
+                },
+                success : function(res) {
+                    // 아이디 중복 성공
+                    if(res.result == 1){
+                        $("#check_id").prop("check", true);
+                        $("#join-id").attr("readonly", true);
+                        $("#join-id").addClass("readOnly");
+                    }else{
+                        $(".warning-text:eq(2)").removeClass("blind");
+                        $(".warning-text:eq(2)").text("이미 존재하는 아이디입니다.");
+                    }
+                },
+                error : function(error) {
+                    console.log(error);
+                    $(".popup-background:eq(1)").removeClass("blind");
+                    $("#common-alert-popup").removeClass("blind");
+                    $(".common-alert-txt").text("오류 발생으로 인해 처리에 실패하였습니다.");
+                }            
+            });
+        }else{
+            $(".popup-background:eq(1)").removeClass("blind");
+            $("#common-alert-popup").removeClass("blind");
+            $(".common-alert-txt").text("조건에 맞는 아이디를 입력하신 후 중복체크 해주세요.");
+        }
     });
 
     // 이메일 인증 버튼 클릭 이벤트
