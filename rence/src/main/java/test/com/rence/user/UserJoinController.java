@@ -1,4 +1,5 @@
 /**
+	 * @author 강경석
 	 *  회원가입 처리 컨트롤러
 	 */
 
@@ -16,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class UserSignupController {
-	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+public class UserJoinController {
+	private static final Logger logger = LoggerFactory.getLogger(UserJoinController.class);
 
 	@Autowired
 	UserSerivice service;
@@ -69,16 +70,16 @@ public class UserSignupController {
 	}
 
 	// 회원가입 페이지 요청
-	@RequestMapping(value = "/user_insert", method = RequestMethod.GET)
-	public String user_insert() {
-		logger.info("Welcome! user_insert");
-		return "user/signup"; //회원가입페이지 이동(임시).
+	@RequestMapping(value = "/join", method = RequestMethod.GET)
+	public String user_join() {
+		logger.info("Welcome! user_join");
+		return "user/join"; //회원가입페이지 이동(임시).
 	}
 
 	// 회원가압완료
-	@RequestMapping(value = "/user_insertOK", method = RequestMethod.POST)
-	public String insertOK(UserVO uvo) {
-		logger.info("Welcome! user_insertOK");
+	@RequestMapping(value = "/joinOK", method = RequestMethod.POST)
+	public String user_joinOK(UserVO uvo) {
+		logger.info("Welcome! user_joinOK");
 		logger.info("result: {}", uvo);
 
 		// 사진(파일)업로드
@@ -89,11 +90,11 @@ public class UserSignupController {
 		int result = service.user_insertOK(uvo);
 		logger.info("result: {}", result);
 		
-		
-		
-
-		return "redirect:/"; // 회원가입후 로그인을 위한 홈화면 이동
-
+		//회원가입 실패시
+		if(result==0) {
+			return "redirect:/user_join"; //회원가입ㅅ
+		}
+		return "redirect:/join"; // 회원가입후 로그인을 위한 홈화면 이동
 	}
 
 }// end class

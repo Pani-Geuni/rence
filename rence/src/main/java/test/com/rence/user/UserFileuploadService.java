@@ -1,3 +1,9 @@
+/**
+	 * @author 강경석
+	 *  이미지 업로드 서비스
+	 */
+
+
 package test.com.rence.user;
 
 import org.slf4j.Logger;

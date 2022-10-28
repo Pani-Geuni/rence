@@ -63,6 +63,14 @@ public class UserSerivice {
 		return dao.user_pw_updateOK(uvo);
 	}
 
-	
+	public int user_img_updateOK(UserVO uvo) {
+		logger.info("user_img_updateOK().....");
+		return dao.user_img_updateOK(uvo);
+	}
+
+	public int user_secedeOK(UserVO uvo) {
+		logger.info("user_secedeOK().....");
+		return dao.user_secedeOK(uvo);
+	}
 
 }// end class

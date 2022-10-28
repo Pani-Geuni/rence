@@ -57,5 +57,17 @@
 		parameterType="test.com.rence.user.UserVO">
 		update userinfo set user_pw=#{user_pw}where user_id=#{user_id}
 	</update>
-
+	
+	<!-- 프로필이미지 수정 -->
+	<update id="SQL_USER_UPDATE_IMG"
+		parameterType="test.com.rence.user.UserVO">
+		update userinfo set user_img=#{user_img}where user_id=#{user_id}
+	</update>
+	
+	<!-- 회원탈퇴에 따른 회원상태 수정 -->
+	
+	<update id="SQL_USER_SECEDE"
+		parameterType="test.com.rence.user.UserVO">
+		update userinfo set user_state='N' where user_no=#{user_no}
+	</update>
 </mapper>
