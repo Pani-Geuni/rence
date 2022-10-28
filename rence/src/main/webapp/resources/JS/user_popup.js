@@ -279,7 +279,7 @@ $(function(){
                                 success : function(res) {
                                     console.log(res);
 
-                                    // 비밀번호 변경 성공
+                                    // 회원가입 성공
                                     if(res.result == 1){
                                         //INPUT 초기화
                                         $(".modify-popup-input").val("");
@@ -293,11 +293,11 @@ $(function(){
                                         // 성공 알림창
                                         $(".popup-background:eq(1)").removeClass("blind");
                                         $("#common-alert-popup").removeClass("blind");
-                                        $(".common-alert-txt").text("비밀번호가 변경되었습니다.");
+                                        $(".common-alert-txt").text("회원가입에 성공하였습니다.");
                                     }else{
                                         $(".popup-background:eq(1)").removeClass("blind");
                                         $("#common-alert-popup").removeClass("blind");
-                                        $(".common-alert-txt").text("예상치못한 오류로 비밀번호 변경에 실패하였습니다.");
+                                        $(".common-alert-txt").text("예상치못한 오류로 회원가입에 실패하였습니다.");
                                     }
                                 },
                                 error : function(error) {
@@ -433,7 +433,7 @@ $(function(){
                     $(".warning-text:eq(2)").text("이미 존재하는 아이디입니다.");
                 }
             },
-            error : function(res) {
+            error : function(error) {
                 console.log(error);
                 $(".popup-background:eq(1)").removeClass("blind");
                 $("#common-alert-popup").removeClass("blind");
@@ -465,7 +465,7 @@ $(function(){
                     $(".common-alert-txt").text("오류 발생으로 인해 이메일 인증번호 발송에 실패하였습니다.");
                 }
             },
-            error : function(res) {
+            error : function(error) {
                 console.log(error);
                 $(".popup-background:eq(1)").removeClass("blind");
                 $("#common-alert-popup").removeClass("blind");
