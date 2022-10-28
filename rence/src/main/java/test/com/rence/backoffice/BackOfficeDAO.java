@@ -10,7 +10,7 @@ public interface BackOfficeDAO {
 	
 	public AuthVO backoffice_auth_select(AuthVO avo);
 	
-	public int backoffice_insertOK(BackOfficeVO bvo);
+	public BackOfficeVO backoffice_insertOK(BackOfficeVO bvo);
 
 	public int backoffice_operating_insert(BackOfficeOperationgTimeVO ovo);
 
