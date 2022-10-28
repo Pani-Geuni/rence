@@ -73,7 +73,7 @@
                 </div>
                 <div class="input-wrap">
                     <div class="input-check">
-                        <input type="text" id="join-id" class="join-popup-input-short" placeholder="아이디" autocomplete="off"/>
+                        <input type="text" id="join-id" class="join-popup-input-short" placeholder="아이디(소문자, 숫자만 입력 = 5~10자))" autocomplete="off"/>
                         <input type = "button" id="check_id" class="join-popup-check-btn" value="중복확인"/>
                     </div>
                     <span class="warning-text">이미 아이디가 존재합니다.</span>

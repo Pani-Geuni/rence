@@ -159,3 +159,6 @@ input[type=button]{
 .popup-logo{
     width: 100px;
 }
+.null-input-border{
+    border: 2px solid #FF5C5C !important;
+}
