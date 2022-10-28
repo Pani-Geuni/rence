@@ -201,6 +201,17 @@
 			</section>
 		</div>
 		<!-- END MODIFY PROFILE IMAGE -->
+		
+		<!-- START USER_DELETE CUSTOM CONFIRM POPUP -->
+        <div id ="user-delete-confirm-popup" class="confirm-popup blind">
+            <section class="confirm-txt-section">
+                <span class="common-confirm-txt">회원 탈퇴하시겠습니까?</span>
+            </section>
+            <section class="confirm-btn-section">
+                <div id="user-delete" class="confirm-yesBtn">확인</div>
+                <div id="user-delete-popup-close" class="confirm-noBtn">닫기</div>
+            </section>
+        </div>
 
 
 		<!-- !!! QUESTION PAGE !!! -->
