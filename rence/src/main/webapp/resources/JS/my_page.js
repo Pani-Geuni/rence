@@ -41,6 +41,8 @@ $(function(){
     $("#modify-img-closeBtn").click(function(){
         $(".review-upload-value").removeClass("null-input-border");
         $(".review-upload-value").val("");
+        $(".popup-background:eq(0)").addClass("blind");
+        $("#modify-img-section").addClass("blind");
     });
     $(".review-upload-btn").click(function(){
         $(".file").click();

@@ -338,4 +338,5 @@ input[type="file"] {
 }
 input[type=submit]{
     border: none;
+    cursor: pointer;
 }
