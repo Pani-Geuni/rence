@@ -393,7 +393,7 @@ $(function(){
     $(".join-popup-input-short").on('keydown keyup', function(){
         // 이메일 형식인지 확인
         if($(this).attr("id")=="join-email"){
-            var email = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+$/;
+            var email = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
             if(!email.test($(this).val().trim())){
                 $(".warning-text:eq(0)").removeClass("blind");
                 $(".warning-text:eq(0)").text("이메일 형식이 아닙니다.");
@@ -426,7 +426,8 @@ $(function(){
                 console.log(res);
                 // 아이디 중복 성공
                 if(res.result == 1){
-                    $(this).prop("check", true);
+                    $("#check_id").attr("check", "true");
+                    $("#join-id").attr("readonly", true);
                 }else{
                     $(".warning-text:eq(2)").removeClass("blind");
                     $(".warning-text:eq(2)").text("이미 존재하는 아이디입니다.");
