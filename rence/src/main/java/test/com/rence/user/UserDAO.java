@@ -28,7 +28,7 @@ public interface UserDAO {
 
 	public AuthVO user_auth_insert(AuthVO avo); //이메일 인증 인증번호 저장
 
-	public AuthVO user_authOK_select(UserVO uvo); //이메일 인증 인증번호 비교
+	public AuthVO user_authOK_select(String email_code); //이메일 인증 인증번호 비교
 
 	
 	

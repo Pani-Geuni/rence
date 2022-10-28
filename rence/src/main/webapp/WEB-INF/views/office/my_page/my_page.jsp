@@ -63,7 +63,7 @@
 				<section class="menu-box-txt-section">
 					<div class="menu-box-txt-wrap">
 						<span class="menu-box-title">마일리지 조회</span> 
-						<span class="point-txt">내 마일리지 : ${umvo.total_mileage}원</span>
+						<span class="point-txt">내 마일리지 : ${umvo.mileage_total}원</span>
 					</div>
 					<span class="menu-box-txt">쌓인 마일리지를 조회할 수 있어요.</span>
 				</section>

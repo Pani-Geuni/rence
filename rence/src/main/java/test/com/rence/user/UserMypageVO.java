@@ -18,14 +18,14 @@ public class UserMypageVO {
 	private String user_email; //이메일
 	private String user_tel; //전화번호
 	private Date user_birth; //생년월일
-	private int total_mileage; // 총 마일리지
+	private int mileage_total; // 총 마일리지
 	
 	public UserMypageVO() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public UserMypageVO(String user_no, String user_image, String user_id, String user_name, String user_email,
-			String user_tel, Date user_birth, int total_mileage) {
+			String user_tel, Date user_birth, int mileage_total) {
 		super();
 		this.user_no = user_no;
 		this.user_image = user_image;
@@ -34,13 +34,8 @@ public class UserMypageVO {
 		this.user_email = user_email;
 		this.user_tel = user_tel;
 		this.user_birth = user_birth;
-		this.total_mileage = total_mileage;
+		this.mileage_total = mileage_total;
 	}
-
-
-
-
-
 
 	public String getUser_no() {
 		return user_no;
@@ -98,19 +93,19 @@ public class UserMypageVO {
 		this.user_birth = user_birth;
 	}
 
-	public int getTotal_mileage() {
-		return total_mileage;
+	public int getMileage_total() {
+		return mileage_total;
 	}
 
-	public void setTotal_mileage(int total_mileage) {
-		this.total_mileage = total_mileage;
+	public void setMileage_total(int mileage_total) {
+		this.mileage_total = mileage_total;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + total_mileage;
+		result = prime * result + mileage_total;
 		result = prime * result + ((user_birth == null) ? 0 : user_birth.hashCode());
 		result = prime * result + ((user_email == null) ? 0 : user_email.hashCode());
 		result = prime * result + ((user_id == null) ? 0 : user_id.hashCode());
@@ -130,7 +125,7 @@ public class UserMypageVO {
 		if (getClass() != obj.getClass())
 			return false;
 		UserMypageVO other = (UserMypageVO) obj;
-		if (total_mileage != other.total_mileage)
+		if (mileage_total != other.mileage_total)
 			return false;
 		if (user_birth == null) {
 			if (other.user_birth != null)
@@ -174,11 +169,9 @@ public class UserMypageVO {
 	public String toString() {
 		return "UserMypageVO [user_no=" + user_no + ", user_image=" + user_image + ", user_id=" + user_id
 				+ ", user_name=" + user_name + ", user_email=" + user_email + ", user_tel=" + user_tel + ", user_birth="
-				+ user_birth + ", total_mileage=" + total_mileage + "]";
+				+ user_birth + ", mileage_total=" + mileage_total + "]";
 	}
-	
-	
-	
+
 	
 	
 	

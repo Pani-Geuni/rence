@@ -6,7 +6,11 @@
 
 package test.com.rence.user;
 
-import javax.servlet.ServletRequest;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Formatter;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
@@ -29,25 +33,53 @@ public class HeaderController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	//마이페이지 이동
+	// 마이페이지 이동
 	@RequestMapping(value = "/go_my_page", method = RequestMethod.GET)
 	public String go_my_page(Model model, HttpServletRequest request) {
 		logger.info("go_my_page()...");
 		
-//		String user_no = null;
-//		UserVO uvo = new UserVO();
-//		
-//		Cookie[] cookies = request.getCookies();
-//		for(Cookie c : cookies) {
-//			if(c.getName().equals("user_no")) {
-//				user_no = c.getValue();
-//			}
-//		  }
-//		uvo.setUser_no(user_no);
-//		
-//		UserMypageVO umvo = service.user_mypage_select(uvo);
-//		
-//		model.addAttribute("umvo",umvo);
+//		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+		SimpleDateFormat  simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		simpleDateFormat = new SimpleDateFormat("yyyy년MM월dd일");
+		// 원하는 데이터 포맷 지정
+		
+
+		String user_no = null;
+		UserVO uvo = new UserVO();
+
+		Cookie[] cookies = request.getCookies();
+		for (Cookie c : cookies) {
+			if (c.getName().equals("user_no")) {
+				user_no = c.getValue();
+			}
+		}
+		uvo.setUser_no(user_no);
+		
+
+		UserMypageVO umvo = service.user_mypage_select(uvo);
+		
+		String birth = simpleDateFormat.format(umvo.getUser_birth());
+		logger.info("{}",birth);
+	
+		 
+		try {
+			Date birth2 = simpleDateFormat.parse(birth);
+			logger.info("{}",birth2);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+		
+		
+		logger.info("result umvo: {}",umvo);
+		
+		
+		
+	
+//		model.addAttribute("umvo.user_birth", birth);
+		model.addAttribute("umvo", umvo);
 
 		return ".my_page/my_page";
 	}

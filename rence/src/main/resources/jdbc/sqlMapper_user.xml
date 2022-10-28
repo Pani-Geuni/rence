@@ -97,7 +97,7 @@
   	
   	<!--   	회원가입시 인증번호 동일한지 체크 -->
   	<select id="SQL_SELECT_USER_AUTHOK" resultType="test.com.rence.sendemail.AuthVO">
-  	SELECT * from auth where auth_code=#{auth_code} and auth_no=#{auth_no} and user_email=#{user_email}
+  	SELECT * from auth where auth_code=#{email_code} and auth_no=#{auth_no} and user_email=#{user_email}
   	</select>
 
 </mapper>
