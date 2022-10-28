@@ -11,10 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AES256Util {
-	
 
-	
-	
 	  public String encryptAES(String keyString, String plainText, boolean bUrlSafe) {
 	        String cipherText = "";
 	        if ((keyString == null) || keyString.length() == 0 || (plainText == null) || plainText.length() == 0) {

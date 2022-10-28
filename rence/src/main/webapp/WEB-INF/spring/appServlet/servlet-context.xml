@@ -31,6 +31,13 @@
 		</interceptor>
 	</interceptors>
 	
+	<interceptors>
+		<interceptor>
+			<mapping path="/*"/>
+			<beans:bean class="test.com.rence.master.MasterLogin"></beans:bean>
+		</interceptor>
+	</interceptors>
+	
 	
 	<interceptors>
 		<interceptor>
