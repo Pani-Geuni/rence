@@ -8,7 +8,6 @@ public class AuthVO {
 	private String user_email;
 	private String auth_code;
 	private Date auth_stime;
-	private Date auth_etime;
 	
 	
 	public AuthVO() {
@@ -16,13 +15,12 @@ public class AuthVO {
 	}
 
 
-	public AuthVO(String auth_no, String user_email, String auth_code, Date auth_stime, Date auth_etime) {
+	public AuthVO(String auth_no, String user_email, String auth_code, Date auth_stime) {
 		super();
 		this.auth_no = auth_no;
 		this.user_email = user_email;
 		this.auth_code = auth_code;
 		this.auth_stime = auth_stime;
-		this.auth_etime = auth_etime;
 	}
 
 
@@ -66,22 +64,11 @@ public class AuthVO {
 	}
 
 
-	public Date getAuth_etime() {
-		return auth_etime;
-	}
-
-
-	public void setAuth_etime(Date auth_etime) {
-		this.auth_etime = auth_etime;
-	}
-
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((auth_code == null) ? 0 : auth_code.hashCode());
-		result = prime * result + ((auth_etime == null) ? 0 : auth_etime.hashCode());
 		result = prime * result + ((auth_no == null) ? 0 : auth_no.hashCode());
 		result = prime * result + ((auth_stime == null) ? 0 : auth_stime.hashCode());
 		result = prime * result + ((user_email == null) ? 0 : user_email.hashCode());
@@ -102,11 +89,6 @@ public class AuthVO {
 			if (other.auth_code != null)
 				return false;
 		} else if (!auth_code.equals(other.auth_code))
-			return false;
-		if (auth_etime == null) {
-			if (other.auth_etime != null)
-				return false;
-		} else if (!auth_etime.equals(other.auth_etime))
 			return false;
 		if (auth_no == null) {
 			if (other.auth_no != null)
@@ -130,8 +112,10 @@ public class AuthVO {
 	@Override
 	public String toString() {
 		return "AuthVO [auth_no=" + auth_no + ", user_email=" + user_email + ", auth_code=" + auth_code
-				+ ", auth_stime=" + auth_stime + ", auth_etime=" + auth_etime + "]";
+				+ ", auth_stime=" + auth_stime + "]";
 	}
-	
+
+
+
 	
 }

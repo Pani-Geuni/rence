@@ -1,6 +1,7 @@
 package test.com.rence.backoffice;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,6 +28,7 @@ public class BackOfficeVO implements Serializable{
 	private String backoffice_state;
 	private String auth_code;
 	private String auth_no;
+	private Date apply_date;
 	private MultipartFile multipartFile;
 	
 	public BackOfficeVO() {
@@ -37,7 +39,8 @@ public class BackOfficeVO implements Serializable{
 			String company_name, String backoffice_pw, String backoffice_tel, String backoffice_email, String zipcode,
 			String roadname_address, String number_address, String detail_address, String backoffice_tag,
 			String backoffice_info, String backoffice_option, String backoffice_around, String backoffice_image,
-			String host_image, String backoffice_state, String auth_code, String auth_no, MultipartFile multipartFile) {
+			String host_image, String backoffice_state, String auth_code, String auth_no, Date apply_date,
+			MultipartFile multipartFile) {
 		super();
 		this.backoffice_no = backoffice_no;
 		this.owner_name = owner_name;
@@ -60,6 +63,7 @@ public class BackOfficeVO implements Serializable{
 		this.backoffice_state = backoffice_state;
 		this.auth_code = auth_code;
 		this.auth_no = auth_no;
+		this.apply_date = apply_date;
 		this.multipartFile = multipartFile;
 	}
 
@@ -231,6 +235,14 @@ public class BackOfficeVO implements Serializable{
 		this.auth_no = auth_no;
 	}
 
+	public Date getApply_date() {
+		return apply_date;
+	}
+
+	public void setApply_date(Date apply_date) {
+		this.apply_date = apply_date;
+	}
+
 	public MultipartFile getMultipartFile() {
 		return multipartFile;
 	}
@@ -243,6 +255,7 @@ public class BackOfficeVO implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((apply_date == null) ? 0 : apply_date.hashCode());
 		result = prime * result + ((auth_code == null) ? 0 : auth_code.hashCode());
 		result = prime * result + ((auth_no == null) ? 0 : auth_no.hashCode());
 		result = prime * result + ((backoffice_around == null) ? 0 : backoffice_around.hashCode());
@@ -277,6 +290,11 @@ public class BackOfficeVO implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		BackOfficeVO other = (BackOfficeVO) obj;
+		if (apply_date == null) {
+			if (other.apply_date != null)
+				return false;
+		} else if (!apply_date.equals(other.apply_date))
+			return false;
 		if (auth_code == null) {
 			if (other.auth_code != null)
 				return false;
@@ -400,11 +418,8 @@ public class BackOfficeVO implements Serializable{
 				+ backoffice_tag + ", backoffice_info=" + backoffice_info + ", backoffice_option=" + backoffice_option
 				+ ", backoffice_around=" + backoffice_around + ", backoffice_image=" + backoffice_image
 				+ ", host_image=" + host_image + ", backoffice_state=" + backoffice_state + ", auth_code=" + auth_code
-				+ ", auth_no=" + auth_no + ", multipartFile=" + multipartFile + "]";
+				+ ", auth_no=" + auth_no + ", apply_date=" + apply_date + ", multipartFile=" + multipartFile + "]";
 	}
 
-	
-
-	
 	
 }

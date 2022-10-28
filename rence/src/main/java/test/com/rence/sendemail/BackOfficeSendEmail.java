@@ -61,7 +61,7 @@ public class BackOfficeSendEmail {
 		
 //		BackOfficeSendEmail aesUtil = new BackOfficeSendEmail();
 
-		String originText = vo.getBackoffice_id();
+		String originText = vo.getBackoffice_no();
 
 //		String encText = aes.encryptAES("0123456789abcdefghij0123456789ab", originText, false);
 //        System.out.println("encText (encodeBase64) : " + encText);
@@ -79,7 +79,7 @@ public class BackOfficeSendEmail {
 			// 전송
 			MimeMessage msg = javaMailSender.createMimeMessage();
 			msg.setSubject(evo.getSubject());
-			msg.setText("비밀번호 재설정 링크 : " + "http://localhost:8090/rence/backoffice_update_pw?backoffice_id="
+			msg.setText("비밀번호 재설정 링크 : " + "http://localhost:8090/rence/backoffice_update_pw?backoffice_no="
 					+ encText);
 			msg.setRecipient(RecipientType.TO, new InternetAddress(vo.getBackoffice_email()));
 
