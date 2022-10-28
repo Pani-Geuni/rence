@@ -1,3 +1,8 @@
+/**
+ * 
+ * @author 최진실
+ *
+ */
 package test.com.rence.backoffice;
 
 import org.slf4j.Logger;

@@ -1,3 +1,9 @@
+/**
+ * 
+ * @author 최진실
+ * 운영시간 타입 변환
+ *
+ */
 package test.com.rence.backoffice;
 
 import java.text.SimpleDateFormat;

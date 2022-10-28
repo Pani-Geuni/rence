@@ -1,3 +1,8 @@
+/**
+ * 
+ * @author 최진실
+ *
+ */
 package test.com.rence.backoffice;
 
 import java.io.Serializable;
@@ -31,9 +36,7 @@ public class BackOfficeVO implements Serializable{
 	private Date apply_date;
 	private MultipartFile multipartFile;
 	
-	public BackOfficeVO() {
-		// TODO Auto-generated constructor stub
-	}
+	public BackOfficeVO() {}
 
 	public BackOfficeVO(String backoffice_no, String owner_name, String backoffice_id, String backoffice_name,
 			String company_name, String backoffice_pw, String backoffice_tel, String backoffice_email, String zipcode,
