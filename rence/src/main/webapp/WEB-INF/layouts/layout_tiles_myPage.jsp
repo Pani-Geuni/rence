@@ -1,3 +1,6 @@
+/**
+* @author : 김예은
+*/
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
@@ -22,6 +25,7 @@
 <link rel="stylesheet" href="${path}/resources/CSS/question-page.css" />
 
 <script src="${path}/resources/JS/jquery-3.6.1.min.js"></script>
+<script src="${path}/resources/JS/jquery.cookie.js"></script>
 <script src="${path}/resources/JS/user_popup.js"></script>
 <script src="${path}/resources/JS/header.js"></script>
 <script src="${path}/resources/JS/my_page.js"></script>
@@ -186,17 +190,19 @@
         <!-- END MODIFY-PW SECTION -->
 
 		<!-- START MODIFY PROFILE IMAGE -->
-		<div id="modify-img-section" class="confirm-popup blind">
-			<section class="review-upload-section">
-				<input type="text" class="review-upload-value" value="" readonly />
-				<span class="review-upload-btn"> 이미지 등록 </span> <input type="file"
-					class="file">
-			</section>
-			<section class="confirm-btn-section">
-				<div id="modify-img-modifyBtn" class="confirm-yesBtn">수정</div>
-				<div id="modify-img-closeBtn" class="confirm-noBtn">닫기</div>
-			</section>
-		</div>
+		<form action="/rence/user_img_updateOK" method="post" enctype="multipart/form-data">
+			<div id="modify-img-section" class="confirm-popup blind">
+					<section class="review-upload-section">
+						<input type="text" class="review-upload-value" value="" readonly />
+						<span class="review-upload-btn"> 이미지 등록 </span> 
+						<input type="file" class="file" name="multipartFile">
+					</section>
+					<section class="confirm-btn-section">
+						<input type="submit" id="modify-img-modifyBtn" class="confirm-yesBtn" value="수정">
+						<div id="modify-img-closeBtn" class="confirm-noBtn">닫기</div>
+					</section>
+			</div>
+		</form>
 		<!-- END MODIFY PROFILE IMAGE -->
 		
 		<!-- START USER_DELETE CUSTOM CONFIRM POPUP -->

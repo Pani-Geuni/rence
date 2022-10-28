@@ -1,3 +1,6 @@
+/**
+* @author : 김예은
+*/
 $(function(){
     /*********************************/ 
     /******* 버튼 클릭 이벤트 *********/ 
@@ -65,7 +68,7 @@ $(function(){
                 data : {
                     user_no : $.cookie("user_no"),
                     user_pw : $("#modify-pw-renew").val().trim(),
-                    user_image : $(".review-upload-value").val()
+                    multipartFile : $(".file").val()
                 },
                 success : function(res) {
                     // 프로필 사진 변경 성공
