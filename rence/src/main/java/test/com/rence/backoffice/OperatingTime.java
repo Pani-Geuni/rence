@@ -12,6 +12,7 @@ public class OperatingTime {
 		//운영시간
 		 SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
 		 
+		 //String result1 = ovo.getMon_stime().replaceAll("[%3A]",":");
 		 String s_mon = formatter.format(ovo.getMon_stime());
 		 java.sql.Date mon_date = java.sql.Date.valueOf(s_mon);
 		 ovo.setMon_stime(mon_date);

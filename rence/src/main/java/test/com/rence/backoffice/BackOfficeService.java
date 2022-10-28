@@ -45,7 +45,7 @@ public class BackOfficeService {
 	}
 	
 	// 백오피스 삽입
-	public int backoffice_insertOK(BackOfficeVO bvo) {
+	public BackOfficeVO backoffice_insertOK(BackOfficeVO bvo) {
 		logger.info("backoffice_insertOK()...");
 		return dao.backoffice_insertOK(bvo);
 	}

@@ -30,13 +30,17 @@ public class BackOfficeDAOImpl implements BackOfficeDAO {
 	}
 	
 	@Override
-	public int backoffice_insertOK(BackOfficeVO bvo) {
+	public BackOfficeVO backoffice_insertOK(BackOfficeVO bvo) {
 		logger.info("insert()...");
 		logger.info("{}", bvo);
 
+		BackOfficeVO bvo2 = null;
 		int flag = sqlSession.insert("SQL_INSERT_BACKOFFICE",bvo);
-
-		return flag;
+		if (flag == 1) {
+			bvo2 = sqlSession.selectOne("SQL_SELECT_BACKOFFICE_NO",bvo);
+		}
+		
+		return bvo2;
 	}
 
 	@Override

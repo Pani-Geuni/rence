@@ -13,7 +13,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -62,7 +64,7 @@ public class BackOfficeController {
 	@RequestMapping(value = "/backoffice_landing", method = RequestMethod.GET)
 	public String backoffice_landing() {
 
-		return "backoffice/main";
+		return ".backoffice_landing";
 	}
 	
 	/**
@@ -135,8 +137,8 @@ public class BackOfficeController {
 		//운영시간
 		ovo = operatingTime.operatingTime(ovo);
 		
-		service.backoffice_insertOK(vo);
-		ovo.setBackoffice_no(vo.getBackoffice_no());
+		BackOfficeVO bvo2 = service.backoffice_insertOK(vo);
+		ovo.setBackoffice_no(bvo2.getBackoffice_no());
 		
 		logger.info("vo::::::::::::::::::::::::::{}",vo);
 		
@@ -223,7 +225,7 @@ public class BackOfficeController {
 	 */
 	@RequestMapping(value = "/backoffice_loginOK", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject backoffice_loginOK(BackOfficeVO bvo) {
+	public JSONObject backoffice_loginOK(BackOfficeVO bvo, HttpServletResponse response) {
 		logger.info("backoffice_loginOK()...");
 		BackOfficeVO bvo2 = service.backoffice_login(bvo);
 		logger.info("result: {}.",bvo2);
@@ -231,9 +233,17 @@ public class BackOfficeController {
 		JSONObject jsonObject = new JSONObject();
 		
 		if (bvo2 != null) {
+			session.setAttribute("backoffice_no", bvo2.getBackoffice_no());
+			Cookie cookie_1 = new Cookie("backoffice_no", bvo2.getBackoffice_no());
 			session.setAttribute("backoffice_id", bvo2.getBackoffice_id());
+			Cookie cookie_2 = new Cookie("backoffice_id", bvo2.getBackoffice_id());
+			session.setAttribute("backoffice_pw", bvo2.getBackoffice_pw());
+			Cookie cookie_3 = new Cookie("backoffice_pw", bvo2.getBackoffice_pw());
 			jsonObject.put("result", "1");
 	    	logger.info("successed...");
+	    	response.addCookie(cookie_1);
+			response.addCookie(cookie_2);
+			response.addCookie(cookie_3);
 		} else {
 			logger.info("failed...");
 			jsonObject.put("result", "0");
@@ -247,10 +257,24 @@ public class BackOfficeController {
 	 * 로그아웃 처리
 	 */
 	@RequestMapping(value = "/backoffice_logout", method = RequestMethod.GET)
-	public String backoffice_logout( HttpServletRequest request) {
+	public String backoffice_logout( HttpServletRequest request, HttpServletResponse response) {
 		logger.info("backoffice_logout()...");
 		session = request.getSession();
         session.removeAttribute("backoffice_id");
+        
+        Cookie[] cookies = request.getCookies(); 
+		if (cookies != null) { 
+
+			for (int i = 0; i < cookies.length; i++) {
+
+				cookies[i].setMaxAge(0); 
+
+				response.addCookie(cookies[i]); 
+
+			}
+
+		}
+		
 		return "redirect:/"; //백오피스 랜딩으로 이동
 	}
 	
