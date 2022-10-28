@@ -88,4 +88,26 @@ public class UserDAOimpl implements UserDAO {
 		return flag;
 	}
 
+	// 마이페이지-프로필 수정
+	@Override
+	public int user_img_updateOK(UserVO uvo) {
+		logger.info("user_img_updateOK().....");
+		logger.info("{}", uvo);
+
+		int flag = sqlSession.update("SQL_USER_UPDATE_IMG", uvo);
+
+		return flag;
+	}
+
+	// 마이페이지-회원탈퇴
+	@Override
+	public int user_secedeOK(UserVO uvo) {
+		logger.info("user_secedeOK().....");
+		logger.info("{}", uvo);
+
+		int flag = sqlSession.update("SQL_USER_SECEDE", uvo);
+
+		return flag;
+	}
+
 }

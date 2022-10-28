@@ -17,17 +17,19 @@ public interface UserDAO {
 	public UserVO user_email_select(UserVO uvo); // 아이디 찾기에서 이메일 확인
 
 	public UserVO user_id_email_select(UserVO uvo); //비밀번호 찾기에서 아이디,이메일 확인
+
+	public int user_pw_updateOK(UserVO uvo); //회원정보(마이페이지)-비밀번호 수정
+	
+	public int user_img_updateOK(UserVO uvo); ////회원정보(마이페이지)- 프로필 수정
+
+	public int user_secedeOK(UserVO uvo); //회원탈퇴 
+	
+	
 //	public UserVO user_selectOne(UserVO uvo);// 
-//
-	public int user_pw_updateOK(UserVO uvo); //회원정보-비밀번호 수정
-//
+	
 //	public int user_delete(UserVO uvo); //회원탈퇴
 //
 //	public String selectOne_name(String no);
-//
-//	public String selectOne_id(String email); //아이디 찾기
-//
-//	public String selectOne_pw(String email); //비밀번호 찾기
 //
 
 
