@@ -1,3 +1,8 @@
+/**
+ * 
+ * @author 최진실
+ *
+ */
 package test.com.rence.backoffice;
 
 import java.io.File;
@@ -153,22 +158,35 @@ public class BackOfficeController {
 		
 		JSONObject jsonObject = new JSONObject();
 		
-		avo.setUser_email(bvo.getBackoffice_email());
-
-		avo = authSendEmail.sendEmail(avo,evo);
-		if (avo !=null) {
+		//이메일 중복 체크
+		BackOfficeVO emailCheck = service.backoffice_email_check(bvo);
+		if(emailCheck!=null) {
 			
-			service.backoffice_auth_insert(avo);
-			logger.info("successed...");
-			jsonObject.put("result", "1");
-			jsonObject.put("auth_code", avo.getAuth_code());
-			jsonObject.put("backoffice_email", avo.getUser_email());
-			jsonObject.put("auth_no", avo.getAuth_no());
+			avo.setUser_email(bvo.getBackoffice_email());
 			
+			//이메일 전송
+			avo = authSendEmail.sendEmail(avo,evo);
+			if (avo !=null) {
+				
+				//avo2 = auth 테이블에 정보 저장 후, select 해온 결과값
+				AuthVO avo2 = service.backoffice_auth_insert(avo);
+				logger.info("successed...");
+				logger.info("=============avo2:{}",avo2);
+				
+				jsonObject.put("result", "1");
+				jsonObject.put("auth_code", avo2.getAuth_code());
+				jsonObject.put("backoffice_email", avo2.getUser_email());
+				jsonObject.put("auth_no", avo2.getAuth_no());
+				
+			}else {
+				logger.info("failed...");
+				jsonObject.put("result", "0");
+			}
 		}else {
 			logger.info("failed...");
 			jsonObject.put("result", "0");
 		}
+		
 		
 		return jsonObject;
 	}
@@ -178,9 +196,9 @@ public class BackOfficeController {
 	 */
 	@RequestMapping(value = "/backoffice_authOK", method = RequestMethod.GET)
 	@ResponseBody
-	public JSONObject backoffice_authOK(BackOfficeVO vo) {
+	public JSONObject backoffice_authOK(BackOfficeVO bvo) {
 		 
-		AuthVO avo = service.backoffice_auth_select(vo);
+		AuthVO avo = service.backoffice_authOK_select(bvo);
 
 		JSONObject jsonObject = new JSONObject();
 
@@ -201,15 +219,15 @@ public class BackOfficeController {
 	 */
 	@RequestMapping(value = "/backoffice_loginOK", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject backoffice_loginOK(BackOfficeVO vo) {
+	public JSONObject backoffice_loginOK(BackOfficeVO bvo) {
 		logger.info("backoffice_loginOK()...");
-		BackOfficeVO vo2 = service.backoffice_login(vo);
-		logger.info("result: {}.",vo2);
+		BackOfficeVO bvo2 = service.backoffice_login(bvo);
+		logger.info("result: {}.",bvo2);
 		
 		JSONObject jsonObject = new JSONObject();
 		
-		if (vo2 != null) {
-			session.setAttribute("backoffice_id", vo2.getBackoffice_id());
+		if (bvo2 != null) {
+			session.setAttribute("backoffice_id", bvo2.getBackoffice_id());
 			jsonObject.put("result", "1");
 	    	logger.info("successed...");
 		} else {
@@ -233,22 +251,22 @@ public class BackOfficeController {
 	}
 	
 	/**
-	 * 비밀번호 찾기
+	 * 비밀번호 초기화(찾기), 이메일로 전송
 	 */
-	@RequestMapping(value = "/backoffice_find_pw ", method = RequestMethod.GET)
+	@RequestMapping(value = "/backoffice_reset_pw", method = RequestMethod.GET)
 	@ResponseBody
-	public JSONObject backoffice_find_pw (BackOfficeVO vo, EmailVO evo) {
-		logger.info("backoffice_find_pw ()...");
-		logger.info("{}", vo);
+	public JSONObject backoffice_reset_pw(BackOfficeVO bvo, EmailVO evo) {
+		logger.info("backoffice_reset_pw ()...");
+		logger.info("{}", bvo);
 		
 		JSONObject jsonObject = new JSONObject();
 		
-		BackOfficeVO vo2 = service.backoffice_id_email_select(vo);
+		BackOfficeVO bvo2 = service.backoffice_id_email_select(bvo);
 		
-		if(vo2!=null) {
-			vo2 = authSendEmail.findPw(vo2,evo);
+		if(bvo2!=null) {
+			bvo2 = authSendEmail.findPw(bvo2,evo);
 			
-			if (vo2 !=null) {
+			if (bvo2 !=null) {
 				logger.info("successed...");
 				jsonObject.put("result", "1");
 				
@@ -262,50 +280,48 @@ public class BackOfficeController {
 	}
 	
 	/**
-	 * 비밀번호 변경 폼 출력
+	 * 비밀번호 초기화 페이지
 	 */
-	@RequestMapping(value = "/backoffice_update_pw", method = RequestMethod.GET)
-	public String backoffice_update_pw() {
-		
-		return "backoffice/pw_update";
+	@RequestMapping(value = "/backoffice_setting_pw", method = RequestMethod.GET)
+	public String backoffice_setting_pw(Model model, BackOfficeVO bvo) {
+		model.addAttribute("vo",bvo.getBackoffice_no());
+		return "backoffice/setting_pw";
 	}
 	
 	/**
-	 * 비밀번호 변경
+	 * 비밀번호 초기화 완료
 	 */
-	@RequestMapping(value = "/backoffice_findOK_pw ", method = RequestMethod.POST)
-	@ResponseBody
-	public JSONObject backoffice_findOK_pw (BackOfficeVO vo) {
-		logger.info("backoffice_findOK_pw ()...");
-		logger.info("{}", vo);
+	@RequestMapping(value = "/backoffice_settingOK_pw", method = RequestMethod.POST)
+	public String backoffice_settingOK_pw(BackOfficeVO bvo) {
+		logger.info("backoffice_settingOK_pw ()...");
+		logger.info("{}", bvo);
 		
-		JSONObject jsonObject = new JSONObject();
+		int result = service.backoffice_settingOK_pw(bvo);
 		
-		int result = service.backoffice_pw_findOK(vo);
-		
+		String rt = "";
 		if (result==1) {
 			logger.info("successed...");
-			jsonObject.put("result", "1");
+			rt = "redirect:backoffice_landing";
 		}
 		
 		else {
 			logger.info("failed...");
-			jsonObject.put("result", "0");
+			rt = "backoffice/setting_pw";
 		}
 		
-		return jsonObject;
+		return rt;
 	}
 	
 	/**
 	 * 환경설정 페이지 출력
 	 */
 	@RequestMapping(value = "/backoffice_setting", method = RequestMethod.GET)
-	public String backoffice_setting(BackOfficeVO vo, Model model) {
+	public String backoffice_setting(BackOfficeVO bvo, Model model) {
 		logger.info("backoffice_setting()...");
-		BackOfficeVO vo2 = service.backoffice_setting_selectOne(vo);
-		logger.info("result: {}.",vo2);
+		BackOfficeVO bvo2 = service.backoffice_setting_selectOne(bvo);
+		logger.info("result: {}.",bvo2);
 		
-		model.addAttribute("vo2",vo2);
+		model.addAttribute("vo",bvo2);
 		
 		return "backoffice/setting";
 	}
@@ -313,27 +329,26 @@ public class BackOfficeController {
 	/**
 	 * 환경설정에서 비밀번호 수정
 	 */
-	@RequestMapping(value = "/backoffice_setting_pw ", method = RequestMethod.POST)
-	@ResponseBody
-	public JSONObject backoffice_setting_pw (BackOfficeVO vo) {
-		logger.info("backoffice_setting_pw ()...");
-		logger.info("{}", vo);
+	@RequestMapping(value = "/backoffice_update_pw ", method = RequestMethod.POST)
+	public String backoffice_update_pw (BackOfficeVO bvo) {
+		logger.info("backoffice_update_pw ()...");
+		logger.info("{}", bvo);
 		
-		JSONObject jsonObject = new JSONObject();
+		//비밀번호 일치 여부 확인
+		BackOfficeVO bvo2 = service.backoffice_select_pw(bvo);
 		
-		int result = service.backoffice_setting_pw(vo);
-		
-		if (result==1) {
+		String rt = "";
+		if (bvo2!=null) {
 			logger.info("successed...");
-			jsonObject.put("result", "1");
+			rt = "redirect:backoffice_setting_pw";
 		}
 		
 		else {
 			logger.info("failed...");
-			jsonObject.put("result", "0");
+			rt = "backoffice/setting";
 		}
 		
-		return jsonObject;
+		return rt;
 	}
 	
 	/**
@@ -341,13 +356,13 @@ public class BackOfficeController {
 	 */
 	@RequestMapping(value = "/backoffice_setting_delete ", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject backoffice_setting_delete (BackOfficeVO vo) {
+	public JSONObject backoffice_setting_delete (BackOfficeVO bvo) {
 		logger.info("backoffice_setting_delete ()...");
-		logger.info("{}", vo);
+		logger.info("{}", bvo);
 		
 		JSONObject jsonObject = new JSONObject();
 		
-		int result = service.backoffice_setting_delete(vo);
+		int result = service.backoffice_setting_delete(bvo);
 		
 		if (result==1) {
 			logger.info("successed...");

@@ -16,23 +16,48 @@ public class BackOfficeDAOImpl implements BackOfficeDAO {
 	SqlSession sqlSession;
 
 	@Override
-	public int backoffice_insertOK(BackOfficeVO vo) {
-		logger.info("insert()...");
-		logger.info("{}", vo);
+	public BackOfficeVO backoffice_email_check(BackOfficeVO bvo) {
+		logger.info("backoffice_email_check()...");
+		logger.info("{}", bvo);
 
-		int flag = sqlSession.insert("SQL_INSERT_BACKOFFICE",vo);
+		BackOfficeVO bvo2 = sqlSession.selectOne("SQL_SELECT_BACKOFFICE_EMAIL",bvo);
+		
+		return bvo2;
+	}
+	
+	@Override
+	public int backoffice_insertOK(BackOfficeVO bvo) {
+		logger.info("insert()...");
+		logger.info("{}", bvo);
+
+		int flag = sqlSession.insert("SQL_INSERT_BACKOFFICE",bvo);
 
 		return flag;
 	}
 
 	@Override
-	public int backoffice_auth_insert(AuthVO vo) {
+	public AuthVO backoffice_auth_insert(AuthVO avo) {
 		logger.info("backoffice_auth_insert_DAOImpl()...");
-		logger.info("{}", vo);
+		logger.info("{}", avo);
 
-		int flag = sqlSession.insert("SQL_INSERT_BACKOFFICE_AUTH",vo);
+		AuthVO avo2 = null;
+		int result = sqlSession.insert("SQL_INSERT_BACKOFFICE_AUTH",avo);
+		if (result == 1) {
+			avo2 = sqlSession.selectOne("SQL_SELECT_BACKOFFICE_AUTH",avo);
+			logger.info("avo:{}",avo2);
+		}
 
-		return flag;
+		return avo2;
+	}
+	
+	@Override
+	public AuthVO backoffice_auth_select(AuthVO avo) {
+		logger.info("backoffice_auth_select()...");
+		logger.info("{}", avo);
+
+		AuthVO avo2 = sqlSession.selectOne("SQL_SELECT_BACKOFFICE_AUTH",avo);
+		
+		return avo2;
 	}
 
 	@Override
@@ -46,72 +71,73 @@ public class BackOfficeDAOImpl implements BackOfficeDAO {
 	}
 
 	@Override
-	public AuthVO backoffice_auth_select(BackOfficeVO vo) {
+	public AuthVO backoffice_authok_select(BackOfficeVO bvo) {
 		logger.info("backoffice_auth_select()...");
-		logger.info("{}", vo);
+		logger.info("{}", bvo);
 
-		AuthVO vo2 = sqlSession.selectOne("SQL_SELECT_BACKOFFICE_AUTH",vo);
+		AuthVO avo = sqlSession.selectOne("SQL_SELECT_BACKOFFICE_AUTHOK",bvo);
 		
-		return vo2;
+		return avo;
 	}
 
 	@Override
-	public BackOfficeVO backoffice_login(BackOfficeVO vo) {
+	public BackOfficeVO backoffice_login(BackOfficeVO bvo) {
 		logger.info("backoffice_login()...");
-		logger.info("{}", vo);
+		logger.info("{}", bvo);
 
-		BackOfficeVO vo2 = sqlSession.selectOne("SQL_BACKOFFICE_LOGIN", vo);	
+		BackOfficeVO bvo2 = sqlSession.selectOne("SQL_BACKOFFICE_LOGIN", bvo);	
 		
-		return vo2;
+		return bvo2;
 	}
 
 	@Override
-	public BackOfficeVO backoffice_id_email_select(BackOfficeVO vo) {
+	public BackOfficeVO backoffice_id_email_select(BackOfficeVO bvo) {
 		logger.info("backoffice_auth_select()...");
-		logger.info("{}", vo);
+		logger.info("{}", bvo);
 
-		BackOfficeVO vo2 = sqlSession.selectOne("SQL_SELECT_BACKOFFICE_ID_EMAIL",vo);
+		BackOfficeVO bvo2 = sqlSession.selectOne("SQL_SELECT_BACKOFFICE_ID_EMAIL",bvo);
 		
-		return vo2;
+		return bvo2;
 	}
 
 	@Override
-	public int backoffice_pw_findOK(BackOfficeVO vo) {
-		logger.info("backoffice_pw_findOK()...");
-		logger.info("{}", vo);
+	public int backoffice_settingOK_pw(BackOfficeVO bvo) {
+		logger.info("backoffice_settingOK_pw()...");
+		logger.info("{}", bvo);
 
-		int flag = sqlSession.update("SQL_UPDATE_BACKOFFICE_PW_FINDOK",vo);
+		int flag = sqlSession.update("SQL_UPDATE_BACKOFFICE_SETTINGOK_PW",bvo);
 
 		return flag;
 	}
 
 	@Override
-	public BackOfficeVO backoffice_setting_selectOne(BackOfficeVO vo) {
+	public BackOfficeVO backoffice_setting_selectOne(BackOfficeVO bvo) {
 		logger.info("backoffice_setting_selectOne()..");
-		logger.info("{}", vo);
+		logger.info("{}", bvo);
 		
-		BackOfficeVO vo2 = sqlSession.selectOne("SQL_SELECTONE_BACKOFFICE_SETTING",vo);
+		BackOfficeVO bvo2 = sqlSession.selectOne("SQL_SELECTONE_BACKOFFICE_SETTING",bvo);
 		
-		return vo2;
+		return bvo2;
 	}
 
 	@Override
-	public int backoffice_setting_pw(BackOfficeVO vo) {
+	public BackOfficeVO backoffice_select_pw(BackOfficeVO bvo) {
 		logger.info("backoffice_pw_findOK()...");
-		logger.info("{}", vo);
+		logger.info("{}", bvo);
 
-		int flag = sqlSession.update("SQL_UPDATE_BACKOFFICE_SETTING_PW",vo);
+		BackOfficeVO bvo2 = sqlSession.selectOne("SQL_SELECT_BACKOFFICE_PW",bvo);
 
-		return flag;
+		return bvo2;
 	}
 
 	@Override
-	public int backoffice_setting_delete(BackOfficeVO vo) {
+	public int backoffice_setting_delete(BackOfficeVO bvo) {
 		logger.info("backoffice_setting_delete()...");
-		logger.info("{}", vo);
+		logger.info("{}", bvo);
 
-		int flag = sqlSession.update("SQL_UPDATE_BACKOFFICE_SETTING_O",vo);
+		int flag = sqlSession.update("SQL_UPDATE_BACKOFFICE_SETTING_O",bvo);
 
 		return flag;
 	}
+
 }
