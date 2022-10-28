@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="test.com.rence.user">
+<mapper namespace="test.com.rence">
 	<!-- 회원가입처리 SQL -->
 	<insert id="SQL_INSERT"
 		parameterType="test.com.rence.user.UserVO">
@@ -85,12 +85,12 @@
 	</select>
 	
 <!-- 	회워가입시 인증번호 전송후 테이블에 저장 -->
-	<insert id="SQL_INSERT_USER_AUTH" parameterType="test.com.rence.user.UserVO">
+	<insert id="SQL_INSERT_USER_AUTH" parameterType="test.com.rence.sendemail.AuthVO">
   	INSERT INTO auth(auth_no, user_email, auth_code) values('A'||seq_auth.nextval, #{user_email}, #{auth_code})
   	</insert>
   	
-<!--   	회원가입시 인증번호 동일한지 체크 -->
-  	<select id="SQL_SELECT_USER_AUTH" resultType="test.com.rence.user.UserVO">
+<!--   	인증테이블에 사용자 이메일이 들어갔는지 체크하고 이메일 가져오는 용도 -->
+  	<select id="SQL_SELECT_USER_AUTH" resultType="test.com.rence.sendemail.AuthVO">
   	SELECT auth_no, auth_code, user_email from auth where user_email=#{user_email}
   	</select>
   	

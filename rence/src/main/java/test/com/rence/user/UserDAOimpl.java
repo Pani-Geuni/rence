@@ -32,8 +32,9 @@ public class UserDAOimpl implements UserDAO {
 	@Override
 	public UserVO idCheckOK(UserVO uvo) {
 		logger.info("idCheckOK().....");
+		logger.info("uvo {}", uvo);
 		UserVO uvo2 = sqlSession.selectOne("SQL_ID_CHECK", uvo);
-
+		logger.info("uvo2: {}", uvo2);
 		return uvo2;
 	}
 
@@ -41,8 +42,9 @@ public class UserDAOimpl implements UserDAO {
 	@Override
 	public UserVO emailCheckOK(UserVO uvo) {
 		logger.info("emailCheckOK().....");
+		logger.info("{}", uvo);
 		UserVO uvo2 = sqlSession.selectOne("SQL_EMAIL_CHECK", uvo);
-
+		logger.info("uvo2: {}", uvo2);
 		return uvo2;
 	}
 
@@ -55,6 +57,7 @@ public class UserDAOimpl implements UserDAO {
 
 			AuthVO avo2 = null;
 			int result = sqlSession.insert("SQL_INSERT_USER_AUTH",avo);
+			logger.info("result {}", result);
 			if (result == 1) {
 				avo2 = sqlSession.selectOne("SQL_SELECT_USER_AUTH",avo);
 				logger.info("avo:{}",avo2);
@@ -88,6 +91,7 @@ public class UserDAOimpl implements UserDAO {
 	@Override
 	public UserVO user_email_select(UserVO uvo) {
 		logger.info("user_email_select().....");
+		logger.info("{}", uvo);
 		UserVO uvo2 = sqlSession.selectOne("SQL_SELECT_EMAIL", uvo);
 
 		return uvo2;
