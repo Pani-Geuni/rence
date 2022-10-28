@@ -1,5 +1,7 @@
+/**
+ * @author 김예은
+ */
 $(function(){
-    
     /**** **************************************** ****/
     /**** 인풋 창 클릭 시 NULL을 알렸던 CSS제거 처리 ****/
     /**** **************************************** ****/
@@ -433,7 +435,7 @@ $(function(){
             $("#check_id").val("중복확인");
         }else{
             if($("#join-id").val().trim().length > 0){
-                if($(".warning-text:eq(2)").hasClass("blind")){
+                if($(".warning-text:eq(2)").hasClass("blind")  || $(".warning-text:eq(0)").text() == "이미 존재하는 아이디입니다."){
                     $.ajax({
                         url:"/rence/user_idCheckOK",
                         type : "POST",
@@ -472,6 +474,7 @@ $(function(){
             }
         }
     });
+    
 
     // 이메일 인증 버튼 클릭 이벤트
     $("#check_email").click(function(){
@@ -487,12 +490,12 @@ $(function(){
                         },
                         success : function(res) {
                             // 이메일 중복 성공
-                            if(res.result == 1){
+                            if(res.authNum == 1){
                                 $(this).prop("check", true);
                                 $("#check_email").val("인증완료");
                                 $("#join-email").attr("readonly", true);
                                 $("#join-email").addClass("readOnly");
-                            }else if(res.result == 2){
+                            }else if(res.authNum == 2){
                                 $(".warning-text:eq(0)").removeClass("blind");
                                 $(".warning-text:eq(0)").text("이미 존재하는 이메일입니다.");
                             }else{
@@ -517,6 +520,46 @@ $(function(){
                 $(".popup-background:eq(1)").removeClass("blind");
                 $("#common-alert-popup").removeClass("blind");
                 $(".common-alert-txt").text("이메일을 입력하신 후 중복체크 해주세요.");
+            }
+        }
+    });
+
+
+    // 이메일 인증 코드 버튼 클릭
+    $("#check_email-code").click(function(){
+        if($("#check_email-code").prop("check") != true){
+            if($("#join-email-code").val().trim().length > 0){
+                $.ajax({
+                    url:"/rence/user_authOK",
+                    type : "POST",
+                    dataType : 'json',
+                    data : {
+                        email_code : $("#join-email-code").val().trim()
+                    },
+                    success : function(res) {
+                        // 이메일 인증번호 확인 성공
+                        if(res.result == 1){
+                            $(this).prop("check", true);
+                            $("#check_email-code").val("인증완료");
+                            $("#join-email-code").attr("readonly", true);
+                            $("#join-email-code").addClass("readOnly");
+                        }else{
+                            $(".popup-background:eq(1)").removeClass("blind");
+                            $("#common-alert-popup").removeClass("blind");
+                            $(".common-alert-txt").text("오류 발생으로 인해 인증번호 확인에 실패하였습니다.");
+                        }
+                    },
+                    error : function(error) {
+                        console.log(error);
+                        $(".popup-background:eq(1)").removeClass("blind");
+                        $("#common-alert-popup").removeClass("blind");
+                        $(".common-alert-txt").text("오류 발생으로 인해 처리에 실패하였습니다.");
+                    }            
+                });
+            }else{
+                $(".popup-background:eq(1)").removeClass("blind");
+                $("#common-alert-popup").removeClass("blind");
+                $(".common-alert-txt").text("인증번호 입력하신 후 시도해주세요.");
             }
         }
     });
