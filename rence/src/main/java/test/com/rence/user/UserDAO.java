@@ -17,12 +17,18 @@ public interface UserDAO {
 	public UserVO user_email_select(UserVO uvo); // 아이디 찾기에서 이메일 확인
 
 	public UserVO user_id_email_select(UserVO uvo); //비밀번호 찾기에서 아이디,이메일 확인
+	
+	int user_pw_init(UserVO uvo); //비밀번호 찾기 - 난수를 통해 비밀번호 초기화
 
 	public int user_pw_updateOK(UserVO uvo); //회원정보(마이페이지)-비밀번호 수정
 	
 	public int user_img_updateOK(UserVO uvo); ////회원정보(마이페이지)- 프로필 수정
 
 	public int user_secedeOK(UserVO uvo); //회원탈퇴 
+	
+	public UserMypageVO user_mypage_select(UserVO uvo); // 마이페이지에 정보를 넘겨주는 기능
+
+	
 	
 	
 //	public UserVO user_selectOne(UserVO uvo);// 

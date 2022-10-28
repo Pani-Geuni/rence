@@ -1,12 +1,15 @@
 /**
  * @author 강경석
- * 로그인,로그아웃 마이페이지에 관련된 전반적 기술을 처리하는 컨트롤러
+ * 로그인,로그아웃 
  * 회원 탈퇴
+ * 아이디, 비밀번호 찾기
  */
 package test.com.rence.user;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -37,7 +40,7 @@ public class UserController {
 
 	@Autowired
 	UserSendEmail authSendEmail;
-	
+
 	@Autowired
 	UserFileuploadService fileuploadService;
 
@@ -55,17 +58,25 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/user_loginOK", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject user_loginOK(UserVO uvo) {
+	public JSONObject user_loginOK(UserVO uvo, HttpServletResponse response) {
 		logger.info("user_loginOK()...");
 		UserVO uvo2 = service.User_loginOK(uvo);
 		logger.info("result: {}.", uvo2);
 		JSONObject jsonObject = new JSONObject();
 
 		if (uvo2 != null) {
+			session.setAttribute("user_no", uvo2.getUser_no());
+			Cookie cookie = new Cookie("user_no", uvo2.getUser_no()); // 고유번호 쿠키 저장
 			session.setAttribute("user_id", uvo2.getUser_id());
+			Cookie cookie2 = new Cookie("user_id", uvo2.getUser_id()); // 아이디 쿠키 저장
+			session.setAttribute("user_pw", uvo2.getUser_pw());
+			Cookie cookie3 = new Cookie("user_pw", uvo2.getUser_pw()); // 비밀번호 쿠키 저장
 
 			logger.info("User Login success.....");
 			jsonObject.put("result", "1"); // 로그인 성공
+			response.addCookie(cookie);
+			response.addCookie(cookie2);
+			response.addCookie(cookie3);
 		} else {
 			logger.info("User Login failed.....");
 			jsonObject.put("result", "0"); // 로그인 실패
@@ -79,10 +90,24 @@ public class UserController {
 	 * 로그아웃 완료
 	 */
 	@RequestMapping(value = "/user_logoutOK", method = RequestMethod.GET)
-	public String user_logout(HttpServletRequest request) {
+	public String user_logout(HttpServletRequest request, HttpServletResponse response) {
 		logger.info("user_logoutOK()...");
 		session = request.getSession();
 		session.removeAttribute("user_id");
+
+		Cookie[] cookies = request.getCookies(); // 모든 쿠키의 정보를 cookies에 저장
+		if (cookies != null) { // 쿠키가 한개라도 있으면 실행
+
+			for (int i = 0; i < cookies.length; i++) {
+
+				cookies[i].setMaxAge(0); // 유효시간을 0으로 설정
+
+				response.addCookie(cookies[i]); // 응답 헤더에 추가
+
+			}
+
+		}
+
 		return "redirect:/"; // 홈페이지로 이동
 	}
 
@@ -120,109 +145,29 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/find_pw ", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject user_findd_pw(UserVO uvo, EmailVO evo) {
+	public JSONObject user_find_pw(UserVO uvo, EmailVO evo) {
 		logger.info("user_find_pw ()...");
 		logger.info("result{}", uvo); // 넘어오는 값 출력
 
 		UserVO uvo2 = service.user_id_email_select(uvo); // 아이디 이메일 체크
 
 		JSONObject jsonObject = new JSONObject();
-		if (uvo2 != null) {
-			uvo2 = authSendEmail.findPw(uvo2, evo); // uvo가 null이 아니면(테이블에 데이터가 존재하면) 메일을 통해 수정링크 제공
 
-			if (uvo2 != null) {
+		if (uvo2 != null) {
+			int result = service.user_pw_init(uvo);
+
+			if (result != 0) {
+				uvo2 = authSendEmail.findPw(uvo2, evo); // uvo가 null이 아니면(테이블에 데이터가 존재하면) 메일을 통해 수정링크 제공
 				logger.info("user_fine_pw successed...");
 				jsonObject.put("result", "1");
-
 			} else {
 				logger.info("user_fine_pw failed...");
 				jsonObject.put("result", "0");
 			}
+
 		}
 
 		return jsonObject;
 	}
 
-
-	/**
-	 * 마이페이지 - 비밀번호 수정
-	 */
-	@RequestMapping(value = "/user_pw_upddateOK", method = RequestMethod.POST)
-	public JSONObject user_pw_upddateOK(UserVO uvo) {
-		logger.info("user_pw_upddateOK()...");
-		logger.info("result: {}", uvo);
-
-		int result = service.user_pw_updateOK(uvo);
-
-		JSONObject jsonObject = new JSONObject();
-		if (result == 1) {
-			logger.info("user_pw_upddate successed...");
-			jsonObject.put("result", "1");
-		}
-
-		else {
-			logger.info("user_pw_upddate failed...");
-			jsonObject.put("result", "0");
-		}
-
-		return jsonObject;
-	}
-
-	/**
-	 * 마이페이지 -프로필 수정
-	 */
-	@RequestMapping(value = "/user_img_updateOK", method = RequestMethod.POST)
-	public JSONObject user_img_updateOK(UserVO uvo) {
-		logger.info("user_img_updateOK()...");
-		logger.info("result: {}", uvo);
-//		logger.info("result: {}", uvo.getUser_image()); 
-
-		JSONObject jsonObject = new JSONObject();
-
-		// 사진(파일)업로드
-		uvo = fileuploadService.FileuploadOK(uvo);
-		logger.info("fileresult: {}", uvo);
-
-		
-		
-		int result = service.user_img_updateOK(uvo);
-		logger.info("result: {}", uvo);
-		if (result == 1) {
-			logger.info("user_img_update successed...");
-			jsonObject.put("result", "1");
-		}
-
-		else {
-			logger.info("user_img_update failed...");
-			jsonObject.put("result", "0");
-		}
-		return jsonObject;
-	}
-	
-	
-	/**
-	 * 회원탈퇴
-	 */
-	
-	@RequestMapping(value = "/secedeOK", method = RequestMethod.POST)
-	public JSONObject user_secedeOK (UserVO uvo) {
-		logger.info("user_secedeOK()...");
-		logger.info("result: {}", uvo);
-
-		JSONObject jsonObject = new JSONObject();
-			
-		int result = service.user_secedeOK(uvo);
-		logger.info("result: {}", uvo);
-		if (result == 1) {
-			logger.info("user_secede successed...");
-			jsonObject.put("result", "1");
-		}
-		else {
-			logger.info("user_secede failed...");
-			jsonObject.put("result", "0");
-		}
-		return jsonObject;
-	}
-
-	
 }// end class

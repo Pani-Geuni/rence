@@ -51,6 +51,13 @@
 	<select id="SQL_SELECT_USER_ID_EMAIL" resultType="test.com.rence.user.UserVO">
   	select * from userinfo where user_id=#{user_id} and user_email=#{user_email}
   	</select>
+  	
+  	<!-- 비밀번호 난수로 초기화 -->
+	<update id="SQL_USER_UPDATE_PW_INIT"
+		parameterType="test.com.rence.user.UserVO">
+		update userinfo set user_pw=#{user_pw}where user_no=#{user_no}
+	</update>
+  	
 
 	<!-- 비밀번호 수정 -->
 	<update id="SQL_USER_UPDATE_PW"
@@ -65,9 +72,20 @@
 	</update>
 	
 	<!-- 회원탈퇴에 따른 회원상태 수정 -->
-	
+	<!-- 회원인 상태에서는 user_state가 'Y' but, 회원탈퇴시 user_state 'N'으로 변경 -->
 	<update id="SQL_USER_SECEDE"
 		parameterType="test.com.rence.user.UserVO">
 		update userinfo set user_state='N' where user_no=#{user_no}
 	</update>
+	
+	<!-- 마이페이지에 정보 주기위해 정보가져오기 -->
+	<select id="SQL_SELECT_USER_MYPAGE"
+		resultType="test.com.rence.user.UserVO">
+		select * from user_mypage_view where user_no=#{user_no}
+	</select>
+	
+	
+	
+	
+	
 </mapper>
