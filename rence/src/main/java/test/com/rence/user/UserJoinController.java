@@ -43,7 +43,7 @@ public class UserJoinController {
 	 * 이메일 인증번호 요청
 	 * 이메일 중복 체크
 	 */
-	@RequestMapping(value = "/user_auth", method = RequestMethod.GET)
+	@RequestMapping(value = "/user_auth", method = RequestMethod.POST)
 	@ResponseBody
 	public JSONObject user_auth(AuthVO avo, UserVO uvo, EmailVO evo) {
 		logger.info("Welcome user_auth");
@@ -111,7 +111,7 @@ public class UserJoinController {
 	
 
 	// 아이디 중복 체크
-	@RequestMapping(value = "/user_idCheckOK", method = RequestMethod.GET)
+	@RequestMapping(value = "/user_idCheckOK", method = RequestMethod.POST)
 	@ResponseBody
 	public JSONObject user_idCheckOK(UserVO uvo) {
 		logger.info("Welcome! user_idCheckOK");
