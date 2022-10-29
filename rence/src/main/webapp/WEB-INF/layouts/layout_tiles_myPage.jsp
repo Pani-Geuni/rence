@@ -174,7 +174,10 @@
                         <span class="modify-guide-txt">현재 비밀번호</span>
                         <span class="modify-error-txt blind">현재 비밀번호와 일치하지않습니다.</span>
                     </div>
-                    <input type="email" id="modify-pw-now" class="modify-popup-input" placeholder="현재 비밀번호를 입력하세요."/>
+                    <div class="modify-now-pw-check-section">
+                        <input type="email" id="modify-pw-now" class="modify-popup-input-short" placeholder="현재 비밀번호를 입력하세요."/>
+                        <input type="button" id="check-now-pw" class="modify-popup-check-btn" value="확인"/>
+                    </div>
                 </div>
 
                 <div class="modify-popup-input-list">

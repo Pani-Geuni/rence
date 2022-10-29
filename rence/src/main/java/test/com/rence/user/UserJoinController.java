@@ -68,19 +68,18 @@ public class UserJoinController {
 		
 		JSONObject jsonObject = new JSONObject();
 		
-		
 		//이메일 중복 체크
 		UserVO emailCheck = service.emailCheckOK(uvo);
 		logger.info("{}", emailCheck);
-		if(emailCheck==null) {
-			
+		
+		// 탈퇴한 회원의 이메일로 재가입 가능
+		if(emailCheck==null || emailCheck.getUser_state() == "N") {
 			avo.setUser_email(uvo.getUser_email());
 			
 			//이메일 전송
 			avo = authSendEmail.sendEmail(avo,evo);
 			logger.info("메일이 전송되었습니다.C_avo: {}",avo);
 			if (avo !=null) {
-				
 				//avo2 = auth 테이블에 정보 저장 후, select 해온 결과값
 				AuthVO avo2 = service.user_auth_insert(avo);
 				logger.info("user_auth successed...");
@@ -99,7 +98,6 @@ public class UserJoinController {
 			jsonObject.put("authNum", "2");
 		}
 		
-		
 		return jsonObject;
 	}
 
@@ -108,19 +106,19 @@ public class UserJoinController {
 	 */
 	@RequestMapping(value = "/user_authOK", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject user_authOK(String email_code) {
+	public JSONObject user_authOK(String user_email, String email_code) {
 		
 		logger.info("Welcome user_authOK");
 		logger.info("{}", email_code);
 		 
-		AuthVO avo = service.user_authOK_select(email_code);
+		AuthVO avo = service.user_authOK_select(user_email, email_code);
 		logger.info("avo: {}", avo);
 		JSONObject jsonObject = new JSONObject();
 
 	    if(avo != null){
 	    	logger.info("successed...");
+	    	service.user_auth_delete(avo);
 	    	jsonObject.put("result", "1");
-
 	    }else{
 	    	logger.info("failed...");
 	    	jsonObject.put("result", "0");

@@ -1,5 +1,7 @@
 package test.com.rence.user;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import org.apache.ibatis.session.SqlSession;
@@ -48,34 +50,48 @@ public class UserDAOimpl implements UserDAO {
 		return uvo2;
 	}
 
+	// 회원가입 - 인증시 인증번호 테이블에 저장
+	@Override
+	public AuthVO user_auth_insert(AuthVO avo) {
+		logger.info("user_auth_insert()...");
+		logger.info("{}", avo);
+
+		AuthVO avo2 = null;
+		int result = sqlSession.insert("SQL_INSERT_USER_AUTH", avo);
+		logger.info("result {}", result);
+		if (result == 1) {
+			avo2 = sqlSession.selectOne("SQL_SELECT_USER_AUTH", avo);
+			logger.info("avo:{}", avo2);
+		}
+
+		return avo2;
+	}
 	
-	//회원가입 - 인증시 인증번호 테이블에 저장
-		@Override
-		public AuthVO user_auth_insert(AuthVO avo) {
-			logger.info("user_auth_insert()...");
-			logger.info("{}", avo);
+	// 회원가입 - 인증번호 확인 완료 시 테이블에서 삭제
+	@Override
+	public int user_auth_delete(AuthVO avo) {
+		logger.info("user_auth_delete()...");
+		logger.info("{}", avo);
+		
+		int result = sqlSession.delete("SQL_AUTH_DELETE", avo);
+		
+		return result;
+	}
 
-			AuthVO avo2 = null;
-			int result = sqlSession.insert("SQL_INSERT_USER_AUTH",avo);
-			logger.info("result {}", result);
-			if (result == 1) {
-				avo2 = sqlSession.selectOne("SQL_SELECT_USER_AUTH",avo);
-				logger.info("avo:{}",avo2);
-			}
+	@Override
+	public AuthVO user_authOK_select(String user_email, String email_code) {
+		logger.info("user_authOK_select()...");
+		logger.info("{}", email_code);
 
-			return avo2;
-		}
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("user_email", user_email);
+		map.put("email_code", email_code);
 
-		@Override
-		public AuthVO user_authOK_select(String email_code) {
-			logger.info("user_authOK_select()...");
-			logger.info("{}", email_code);
+		AuthVO avo2 = sqlSession.selectOne("SQL_SELECT_USER_AUTHOK", map);
+		logger.info("avo2(impl): {}", avo2);
 
-			AuthVO avo2 = sqlSession.selectOne("SQL_SELECT_USER_AUTHOK",email_code);
-			logger.info("avo2(impl): {}", avo2);
-			
-			return avo2;
-		}
+		return avo2;
+	}
 
 	// 로그인
 	@Override
@@ -84,8 +100,11 @@ public class UserDAOimpl implements UserDAO {
 		logger.info("{}", uvo);
 		uvo = sqlSession.selectOne("SQL_USER_LOGIN", uvo);
 
-		return uvo;
+		if (uvo.getUser_state() == "N") {
+			uvo = null;
+		}
 
+		return uvo;
 	}
 
 	// 아이디 찾기를 위한 이메일 체크
@@ -113,25 +132,37 @@ public class UserDAOimpl implements UserDAO {
 		logger.info("user_pw_init().....");
 		// 10자리 int형 랜덤난수 생성
 
-		Random random=new Random(); // 랜덤 함수 선언
-		int createNum=0; // 1자리 난수
-		String ranNum=""; // 1자리 난수 형변환 변수
-		int len=10; // 난수 자릿수
-		String random_pw=""; // 결과 난수
+		Random random = new Random(); // 랜덤 함수 선언
+		int createNum = 0; // 1자리 난수
+		String ranNum = ""; // 1자리 난수 형변환 변수
+		int len = 10; // 난수 자릿수
+		String random_pw = ""; // 결과 난수
 
-		for(int i=0;i<len;i++){
+		for (int i = 0; i < len; i++) {
 
-		createNum=random.nextInt(9); // 0부터 9까지 올 수 있는 1자리 난수 생성
-		ranNum=Integer.toString(createNum); // 1자리 난수를 String으로 형변환
-		random_pw+=ranNum; // 생성된 난수(문자열)을 원하는 수(len)만큼 더하며 나열
+			createNum = random.nextInt(9); // 0부터 9까지 올 수 있는 1자리 난수 생성
+			ranNum = Integer.toString(createNum); // 1자리 난수를 String으로 형변환
+			random_pw += ranNum; // 생성된 난수(문자열)을 원하는 수(len)만큼 더하며 나열
 		}
 
 		// userVO에 세팅
-		uvo.setUser_pw(random_pw);;
+		uvo.setUser_pw(random_pw);
+		;
 
-		int flag=sqlSession.update("SQL_USER_UPDATE_PW_INIT",uvo);
+		int flag = sqlSession.update("SQL_USER_UPDATE_PW_INIT", uvo);
 
 		return flag;
+	}
+	
+	// 마이페이지-비밀번호 수정(현재 비밀번호 확인)
+	@Override
+	public int check_now_pw(UserVO uvo) {
+		logger.info("check_now_pw().....");
+		
+		int result = sqlSession.selectOne("SQL_SELECT_USER_ID_EMAIL", uvo);
+		logger.info("result : {}", result);
+		
+		return result;
 	}
 
 	// 마이페이지-비밀번호 수정
@@ -167,19 +198,14 @@ public class UserDAOimpl implements UserDAO {
 		return flag;
 	}
 
-	
-	//마이페이지에 정보 뿌려주기
+	// 마이페이지에 정보 뿌려주기
 	@Override
 	public UserMypageVO user_mypage_select(UserVO uvo) {
 		logger.info("user_mypage_select().....");
-		logger.info("{}", uvo); //유저의 정보를 출력
+		logger.info("{}", uvo); // 유저의 정보를 출력
 		UserMypageVO umvo = sqlSession.selectOne("SQL_SELECT_USER_MYPAGE", uvo);
 
 		return umvo;
 	}
-	
-	
-	
-	
 
-}//end class
+}// end class

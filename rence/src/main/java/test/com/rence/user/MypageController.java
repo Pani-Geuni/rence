@@ -87,6 +87,29 @@ public class MypageController {
 
 		return jsonObject;
 	}
+	
+	/**
+	 * 마이페이지 - 비밀번호 수정 - 현재 비밀번호 확인(본인인증)
+	 */
+	@RequestMapping(value = "/check_now_pw", method = RequestMethod.POST)
+	public JSONObject check_now_pw(UserVO uvo) {
+		logger.info("check_now_pw()...");
+		logger.info("request: {}", uvo);
+
+		int result = service.check_now_pw(uvo);
+
+		JSONObject jsonObject = new JSONObject();
+		if (result == 1) {
+			logger.info("right now pw...");
+			jsonObject.put("result", "1");
+		}
+		else {
+			logger.info("not now pw...");
+			jsonObject.put("result", "0");
+		}
+
+		return jsonObject;
+	}
 
 	/**
 	 * 마이페이지 -프로필 수정

@@ -67,20 +67,13 @@ public class UserController {
 		if (uvo2 != null) {
 			session.setAttribute("user_no", uvo2.getUser_no());
 			Cookie cookie = new Cookie("user_no", uvo2.getUser_no()); // 고유번호 쿠키 저장
-			session.setAttribute("user_id", uvo2.getUser_id());
-			Cookie cookie2 = new Cookie("user_id", uvo2.getUser_id()); // 아이디 쿠키 저장
-			session.setAttribute("user_pw", uvo2.getUser_pw());
-			Cookie cookie3 = new Cookie("user_pw", uvo2.getUser_pw()); // 비밀번호 쿠키 저장
 
 			logger.info("User Login success.....");
 			jsonObject.put("result", "1"); // 로그인 성공
 			response.addCookie(cookie);
-			response.addCookie(cookie2);
-			response.addCookie(cookie3);
 		} else {
 			logger.info("User Login failed.....");
 			jsonObject.put("result", "0"); // 로그인 실패
-
 		}
 
 		return jsonObject;
@@ -97,15 +90,10 @@ public class UserController {
 
 		Cookie[] cookies = request.getCookies(); // 모든 쿠키의 정보를 cookies에 저장
 		if (cookies != null) { // 쿠키가 한개라도 있으면 실행
-
 			for (int i = 0; i < cookies.length; i++) {
-
 				cookies[i].setMaxAge(0); // 유효시간을 0으로 설정
-
 				response.addCookie(cookies[i]); // 응답 헤더에 추가
-
 			}
-
 		}
 
 		return "redirect:/"; // 홈페이지로 이동
