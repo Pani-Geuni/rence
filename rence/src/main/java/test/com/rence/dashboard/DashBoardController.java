@@ -20,14 +20,14 @@ public class DashBoardController {
 	ServletContext context;
 	
 	
-	@RequestMapping(value = "/backoffice_home", method = RequestMethod.GET)
+	@RequestMapping(value = "/backoffice_main", method = RequestMethod.GET)
 	public String dashboard_main() {
-		return ".dash_board/home";
+		return ".dash_board/main";
 	}
 	
-	@RequestMapping(value = "/backoffice_list", method = RequestMethod.GET)
+	@RequestMapping(value = "/backoffice_room", method = RequestMethod.GET)
 	public String dashboard_list() {
-		return ".dash_board/space_list";
+		return ".dash_board/room";
 	}
 	
 	@RequestMapping(value = "/backoffice_qna", method = RequestMethod.GET)
