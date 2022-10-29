@@ -44,4 +44,19 @@ public class DashBoardController {
 	public String dashboard_reserve() {
 		return ".dash_board/reserve_list";
 	}
+	
+	@RequestMapping(value = "/backoffice_day_sales", method = RequestMethod.GET)
+	public String dashboard_sales_day() {
+		return ".dash_board/sales_day";
+	}
+	
+	@RequestMapping(value = "/backoffice_week_sales", method = RequestMethod.GET)
+	public String dashboard_sales_week() {
+		return ".dash_board/sales_week";
+	}
+	
+	@RequestMapping(value = "/backoffice_month_sales", method = RequestMethod.GET)
+	public String dashboard_sales_month() {
+		return ".dash_board/sales_month";
+	}
 }
