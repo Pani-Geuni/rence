@@ -17,5 +17,13 @@ $(function() {
 	} else if($(location).attr('pathname') === '/rence/backoffice_list') {	
 		// backoffice_list 일 때
 		$('#menu-space').addClass('active');
-	} 
+	}
+	
+	$('#menu-home').click(function() {
+		location.href="/rence/backoffice_home";
+	})
+	
+	$('#menu-space').click(function() {
+		location.href="/rence/backoffice_list";
+	})
 })
