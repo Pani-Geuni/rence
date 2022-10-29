@@ -159,7 +159,7 @@ public class UserDAOimpl implements UserDAO {
 	public int check_now_pw(UserVO uvo) {
 		logger.info("check_now_pw().....");
 		
-		int result = sqlSession.selectOne("SQL_SELECT_USER_ID_EMAIL", uvo);
+		int result = sqlSession.selectOne("SQL_SELECT_PW", uvo);
 		logger.info("result : {}", result);
 		
 		return result;
