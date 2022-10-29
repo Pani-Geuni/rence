@@ -139,7 +139,7 @@ $(function(){
                 && !$(".modify-popup-input:eq(1)").hasClass("null-input-border")){
                 // 수정 로직 처리
                 $.ajax({
-                    url : "/rence/user_pw_updateOK",
+                    url:"/rence/user_pw_updateOK",
                     type : "POST",
                     dataType : 'json',
                     data : {
@@ -217,6 +217,8 @@ $(function(){
                     $(".modify-error-txt:eq(1)").removeClass("blind");
                     $(".modify-error-txt:eq(1)").text("비밀번호 조건과 일치하지않습니다.");
                 }else{
+                    $(".modify-error-txt:eq(1)").addClass("blind");
+                    
                     // 새 비밀번호가 현재 비밀번호와 다른지
                     if($(this).val().trim() == $("#modify-pw-now").val.trim()){
                         $(".modify-error-txt:eq(1)").removeClass("blind");

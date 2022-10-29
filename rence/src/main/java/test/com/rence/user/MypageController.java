@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MypageController {
@@ -68,6 +69,7 @@ public class MypageController {
 	 * 마이페이지 - 비밀번호 수정
 	 */
 	@RequestMapping(value = "/user_pw_updateOK", method = RequestMethod.POST)
+	@ResponseBody
 	public JSONObject user_pw_upddateOK(UserVO uvo) {
 		logger.info("user_pw_upddateOK()...");
 		logger.info("result: {}", uvo);
@@ -92,6 +94,7 @@ public class MypageController {
 	 * 마이페이지 - 비밀번호 수정 - 현재 비밀번호 확인(본인인증)
 	 */
 	@RequestMapping(value = "/check_now_pw", method = RequestMethod.POST)
+	@ResponseBody
 	public JSONObject check_now_pw(UserVO uvo) {
 		logger.info("check_now_pw()...");
 		logger.info("request: {}", uvo);
@@ -115,6 +118,7 @@ public class MypageController {
 	 * 마이페이지 -프로필 수정
 	 */
 	@RequestMapping(value = "/user_img_updateOK", method = RequestMethod.POST)
+	@ResponseBody
 	public JSONObject user_img_updateOK(UserVO uvo) {
 		logger.info("user_img_updateOK()...");
 		logger.info("result: {}", uvo);
@@ -144,6 +148,7 @@ public class MypageController {
 	 * 회원탈퇴
 	 */
 	@RequestMapping(value = "/secedeOK", method = RequestMethod.POST)
+	@ResponseBody
 	public JSONObject user_secedeOK(UserVO uvo) {
 		logger.info("user_secedeOK()...");
 		logger.info("result: {}", uvo);
