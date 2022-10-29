@@ -24,4 +24,9 @@ public class DashBoardController {
 	public String dashboard_main() {
 		return ".dash_board/home";
 	}
+	
+	@RequestMapping(value = "/backoffice_list", method = RequestMethod.GET)
+	public String dashboard_list() {
+		return ".dash_board/space_list";
+	}
 }
