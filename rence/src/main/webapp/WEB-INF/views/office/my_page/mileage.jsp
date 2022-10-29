@@ -11,23 +11,11 @@
         </section>
 
         <section class="mileage-section">
-            <section class="mileage">
-                <span class="mileage-label">현재 마일리지</span>
-                <span id="now-mileage" class="mileage-won">4,836 원</span>
-            </section>
-
-            <span class="calc">+</span>
-
-            <section class="mileage">
-                <span class="mileage-label">적립 예정 마일리지</span>
-                <span id="after-mileage" class="mileage-won">523 원</span>
-            </section>
-
-            <span class="calc">=</span>
-
-            <section class="mileage">
-                <span class="mileage-label">총 마일리지</span>
-                <span id="total-mileage" class="mileage-won">5,359 원</span>
+            <section class="mileage-section">
+                <section class="mileage">
+                    <span class="mileage-label">현재 마일리지</span>
+                    <span id="now-mileage" class="mileage-won">4,836 원</span>
+                </section>
             </section>
         </section>
 
