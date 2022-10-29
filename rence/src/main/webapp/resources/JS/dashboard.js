@@ -3,15 +3,20 @@ $(function() {
 	// ****************************************
 	// Dash Board Side Menu 현재 페이지 active 설정
 	// ****************************************
-
+	
 	
 	// backoffice_home 일 때
 	if ($(location).attr('pathname') === '/rence/backoffice_home') {	
 		$('#menu-home').addClass('active');
-	} else if($(location).attr('pathname') === '/rence/backoffice_list' || '/rence/backoffice_qna') {	
-		// backoffice_list 일 때
+		
+	} else if ($(location).attr('pathname') === ('/rence/backoffice_list' || '/rence/backoffice_qna' || '/rence/backoffice_review')) {	
+		// backoffice_list, backoffice_qna, backoffice_review 일 때
 		$('#menu-space').addClass('active');
-	}
+	} else if ($(location).attr('pathname') === '/rence/backoffice_reserve') {	
+		// backoffice_reserve 일 때
+		$('#menu-reserve').addClass('active');
+		
+	} 
 	
 	$('#menu-home').click(function() {
 		location.href="/rence/backoffice_home";
@@ -19,6 +24,10 @@ $(function() {
 	
 	$('#menu-space').click(function() {
 		location.href="/rence/backoffice_list";
+	})
+	
+	$('#menu-reserve').click(function() {
+		location.href="/rence/backoffice_reserve";
 	})
 	
 	

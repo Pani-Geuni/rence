@@ -39,4 +39,9 @@ public class DashBoardController {
 	public String dashboard_review() {
 		return ".dash_board/review_list";
 	}
+	
+	@RequestMapping(value = "/backoffice_reserve", method = RequestMethod.GET)
+	public String dashboard_reserve() {
+		return ".dash_board/reserve_list";
+	}
 }
