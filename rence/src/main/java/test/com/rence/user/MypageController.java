@@ -119,35 +119,33 @@ public class MypageController {
 		return jsonObject;
 	}
 
-	/**
-	 * 마이페이지 -프로필 수정
-	 */
-	@RequestMapping(value = "/user_img_updateOK", method = RequestMethod.POST)
-	@ResponseBody
-	public JSONObject user_img_updateOK(UserVO uvo) {
-		logger.info("user_img_updateOK()...");
-		logger.info("result: {}", uvo);
-//		logger.info("result: {}", uvo.getUser_image()); 
+	   /**
+	    * 마이페이지 -프로필 수정
+	    */
+	   @RequestMapping(value = "/user_img_updateOK", method = RequestMethod.POST)
+	   @ResponseBody
+	   public String user_img_updateOK(UserVO uvo) {
+	      logger.info("user_img_updateOK()...");
+	      logger.info("result: {}", uvo);
+//	      logger.info("result: {}", uvo.getUser_image()); 
 
-		JSONObject jsonObject = new JSONObject();
+	      JSONObject jsonObject = new JSONObject();
 
-		// 사진(파일)업로드
-		uvo = fileuploadService.FileuploadOK(uvo);
-		logger.info("fileresult: {}", uvo);
+	      // 사진(파일)업로드
+	      uvo = fileuploadService.FileuploadOK(uvo);
+	      logger.info("fileresult: {}", uvo);
 
-		int result = service.user_img_updateOK(uvo);
-		logger.info("result: {}", uvo);
-		if (result == 1) {
-			logger.info("user_img_update successed...");
-			jsonObject.put("result", "1");
-		}
+	      int result = service.user_img_updateOK(uvo);
+	      
+	      if (result == 1) {
+	         logger.info("user_img_update successed...");
+	      }else {
+	         logger.info("user_img_update failed...");
+	         jsonObject.put("result", "0");
+	      }
 
-		else {
-			logger.info("user_img_update failed...");
-			jsonObject.put("result", "0");
-		}
-		return jsonObject;
-	}
+	      return "redirect:/go_my_page";
+	   }
 
 	/**
 	 * 회원탈퇴
