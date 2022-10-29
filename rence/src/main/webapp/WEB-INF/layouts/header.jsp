@@ -14,7 +14,7 @@
                  <span>타입</span>
              </div>
              <div id="location" class = "sb_1">
-                 <span>장소</span>
+                 <span>장소${user_id}</span>
              </div>
              <div class = "sb_2">
                  <input type="text" placeholder="검색어를 입력하세요." id="input_searchBar"/>

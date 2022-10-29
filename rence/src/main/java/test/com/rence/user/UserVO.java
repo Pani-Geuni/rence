@@ -154,6 +154,8 @@ public class UserVO implements Serializable{
 	}
 
 
+	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -240,7 +242,6 @@ public class UserVO implements Serializable{
 		return true;
 	}
 
-
 	@Override
 	public String toString() {
 		return "UserVO [user_no=" + user_no + ", user_image=" + user_image + ", user_id=" + user_id + ", user_pw="
@@ -248,9 +249,5 @@ public class UserVO implements Serializable{
 				+ ", user_birth=" + user_birth + ", user_state=" + user_state + ", auth_no=" + auth_no
 				+ ", multipartFile=" + multipartFile + "]";
 	}
-
-
-	
-	
 
 }

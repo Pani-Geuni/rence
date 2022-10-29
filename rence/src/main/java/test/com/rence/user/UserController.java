@@ -59,18 +59,17 @@ public class UserController {
 	@RequestMapping(value = "/user_loginOK", method = RequestMethod.POST)
 	@ResponseBody
 	public JSONObject user_loginOK(UserVO uvo, HttpServletResponse response) {
-		logger.info("user_loginOK()...");
-		UserVO uvo2 = service.User_loginOK(uvo);
-		logger.info("result: {}.", uvo2);
 		JSONObject jsonObject = new JSONObject();
-
+		
+		UserVO uvo2 = service.User_loginOK(uvo);
 		if (uvo2 != null) {
-			session.setAttribute("user_no", uvo2.getUser_no());
+			session.setAttribute("user_id", uvo2.getUser_id());
+			
 			Cookie cookie = new Cookie("user_no", uvo2.getUser_no()); // 고유번호 쿠키 저장
+			response.addCookie(cookie);
 
 			logger.info("User Login success.....");
 			jsonObject.put("result", "1"); // 로그인 성공
-			response.addCookie(cookie);
 		} else {
 			logger.info("User Login failed.....");
 			jsonObject.put("result", "0"); // 로그인 실패
@@ -85,8 +84,7 @@ public class UserController {
 	@RequestMapping(value = "/user_logoutOK", method = RequestMethod.GET)
 	public String user_logout(HttpServletRequest request, HttpServletResponse response) {
 		logger.info("user_logoutOK()...");
-		session = request.getSession();
-		session.removeAttribute("user_id");
+		session.invalidate();
 
 		Cookie[] cookies = request.getCookies(); // 모든 쿠키의 정보를 cookies에 저장
 		if (cookies != null) { // 쿠키가 한개라도 있으면 실행

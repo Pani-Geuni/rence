@@ -98,13 +98,16 @@ public class UserDAOimpl implements UserDAO {
 	public UserVO User_loginOK(UserVO uvo) {
 		logger.info("User_login().....");
 		logger.info("{}", uvo);
-		uvo = sqlSession.selectOne("SQL_USER_LOGIN", uvo);
+		UserVO uvo2 = sqlSession.selectOne("SQL_USER_LOGIN", uvo);
 
-		if (uvo.getUser_state().equals('N')) {
-			uvo = null;
+		if(uvo2 != null) {
+			// 꼭 N하고 띄어쓰기 3번 있어야 함 -> 버그인지 모르겠지만 sqldeveloper에 저런식으로 저장되어서 어쩔 수 없음
+			if (uvo2.getUser_state().equals("N   ")) {
+				uvo2 = null;
+			}
 		}
 
-		return uvo;
+		return uvo2;
 	}
 
 	// 아이디 찾기를 위한 이메일 체크
