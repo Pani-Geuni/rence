@@ -14,13 +14,13 @@
 	         <!-- 로그인 전 유저 메뉴 -->
 	         <section id="before_login" class="">
 	             <div id = "before_hostMenu" class ="hostMenu">
-	                 <img src="${path}/resources/IMG/header/user_menu.svg" alt="user_menu_img" class="user_menu_img"/>
-	                 <img src="${path}/resources/IMG/header/bx_user-circle.png" alt="user_profile_img" class="user_profile_img"/>
+	                 <img src="${path}/resources/IMG/header/user_menu.svg" alt="host_menu_img" class="host_menu_img"/>
+	                 <img src="${path}/resources/IMG/header/bx_user-circle.png" alt="host_profile_img" class="host_profile_img"/>
 	             </div>
 	             
 	             <!-- CUSTOM SELECT -->
 	             <div class = "custom-select-host blind">
-	                 <ul class="user-select-wrap">
+	                 <ul class="host-select-wrap">
 	                     <li id = "go-login" class="host-select-list">로그인</li>
 	                     <li id = "go-backOffice" class="host-select-list">공간등록신청</li>
 	                     <li id = "go-user-home" class="host-select-list">Rence 이동</li>
@@ -33,8 +33,8 @@
 	         <!-- 로그인 후 유저 메뉴 -->
 	         <section id="after_login"  class="">
 	             <div id = "after_hostMenu" class ="hostMenu">
-	                 <img src="${path}/resources/IMG/header/user_menu.svg" alt="user_menu_img" class="user_menu_img"/>
-	                 <img src="${path}/resources/IMG/header/loopy.jpg" alt="user_profile_img" class="user_profile_img"/>
+	                 <img src="${path}/resources/IMG/header/user_menu.svg" alt="host_menu_img" class="host_menu_img"/>
+	                 <img src="${path}/resources/IMG/header/loopy.jpg" alt="host_profile_img" class="host_profile_img"/>
 	             </div>
 	
 	             <!-- CUSTOM SELECT -->

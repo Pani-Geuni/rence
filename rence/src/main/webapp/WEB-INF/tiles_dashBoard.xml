@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+       
+<tiles-definitions>
+  <definition name=".dash_board/*" template="/WEB-INF/layouts/layout_tiles_dashBoard.jsp">
+    <put-attribute name="title" value="RENCE HOST 대시보드" /> <!--  title 글자 세팅 -->
+    <put-attribute name="side" value="/WEB-INF/layouts/dashboard_side.jsp" />
+    <put-attribute name="content" value="/WEB-INF/views/backoffice/dash_board/{1}.jsp" />
+  </definition>
+</tiles-definitions>
