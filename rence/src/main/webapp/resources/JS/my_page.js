@@ -92,7 +92,40 @@ $(function(){
 
     // 비밀번호 일치하는지 확인하기 버튼
     $("#check-now-pw").click(function(){
-
+        if($("#modify-pw-now").val().trim().length > 0){
+            if( $(".modify-error-txt:eq(0)").hasClass("blind")){
+                $.ajax({
+                    url : "/rence/check_now_pw",
+                    type : "POST",
+                    dataType : 'json',
+                    data : {
+                        user_no : $.cookie("user_no"),
+                        user_pw : CryptoJS.SHA256($("#modify-pw-now").val().trim()).toString()
+                    },
+                    success : function(res) {
+                        console.log(res.result);
+                        // 비밀번호 일치 성공
+                        if(res.result == 1){
+                            $("#check-now-pw").prop("check", true);
+                            $("#modify-pw-now").attr("readonly", true);
+                            $("#modify-pw-now").addClass("readOnly");
+                        }else{
+                            $(".popup-background:eq(1)").removeClass("blind");
+                            $("#common-alert-popup").removeClass("blind");
+                            $(".common-alert-txt").text("예상치못한 오류로 비밀번호 변경에 실패하였습니다.");
+                        }
+                    },
+                    error : function(error) {
+                        console.log(error);
+                        $(".popup-background:eq(1)").removeClass("blind");
+                        $("#common-alert-popup").removeClass("blind");
+                        $(".common-alert-txt").text("오류 발생으로 인해 처리에 실패하였습니다.");
+                    }
+                });
+            }
+        }else{
+            $("#modify-pw-now").addClass("null-input-border");
+        }
     });
 
     // 수정하기 버튼
@@ -111,7 +144,7 @@ $(function(){
                     dataType : 'json',
                     data : {
                         user_no : $.cookie("user_no"),
-                        user_pw : $("#modify-pw-renew").val().trim()
+                        user_pw : CryptoJS.SHA256($("#modify-pw-renew").val().trim()).toString()
                     },
                     success : function(res) {
                         // 비밀번호 변경 성공

@@ -44,7 +44,8 @@ $(function(){
                 dataType : 'json',
                 data : {
                     user_id : $("#login-id").val().trim(),
-                    user_pw : window.btoa($("#login-pw").val().trim())
+                    // user_pw : window.btoa($("#login-pw").val().trim())
+                    user_pw : CryptoJS.SHA256($("#login-pw").val().trim()).toString()
                 },
                 success : function(res) {
                     // 로그인 성공
@@ -270,7 +271,8 @@ $(function(){
                                 dataType : 'json',
                                 data : {
                                     user_id : $("#join-id").val().trim(),
-                                    user_pw : window.btoa($("#join-pw").val().trim()),
+                                    // user_pw : window.btoa($("#join-pw").val().trim()),
+                                    user_pw : CryptoJS.SHA256($("#join-pw").val().trim()).toString(),
                                     user_email : $("#join-email").val().trim(),
                                     user_name : $("#join-name").val().trim(),
                                     user_tel : $("#join-tel").val().trim(),

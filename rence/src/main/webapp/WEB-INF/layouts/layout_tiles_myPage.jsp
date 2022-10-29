@@ -21,6 +21,9 @@
 <link rel="stylesheet" href="${path}/resources/CSS/mileage-page.css" />
 <link rel="stylesheet" href="${path}/resources/CSS/question-page.css" />
 
+<script type="text/javascript" src="${path}/resources/JS/core.min.js"></script>
+<script type="text/javascript" src="${path}/resources/JS/sha256.min.js"></script>
+
 <script src="${path}/resources/JS/jquery-3.6.1.min.js"></script>
 <script src="${path}/resources/JS/jquery.cookie.js"></script>
 <script src="${path}/resources/JS/user_popup.js"></script>

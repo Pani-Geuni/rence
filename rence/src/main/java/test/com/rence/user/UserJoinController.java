@@ -117,7 +117,7 @@ public class UserJoinController {
 
 	    if(avo != null){
 	    	logger.info("successed...");
-	    	service.user_auth_delete(avo);
+	    	service.user_auth_delete(user_email, email_code);
 	    	jsonObject.put("result", "1");
 	    }else{
 	    	logger.info("failed...");
