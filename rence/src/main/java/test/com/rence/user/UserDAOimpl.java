@@ -102,7 +102,7 @@ public class UserDAOimpl implements UserDAO {
 
 		if(uvo2 != null) {
 			// 꼭 N하고 띄어쓰기 3번 있어야 함 -> 버그인지 모르겠지만 sqldeveloper에 저런식으로 저장되어서 어쩔 수 없음
-			if (uvo2.getUser_state().equals("N   ")) {
+			if (uvo2.getUser_state().trim().equals("N")) {
 				uvo2 = null;
 			}
 		}
