@@ -31,8 +31,6 @@ public class BackOfficeVO implements Serializable{
 	private String backoffice_image;
 	private String host_image;
 	private String backoffice_state;
-	private String auth_code;
-	private String auth_no;
 	private Date apply_date;
 	private MultipartFile multipartFile;
 	
@@ -42,8 +40,7 @@ public class BackOfficeVO implements Serializable{
 			String company_name, String backoffice_pw, String backoffice_tel, String backoffice_email, String zipcode,
 			String roadname_address, String number_address, String detail_address, String backoffice_tag,
 			String backoffice_info, String backoffice_option, String backoffice_around, String backoffice_image,
-			String host_image, String backoffice_state, String auth_code, String auth_no, Date apply_date,
-			MultipartFile multipartFile) {
+			String host_image, String backoffice_state, Date apply_date, MultipartFile multipartFile) {
 		super();
 		this.backoffice_no = backoffice_no;
 		this.owner_name = owner_name;
@@ -64,8 +61,6 @@ public class BackOfficeVO implements Serializable{
 		this.backoffice_image = backoffice_image;
 		this.host_image = host_image;
 		this.backoffice_state = backoffice_state;
-		this.auth_code = auth_code;
-		this.auth_no = auth_no;
 		this.apply_date = apply_date;
 		this.multipartFile = multipartFile;
 	}
@@ -222,22 +217,6 @@ public class BackOfficeVO implements Serializable{
 		this.backoffice_state = backoffice_state;
 	}
 
-	public String getAuth_code() {
-		return auth_code;
-	}
-
-	public void setAuth_code(String auth_code) {
-		this.auth_code = auth_code;
-	}
-
-	public String getAuth_no() {
-		return auth_no;
-	}
-
-	public void setAuth_no(String auth_no) {
-		this.auth_no = auth_no;
-	}
-
 	public Date getApply_date() {
 		return apply_date;
 	}
@@ -255,12 +234,23 @@ public class BackOfficeVO implements Serializable{
 	}
 
 	@Override
+	public String toString() {
+		return "BackOfficeVO [backoffice_no=" + backoffice_no + ", owner_name=" + owner_name + ", backoffice_id="
+				+ backoffice_id + ", backoffice_name=" + backoffice_name + ", company_name=" + company_name
+				+ ", backoffice_pw=" + backoffice_pw + ", backoffice_tel=" + backoffice_tel + ", backoffice_email="
+				+ backoffice_email + ", zipcode=" + zipcode + ", roadname_address=" + roadname_address
+				+ ", number_address=" + number_address + ", detail_address=" + detail_address + ", backoffice_tag="
+				+ backoffice_tag + ", backoffice_info=" + backoffice_info + ", backoffice_option=" + backoffice_option
+				+ ", backoffice_around=" + backoffice_around + ", backoffice_image=" + backoffice_image
+				+ ", host_image=" + host_image + ", backoffice_state=" + backoffice_state + ", apply_date=" + apply_date
+				+ ", multipartFile=" + multipartFile + "]";
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((apply_date == null) ? 0 : apply_date.hashCode());
-		result = prime * result + ((auth_code == null) ? 0 : auth_code.hashCode());
-		result = prime * result + ((auth_no == null) ? 0 : auth_no.hashCode());
 		result = prime * result + ((backoffice_around == null) ? 0 : backoffice_around.hashCode());
 		result = prime * result + ((backoffice_email == null) ? 0 : backoffice_email.hashCode());
 		result = prime * result + ((backoffice_id == null) ? 0 : backoffice_id.hashCode());
@@ -297,16 +287,6 @@ public class BackOfficeVO implements Serializable{
 			if (other.apply_date != null)
 				return false;
 		} else if (!apply_date.equals(other.apply_date))
-			return false;
-		if (auth_code == null) {
-			if (other.auth_code != null)
-				return false;
-		} else if (!auth_code.equals(other.auth_code))
-			return false;
-		if (auth_no == null) {
-			if (other.auth_no != null)
-				return false;
-		} else if (!auth_no.equals(other.auth_no))
 			return false;
 		if (backoffice_around == null) {
 			if (other.backoffice_around != null)
@@ -409,19 +389,6 @@ public class BackOfficeVO implements Serializable{
 		} else if (!zipcode.equals(other.zipcode))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "BackOfficeVO [backoffice_no=" + backoffice_no + ", owner_name=" + owner_name + ", backoffice_id="
-				+ backoffice_id + ", backoffice_name=" + backoffice_name + ", company_name=" + company_name
-				+ ", backoffice_pw=" + backoffice_pw + ", backoffice_tel=" + backoffice_tel + ", backoffice_email="
-				+ backoffice_email + ", zipcode=" + zipcode + ", roadname_address=" + roadname_address
-				+ ", number_address=" + number_address + ", detail_address=" + detail_address + ", backoffice_tag="
-				+ backoffice_tag + ", backoffice_info=" + backoffice_info + ", backoffice_option=" + backoffice_option
-				+ ", backoffice_around=" + backoffice_around + ", backoffice_image=" + backoffice_image
-				+ ", host_image=" + host_image + ", backoffice_state=" + backoffice_state + ", auth_code=" + auth_code
-				+ ", auth_no=" + auth_no + ", apply_date=" + apply_date + ", multipartFile=" + multipartFile + "]";
 	}
 
 	

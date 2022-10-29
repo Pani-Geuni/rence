@@ -18,8 +18,8 @@
   	</select>
   
    	<insert id="SQL_INSERT_BACKOFFICE" parameterType="test.com.rence.backoffice.BackOfficeVO">
-  	INSERT INTO backofficeinfo(backoffice_no, owner_name, backoffice_id, backoffice_name, company_name, backoffice_tel, backoffice_email, auth_code, auth_no, zipcode, roadname_address, number_address, detail_address, backoffice_tag, backoffice_info, backoffice_option, backoffice_around, backoffice_image, backoffice_state) 
-  	values('B'||seq_backoffice.nextval, #{owner_name}, #{backoffice_id}, #{backoffice_name}, #{company_name}, #{backoffice_tel},#{backoffice_email},#{auth_code},#{auth_no},#{zipcode},#{roadname_address},#{number_address},#{detail_address},#{backoffice_tag},#{backoffice_info},#{backoffice_option},#{backoffice_around},#{backoffice_image},'W')
+  	INSERT INTO backofficeinfo(backoffice_no, owner_name, backoffice_id, backoffice_name, company_name, backoffice_tel, backoffice_email,zipcode, roadname_address, number_address, detail_address, backoffice_tag, backoffice_info, backoffice_option, backoffice_around, backoffice_image, backoffice_state) 
+  	values('B'||seq_backoffice.nextval, #{owner_name}, #{backoffice_id}, #{backoffice_name}, #{company_name}, #{backoffice_tel},#{backoffice_email},#{zipcode},#{roadname_address},#{number_address},#{detail_address},#{backoffice_tag},#{backoffice_info},#{backoffice_option},#{backoffice_around},#{backoffice_image},'W')
 	</insert>
 	
 	<select id="SQL_SELECT_BACKOFFICE_NO" resultType="test.com.rence.backoffice.BackOfficeVO">
@@ -27,16 +27,20 @@
   	</select>
 	
    	<insert id="SQL_INSERT_OPERRATING_TIME" parameterType="test.com.rence.backoffice.BackOfficeVO">
-  	INSERT INTO BackOfficeOperationgTime(opetime_no, mon_stime, mon_etime, tue_stime, tue_etime, wed_stime, wed_etime, thu_stime, thu_etime, fri_stime, fri_etime, sat_stime, sat_etime, sun_stime, sun_etime, backoffice_no) 
-  	values('O'||seq_backofficeoperatingtime.nextval, #{mon_stime}, #{mon_etime}, #{tue_stime}, #{tue_etime}, #{wed_stime},#{wed_etime},#{thu_stime},#{thu_etime},#{fri_stime},#{fri_etime},#{sat_stime},#{sat_etime},#{sun_stime},#{sun_etime},#{backoffice_no})
+  	INSERT INTO BackOfficeOperationgTime(opetime_no, mon_stime, mon_etime, tue_stime, tue_etime, wed_stime, wed_etime, thu_stime, thu_etime, fri_stime, fri_etime, sat_stime, sat_etime, sun_stime, sun_etime, mon_dayoff, tue_dayoff, wed_dayoff, thu_dayoff, fri_dayoff, sat_dayoff, sun_dayoff, backoffice_no) 
+  	values('O'||seq_backofficeoperatingtime.nextval, #{mon_stime}, #{mon_etime}, #{tue_stime}, #{tue_etime}, #{wed_stime},#{wed_etime},#{thu_stime},#{thu_etime},#{fri_stime},#{fri_etime},#{sat_stime},#{sat_etime},#{sun_stime},#{sun_etime},#{mon_dayoff},#{tue_dayoff},#{wed_dayoff},#{thu_dayoff},#{fri_dayoff},#{sat_dayoff},#{sun_dayoff},#{backoffice_no})
 	</insert>
 	
 	<select id="SQL_SELECT_BACKOFFICE_AUTHOK" resultType="test.com.rence.sendemail.AuthVO">
-  	SELECT * from auth where auth_code=#{auth_code} and auth_no=#{auth_no} and user_email=#{backoffice_email}
+  	SELECT * from auth where auth_code=#{auth_code} and user_email=#{user_email} and #{user_email} not in(select backoffice_email from backofficeinfo where backoffice_state='X')
   	</select>
+  	
+  	<delete id="SQL_DELETE_BACKOFFICE_AUTH" parameterType="test.com.rence.sendemail.AuthVO">
+  	DELETE FROM auth where auth_no = #{auth_no}
+  	</delete>
 	
 	<select id="SQL_BACKOFFICE_LOGIN" resultType="test.com.rence.backoffice.BackOfficeVO">
-  	select * from backofficeinfo where backoffice_id=#{backoffice_id} and backoffice_pw=#{backoffice_pw}
+  	select * from backofficeinfo where backoffice_id=#{backoffice_id} and backoffice_pw=#{backoffice_pw} and (backoffice_state='Y' or backoffice_state='O')
   	</select>
   	
 	<select id="SQL_SELECT_BACKOFFICE_ID_EMAIL" resultType="test.com.rence.backoffice.BackOfficeVO">
@@ -56,7 +60,7 @@
   	</select>
   	
   	<update id="SQL_UPDATE_BACKOFFICE_SETTING_O" parameterType="test.com.rence.backoffice.BackOfficeVO">
-  	UPDATE backofficeinfo SET backoffice_state='O' where backoffice_no=#{backoffice_no}
+  	UPDATE backofficeinfo SET backoffice_state='O' where backoffice_no=#{backoffice_no} and #{backoffice_no} not in (select backoffice_no from reserveinfo where backoffice_no=#{backoffice_no} and (reserve_state='begin' or reserve_state='in_use'))
   	</update>
   	
   
