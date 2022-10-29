@@ -29,4 +29,9 @@ public class DashBoardController {
 	public String dashboard_list() {
 		return ".dash_board/space_list";
 	}
+	
+	@RequestMapping(value = "/backoffice_qna", method = RequestMethod.GET)
+	public String dashboard_qna() {
+		return ".dash_board/qna_list";
+	}
 }

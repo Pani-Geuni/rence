@@ -17,6 +17,7 @@
 	
 	<link rel="stylesheet" href="${path}/resources/CSS/dash-board.css" />
 	<link rel="stylesheet" href="${path}/resources/CSS/dash-space-list.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/dash-qna-list.css" />
 	<link rel="stylesheet" href="${path}/resources/CSS/custom-table.css" />
 	
 	<script src="${path}/resources/JS/jquery-3.6.1.min.js"></script>
@@ -177,6 +178,39 @@
           <span>확인</span>
         </section>
       </div>
+      
+      <!-- START comment popup -->
+      <div id="comment-section" class="blind">
+        <section class="comment-popup-title-section">
+          <span>답변 달기</span>
+        </section>
+        <section class="user-comment-section">
+          <div class="user-comment-title">
+            <h5>문의 공간</h5>
+            <p>101호 개인 스터디룸</p>
+          </div>
+          <div class="user-comment-content">
+            <h5>문의 내용</h5>
+            <pre>
+문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 </pre
+            >
+          </div>
+        </section>
+        <section class="host-comment-section">
+          <h5>답변</h5>
+          <textarea
+            name="host-comment"
+            id="host-comment"
+            placeholder="문의 답변을 입력해 주세요."
+          ></textarea>
+        </section>
+
+        <div class="button-group">
+          <button class="btn-comment-cancel">취소</button>
+          <button class="btn-comment-confirm">등록</button>
+        </div>
+      </div>
+      <!-- END popup-background blind -->
     </div>
     <!-- END popup-background blind -->
 </body>
