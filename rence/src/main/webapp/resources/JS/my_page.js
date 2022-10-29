@@ -218,13 +218,22 @@ $(function(){
                     $(".modify-error-txt:eq(1)").text("비밀번호 조건과 일치하지않습니다.");
                 }else{
                     $(".modify-error-txt:eq(1)").addClass("blind");
-                    
+
                     // 새 비밀번호가 현재 비밀번호와 다른지
                     if($(this).val().trim() == $("#modify-pw-now").val.trim()){
                         $(".modify-error-txt:eq(1)").removeClass("blind");
                         $(".modify-error-txt:eq(1)").text("현재 비밀번호와 다른 비밀번호를 사용하세요.");
                     }else{
                         $(".modify-error-txt:eq(1)").addClass("blind");
+
+                        if($("#modify-pw-renew").val().trim().length > 0){
+                            if($(this).val().trim() != $("#modify-pw-renew").val().trim()){
+                                $(".modify-error-txt:eq(2)").removeClass("blind");
+                                $(".modify-error-txt:eq(2)").text("위 비밀번호와 일치하지않습니다.");
+                            }else{
+                                $(".modify-error-txt:eq(2)").addClass("blind");
+                            }
+                        }
                     }
                 }
             }
