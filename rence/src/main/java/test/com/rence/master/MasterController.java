@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import test.com.rence.backoffice.BackOfficeVO;
+import test.com.rence.sendemail.EmailVO;
 import test.com.rence.sendemail.MasterSendEmail;
 
 @Controller
@@ -94,5 +95,35 @@ public class MasterController {
 		
 		return "master/login"; 
 	}
+	
+	/**
+	 * 비밀번호 초기화(찾기), 이메일로 전송
+	 */
+//	@RequestMapping(value = "/backoffice_reset_pw", method = RequestMethod.GET)
+//	@ResponseBody
+//	public JSONObject backoffice_reset_pw(BackOfficeVO bvo, EmailVO evo) {
+//		logger.info("backoffice_reset_pw ()...");
+//		logger.info("{}", bvo);
+//		
+//		JSONObject jsonObject = new JSONObject();
+//		
+//		BackOfficeVO bvo2 = service.backoffice_id_email_select(bvo);
+//		
+//		if(bvo2!=null) {
+//			bvo2 = authSendEmail.findPw(bvo2,evo);
+//			
+//			if (bvo2 !=null) {
+//				logger.info("successed...");
+//				jsonObject.put("result", "1");
+//				
+//			}else {
+//				logger.info("failed...");
+//				jsonObject.put("result", "0");
+//			}
+//		}
+//		
+//		return jsonObject;
+//	}
+//	
 
 }

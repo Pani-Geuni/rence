@@ -12,6 +12,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,28 +65,21 @@ public class BackOfficeSendEmail {
 	//////////////////////////////
 	public BackOfficeVO findPw(BackOfficeVO vo, EmailVO evo) {
 		
-//		BackOfficeSendEmail aesUtil = new BackOfficeSendEmail();
-
-		String originText = vo.getBackoffice_no();
-
-//		String encText = aes.encryptAES("0123456789abcdefghij0123456789ab", originText, false);
-//        System.out.println("encText (encodeBase64) : " + encText);
-
-		String encText = aes.encryptAES("0123456789abcdefghij0123456789ab", originText, true);
-		logger.info("encText (encodeBase64URLSafeString) : " + encText);
-
 		// 이메일 제목, 내용 설정
-		evo.setSubject("[rence] 비밀번호 재설정");
-		evo.setContent("아래의 링크에 접속하여 비밀번호를 재설정 해주시길 바랍니다.");
+		evo.setSubject("[rence] 임시 비밀번호 발급");
+		
+		String temp_pw = RandomStringUtils.randomAlphanumeric(6);
+		
+//		String enc_pw = aes.encryptAES("0123456789abcdefghij0123456789ab", temp_pw, true);
+//		logger.info("encText (encodeBase64URLSafeString) : " + enc_pw);
+//		vo.setBackoffice_pw(enc_pw);
+		vo.setBackoffice_pw(temp_pw);
 
-		// 비밀번호 재설정
 
 		try {
-			// 전송
 			MimeMessage msg = javaMailSender.createMimeMessage();
 			msg.setSubject(evo.getSubject());
-			msg.setText("비밀번호 재설정 링크 : " + "http://localhost:8090/rence/backoffice_update_pw?backoffice_no="
-					+ encText);
+			msg.setText("임시 비밀번호 : " + temp_pw);
 			msg.setRecipient(RecipientType.TO, new InternetAddress(vo.getBackoffice_email()));
 
 			javaMailSender.send(msg);
