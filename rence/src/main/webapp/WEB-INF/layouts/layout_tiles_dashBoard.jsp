@@ -18,6 +18,7 @@
 	<link rel="stylesheet" href="${path}/resources/CSS/dash-board.css" />
 	<link rel="stylesheet" href="${path}/resources/CSS/dash-space-list.css" />
 	<link rel="stylesheet" href="${path}/resources/CSS/dash-qna-list.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/dash-review-list.css" />
 	<link rel="stylesheet" href="${path}/resources/CSS/custom-table.css" />
 	
 	<script src="${path}/resources/JS/jquery-3.6.1.min.js"></script>

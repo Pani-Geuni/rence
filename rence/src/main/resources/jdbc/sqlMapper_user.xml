@@ -7,9 +7,9 @@
 	<insert id="SQL_INSERT"
 		parameterType="test.com.rence.user.UserVO">
 		insert into
-		userinfo(user_no,auth_no,user_id,user_pw,user_name,user_email,user_tel,user_birth,user_state)
-		values('U'||SEQ_TEST_sUSER.nextval,#{auth_no},
-		#{user_id},#{user_pw},#{user_name},{user_email},#{user_tel},TO_DATE('#{user_birth}','YYYYMMDD'),Y)
+		userinfo(user_no,user_id,user_pw,user_name,user_email,user_tel,user_birth,user_state,auth_no)
+		values('U'||seq_user.nextval,
+		#{user_id},#{user_pw},#{user_name},#{user_email},#{user_tel},#{user_birth},'Y','A1001')
 	</insert>
 	<!-- TO_DATE('#{user_birth}','YYYYMMDD') -->
 

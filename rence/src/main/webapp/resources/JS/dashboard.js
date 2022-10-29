@@ -29,6 +29,8 @@ $(function() {
 		$('#mini-nav-list').addClass('active');
 	} else if ($(location).attr('pathname') === '/rence/backoffice_qna') {
 		$('#mini-nav-qna').addClass('active');
+	} else if ($(location).attr('pathname') === '/rence/backoffice_review') {
+		$('#mini-nav-review').addClass('active');
 	}
 	
 	$('#mini-nav-list').click(function() {
@@ -37,5 +39,9 @@ $(function() {
 	
 	$('#mini-nav-qna').click(function() {
 		location.href="/rence/backoffice_qna";
+	})
+	
+	$('#mini-nav-review').click(function() {
+		location.href="/rence/backoffice_review";
 	})
 })

@@ -14,8 +14,8 @@ public class UserVO implements Serializable{
 	private String user_name; //실명
 	private String user_email; //이메일
 	private String user_tel; //전화번호
-	@DateTimeFormat(pattern ="yyyyMMdd")
-	private Date user_birth; //생년월일
+//	@DateTimeFormat(pattern ="yyyyMMdd")
+	private String user_birth; //생년월일
 	private String user_state; //회원상태
 	private String auth_no; // 인증고유번호
 	private  MultipartFile multipartFile; //사진저장
@@ -23,24 +23,6 @@ public class UserVO implements Serializable{
 	
 	public UserVO() {
 		// TODO Auto-generated constructor stub
-	}
-
-
-	public UserVO(String user_no, String user_image, String user_id, String user_pw, String user_name,
-			String user_email, String user_tel, Date user_birth, String user_state, String auth_no,
-			MultipartFile multipartFile) {
-		super();
-		this.user_no = user_no;
-		this.user_image = user_image;
-		this.user_id = user_id;
-		this.user_pw = user_pw;
-		this.user_name = user_name;
-		this.user_email = user_email;
-		this.user_tel = user_tel;
-		this.user_birth = user_birth;
-		this.user_state = user_state;
-		this.auth_no = auth_no;
-		this.multipartFile = multipartFile;
 	}
 
 
@@ -114,12 +96,12 @@ public class UserVO implements Serializable{
 	}
 
 
-	public Date getUser_birth() {
+	public String getUser_birth() {
 		return user_birth;
 	}
 
 
-	public void setUser_birth(Date user_birth) {
+	public void setUser_birth(String user_birth) {
 		this.user_birth = user_birth;
 	}
 
@@ -153,8 +135,6 @@ public class UserVO implements Serializable{
 		this.multipartFile = multipartFile;
 	}
 
-
-	
 
 	@Override
 	public int hashCode() {
@@ -242,6 +222,7 @@ public class UserVO implements Serializable{
 		return true;
 	}
 
+
 	@Override
 	public String toString() {
 		return "UserVO [user_no=" + user_no + ", user_image=" + user_image + ", user_id=" + user_id + ", user_pw="
@@ -249,5 +230,8 @@ public class UserVO implements Serializable{
 				+ ", user_birth=" + user_birth + ", user_state=" + user_state + ", auth_no=" + auth_no
 				+ ", multipartFile=" + multipartFile + "]";
 	}
+
+
+	
 
 }
