@@ -34,4 +34,9 @@ public class DashBoardController {
 	public String dashboard_qna() {
 		return ".dash_board/qna_list";
 	}
+	
+	@RequestMapping(value = "/backoffice_review", method = RequestMethod.GET)
+	public String dashboard_review() {
+		return ".dash_board/review_list";
+	}
 }
