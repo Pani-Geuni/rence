@@ -67,7 +67,7 @@ public class MypageController {
 	/**
 	 * 마이페이지 - 비밀번호 수정
 	 */
-	@RequestMapping(value = "/user_pw_upddateOK", method = RequestMethod.POST)
+	@RequestMapping(value = "/user_pw_updateOK", method = RequestMethod.POST)
 	public JSONObject user_pw_upddateOK(UserVO uvo) {
 		logger.info("user_pw_upddateOK()...");
 		logger.info("result: {}", uvo);
@@ -161,9 +161,5 @@ public class MypageController {
 		}
 		return jsonObject;
 	}
-	
-	
-	
-	
 
 }

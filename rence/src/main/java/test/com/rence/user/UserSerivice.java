@@ -69,7 +69,7 @@ public class UserSerivice {
 		return dao.check_now_pw(uvo);
 	}
 	
-	public int user_pw_delete(UserVO uvo) {
+	public int user_pw_updateOK(UserVO uvo) {
 		logger.info("user_pw_updateOK().....");
 		return dao.user_pw_updateOK(uvo);
 	}
