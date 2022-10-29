@@ -19,6 +19,14 @@ $(function(){
     $("#go-user-home").click(function(){
     	location.href="/rence/";
     });
+    
+    $("#go-backOffice").click(function() {
+    	location.href="/rence/backoffice_insert";
+    });
+    
+    $(".btn-apply-hosting").click(function() {
+    	location.href="/rence/backoffice_insert";
+    });
 
     $("#go-myPage").click(function(){
         $("#after_login>.custom-select-host").addClass("blind");

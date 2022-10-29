@@ -17,11 +17,16 @@
 	<link rel="stylesheet" href="${path}/resources/CSS/footer.css" />
 	
 	<link rel="stylesheet" href="${path}/resources/CSS/host-landing.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/host-insert.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/custom-timepicker.css" />
 	
 	<script src="${path}/resources/JS/jquery-3.6.1.min.js"></script>
 	<script src="${path}/resources/JS/host_header.js"></script>
 	<script src="${path}/resources/JS/host_popup.js"></script>
+	<script src="${path}/resources/JS/host_insert.js"></script>
 
+	<!-- timepicker library script -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
 
 </head>
 <body>

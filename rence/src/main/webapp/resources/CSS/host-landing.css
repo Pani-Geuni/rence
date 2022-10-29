@@ -39,11 +39,13 @@
   cursor: pointer;
 }
 
-.btn-start-hosting a {
+.btn-start-hosting p {
   color: #ffffff;
 
   font-size: 20px;
   font-weight: 700;
+  
+  margin: 0;
 }
 
 /* ********************* */
@@ -74,11 +76,15 @@
 
   border: none;
   border-radius: 8px;
+  
+  cursor: pointer;
 }
 
-.btn-apply-hosting a {
+.btn-apply-hosting p {	
   color: #ffffff;
 
   font-size: 20px;
   font-weight: 700;
+  
+  margin: 0;
 }
