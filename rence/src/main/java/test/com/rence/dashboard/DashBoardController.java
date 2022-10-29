@@ -37,6 +37,6 @@ public class DashBoardController {
 	
 	@RequestMapping(value = "/backoffice_review", method = RequestMethod.GET)
 	public String dashboard_review() {
-		return ".dash_board/qna_review";
+		return ".dash_board/review_list";
 	}
 }
