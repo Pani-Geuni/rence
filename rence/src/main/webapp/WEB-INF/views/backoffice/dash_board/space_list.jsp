@@ -6,9 +6,9 @@
 	<h1>공간 관리</h1>
 	<button id="btn-room-add" class="btn-room-add">추가</button>
 	<ul class="mini-nav">
-		<li><p class="nav-item active" id="room-list">리스트</p></li>
-		<li><p class="nav-item" id="qna-list">문의</p></li>
-		<li><p class="nav-item" id="review-list">후기</p></li>
+		<li><p id="mini-nav-list" class="nav-item" id="room-list">리스트</p></li>
+		<li><p id="mini-nav-qna" class="nav-item" id="qna-list">문의</p></li>
+		<li><p id="mini-nav-review" class="nav-item" id="review-list">후기</p></li>
 	</ul>
 	<!-- END mini-nav -->
 </div>
