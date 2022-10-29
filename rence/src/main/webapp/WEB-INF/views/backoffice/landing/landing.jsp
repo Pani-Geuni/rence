@@ -7,7 +7,7 @@
 	<div class="start-hosting">
 		<h1 class="title-start-hosting">나의 공간을 공개해 볼까요?</h1>
 		<button class="btn-start-hosting">
-			<a href="">호스팅 시작하기</a>
+			<p>호스팅 시작하기</p>
 		</button>
 	</div>
 
@@ -16,7 +16,7 @@
 			공간 공유 플랫폼, <br />Rence에서 시작하세요
 		</h1>
 		<button class="btn-apply-hosting">
-			<a href="">호스트 신청하기</a>
+			<p>호스트 신청하기</p>
 		</button>
 	</div>
 </section>
