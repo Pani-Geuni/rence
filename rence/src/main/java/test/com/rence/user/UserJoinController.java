@@ -51,10 +51,7 @@ public class UserJoinController {
 				new CustomDateEditor(dateFormat, true));
 	}
 	
-	
-	
-	
-	
+
 	
 	/**
 	 * 이메일 인증번호 요청
@@ -117,7 +114,7 @@ public class UserJoinController {
 
 	    if(avo != null){
 	    	logger.info("successed...");
-	    	service.user_auth_delete(user_email, email_code);
+    	service.user_auth_delete(user_email, email_code);
 	    	jsonObject.put("result", "1");
 	    }else{
 	    	logger.info("failed...");
@@ -160,23 +157,32 @@ public class UserJoinController {
 
 	// 회원가압완료
 	@RequestMapping(value = "/joinOK", method = RequestMethod.POST)
-	public String user_joinOK(UserVO uvo) {
+	@ResponseBody
+	public JSONObject user_joinOK(UserVO uvo) {
 		logger.info("Welcome! user_joinOK");
 		logger.info("result: {}", uvo);
 
-//		// 사진(파일)업로드
+//		// 사진(파일)업로드 회원가입 할때는 사진 업로드 안함
 //		uvo = fileuploadService.FileuploadOK(uvo);
 //		logger.info("fileresult: {}", uvo);
 
+		
+		JSONObject jsonObject = new JSONObject();
 		// insert(성공시 1)
 		int result = service.user_insertOK(uvo);
 		logger.info("result: {}", result);
 		
 		//회원가입 실패시
 		if(result==0) {
-			return "redirect:/user_join"; //회원가입실패
+			//회원가입실패
+			jsonObject.put("result", "0"); 
+			
 		}
-		return "redirect:/"; // 회원가입후 로그인을 위한 홈화면 이동
+		else {
+			jsonObject.put("result", "1"); 
+		}
+//		return "redirect:/"; // 회원가입후 로그인을 위한 홈화면 이동
+		return jsonObject;
 	}
 
 }// end class
