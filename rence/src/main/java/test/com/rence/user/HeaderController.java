@@ -6,11 +6,6 @@
 
 package test.com.rence.user;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Formatter;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
@@ -39,8 +34,8 @@ public class HeaderController {
 		logger.info("go_my_page()...");
 		
 //		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
-		SimpleDateFormat  simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		simpleDateFormat = new SimpleDateFormat("yyyy년MM월dd일");
+//		SimpleDateFormat  simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//		simpleDateFormat = new SimpleDateFormat("yyyy년MM월dd일");
 		// 원하는 데이터 포맷 지정
 		
 
@@ -58,27 +53,12 @@ public class HeaderController {
 
 		UserMypageVO umvo = service.user_mypage_select(uvo);
 		
-		String birth = simpleDateFormat.format(umvo.getUser_birth());
-		logger.info("{}",birth);
-	
-		 
-		try {
-			Date birth2 = simpleDateFormat.parse(birth);
-			logger.info("{}",birth2);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 
 		
 		
 		logger.info("result umvo: {}",umvo);
 		
 		
-		
-	
-//		model.addAttribute("umvo.user_birth", birth);
 		model.addAttribute("umvo", umvo);
 
 		return ".my_page/my_page";

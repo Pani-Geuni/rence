@@ -26,8 +26,7 @@ public class UserLoginInterceptor extends HandlerInterceptorAdapter {
 
 		//221027기준 유저의 기본적인 페이지 servlet 기입한 상태임. 
 		//추후 예약페이지나 기타페이지를 controller에서 구현후 추가 기입이 필요함 (추후 완료시 주석 제거하기!!!)
-		if (sPath.equals("/go_my_page") || sPath.equals("/user_insert") || sPath.equals("/user_insertOK") 
-			|| sPath.equals("/user_img_update") || sPath.equals("/user_img_updateOK") || sPath.equals("/selectOne")
+		if (sPath.equals("/go_my_page") ||sPath.equals("/selectOne")
 			|| sPath.equals("/user_delete.do") || sPath.equals("/user_deleteOK.do")){
 			//로그인이 되지 않으면 로그인 페이지로 이동
 			if (user_id == null) {

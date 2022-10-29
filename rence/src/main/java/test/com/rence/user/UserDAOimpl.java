@@ -72,6 +72,7 @@ public class UserDAOimpl implements UserDAO {
 			logger.info("{}", email_code);
 
 			AuthVO avo2 = sqlSession.selectOne("SQL_SELECT_USER_AUTHOK",email_code);
+			logger.info("avo2(impl): {}", avo2);
 			
 			return avo2;
 		}
