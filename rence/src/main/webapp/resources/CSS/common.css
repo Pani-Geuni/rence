@@ -64,7 +64,7 @@ input[type=button]{
 /*  CUSTOM ALERT POPUP SECTION */
 /* ************* */
 .alert-popup{
-    width: 260px;
+    width: 290px;
     height: 160px;
     background-color: #ffffff;
     border-radius: 5px;
@@ -75,7 +75,7 @@ input[type=button]{
 }
 .alert-txt-section{
     height: 80%;
-    font-size: 15px;
+    font-size: 13.8px;
     display: flex;
     justify-content: center;
     align-items: center;

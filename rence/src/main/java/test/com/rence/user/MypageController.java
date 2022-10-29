@@ -8,6 +8,8 @@
 
 package test.com.rence.user;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +29,9 @@ public class MypageController {
 	
 	@Autowired
 	UserFileuploadService fileuploadService;
+	
+	@Autowired
+	HttpSession session;
 	
 	
 	/**
@@ -158,6 +163,7 @@ public class MypageController {
 		int result = service.user_secedeOK(uvo);
 		logger.info("result: {}", uvo);
 		if (result == 1) {
+			session.invalidate();
 			logger.info("user_secede successed...");
 			jsonObject.put("result", "1");
 		} else {
