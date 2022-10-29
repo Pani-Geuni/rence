@@ -7,6 +7,9 @@ $(function(){
     /*********************************/ 
     // 공용 알러트 창 닫기버튼
     $("#common-alert-btn").click(function(){
+        if($(".common-alert-txt").text() == "회원탈퇴되었습니다."){
+            location.href = "/rence/";
+        }
         $(".popup-background:eq(1)").addClass("blind");
         $("#common-alert-popup").addClass("blind");
     });
@@ -81,6 +84,16 @@ $(function(){
             $(this).removeClass("null-input-border");
         }
     });
+    $(".modify-popup-input-short").click(function(){
+        if($(this).hasClass("null-input-border")){
+            $(this).removeClass("null-input-border");
+        }
+    });
+
+    // 비밀번호 일치하는지 확인하기 버튼
+    $("#check-now-pw").click(function(){
+
+    });
 
     // 수정하기 버튼
     $("#modify-btn").click(function(){
@@ -88,7 +101,9 @@ $(function(){
             if( $(".modify-error-txt:eq(0)").hasClass("blind") 
                 && $(".modify-error-txt:eq(1)").hasClass("blind")
                 && $(".modify-error-txt:eq(2)").hasClass("blind")
-                && !$(".modify-popup-input").hasClass("null-input-border")){
+                && !$(".modify-popup-input-short").hasClass("null-input-border")
+                && !$(".modify-popup-input:eq(0)").hasClass("null-input-border")
+                && !$(".modify-popup-input:eq(1)").hasClass("null-input-border")){
                 // 수정 로직 처리
                 $.ajax({
                     url : "/rence/user_pw_updateOK",
@@ -103,12 +118,11 @@ $(function(){
                         if(res.result == 1){
                             //INPUT 초기화
                             $(".modify-popup-input").val("");
-
-                            // 팝업 관련창 닫음
-                            $("#modify-pw-section").addClass("blind");
-                            $(".popup-background:eq(0)").addClass("blind");
-
-                            $.cookie("user_pw", windows.btoa($("#modify-pw-renew").val().trim()))
+                            $(".modify-popup-input-short").val("");
+                            
+                            // 경고 테두리 초기화
+                            $(".modify-popup-input-short").removeClass("null-input-border");
+                            $(".modify-popup-input").removeClass("null-input-border");
 
                             // 성공 알림창
                             $(".popup-background:eq(1)").removeClass("blind");
@@ -145,8 +159,10 @@ $(function(){
     $("#modify-close-btn").click(function(){
         //INPUT 초기화
         $(".modify-popup-input").val("");
-
+        $(".modify-popup-input-short").val("");
+        
         // 경고 테두리 초기화
+        $(".modify-popup-input-short").removeClass("null-input-border");
         $(".modify-popup-input").removeClass("null-input-border");
 
         // 에러 메세지 초기화
@@ -160,44 +176,36 @@ $(function(){
 
     // 인풋 조건들 확인
     $(".modify-popup-input").on('keydown keyup', function(){
-        // 현재 비밀번호 일치하는지 확인
-        if($(this).attr("id")=="modify-pw-now"){
-            // if($(this).val() != windows.atob($.cookie("user_pw"))){
-
-            if($(this).val().trim() != "1234"){
-                $(".modify-error-txt:eq(0)").removeClass("blind");
-                $(".modify-error-txt:eq(0)").text("현재 비밀번호와 일치하지않습니다.");
-            }else{
-                $(".modify-error-txt:eq(0)").addClass("blind");
-            }
-        }
-        else if($(this).attr("id")=="modify-pw-new"){
-            console.log("modify-pw-new");
-            // 새 비밀번호가 비밀번호 생성 조건에 맞는지
-            var password = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,10}$/;
-            if(!password.test($(this).val().trim())){
-                $(".modify-error-txt:eq(1)").removeClass("blind");
-                $(".modify-error-txt:eq(1)").text("비밀번호 조건과 일치하지않습니다.");
-            }else{
-                // 새 비밀번호가 현재 비밀번호와 다른지
-                // if($(this).val().trim() == windows.atob($.cookie("user_pw"))){
-                if($(this).val().trim() == "1234567d%"){
+        if($("#check-now-pw").prop("check")){
+            if($(this).attr("id")=="modify-pw-new"){
+                // 새 비밀번호가 비밀번호 생성 조건에 맞는지
+                var password = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,10}$/;
+                if(!password.test($(this).val().trim())){
                     $(".modify-error-txt:eq(1)").removeClass("blind");
-                    $(".modify-error-txt:eq(1)").text("현재 비밀번호와 일치합니다.");
+                    $(".modify-error-txt:eq(1)").text("비밀번호 조건과 일치하지않습니다.");
                 }else{
-                    $(".modify-error-txt:eq(1)").addClass("blind");
+                    // 새 비밀번호가 현재 비밀번호와 다른지
+                    if($(this).val().trim() == $("#modify-pw-now").val.trim()){
+                        $(".modify-error-txt:eq(1)").removeClass("blind");
+                        $(".modify-error-txt:eq(1)").text("현재 비밀번호와 다른 비밀번호를 사용하세요.");
+                    }else{
+                        $(".modify-error-txt:eq(1)").addClass("blind");
+                    }
                 }
             }
-            
-        }
-        else if($(this).attr("id")=="modify-pw-renew"){
-            console.log("modify-pw-renew");
-            if($(this).val().trim() != $("#modify-pw-new").val().trim()){
-                $(".modify-error-txt:eq(2)").removeClass("blind");
-                $(".modify-error-txt:eq(2)").text("위 비밀번호와 일치하지않습니다.");
-            }else{
-                $(".modify-error-txt:eq(2)").addClass("blind");
+            else if($(this).attr("id")=="modify-pw-renew"){
+                if($(this).val().trim() != $("#modify-pw-new").val().trim()){
+                    $(".modify-error-txt:eq(2)").removeClass("blind");
+                    $(".modify-error-txt:eq(2)").text("위 비밀번호와 일치하지않습니다.");
+                }else{
+                    $(".modify-error-txt:eq(2)").addClass("blind");
+                }
             }
+        }
+        else{
+            $(".modify-popup-input").val("");
+            $(".modify-error-txt:eq(1)").removeClass("blind");
+            $(".modify-error-txt:eq(1)").text("현재 비밀번호 먼저 확인해주세요.");
         }
     });
 
@@ -216,38 +224,31 @@ $(function(){
     $("#user-delete").click(function(){
         //AJAX
         $.ajax({
-            url:"",
+            url:"/rence/secedeOK",
             type : "POST",
             dataType : 'json',
             data : {
                 user_no : $.cookie("user_no")
             },
             success : function(res) {
-                console.log(res);
                 // 회원탈퇴 성공
                 if(res.result == 1){
                     // 성공 알림창
                     $(".popup-background:eq(1)").removeClass("blind");
                     $("#common-alert-popup").removeClass("blind");
                     $(".common-alert-txt").text("회원탈퇴되었습니다.");
-
-                    location.href = "/rence/";
                 }else{
                     $(".popup-background:eq(1)").removeClass("blind");
                     $("#common-alert-popup").removeClass("blind");
-                    $(".common-alert-txt").text("예상치못한 오류로 비밀번호 변경에 실패하였습니다.");
+                    $(".common-alert-txt").text("예상치못한 오류로 회원탈퇴에 실패하였습니다.");
                 }
             },
-            error : function(res) {
+            error : function(error) {
                 console.log(error);
                 $(".popup-background:eq(1)").removeClass("blind");
                 $("#common-alert-popup").removeClass("blind");
                 $(".common-alert-txt").text("오류 발생으로 인해 처리에 실패하였습니다.");
             }            
-        })
-        
-        // 팝업창 닫음
-        $(".popup-background:eq(0)").addClass("blind");
-        $("#user-delete-confirm-popup").addClass("blind");
+        });
     });
 });
