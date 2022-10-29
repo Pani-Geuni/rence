@@ -1,8 +1,9 @@
 package test.com.rence.user;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 public class UserVO implements Serializable{
@@ -13,6 +14,7 @@ public class UserVO implements Serializable{
 	private String user_name; //실명
 	private String user_email; //이메일
 	private String user_tel; //전화번호
+	@DateTimeFormat(pattern ="yyyyMMdd")
 	private Date user_birth; //생년월일
 	private String user_state; //회원상태
 	private String auth_no; // 인증고유번호
@@ -42,7 +44,6 @@ public class UserVO implements Serializable{
 	}
 
 
-	//게터&세터
 	public String getUser_no() {
 		return user_no;
 	}
@@ -249,13 +250,6 @@ public class UserVO implements Serializable{
 	}
 
 
-	
-	
-	
-	
-
-	
-	
 	
 	
 

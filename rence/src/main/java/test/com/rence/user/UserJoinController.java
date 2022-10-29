@@ -5,13 +5,21 @@
 
 package test.com.rence.user;
 
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.ServletContext;
 
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,6 +27,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import test.com.rence.sendemail.AuthVO;
 import test.com.rence.sendemail.EmailVO;
 import test.com.rence.sendemail.UserSendEmail;
+
+
 
 
 @Controller
@@ -33,6 +43,13 @@ public class UserJoinController {
 	ServletContext context;
 	@Autowired
 	UserSendEmail authSendEmail;
+	
+	@InitBinder
+	protected void initBinder(WebDataBinder binder) {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		binder.registerCustomEditor(Date.class, 
+				new CustomDateEditor(dateFormat, true));
+	}
 	
 	
 	
@@ -89,7 +106,7 @@ public class UserJoinController {
 	/**
 	 * 이메일 인증번호 확인
 	 */
-	@RequestMapping(value = "/user_authOK", method = RequestMethod.GET)
+	@RequestMapping(value = "/user_authOK", method = RequestMethod.POST)
 	@ResponseBody
 	public JSONObject user_authOK(String email_code) {
 		
@@ -97,7 +114,7 @@ public class UserJoinController {
 		logger.info("{}", email_code);
 		 
 		AuthVO avo = service.user_authOK_select(email_code);
-
+		logger.info("avo: {}", avo);
 		JSONObject jsonObject = new JSONObject();
 
 	    if(avo != null){
@@ -149,9 +166,9 @@ public class UserJoinController {
 		logger.info("Welcome! user_joinOK");
 		logger.info("result: {}", uvo);
 
-		// 사진(파일)업로드
-		uvo = fileuploadService.FileuploadOK(uvo);
-		logger.info("fileresult: {}", uvo);
+//		// 사진(파일)업로드
+//		uvo = fileuploadService.FileuploadOK(uvo);
+//		logger.info("fileresult: {}", uvo);
 
 		// insert(성공시 1)
 		int result = service.user_insertOK(uvo);
@@ -159,9 +176,9 @@ public class UserJoinController {
 		
 		//회원가입 실패시
 		if(result==0) {
-			return "redirect:/user_join"; //회원가입ㅅ
+			return "redirect:/user_join"; //회원가입실패
 		}
-		return "redirect:/join"; // 회원가입후 로그인을 위한 홈화면 이동
+		return "redirect:/"; // 회원가입후 로그인을 위한 홈화면 이동
 	}
 
 }// end class

@@ -7,7 +7,7 @@
 
 package test.com.rence.user;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class UserMypageVO {
 	
