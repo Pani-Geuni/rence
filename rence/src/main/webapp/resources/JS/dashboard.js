@@ -17,13 +17,15 @@ $(function() {
 		// backoffice_reserve 일 때
 		$('#menu-reserve').addClass('active');
 
-	} else if ($(location).attr('pathname') === '/rence/backoffice_day_sales' || '/rence/backoffice_week_sales' || '/rence/backoffice_month_sales') {
+	} else if ($(location).attr('pathname') === ('/rence/backoffice_day_sales' || '/rence/backoffice_week_sales' || '/rence/backoffice_month_sales')) {
 		// backoffice_day_sales, backoffice_week_sales, backoffice_month_sales 일 때
 		console.log('fuck')
 		console.log($(location).attr('pathname'))
 		$('#menu-sales').addClass('active');
 		
-	} 
+	} else if ($(location).attr('pathname') === '/rence/backoffice_settings') {
+		$('#menu-settings').addClass('active');
+	}
 	
 	$('#menu-home').click(function() {
 		location.href="/rence/backoffice_home";
@@ -39,6 +41,10 @@ $(function() {
 	
 	$('#menu-sales').click(function() {
 		location.href="/rence/backoffice_day_sales";
+	})
+	
+	$('#menu-settings').click(function() {
+		location.href="/rence/backoffice_settings";
 	})
 	
 	

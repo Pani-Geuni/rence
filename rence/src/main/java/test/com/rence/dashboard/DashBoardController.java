@@ -59,4 +59,10 @@ public class DashBoardController {
 	public String dashboard_sales_month() {
 		return ".dash_board/sales_month";
 	}
+	
+	@RequestMapping(value = "/backoffice_settings", method = RequestMethod.GET)
+	public String dashboard_settings() {
+		return ".dash_board/setting";
+	}
+	
 }
