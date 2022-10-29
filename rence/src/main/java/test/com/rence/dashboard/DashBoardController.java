@@ -20,14 +20,14 @@ public class DashBoardController {
 	ServletContext context;
 	
 	
-	@RequestMapping(value = "/backoffice_home", method = RequestMethod.GET)
+	@RequestMapping(value = "/backoffice_main", method = RequestMethod.GET)
 	public String dashboard_main() {
-		return ".dash_board/home";
+		return ".dash_board/main";
 	}
 	
-	@RequestMapping(value = "/backoffice_list", method = RequestMethod.GET)
+	@RequestMapping(value = "/backoffice_room", method = RequestMethod.GET)
 	public String dashboard_list() {
-		return ".dash_board/space_list";
+		return ".dash_board/room";
 	}
 	
 	@RequestMapping(value = "/backoffice_qna", method = RequestMethod.GET)
@@ -39,4 +39,30 @@ public class DashBoardController {
 	public String dashboard_review() {
 		return ".dash_board/review_list";
 	}
+	
+	@RequestMapping(value = "/backoffice_reserve", method = RequestMethod.GET)
+	public String dashboard_reserve() {
+		return ".dash_board/reserve_list";
+	}
+	
+	@RequestMapping(value = "/backoffice_day_sales", method = RequestMethod.GET)
+	public String dashboard_sales_day() {
+		return ".dash_board/sales_day";
+	}
+	
+	@RequestMapping(value = "/backoffice_week_sales", method = RequestMethod.GET)
+	public String dashboard_sales_week() {
+		return ".dash_board/sales_week";
+	}
+	
+	@RequestMapping(value = "/backoffice_month_sales", method = RequestMethod.GET)
+	public String dashboard_sales_month() {
+		return ".dash_board/sales_month";
+	}
+	
+	@RequestMapping(value = "/backoffice_settings", method = RequestMethod.GET)
+	public String dashboard_settings() {
+		return ".dash_board/setting";
+	}
+	
 }

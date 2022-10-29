@@ -25,7 +25,7 @@ $(function(){
     });
     
     $(".btn-start-hosting").click(function() {
-    	location.href="/rence/backoffice_home";
+    	location.href="/rence/backoffice_main";
     });
     
     $(".btn-apply-hosting").click(function() {

@@ -19,6 +19,9 @@
 	<link rel="stylesheet" href="${path}/resources/CSS/dash-space-list.css" />
 	<link rel="stylesheet" href="${path}/resources/CSS/dash-qna-list.css" />
 	<link rel="stylesheet" href="${path}/resources/CSS/dash-review-list.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/dash-reserve-list.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/dash-sales-list.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/dash-settings.css" />
 	<link rel="stylesheet" href="${path}/resources/CSS/custom-table.css" />
 	
 	<script src="${path}/resources/JS/jquery-3.6.1.min.js"></script>
@@ -212,6 +215,26 @@
         </div>
       </div>
       <!-- END popup-background blind -->
+      
+      <div id="popup-update-pw" class="blind">
+        <div class="titleSection">
+          <h3>현재 비밀번호를 입력해 주세요</h3>
+        </div>
+
+        <div>
+          <input
+            class="input-check-pw"
+            type="password"
+            placeholder="현재 비밀번호를 입력해 주세요."
+          />
+        </div>
+
+        <div class="btn-popup-group">
+          <button id="btn-popup-confirm">확인</button>
+          <button id="btn-popup-close">닫기</button>
+        </div>
+      </div>
+      <!-- END popup-update-pw -->
     </div>
     <!-- END popup-background blind -->
 </body>

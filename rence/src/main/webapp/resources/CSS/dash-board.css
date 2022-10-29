@@ -27,7 +27,6 @@
 
 .titleSection.sales {
   justify-content: space-between;
-  padding-bottom: 0;
 }
 
 .titleSection.settings {
@@ -64,11 +63,13 @@
   cursor: pointer;
 }
 
-.mini-nav {
+.mini-nav,
+.sales-mini-nav {
   display: flex;
 }
 
-.mini-nav li:not(:last-child) {
+.mini-nav li:not(:last-child),
+.sales-mini-nav li:not(:last-child) {
   margin: 0 8px 0 0;
 }
 
