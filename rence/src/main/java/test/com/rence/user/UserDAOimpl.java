@@ -69,11 +69,13 @@ public class UserDAOimpl implements UserDAO {
 	
 	// 회원가입 - 인증번호 확인 완료 시 테이블에서 삭제
 	@Override
-	public int user_auth_delete(AuthVO avo) {
+	public int user_auth_delete(String user_email, String email_code) {
 		logger.info("user_auth_delete()...");
-		logger.info("{}", avo);
 		
-		int result = sqlSession.delete("SQL_AUTH_DELETE", avo);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("user_email", user_email);
+		map.put("email_code", email_code);
+		int result = sqlSession.delete("SQL_AUTH_DELETE", map);
 		
 		return result;
 	}
