@@ -64,6 +64,11 @@ public class UserSerivice {
 	}
 
 
+	public int check_now_pw(UserVO uvo) {
+		logger.info("check_now_pw().....");
+		return dao.check_now_pw(uvo);
+	}
+	
 	public int user_pw_updateOK(UserVO uvo) {
 		logger.info("user_pw_updateOK().....");
 		return dao.user_pw_updateOK(uvo);
@@ -89,10 +94,15 @@ public class UserSerivice {
 		logger.info("user_auth_insert().....");
 		return dao.user_auth_insert(avo);
 	}
+	
+	public int user_auth_delete(AuthVO avo) {
+		logger.info("user_auth_delete().....");
+		return dao.user_auth_delete(avo);
+	}
 
-	public AuthVO user_authOK_select(String email_code) {
+	public AuthVO user_authOK_select(String user_email, String email_code) {
 		logger.info("user_authOK_select().....");
-		return dao.user_authOK_select(email_code);
+		return dao.user_authOK_select(user_email, email_code);
 	}
 	
 	
