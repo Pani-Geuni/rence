@@ -4,10 +4,10 @@
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
        
 <tiles-definitions>
-  <definition name=".backoffice_landing" template="/WEB-INF/layouts/layout_tiles_landing.jsp">
+  <definition name=".landing/*" template="/WEB-INF/layouts/layout_tiles_landing.jsp">
     <put-attribute name="title" value="RENCE 호스팅" /> <!--  title 글자 세팅 -->
     <put-attribute name="header" value="/WEB-INF/layouts/host_header.jsp" />
-    <put-attribute name="content" value="/WEB-INF/views/backoffice/landing/landing.jsp" />
+    <put-attribute name="content" value="/WEB-INF/views/backoffice/landing/{1}.jsp" />
     <put-attribute name="footer" value="/WEB-INF/layouts/footer.jsp" />
   </definition>
 </tiles-definitions>

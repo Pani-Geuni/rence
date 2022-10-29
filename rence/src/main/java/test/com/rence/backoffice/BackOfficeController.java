@@ -64,7 +64,7 @@ public class BackOfficeController {
 	@RequestMapping(value = "/backoffice_landing", method = RequestMethod.GET)
 	public String backoffice_landing() {
 
-		return ".backoffice_landing";
+		return ".landing/landing";
 	}
 	
 	/**
@@ -73,7 +73,7 @@ public class BackOfficeController {
 	@RequestMapping(value = "/backoffice_insert", method = RequestMethod.GET)
 	public String backoffice_insert() {
 		
-		return "backoffice/insert";
+		return ".landing/insert";
 	}
 
 	/**
