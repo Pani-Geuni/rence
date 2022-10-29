@@ -52,7 +52,8 @@
 	<!-- and 연산자를 통해서 아이디와 이메일 모두가 존재하여야 select가 가능함 -->
 	<select id="SQL_SELECT_USER_ID_EMAIL"
 		resultType="test.com.rence.user.UserVO">
-		select * from userinfo where user_id=#{user_id} and user_email=#{user_email}
+		select * from userinfo where user_id=#{user_id} and
+		user_email=#{user_email}
 	</select>
 
 	<!-- 비밀번호 난수로 초기화 -->
@@ -64,7 +65,8 @@
 
 	<!-- 비밀번호 변경을 위한 현재 비밀번호 확인 -->
 	<select id="SQL_SELECT_PW" resultType="int">
-		select count(*) from userinfo where user_no=#{user_no} and user_pw=#{user_pw}
+		select count(*) from
+		userinfo where user_no=#{user_no} and user_pw=#{user_pw}
 	</select>
 
 	<!-- 비밀번호 수정 -->
@@ -104,9 +106,10 @@
 
 	<!-- 인증번호 확인 완료 시 테이블에서 삭제 -->
 	<delete id="SQL_AUTH_DELETE" parameterType="hashmap">
-		delete from auth where auth_code=#{email_code} and user_email=#{user_email}
+		delete from auth
+		where auth_code=#{email_code} and user_email=#{user_email}
 	</delete>
-	
+
 	<!-- 인증테이블에 사용자 이메일이 들어갔는지 체크하고 이메일 가져오는 용도 -->
 	<!-- avo2 = auth 테이블에 정보 저장 후, select -->
 	<select id="SQL_SELECT_USER_AUTH"
