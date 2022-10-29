@@ -19,18 +19,8 @@ public class UserDAOimpl implements UserDAO {
 	@Autowired
 	SqlSession sqlSession;
 
-	// 회원가입완료
-	@Override
-	public int user_insertOK(UserVO uvo) {
-		logger.info("user_insertOK().....");
-		logger.info("{}", uvo);
 
-		int flag = sqlSession.insert("SQL_INSERT", uvo);
-
-		return flag;
-	}
-
-	// 아이디 중복체크
+	// 아이디 중복체크 
 	@Override
 	public UserVO idCheckOK(UserVO uvo) {
 		logger.info("idCheckOK().....");
@@ -93,6 +83,19 @@ public class UserDAOimpl implements UserDAO {
 		logger.info("avo2(impl): {}", avo2);
 
 		return avo2;
+	}
+	
+	
+
+	// 회원가입완료
+	@Override
+	public int user_insertOK(UserVO uvo) {
+		logger.info("user_insertOK().....");
+		logger.info("{}", uvo);
+
+		int flag = sqlSession.insert("SQL_INSERT", uvo);
+
+		return flag;
 	}
 
 	// 로그인
