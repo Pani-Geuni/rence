@@ -100,7 +100,7 @@ public class UserDAOimpl implements UserDAO {
 		logger.info("{}", uvo);
 		uvo = sqlSession.selectOne("SQL_USER_LOGIN", uvo);
 
-		if (uvo.getUser_state() == "N") {
+		if (uvo.getUser_state().equals('N')) {
 			uvo = null;
 		}
 
