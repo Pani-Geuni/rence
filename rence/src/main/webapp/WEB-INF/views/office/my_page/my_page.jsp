@@ -9,7 +9,7 @@
 		<section class="profile-section">
 			<div class="profile">
 				<div class="profile-img-wrap">
-					<img src="${path}/resources/IMG/header/loopy.jpg" alt="profile-img" class="profile-img" /> 
+					<img src="${path}/resources/upload/${umvo.user_image}" alt="profile-img" class="profile-img" /> 
 					<span class="img-update-txt">프로필 사진 수정</span>
 				</div>
 				<div class="profile-info-wrap">
