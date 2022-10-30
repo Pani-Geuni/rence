@@ -1,5 +1,6 @@
 package test.com.rence.sendemail;
 
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.mail.MessagingException;
@@ -27,6 +28,8 @@ public class UserSendEmail {
 
 	// ******* 이메일 인증 *******//
 	public AuthVO sendEmail(AuthVO vo, EmailVO evo) {
+		logger.info("User sendEmail");
+		logger.info("vo: {}", vo);
 
 		// 이메일 제목, 내용 설정
 		evo.setSubject("[rence] 이메일 인증코드");
@@ -55,6 +58,8 @@ public class UserSendEmail {
 	// ******* 아이디 찾기 *******//
 
 	public UserVO findId(UserVO uvo, EmailVO evo) {
+		logger.info("User findId");
+		logger.info("uvo: {}", uvo);
 		// 이메일 제목, 내용 설정
 		evo.setSubject("[rence] User 아이디 재설정");
 //		evo.setContent("귀하의 아이디는 다음과 같습니다.");
@@ -77,12 +82,31 @@ public class UserSendEmail {
 
 	// ******* 비밀번호 찾기 *******//
 	public UserVO findPw(UserVO uvo, EmailVO evo) {
-
-		String originText = uvo.getUser_id();
+		logger.info("User findPw");
+		logger.info("uvo: {}", uvo);
 
 		// 아이디를 암호화
-		String encText = aes.encryptAES("0123456789abcdefghij0123456789ab", originText, true);
-		logger.info("encText (encodeBase64URLSafeString) : " + encText);
+//		String originText = uvo.getUser_id();
+//		String encText = aes.encryptAES("0123456789abcdefghij0123456789ab", originText, true);
+//		logger.info("encText (encodeBase64URLSafeString) : " + encText);
+
+		// 10자리 int형 랜덤난수 생성
+		Random random = new Random(); // 랜덤 함수 선언
+		int createNum = 0; // 1자리 난수
+		String ranNum = ""; // 1자리 난수 형변환 변수
+		int len = 10; // 난수 자릿수
+		String random_pw = ""; // 결과 난수
+
+		for (int i = 0; i < len; i++) {
+
+			createNum = random.nextInt(9); // 0부터 9까지 올 수 있는 1자리 난수 생성
+			ranNum = Integer.toString(createNum); // 1자리 난수를 String으로 형변환
+			random_pw += ranNum; // 생성된 난수(문자열)을 원하는 수(len)만큼 더하며 나열
+		}
+		logger.info("Create random_pw: {}", random_pw);
+		
+		uvo.setUser_pw(random_pw);
+		logger.info("uvo.getUser_pw: {}", uvo.getUser_pw());
 
 		// 이메일 제목, 내용 설정
 		evo.setSubject("[rence] 비밀번호 재설정");
@@ -94,8 +118,8 @@ public class UserSendEmail {
 			// 전송
 			MimeMessage msg = javaMailSender.createMimeMessage();
 			msg.setSubject(evo.getSubject());
-			msg.setText("아래의 링크에 접속하여 비밀번호를 재설정 해주시길 바랍니다." + "                       " + "비밀번호 재설정 링크 : "
-					+ "http://localhost:8090/rence/user_pw_upddate?user_id=" + encText);
+			msg.setText(
+					"초기화된 비밀번호 입니다. 로그인후 재설정을 권장합니다" + "                       " + "초기화 비밀번호  : " + uvo.getUser_pw());
 			msg.setRecipient(RecipientType.TO, new InternetAddress(uvo.getUser_email()));
 
 			javaMailSender.send(msg);

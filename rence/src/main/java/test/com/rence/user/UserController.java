@@ -140,10 +140,11 @@ public class UserController {
 		JSONObject jsonObject = new JSONObject();
 
 		if (uvo2 != null) {
-			int result = service.user_pw_init(uvo);
+			uvo2 = authSendEmail.findPw(uvo2, evo); // uvo2가 null이 아니면(테이블에 데이터가 존재하면) 메일을 통해 수정링크 제공
+			int result = service.user_pw_init(uvo2);
 
 			if (result != 0) {
-				uvo2 = authSendEmail.findPw(uvo2, evo); // uvo가 null이 아니면(테이블에 데이터가 존재하면) 메일을 통해 수정링크 제공
+				logger.info("넣기전에 uvo2: {}", uvo2);
 				logger.info("user_fine_pw successed...");
 				jsonObject.put("result", "1");
 			} else {
