@@ -126,33 +126,47 @@
 						</section>
 
 						<!-- 문의하기 팝업창 -->
-						<div id="question-popup" class="question-popup-wrap blind">
-							<span class="question-popup-title">문의하기</span>
+                        <div id="question-popup" class="question-popup-wrap blind">
+                            <span class="question-popup-title">문의하기</span>
 
-							<section class="question-popup-type-select-wrap">
-								<span class="question-popup-small-title">문의할 공간 타입</span>
+                            <section class="question-popup-type-select-wrap">
+                                <span class="question-popup-small-title">문의할 공간 타입</span>
 
-								<!-- select 열 때 open-select추가 -->
-								<div class="question-popup-select-val-wrap">
-									<span class="question-popup-select-value"> 타입을 선택해 주세요 </span>
-									<img src="${path}/resources/IMG/space-introduce/full-dropdown.svg" alt="full-dropdown" class="full-dropdown">
-								</div>
+                                <!-- select 열 때 open-select추가 -->
+                                <div class="question-popup-select-val-wrap">
+                                    <span class="question-popup-select-value">
+                                        타입을 선택해 주세요
+                                    </span>
+                                    <img src="${path}/resources/IMG/space-introduce/full-dropdown.svg" alt="full-dropdown" class="full-dropdown"></img>
+                                </div>
 
-								<ul class="question-popup-select blind">
-									<li class="question-popup-select-li">101호 (1인 데스크)</li>
-									<li class="question-popup-select-li">102호 (1인 데스크)</li>
-									<li class="question-popup-select-li">103호 (4인 미팅룸)</li>
-									<li class="question-popup-select-li">104호 (1인 미팅룸)</li>
-								</ul>
-							</section>
-							<section class="textarea-section">
-								<textarea id="question-write" class="question-write"></textarea>
-							</section>
-							<section class="quest-popup-btn-section">
-								<span id="question-create-btn" class="popup-create-btn">등록</span>
-								<span id="question-close-btn" class="popup-close-btn">취소</span>
-							</section>
-						</div>
+                                <ul class="question-popup-select blind">
+                                    <li class="question-popup-select-li">
+                                        101호 (1인 데스크)
+                                    </li>
+                                    <li class="question-popup-select-li">
+                                        102호 (1인 데스크)
+                                    </li>
+                                    <li class="question-popup-select-li">
+                                        103호 (4인 미팅룸)
+                                    </li>
+                                    <li class="question-popup-select-li">
+                                        104호 (1인 미팅룸)
+                                    </li>
+                                </ul>
+                            </section>
+                            <section class="textarea-section">
+                                <textarea id="question-write" class="question-write"></textarea>
+                                <div class="txt-length-wrap">
+                                    <span class="qna-length">0</span>
+                                    <span class="total-length">/ 500</span>
+                                </div>
+                            </section>
+                            <section class="quest-popup-btn-section">
+                                <span id="question-create-btn" class="popup-create-btn">등록</span>
+                                <span id="question-close-btn" class="popup-close-btn">취소</span>
+                            </section>
+                        </div>
 					</section>
 
 					<section class="quest-list-section">
@@ -180,61 +194,68 @@
 						<section class="question-left">
 							<span class="big-title">후기</span> <span class="small-title">3개</span>
 						</section>
-						<section id="review-create-btn" class="question-right">
+						<section id="review-write-btn" class="question-right">
 							<span>후기쓰기</span>
 						</section>
 
 						<!-- 후기쓰기 팝업창 -->
-						<div id="review-popup" class="review-popup-wrap blind">
-							<span class="question-popup-title">후기 남기기</span>
+                        <div id="review-popup" class="review-popup-wrap blind">
+                            <span class="question-popup-title">후기 남기기</span>
 
-							<section class="question-popup-type-select-wrap">
-								<span class="question-popup-small-title">문의할 공간 타입</span>
+                            <section class="question-popup-type-select-wrap">
+                                <span class="question-popup-small-title">문의할 공간 타입</span>
 
-								<!-- select 열 때 open-select추가 -->
-								<div class="question-popup-select-val-wrap">
-									<span class="question-popup-select-value"> 타입을 선택해 주세요 </span>
-								</div>
-							</section>
-							<section class="textarea-section">
-								<textarea id="review-write" class="question-write"></textarea>
-							</section>
-							<section class="popup-star-section">
-								<span class="popup-star-title">별점</span>
-								<ul class="popup-star-wrap">
-									<li class="popup-star-li sample">
-										<img src="${path}/resources/IMG/common/y-star.svg" alt="후기 리뷰 별점 이미지" class="y-star r-star" /> 
-										<img src="${path}/resources/IMG/common/star.svg" alt="후기 리뷰 별점 이미지" class="g-star r-star blind" />
-									</li>
-									<li class="popup-star-li">
-										<img src="${path}/resources/IMG/common/y-star.svg" alt="후기 리뷰 별점 이미지" class="y-star r-star" /> 
-										<img src="${path}/resources/IMG/common/star.svg" alt="후기 리뷰 별점 이미지" class="g-star r-star blind" />
-									</li>
-									<li class="popup-star-li">
-										<img src="${path}/resources/IMG/common/y-star.svg" alt="후기 리뷰 별점 이미지" class="y-star r-star" /> 
-										<img src="${path}/resources/IMG/common/star.svg" alt="후기 리뷰 별점 이미지" class="g-star r-star blind" />
-									</li>
-									<li class="popup-star-li">
-										<img src="${path}/resources/IMG/common/y-star.svg" alt="후기 리뷰 별점 이미지" class="y-star r-star" /> 
-										<img src="${path}/resources/IMG/common/star.svg" alt="후기 리뷰 별점 이미지" class="g-star r-star blind" />
-									</li>
-									
-									<li class="popup-star-li">
-										<img src="${path}/resources/IMG/common/y-star.svg" alt="후기 리뷰 별점 이미지" class="y-star r-star blind" />
-										<img src="${path}/resources/IMG/common/star.svg" alt="후기 리뷰 별점 이미지" class="g-star r-star" />
-									</li>
-								</ul>
-							</section>
-							<section class="review-upload-section">
-								<span class="review-upload-btn"> 이미지 등록 </span>
-								<input type="file" class="file"> 
-								<input type="text" class="review-upload-value" readonly />
-							</section>
-							<section class="quest-popup-btn-section">
-								<span id="question-create-btn" class="popup-create-btn">등록</span>
-								<span id="question-close-btn" class="popup-close-btn">취소</span>
-							</section>
-						</div>
+                                <!-- select 열 때 open-select추가 -->
+                                <div class="question-popup-select-val-wrap">
+                                    <span class="question-popup-select-value">
+                                        선택했던 타입명
+                                    </span>
+                                </div>
+                            </section>
+                            <section class="textarea-section">
+                                <textarea id="review-write" class="question-write"></textarea>
+                                <div class="txt-length-wrap">
+                                    <span class="review-length">0</span>
+                                    <span class="review-total-length">/ 500</span>
+                                </div>
+                            </section>
+                            <section class="popup-star-section">
+                                <span class="popup-star-title">별점</span>
+                                <ul class="popup-star-wrap">
+                                    <li class="popup-star-li sample">
+                                        <img src="${path}/resources/IMG/common/y-star.svg" alt="후기 리뷰 별점 이미지" class="y-star r-star blind" />
+                                        <img src="${path}/resources/IMG/common/star.svg" alt="후기 리뷰 별점 이미지" class="g-star r-star"/>
+                                    </li>
+                                    <li class="popup-star-li">
+                                        <img src="${path}/resources/IMG/common/y-star.svg" alt="후기 리뷰 별점 이미지" class="y-star r-star blind"/>
+                                        <img src="${path}/resources/IMG/common/star.svg" alt="후기 리뷰 별점 이미지" class="g-star r-star"/>
+                                    </li>
+                                    <li class="popup-star-li">
+                                        <img src="${path}/resources/IMG/common/y-star.svg" alt="후기 리뷰 별점 이미지" class="y-star r-star blind"/>
+                                        <img src="${path}/resources/IMG/common/star.svg" alt="후기 리뷰 별점 이미지" class="g-star r-star"/>
+                                    </li>
+                                    <li class="popup-star-li">
+                                        <img src="${path}/resources/IMG/common/y-star.svg" alt="후기 리뷰 별점 이미지" class="y-star r-star blind"/>
+                                        <img src="${path}/resources/IMG/common/star.svg" alt="후기 리뷰 별점 이미지" class="g-star r-star"/>
+                                    </li>
+                                    <li class="popup-star-li">
+                                        <img src="${path}/resources/IMG/common/y-star.svg" alt="후기 리뷰 별점 이미지" class="y-star r-star blind"/>
+                                        <img src="${path}/resources/IMG/common/star.svg" alt="후기 리뷰 별점 이미지" class="g-star r-star"/>
+                                    </li>
+                                </ul>
+                            </section>
+                            <section class="review-upload-section">
+                                <span class="review-upload-btn">
+                                    이미지 등록
+                                </span>
+                                <input type="file" class="file">
+                                <input type="text" class="review-upload-value" readonly/>
+                            </section>
+                            <section class="quest-popup-btn-section">
+                                <span id="review-create-btn" class="popup-create-btn">등록</span>
+                                <span id="review-close-btn" class="popup-close-btn">취소</span>
+                            </section>
+                        </div>
 					</section>
 
 					<section class="quest-list-section">
