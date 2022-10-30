@@ -1,3 +1,7 @@
+/**
+* @author : 전판근
+*/
+
 $(function(){
 
 	// master header nav 변경

@@ -1,3 +1,7 @@
+/**
+* @author : 전판근
+*/
+
 $(function () {
   $('.sales-income').text(
     $('.sales-income')
