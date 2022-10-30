@@ -430,8 +430,9 @@
 				<div class="filebox">
 	              <input class="upload-name" value="" placeholder="첨부 파일" />
 	              <label for="file">파일찾기</label>
-	              <input type="file" id="file" name="backoffice_image" accept=".jpg, .jpeg, .png" multiple />
+	              <input type="file" id="file" name="multipartFile_room" accept=".jpg, .jpeg, .png" multiple />
 	            </div>
+	          <input type="file" id="multipartFile_host" name="multipartFile_host" style="display: none;"/>
           </div>
           <!-- END inputWrap image -->
 
