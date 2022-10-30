@@ -11,6 +11,7 @@
          <list>
             <value>WEB-INF/tiles_base.xml</value>
             <value>WEB-INF/tiles_myPage.xml</value>
+            <value>WEB-INF/tiles_reserve.xml</value>
             <value>WEB-INF/tiles_landing.xml</value>
             <value>WEB-INF/tiles_dashBoard.xml</value>
             <value>WEB-INF/tiles_master.xml</value>
