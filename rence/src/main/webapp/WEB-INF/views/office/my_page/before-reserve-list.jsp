@@ -27,7 +27,7 @@
 	                <section class="box-section">
 						<!-- START forEach -->
 						<c:forEach var = "obj" items="${res.list}">
-		                    <div class = "reserve-box" idx="${obj.no}">
+		                    <div class = "reserve-box before" idx="${obj.no}">
 		                        <section class="box-img-section">
 		                            <img src="${path}/resources/upload/${obj.img}" alt ="default-space-img" class="space-img" />
 		                        </section>
