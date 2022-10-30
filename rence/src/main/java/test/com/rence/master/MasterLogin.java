@@ -28,12 +28,12 @@ public class MasterLogin extends HandlerInterceptorAdapter {
 		String master_id = (String) session.getAttribute("master_id");
 		logger.info("session master_id: {}", master_id);
 		
-		if(sPath.equals("/master_main") || sPath.equals("/master_start_agree")|| sPath.equals("/master_refuse")|| sPath.equals("/master_backoffice_detail")|| sPath.equals("/master_backoffice_end")|| sPath.equals("/master_end_agree")) {
-			if(master_id==null) {
-				response.sendRedirect("master_login");
-				return false;
-			}
-		}
+//		if(sPath.equals("/master_main") || sPath.equals("/master_start_agree")|| sPath.equals("/master_refuse")|| sPath.equals("/master_backoffice_detail")|| sPath.equals("/master_backoffice_end")|| sPath.equals("/master_end_agree")) {
+//			if(master_id==null) {
+//				response.sendRedirect("master_login");
+//				return false;
+//			}
+//		}
 			return true;
 	}
 	
