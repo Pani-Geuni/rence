@@ -1,3 +1,7 @@
+/**
+* @author : 전판근
+*/
+
 $(function(){
     $(".logo-mku").click(function(){
         location.href="/rence/backoffice_landing";
