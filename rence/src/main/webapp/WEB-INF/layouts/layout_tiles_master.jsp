@@ -11,13 +11,14 @@
 	<title><tiles:getAsString name="title"></tiles:getAsString></title>
 	<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 	
-	<link rel="stylesheet" href="${path}/resources/CSS/master-header.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/master-main.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/custom-table.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/common/custom-table.css" />
+	
+	<link rel="stylesheet" href="${path}/resources/CSS/master/master-header.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/master/master-main.css" />
 	
 	
-	<script src="${path}/resources/JS/jquery-3.6.1.min.js"></script>
-	<script src="${path}/resources/JS/master.js"></script>
+	<script src="${path}/resources/JS/common/jquery-3.6.1.min.js"></script>
+	<script src="${path}/resources/JS/master/master.js"></script>
 	
 </head>
 <body class="bodyWrap">

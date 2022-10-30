@@ -14,9 +14,9 @@
     
 	<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 	
-	<link rel="stylesheet" href="${path}/resources/CSS/master-login.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/master/master-login.css" />
 	
-	<script src="${path}/resources/JS/jquery-3.6.1.min.js"></script>
+	<script src="${path}/resources/JS/common/jquery-3.6.1.min.js"></script>
 	
 <title>Rence Master 로그인</title>
 </head>
