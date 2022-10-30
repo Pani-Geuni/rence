@@ -15,6 +15,36 @@
 
 
 
+		<!-- 회원가입시 인증번호 전송후 테이블에 저장 -->
+	<insert id="SQL_INSERT_USER_AUTH"
+		parameterType="test.com.rence.sendemail.AuthVO">
+		INSERT INTO auth(auth_no, user_email, auth_code)
+		values('A'||seq_auth.nextval, #{user_email}, #{auth_code})
+	</insert>
+
+	<!-- 인증번호 확인 완료 시 테이블에서 삭제 -->
+	<delete id="SQL_AUTH_DELETE" parameterType="hashmap">
+		delete from auth
+		where auth_code=#{email_code} and user_email=#{user_email}
+	</delete>
+
+	<!-- 인증테이블에 사용자 이메일이 들어갔는지 체크하고 이메일 가져오는 용도 -->
+	<!-- avo2 = auth 테이블에 정보 저장 후, select -->
+	<select id="SQL_SELECT_USER_AUTH"
+		resultType="test.com.rence.sendemail.AuthVO">
+		SELECT auth_no, auth_code, user_email from auth where
+		user_email=#{user_email}
+	</select>
+
+
+	<!-- 회원가입시 인증번호 동일한지 체크 -->
+	<select id="SQL_SELECT_USER_AUTHOK" parameterType="hashmap"
+		resultType="test.com.rence.sendemail.AuthVO">
+		SELECT * from auth where auth_code=#{email_code} and
+		user_email=#{user_email}
+	</select>
+
+
 	<!-- Email 중복체크 SQL -->
 	<select id="SQL_EMAIL_CHECK"
 		resultType="test.com.rence.user.UserVO">
@@ -57,7 +87,7 @@
 	</select>
 
 	<!-- 비밀번호 난수로 초기화 -->
-	<!-- 	암호화처리가 된 비밀번호로 저장 -->
+	<!-- 암호화처리가 된 비밀번호로 저장 -->
 	<update id="SQL_USER_UPDATE_PW_INIT"
 		parameterType="test.com.rence.user.UserVO">
 		update userinfo set user_pw=#{user_pw}where
@@ -93,42 +123,31 @@
 	</update>
 
 	<!-- 마이페이지에 정보 주기위해 정보가져오기 -->
-<!-- 	userinfo 테이블과 mileage 테이블조인 -->
+	<!-- userinfo 테이블과 mileage 테이블조인 -->
+	<!-- <select id="SQL_SELECT_USER_MYPAGE" -->
+	<!-- resultType="test.com.rence.user.UserMypageVO"> -->
+	<!-- SELECT u.user_no, u.user_name, u.user_image, u.user_id, -->
+	<!-- u.user_email, u.user_tel, u.user_birth, m.mileage_total -->
+	<!-- FROM userinfo u join mileage m -->
+	<!-- on u.user_no = m.user_no -->
+	<!-- where u.user_no = #{user_no} -->
+	<!-- </select> -->
+
+	<!-- 마이페이지에 정보 주기위해 정보가져오기 -->
+	<!-- userinfo 테이블과 mileage 테이블조인한 뷰(user_mypage_view)를 사용하는 쿼리 -->
 	<select id="SQL_SELECT_USER_MYPAGE"
 		resultType="test.com.rence.user.UserMypageVO">
-		SELECT u.user_no, u.user_name, u.user_image, u.user_id,
-		u.user_email, u.user_tel, u.user_birth, m.mileage_total
-		FROM userinfo u join mileage m
-		on u.user_no = m.user_no
-	</select>
-
-	<!-- 회원가입시 인증번호 전송후 테이블에 저장 -->
-	<insert id="SQL_INSERT_USER_AUTH"
-		parameterType="test.com.rence.sendemail.AuthVO">
-		INSERT INTO auth(auth_no, user_email, auth_code)
-		values('A'||seq_auth.nextval, #{user_email}, #{auth_code})
-	</insert>
-
-	<!-- 인증번호 확인 완료 시 테이블에서 삭제 -->
-	<delete id="SQL_AUTH_DELETE" parameterType="hashmap">
-		delete from auth
-		where auth_code=#{email_code} and user_email=#{user_email}
-	</delete>
-
-	<!-- 인증테이블에 사용자 이메일이 들어갔는지 체크하고 이메일 가져오는 용도 -->
-	<!-- avo2 = auth 테이블에 정보 저장 후, select -->
-	<select id="SQL_SELECT_USER_AUTH"
-		resultType="test.com.rence.sendemail.AuthVO">
-		SELECT auth_no, auth_code, user_email from auth where
-		user_email=#{user_email}
+		select * from user_mypage_view where user_no=#{user_no}
 	</select>
 
 
-	<!-- 회원가입시 인증번호 동일한지 체크 -->
-	<select id="SQL_SELECT_USER_AUTHOK" parameterType="hashmap"
-		resultType="test.com.rence.sendemail.AuthVO">
-		SELECT * from auth where auth_code=#{email_code} and
-		user_email=#{user_email}
+	<!-- 마이페이지에 정보 주기위해 정보가져오기 -->
+	<!-- user_detail_mileage_view 를 사용하는 쿼리 -->
+	<select id="SQL_SELECT_USER_MILEAGE"
+		resultType="test.com.rence.user.UserMypageVO">
+		select * from user_detail_mileage_view where user_no=#{user_no}
 	</select>
+	
+	
 
 </mapper>
