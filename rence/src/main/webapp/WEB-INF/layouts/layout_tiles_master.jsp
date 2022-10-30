@@ -15,7 +15,9 @@
 	<link rel="stylesheet" href="${path}/resources/CSS/master-main.css" />
 	<link rel="stylesheet" href="${path}/resources/CSS/custom-table.css" />
 	
+	
 	<script src="${path}/resources/JS/jquery-3.6.1.min.js"></script>
+	<script src="${path}/resources/JS/master.js"></script>
 	
 </head>
 <body class="bodyWrap">
