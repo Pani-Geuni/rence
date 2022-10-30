@@ -1,5 +1,6 @@
 package test.com.rence.user;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -134,28 +135,28 @@ public class UserDAOimpl implements UserDAO {
 		return uvo2;
 	}
 
-	// 비밀번호 찾기에서 랜덤난수로 비밀번호 초기화
+	// 비밀번호 찾기에서 랜덤난수로 비밀번호 초기화후 SHA256으로 암호화 한뒤 데이터베이스에 업데이트
 	@Override
 	public int user_pw_init(UserVO uvo) {
 		logger.info("user_pw_init().....");
-		// 10자리 int형 랜덤난수 생성
+		logger.info("UserVO: {}", uvo);
+		
+		
+		SHA256 sha256 = new SHA256();
 
-		Random random = new Random(); // 랜덤 함수 선언
-		int createNum = 0; // 1자리 난수
-		String ranNum = ""; // 1자리 난수 형변환 변수
-		int len = 10; // 난수 자릿수
-		String random_pw = ""; // 결과 난수
-
-		for (int i = 0; i < len; i++) {
-
-			createNum = random.nextInt(9); // 0부터 9까지 올 수 있는 1자리 난수 생성
-			ranNum = Integer.toString(createNum); // 1자리 난수를 String으로 형변환
-			random_pw += ranNum; // 생성된 난수(문자열)을 원하는 수(len)만큼 더하며 나열
+		String sha_random_pw = null;
+		try {
+			sha_random_pw = sha256.encrypt(uvo.getUser_pw()); // 랜덤난수로 초기화비밀번호 생성한뒤 암호화
+			logger.info("SHA 256 OK!!", uvo.getUser_pw());
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
+		logger.info("sha_random_pw: {}", sha_random_pw);
+		logger.info("Before _pw: {}", uvo.getUser_pw());	
 		// userVO에 세팅
-		uvo.setUser_pw(random_pw);
-		;
+		uvo.setUser_pw(sha_random_pw);
+		logger.info("After _pw: {}", uvo.getUser_pw());
 
 		int flag = sqlSession.update("SQL_USER_UPDATE_PW_INIT", uvo);
 
