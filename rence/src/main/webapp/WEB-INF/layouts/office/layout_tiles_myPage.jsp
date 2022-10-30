@@ -26,7 +26,7 @@
 	
 	<script src="${path}/resources/JS/common/jquery-3.6.1.min.js"></script>
 	<script src="${path}/resources/JS/common/jquery.cookie.js"></script>
-	<script src="${path}/resources/JS/header.js"></script>
+	<script src="${path}/resources/JS/office/header.js"></script>
 	<script src="${path}/resources/JS/office/user_popup.js"></script>
 	
 	<script src="${path}/resources/JS/office/my_page.js"></script>
