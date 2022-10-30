@@ -47,9 +47,9 @@
 			<div class="inputWrap email">
 				<p>사업자 이메일 확인</p>
 				<div>
-					<input type="email" id="backoffice_email" name="backoffice_email"
+					<input type="text" id="auth_code" name="auth_code"
 						placeholder="인증 번호를 입력하세요" />
-					<button>인증번호 확인</button>
+					<button id="btn-check-certification">인증번호 확인</button>
 				</div>
 			</div>
 			<div class="inputWrap location">
@@ -428,12 +428,12 @@
 				<p>공간 사진</p>
 
 				<div class="filebox">
-					<input class="upload-name" value="" placeholder="첨부 파일" /> <label
-						for="file">파일찾기</label> <input type="file" id="file"
-						accept="image/*" multiple />
-				</div>
-			</div>
-			<!-- END inputWrap image -->
+	              <input class="upload-name" value="" placeholder="첨부 파일" />
+	              <label for="file">파일찾기</label>
+	              <input type="file" id="file" name="backoffice_image" accept=".jpg, .jpeg, .png" multiple />
+	            </div>
+          </div>
+          <!-- END inputWrap image -->
 
 			<div class="submit">
 				<button type="submit" id="submit-application"
