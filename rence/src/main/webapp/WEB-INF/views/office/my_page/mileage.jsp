@@ -78,8 +78,8 @@
                 </section>
                 <section class="paging-section blind">
                     <div class="paging-wrap">
-                        <span class="paging-box"><<</span>
-                        <span class="paging-box"><</span>
+                        <span class="paging-box">&lt; &lt;</span>
+                        <span class="paging-box">&lt;</span>
                         <span class="paging-box paging-num choice sample">1</span>
                         <span class="paging-box paging-num un-choice sample">2</span>
                         <span class="paging-box paging-num un-choice sample">3</span>
