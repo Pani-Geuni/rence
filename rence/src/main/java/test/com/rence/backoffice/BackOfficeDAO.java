@@ -17,7 +17,7 @@ public interface BackOfficeDAO {
 	
 	public BackOfficeVO backoffice_insertOK(BackOfficeVO bvo);
 
-	public int backoffice_operating_insert(BackOfficeOperationgTimeVO ovo);
+	public int backoffice_operating_insert(BackOfficeOperationgTimeVO_datetype ovo2);
 
 	public AuthVO backoffice_authok_select(AuthVO avo);
 

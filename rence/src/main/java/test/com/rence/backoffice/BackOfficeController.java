@@ -57,6 +57,9 @@ public class BackOfficeController {
 	@Autowired
 	HttpSession session;
 	
+	@Autowired
+	BackOfficeFileService fileService;
+	
 //	@Autowired
 //	HttpServletResponse response;
 	
@@ -84,61 +87,26 @@ public class BackOfficeController {
 	 */
 	@RequestMapping(value = "/backoffice_insertOK", method = RequestMethod.POST)
 	public String backoffice_insertOK(BackOfficeVO vo, BackOfficeOperationgTimeVO ovo) throws ParseException {
+		
+		BackOfficeOperationgTimeVO_datetype ovo2 = new BackOfficeOperationgTimeVO_datetype();
+		
 		logger.info("vo::::::::::::::::::::::::::{}",vo);
 		
-		//백오피스 이미지
-		logger.info("{} byte", vo.getMultipartFile().getSize());
+		//공간 이미지, 호스트 이미지
+		vo = fileService.backoffice_image_upload(vo);
+		vo = fileService.host_image_upload(vo);
 
-		if (vo.getMultipartFile().getSize() > 0) {
-			logger.info("{} byte", vo.getMultipartFile().getOriginalFilename());
-			List<String> imgs = new ArrayList<String>();
-			String bimg="";
-			for (int i = 0; i < imgs.size(); i++) {
-				imgs.add(vo.getMultipartFile().getOriginalFilename());
-				bimg = imgs.stream().collect(Collectors.joining(","));
-			}
-
-			vo.setBackoffice_image(bimg);
-		} else {
-			vo.setBackoffice_image("img_room_001.jpg"); // null 기본 이미지
-		}
-		String dir_path = context.getRealPath("resources/upload");
-		logger.info(dir_path);
-
-		File saveFile = new File(dir_path + "/", vo.getBackoffice_image());
-
-//			String formmatName = vo.getBackoffice_image().substring(vo.getBackoffice_image().lastIndexOf(".") + 1);
-//			logger.info("formmatName:{}", formmatName);
-
-		try {
-			vo.getMultipartFile().transferTo(saveFile);
-		} catch (IllegalStateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		//태그
-//		vo.setBackoffice_tag(vo.getBackoffice_tag().replace("%2C", ","));
-		
-		//공간 옵션
-//		vo.setBackoffice_option(vo.getBackoffice_option().replace("%2C",","));
-	
-		//주변시설
-//		vo.setBackoffice_around(vo.getBackoffice_around().replace("%2C", ",")); 
-		
 		//운영시간
-		ovo = operatingTime.operatingTime(ovo);
+		ovo2 = operatingTime.operatingTime(ovo,ovo2);
 		
-		//회원가입 서비스 동작
 		//백오피스 insert
 		BackOfficeVO bvo2 = service.backoffice_insertOK(vo);
 		logger.info("vo::::::::::::::::::::::::::{}",vo);
 
 		//운영시간 insert
-		ovo.setBackoffice_no(bvo2.getBackoffice_no());
-		int result = service.backoffice_operating_insert(ovo);
-		logger.info("ovo::::::::::::::::::::::::::{}",ovo);
+		ovo2.setBackoffice_no(bvo2.getBackoffice_no());
+		int result = service.backoffice_operating_insert(ovo2);
+		logger.info("ovo::::::::::::::::::::::::::{}",ovo2);
 
 		String rt = "redirect:backoffice_landing";
 		if(result==0) {
@@ -161,7 +129,7 @@ public class BackOfficeController {
 		
 		//이메일 중복 체크
 		BackOfficeVO emailCheck = service.backoffice_email_check(bvo);
-		if(emailCheck==null) {
+		if(emailCheck==null || emailCheck.getBackoffice_state().matches("X")) {
 			
 			avo.setUser_email(bvo.getBackoffice_email());
 			
@@ -179,11 +147,11 @@ public class BackOfficeController {
 				jsonObject.put("backoffice_email", avo2.getUser_email());
 				jsonObject.put("auth_no", avo2.getAuth_no());
 				
-			}else {
+			}else { //전송 실패
 				logger.info("failed...");
 				jsonObject.put("result", "0");
 			}
-		}else {
+		}else { // 중복체크 실패
 			logger.info("failed...");
 			jsonObject.put("result", "0");
 		}
