@@ -125,5 +125,13 @@ public class MasterController {
 //		return jsonObject;
 //	}
 //	
-
+	
+	/**
+	 * 마스터 메인 페이지
+	 */
+	@RequestMapping(value = "/master_main", method = RequestMethod.GET)
+	public String master_main() {
+		
+		return ".master_main/master_main";
+	}
 }
