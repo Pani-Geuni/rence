@@ -60,7 +60,7 @@
 	<update id="SQL_USER_UPDATE_PW_INIT"
 		parameterType="test.com.rence.user.UserVO">
 		update userinfo set user_pw=#{user_pw}where
-		user_no=#{user_no}
+		user_id=#{user_id}
 	</update>
 
 	<!-- 비밀번호 변경을 위한 현재 비밀번호 확인 -->
