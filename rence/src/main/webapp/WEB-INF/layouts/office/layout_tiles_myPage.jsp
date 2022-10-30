@@ -30,8 +30,8 @@
 	<script src="${path}/resources/JS/office/user_popup.js"></script>
 	
 	<script src="${path}/resources/JS/office/my_page.js"></script>
-	<script src="${path}/resources/JS/office/mileage-list.js"></script>
-	<script src="${path}/resources/JS/office/reserve-list.js"></script>
+	<script src="${path}/resources/JS/office/mileage_list.js"></script>
+	<script src="${path}/resources/JS/office/reserve_list.js"></script>
 </head>
 <body>
 	<div class="pageWrap">

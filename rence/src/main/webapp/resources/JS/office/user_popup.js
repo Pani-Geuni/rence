@@ -491,10 +491,14 @@ $(function(){
                         success : function(res) {
                             // 이메일 중복 성공
                             if(res.authNum == 1){
-                                $(this).prop("check", true);
+                                $("#check_email").prop("check", true);
                                 $("#check_email").val("인증완료");
                                 $("#join-email").attr("readonly", true);
                                 $("#join-email").addClass("readOnly");
+
+                                $(".popup-background:eq(1)").removeClass("blind");
+                                $("#common-alert-popup").removeClass("blind");
+                                $(".common-alert-txt").text("이메일로 인증번호를 발송하였습니다.");
                             }else if(res.authNum == 2){
                                 $(".warning-text:eq(0)").removeClass("blind");
                                 $(".warning-text:eq(0)").text("이미 존재하는 이메일입니다.");
@@ -540,7 +544,7 @@ $(function(){
                     success : function(res) {
                         // 이메일 인증번호 확인 성공
                         if(res.result == 1){
-                            $(this).prop("check", true);
+                            $("#check_email-code").prop("check", true);
                             $("#check_email-code").val("인증완료");
                             $("#join-email-code").attr("readonly", true);
                             $("#join-email-code").addClass("readOnly");

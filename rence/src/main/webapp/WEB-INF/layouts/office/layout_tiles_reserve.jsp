@@ -24,15 +24,12 @@
     <script src="${path}/resources/JS/common/jquery.cookie.js"></script>
     <script src="${path}/resources/JS/office/header.js"></script>
     <script src="${path}/resources/JS/office/user_popup.js"></script>
-    
-    <script src="${path}/resources/JS/office/home.js"></script>
 </head>
 <body>
 	<div class ="pageWrap">
 		<tiles:insertAttribute name="header" />
 		<section class ="contentWrap">
 			<tiles:insertAttribute name="content" />
-			<tiles:insertAttribute name="footer" />
 		</section>
 	</div>
 	
