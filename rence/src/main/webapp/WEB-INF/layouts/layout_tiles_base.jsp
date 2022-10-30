@@ -11,18 +11,18 @@
 	<title><tiles:getAsString name="title"></tiles:getAsString></title>
 	<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 	
-	<link rel="stylesheet" href="${path}/resources/CSS/common.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/login.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/header.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/home.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/footer.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/common/common.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/office/login.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/common/header.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/office/home.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/common/footer.css" />
 	
-    <script type="text/javascript" src="${path}/resources/JS/core.min.js"></script>
-    <script type="text/javascript" src="${path}/resources/JS/sha256.min.js"></script>
+    <script type="text/javascript" src="${path}/resources/JS/common/core.min.js"></script>
+    <script type="text/javascript" src="${path}/resources/JS/common/sha256.min.js"></script>
 
-    <script src="${path}/resources/JS/jquery-3.6.1.min.js"></script>
-    <script src="${path}/resources/JS/jquery.cookie.js"></script>
-    <script src="${path}/resources/JS/user_popup.js"></script>
+    <script src="${path}/resources/JS/common/jquery-3.6.1.min.js"></script>
+    <script src="${path}/resources/JS/common/jquery.cookie.js"></script>
+    <script src="${path}/resources/JS/office/user_popup.js"></script>
     <script src="${path}/resources/JS/header.js"></script>
 </head>
 <body>

@@ -261,9 +261,9 @@ $(function(){
             }
 
             if(tmp == true){
-                if($("#check_email").prop("check", true)){
-                    if($("#check_email-code").prop("check", true)){
-                        if($("#check_id").prop("check", true)){
+                if($("#check_email").prop("check") == true){
+                    if($("#check_email-code").prop("check") == true){
+                        if($("#check_id").prop("check") == true){
                             // 회원가입 로직 처리
                             $.ajax({
                                 url : "/rence/joinOK",
@@ -271,7 +271,6 @@ $(function(){
                                 dataType : 'json',
                                 data : {
                                     user_id : $("#join-id").val().trim(),
-                                    // user_pw : window.btoa($("#join-pw").val().trim()),
                                     user_pw : CryptoJS.SHA256($("#join-pw").val().trim()).toString(),
                                     user_email : $("#join-email").val().trim(),
                                     user_name : $("#join-name").val().trim(),
