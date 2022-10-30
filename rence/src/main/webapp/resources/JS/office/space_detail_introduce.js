@@ -1,3 +1,6 @@
+/**
+ * @author 김예은
+ */
 $(function(){
   let test = 1;
 
@@ -81,14 +84,32 @@ $(function(){
     $("#question-popup").removeClass("blind");
   });
 
+  /****** 후기 섹션 ******/
+  $("#review-write-btn").click(function(){
+    $("#review-popup").removeClass("blind");
+  });
+
 
   /***** *** ******** *****/ 
   /***** REVIEW POPUP *****/ 
-  /***** *** ******** *****/ 
+  /***** *** ******** *****/
+  // 팝업 닫기 버튼 클릭 이벤트
+  $("#review-close-btn").click(function(){
+    // TEXTAREA 초기화
+    $("#review-write").val("");
+    // 글자수 초기화
+    $(".review-length").text("0");
+
+    // 팝업 닫기
+    $("#review-popup").addClass("blind");
+  });
+
+  // 이미지 등록 버튼 클릭 이벤트
   $(".review-upload-btn").click(function(){
     $(".file").click();
   });
 
+  // 이미지 등록 시 파일명 SHOW
   $(".file").on('change',function(){
     var fileName = $(".file").val();
     var fArr = fileName.split("\\");
@@ -96,13 +117,23 @@ $(function(){
     $(".review-upload-value").val(fArr[fArr.length - 1]);
   });
 
+  $("#review-write").on("keydown keyup", function(){
+    if($(this).val().length > 500){
+      $(this).val($(this).val().substring(0,500));
+    }
+    $(".review-length").text($(this).val().length);
+  });
+
 
   /***** ************** *****/ 
   /***** QUESTION POPUP *****/ 
-  /***** ************** *****/ 
+  /***** ************** *****/
+  // 팝업 닫기 버튼 클릭
   $("#question-close-btn").click(function(){
     // TEXTAREA 초기화
     $("#question-write").val("");
+    // 글자수 초기화
+    $(".qna-length").text("0");
 
     $(".question-popup-select").addClass("blind");
     $(".question-popup-select-value").text("타입을 선택해 주세요");
@@ -110,6 +141,13 @@ $(function(){
     
     // 팝업 닫기
     $("#question-popup").addClass("blind");
+  });
+
+  $("#question-write").on("keydown keyup", function(){
+    if($(this).val().length > 500){
+      $(this).val($(this).val().substring(0,500));
+    }
+    $(".qna-length").text($(this).val().length);
   });
 
   $(".question-popup-select-val-wrap").click(function(){

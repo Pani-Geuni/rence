@@ -193,12 +193,13 @@
 
     cursor: pointer;
 }
-.menu:nth-child(1), .menu:nth-child(2){
-    border-right: 2px solid #e4e4e4;
-}
 .click-menu{
+    border-bottom: 2px solid #9A9483;
+}
+.menu:hover{
     background-color: #e4e4e4;
 }
+
 
 
 /* ***************** */
@@ -309,7 +310,7 @@
 /* ******************* */
 .question-popup-wrap{
     width: 350px;
-    height: 400px;
+    height: 420px;
 
     position: absolute;
     top: 30px;
@@ -386,6 +387,8 @@
 
     border: 2px solid #2EE49D;
     background-color: white;
+
+    cursor: pointer;
 }
 .question-popup-select-li:last-child{
     border-bottom-left-radius: 8px;
@@ -394,6 +397,8 @@
 
 .textarea-section{
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
 }
 .question-write{
     width: 300px;
@@ -406,6 +411,14 @@
     font-family: "HallymGothic" !important;
     font-size: 13.8px;
     font-weight: 500px;
+
+    margin-bottom: 5px;
+}
+
+.txt-length-wrap{
+    width: 97%;
+    font-size: 12px;
+    text-align: right;
 }
 
 .quest-popup-btn-section{
@@ -517,7 +530,7 @@
 /* ************ */
 .review-popup-wrap{
     width: 350px;
-    height: 490px;
+    height: 505px;
 
     position: absolute;
     top: 30px;
@@ -534,7 +547,7 @@
 }
 
 .popup-star-section{
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 
     display: flex;
     align-items: center;
@@ -548,6 +561,9 @@
     display: flex;
     align-items: center;
 }
+.popup-star-li{
+    cursor: pointer;
+}
 .r-star{
     width: 16px;
     height: 14px;
@@ -555,19 +571,19 @@
 
 .review-upload-section{
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     display: flex;
 }
 .review-upload-btn{
-    width: 75px;
+    width: 65px;
     padding: 4px 10px 4px 10px;
 
     border-radius: 8px;
-    background-color: #2EE49D;
+    background-color: #42C2FF;
     
     font-family: 'HallymGothic';
     font-weight: 900;
-    font-size: 14px;
+    font-size: 13px;
     color: white;
     cursor: pointer;
 }
@@ -898,4 +914,3 @@ input[type="file"] {
     font-size: 15px;
     letter-spacing: 0.2px;
 }
-
