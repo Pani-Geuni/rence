@@ -93,6 +93,7 @@
 	</update>
 
 	<!-- 마이페이지에 정보 주기위해 정보가져오기 -->
+<!-- 	userinfo 테이블과 mileage 테이블조인 -->
 	<select id="SQL_SELECT_USER_MYPAGE"
 		resultType="test.com.rence.user.UserMypageVO">
 		SELECT u.user_no, u.user_name, u.user_image, u.user_id,
