@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +27,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import test.com.rence.sendemail.AuthVO;
@@ -80,7 +82,7 @@ public class BackOfficeController {
 	 * 백오피스 신청 처리
 	 * @throws ParseException 
 	 */
-	@RequestMapping(value = "/backoffice_insertOK", method = RequestMethod.GET)
+	@RequestMapping(value = "/backoffice_insertOK", method = RequestMethod.POST)
 	public String backoffice_insertOK(BackOfficeVO vo, BackOfficeOperationgTimeVO ovo) throws ParseException {
 		logger.info("vo::::::::::::::::::::::::::{}",vo);
 		
@@ -90,8 +92,11 @@ public class BackOfficeController {
 		if (vo.getMultipartFile().getSize() > 0) {
 			logger.info("{} byte", vo.getMultipartFile().getOriginalFilename());
 			List<String> imgs = new ArrayList<String>();
-			imgs.add(vo.getMultipartFile().getOriginalFilename());
-			String bimg = imgs.stream().collect(Collectors.joining(","));
+			String bimg="";
+			for (int i = 0; i < imgs.size(); i++) {
+				imgs.add(vo.getMultipartFile().getOriginalFilename());
+				bimg = imgs.stream().collect(Collectors.joining(","));
+			}
 
 			vo.setBackoffice_image(bimg);
 		} else {
@@ -114,38 +119,28 @@ public class BackOfficeController {
 		}
 
 		//태그
-		List<String> tags = new ArrayList<String>();
-		tags.add(vo.getBackoffice_tag());
-		String btag = tags.stream().collect(Collectors.joining(","));
-
-		vo.setBackoffice_tag(btag);
-
+//		vo.setBackoffice_tag(vo.getBackoffice_tag().replace("%2C", ","));
+		
 		//공간 옵션
-		List<String> ops = new ArrayList<String>();
-		ops.add(vo.getBackoffice_option());
-		String bop = ops.stream().collect(Collectors.joining(","));
-		
-		vo.setBackoffice_option(bop);
-		
+//		vo.setBackoffice_option(vo.getBackoffice_option().replace("%2C",","));
+	
 		//주변시설
-		List<String> arounds = new ArrayList<String>();
-		arounds.add(vo.getBackoffice_around());
-		String baround = arounds.stream().collect(Collectors.joining(","));
-		
-		vo.setBackoffice_around(baround);
+//		vo.setBackoffice_around(vo.getBackoffice_around().replace("%2C", ",")); 
 		
 		//운영시간
 		ovo = operatingTime.operatingTime(ovo);
 		
+		//회원가입 서비스 동작
+		//백오피스 insert
 		BackOfficeVO bvo2 = service.backoffice_insertOK(vo);
-		ovo.setBackoffice_no(bvo2.getBackoffice_no());
-		
 		logger.info("vo::::::::::::::::::::::::::{}",vo);
-		
+
+		//운영시간 insert
+		ovo.setBackoffice_no(bvo2.getBackoffice_no());
 		int result = service.backoffice_operating_insert(ovo);
 		logger.info("ovo::::::::::::::::::::::::::{}",ovo);
 
-		String rt = "redirect:/";
+		String rt = "redirect:backoffice_landing";
 		if(result==0) {
 			return "redirect:backoffice_insert";
 		}
@@ -166,7 +161,7 @@ public class BackOfficeController {
 		
 		//이메일 중복 체크
 		BackOfficeVO emailCheck = service.backoffice_email_check(bvo);
-		if(emailCheck!=null) {
+		if(emailCheck==null) {
 			
 			avo.setUser_email(bvo.getBackoffice_email());
 			
@@ -202,15 +197,16 @@ public class BackOfficeController {
 	 */
 	@RequestMapping(value = "/backoffice_authOK", method = RequestMethod.GET)
 	@ResponseBody
-	public JSONObject backoffice_authOK(BackOfficeVO bvo) {
+	public JSONObject backoffice_authOK(AuthVO avo) {
 		 
-		AuthVO avo = service.backoffice_authOK_select(bvo);
+		AuthVO avo2 = service.backoffice_authOK_select(avo);
 
 		JSONObject jsonObject = new JSONObject();
 
-	    if(avo != null){
+	    if(avo2 != null){
 	    	logger.info("successed...");
 	    	jsonObject.put("result", "1");
+	    	service.backoffice_auth_delete(avo2);
 
 	    }else{
 	    	logger.info("failed...");
@@ -279,7 +275,7 @@ public class BackOfficeController {
 	}
 	
 	/**
-	 * 비밀번호 초기화(찾기), 이메일로 전송
+	 * 비밀번호 초기화(찾기), 이메일로 임시 비밀번호 전송
 	 */
 	@RequestMapping(value = "/backoffice_reset_pw", method = RequestMethod.GET)
 	@ResponseBody
@@ -294,14 +290,19 @@ public class BackOfficeController {
 		if(bvo2!=null) {
 			bvo2 = authSendEmail.findPw(bvo2,evo);
 			
-			if (bvo2 !=null) {
+			
+			if (bvo2!=null) {
+				service.backoffice_settingOK_pw(bvo2);
 				logger.info("successed...");
 				jsonObject.put("result", "1");
 				
 			}else {
-				logger.info("failed...");
+				logger.info("update failed...");
 				jsonObject.put("result", "0");
 			}
+		}else {
+			logger.info("send failed...");
+			jsonObject.put("result", "0");
 		}
 		
 		return jsonObject;
@@ -357,7 +358,7 @@ public class BackOfficeController {
 	/**
 	 * 환경설정에서 비밀번호 수정
 	 */
-	@RequestMapping(value = "/backoffice_update_pw ", method = RequestMethod.POST)
+	@RequestMapping(value = "/backoffice_update_pw", method = RequestMethod.POST)
 	public String backoffice_update_pw (BackOfficeVO bvo) {
 		logger.info("backoffice_update_pw ()...");
 		logger.info("{}", bvo);
@@ -380,9 +381,9 @@ public class BackOfficeController {
 	}
 	
 	/**
-	 * 환경설정에서 업체 삭제 요청
+	 * 환경설정에서 업체 탈퇴 요청
 	 */
-	@RequestMapping(value = "/backoffice_setting_delete ", method = RequestMethod.POST)
+	@RequestMapping(value = "/backoffice_setting_delete", method = RequestMethod.POST)
 	@ResponseBody
 	public JSONObject backoffice_setting_delete (BackOfficeVO bvo) {
 		logger.info("backoffice_setting_delete ()...");
@@ -399,7 +400,7 @@ public class BackOfficeController {
 		
 		else {
 			logger.info("failed...");
-			jsonObject.put("result", "0");
+			jsonObject.put("result", "0"); // 남은 예약이 있을 시
 		}
 		
 		return jsonObject;

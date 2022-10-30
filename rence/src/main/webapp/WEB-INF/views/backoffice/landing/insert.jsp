@@ -10,7 +10,7 @@
 			<h1>호스트 신청하기</h1>
 		</div>
 
-		<form action="" method="GET" enctype="multipart/form-data">
+		<form action="backoffice_insertOK" method="POST" enctype="multipart/form-data">
 			<div class="inputWrap">
 				<p>사업자 이름</p>
 				<input type="text" id="owner_name" name="owner_name"
@@ -87,17 +87,17 @@
 				<div class="option-group-column">
 					<div class="option-group-row">
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="option"
+							<input type="checkbox" id="checkbox" name="backoffice_option"
 								value="chair-desk" readonly /> <label>의자/테이블</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="option"
+							<input type="checkbox" id="checkbox" name="backoffice_option"
 								value="internet-wifi" /> <label>인터넷/Wi-Fi</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="option"
+							<input type="checkbox" id="checkbox" name="backoffice_option"
 								value="restroom" /> <label>내부 화장실</label>
 						</div>
 					</div>
@@ -105,17 +105,17 @@
 
 					<div class="option-group-row">
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="option"
+							<input type="checkbox" id="checkbox" name="backoffice_option"
 								value="no-smoking" /> <label>금연</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="option"
+							<input type="checkbox" id="checkbox" name="backoffice_option"
 								value="smoking-room" /> <label>흡연실</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="option"
+							<input type="checkbox" id="checkbox" name="backoffice_option"
 								value="terrace-rooftop" /> <label>테라스/루프탑</label>
 						</div>
 					</div>
@@ -123,17 +123,17 @@
 
 					<div class="option-group-row">
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="option"
+							<input type="checkbox" id="checkbox" name="backoffice_option"
 								value="tv-projector" /> <label>TV/프로젝터</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="option"
+							<input type="checkbox" id="checkbox" name="backoffice_option"
 								value="whiteboard" /> <label>화이트보드</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="option"
+							<input type="checkbox" id="checkbox" name="backoffice_option"
 								value="sound-microphone" /> <label>음향/마이크</label>
 						</div>
 					</div>
@@ -141,17 +141,17 @@
 
 					<div class="option-group-row">
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="option"
+							<input type="checkbox" id="checkbox" name="backoffice_option"
 								value="parking" /> <label>주차</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="option"
+							<input type="checkbox" id="checkbox" name="backoffice_option"
 								value="pc-laptop" /> <label>PC/노트북</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="option"
+							<input type="checkbox" id="checkbox" name="backoffice_option"
 								value="printer" /> <label>복사/인쇄기</label>
 						</div>
 					</div>
@@ -159,17 +159,17 @@
 
 					<div class="option-group-row">
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="option" value="lounge" />
+							<input type="checkbox" id="checkbox" name="backoffice_option" value="lounge" />
 							<label>공용 라운지</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="option"
+							<input type="checkbox" id="checkbox" name="backoffice_option"
 								value="kitchen" /> <label>공용 주방</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="option"
+							<input type="checkbox" id="checkbox" name="backoffice_option"
 								value="water-purifier" /> <label>정수기</label>
 						</div>
 					</div>
@@ -177,17 +177,17 @@
 
 					<div class="option-group-row">
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="option"
+							<input type="checkbox" id="checkbox" name="backoffice_option"
 								value="can-food" /> <label>음식물 반입 가능</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="option"
+							<input type="checkbox" id="checkbox" name="backoffice_option"
 								value="can-drink" /> <label>주류 반입 가능</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="option"
+							<input type="checkbox" id="checkbox" name="backoffice_option"
 								value="air-conditioner" /> <label>에어컨</label>
 						</div>
 					</div>
@@ -195,17 +195,17 @@
 
 					<div class="option-group-row">
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="option"
+							<input type="checkbox" id="checkbox" name="backoffice_option"
 								value="fitting-room" /> <label>탈의실</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="option" value="shower" />
+							<input type="checkbox" id="checkbox" name="backoffice_option" value="shower" />
 							<label>샤워시설</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="option"
+							<input type="checkbox" id="checkbox" name="backoffice_option"
 								value="body-mirror" /> <label>전신거울</label>
 						</div>
 					</div>
@@ -213,24 +213,24 @@
 
 					<div class="option-group-row">
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="option"
+							<input type="checkbox" id="checkbox" name="backoffice_option"
 								value="door-lock" /> <label>도어락</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="option"
+							<input type="checkbox" id="checkbox" name="backoffice_option"
 								value="outlet-multitap" /> <label>콘센트/멀티탭</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="option"
+							<input type="checkbox" id="checkbox" name="backoffice_option"
 								value="personal-locker" /> <label>개인락커</label>
 						</div>
 					</div>
 					<!-- END option-group row -->
 					<div class="option-group-row">
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="option" value="fax" />
+							<input type="checkbox" id="checkbox" name="backoffice_option" value="fax" />
 							<label>팩스</label>
 						</div>
 					</div>
@@ -246,17 +246,17 @@
 				<div class="option-group-column">
 					<div class="option-group-row">
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="nearby-option"
+							<input type="checkbox" id="checkbox" name="backoffice_around"
 								value="public-parking" /> <label>공영주차장</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="nearby-option"
+							<input type="checkbox" id="checkbox" name="backoffice_around"
 								value="paid-parking" /> <label>유료주차장</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="nearby-option"
+							<input type="checkbox" id="checkbox" name="backoffice_around"
 								value=pharmacy " /> <label>약국</label>
 						</div>
 					</div>
@@ -264,17 +264,17 @@
 
 					<div class="option-group-row">
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="nearby-option"
+							<input type="checkbox" id="checkbox" name="backoffice_around"
 								value="hospital" /> <label>병원</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="nearby-option"
+							<input type="checkbox" id="checkbox" name="backoffice_around"
 								value="convenience-store" /> <label>편의점</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="nearby-option"
+							<input type="checkbox" id="checkbox" name="backoffice_around"
 								value="cafe" /> <label>카페</label>
 						</div>
 					</div>

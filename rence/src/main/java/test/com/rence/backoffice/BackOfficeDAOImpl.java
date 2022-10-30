@@ -63,15 +63,15 @@ public class BackOfficeDAOImpl implements BackOfficeDAO {
 		return avo2;
 	}
 	
-	@Override
-	public AuthVO backoffice_auth_select(AuthVO avo) {
-		logger.info("backoffice_auth_select()...");
-		logger.info("{}", avo);
-
-		AuthVO avo2 = sqlSession.selectOne("SQL_SELECT_BACKOFFICE_AUTH",avo);
-		
-		return avo2;
-	}
+//	@Override
+//	public AuthVO backoffice_auth_select(AuthVO avo) {
+//		logger.info("backoffice_auth_select()...");
+//		logger.info("{}", avo);
+//
+//		AuthVO avo2 = sqlSession.selectOne("SQL_SELECT_BACKOFFICE_AUTH",avo);
+//		
+//		return avo2;
+//	}
 
 	@Override
 	public int backoffice_operating_insert(BackOfficeOperationgTimeVO ovo) {
@@ -84,13 +84,23 @@ public class BackOfficeDAOImpl implements BackOfficeDAO {
 	}
 
 	@Override
-	public AuthVO backoffice_authok_select(BackOfficeVO bvo) {
+	public AuthVO backoffice_authok_select(AuthVO avo) {
 		logger.info("backoffice_auth_select()...");
-		logger.info("{}", bvo);
+		logger.info("{}", avo);
 
-		AuthVO avo = sqlSession.selectOne("SQL_SELECT_BACKOFFICE_AUTHOK",bvo);
+		AuthVO avo2 = sqlSession.selectOne("SQL_SELECT_BACKOFFICE_AUTHOK",avo);
 		
-		return avo;
+		return avo2;
+	}
+	
+	@Override
+	public int backoffice_auth_delete(AuthVO avo2) {
+		logger.info("backoffice_auth_delete()...");
+		logger.info("{}", avo2);
+
+		int flag = sqlSession.delete("SQL_DELETE_BACKOFFICE_AUTH",avo2);
+
+		return flag;
 	}
 
 	@Override
@@ -173,5 +183,7 @@ public class BackOfficeDAOImpl implements BackOfficeDAO {
 
 		return flag;
 	}
+
+
 
 }

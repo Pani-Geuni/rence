@@ -44,7 +44,7 @@ p {
 }
 
 .review-point::before {
-  content: url('../../img/dashBoard/ico-star.svg');
+  content: url('../IMG/dash-board/ico-star.svg');
   margin-right: 2px;
 }
 

@@ -33,7 +33,37 @@ public class MasterSendEmail {
 	//////////////////////////////////////////////////
 	// ******* (가입 승인) 비밀번호 초기화 링크 전송 *******//
 	/////////////////////////////////////////////////
-	
+	public BackOfficeVO settingPw(BackOfficeVO vo, EmailVO evo) {
+		
+
+		String originText = vo.getBackoffice_no();
+
+//		String encText = aes.encryptAES("0123456789abcdefghij0123456789ab", originText, false);
+//        System.out.println("encText (encodeBase64) : " + encText);
+
+		String encText = aes.encryptAES("0123456789abcdefghij0123456789ab", originText, true);
+		logger.info("encText (encodeBase64URLSafeString) : " + encText);
+
+		// 이메일 제목, 내용 설정
+		evo.setSubject("[rence] 호스트 비밀번호 설정");
+		evo.setContent("아래의 링크에 접속하여 비밀번호를 재설정 해주시길 바랍니다.");
+
+		// 비밀번호 재설정
+
+		try {
+			// 전송
+			MimeMessage msg = javaMailSender.createMimeMessage();
+			msg.setSubject(evo.getSubject());
+			msg.setText("비밀번호 재설정 링크 : " + "http://localhost:8090/rence/backoffice_update_pw?backoffice_no="
+					+ encText);
+			msg.setRecipient(RecipientType.TO, new InternetAddress(vo.getBackoffice_email()));
+
+			javaMailSender.send(msg);
+		} catch (MessagingException e) {
+			vo = null;
+		}
+		return vo;
+	}
 
 	///////////////////////////////
 	// ******* (가입 거절) *******//

@@ -37,16 +37,16 @@ public class BackOfficeService {
 	}
 
 	//인증번호 삽입 후, 결과 검색
-	public AuthVO backoffice_auth_select(AuthVO avo) {
-		logger.info("backoffice_auth_select()...");
-		return dao.backoffice_auth_select(avo);
-	}
+//	public AuthVO backoffice_auth_select(AuthVO avo) {
+//		logger.info("backoffice_auth_select()...");
+//		return dao.backoffice_auth_select(avo);
+//	}
 
 	
 	//인증 번호 검색
-	public AuthVO backoffice_authOK_select(BackOfficeVO bvo) {
+	public AuthVO backoffice_authOK_select(AuthVO avo) {
 		logger.info("backoffice_auth_select()...");
-		return dao.backoffice_authok_select(bvo);
+		return dao.backoffice_authok_select(avo);
 	}
 	
 	// 백오피스 삽입
@@ -95,6 +95,12 @@ public class BackOfficeService {
 	public int backoffice_setting_delete(BackOfficeVO bvo) {
 		logger.info("backoffice_setting_delete()...");
 		return dao.backoffice_setting_delete(bvo);
+	}
+
+	public int backoffice_auth_delete(AuthVO avo2) {
+		logger.info("backoffice_auth_delete()...");
+		return dao.backoffice_auth_delete(avo2);
+		
 	}
 
 
