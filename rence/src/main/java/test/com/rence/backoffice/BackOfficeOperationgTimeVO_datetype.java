@@ -8,23 +8,23 @@ package test.com.rence.backoffice;
 import java.io.Serializable;
 import java.util.Date;
 
-public class BackOfficeOperationgTimeVO implements Serializable{
+public class BackOfficeOperationgTimeVO_datetype implements Serializable{
 
 	private String opetime_no;
-	private String mon_stime;
-	private String mon_etime;
-	private String tue_stime;
-	private String tue_etime;
-	private String wed_stime;
-	private String wed_etime;
-	private String thu_stime;
-	private String thu_etime;
-	private String fri_stime;
-	private String fri_etime;
-	private String sat_stime;
-	private String sat_etime;
-	private String sun_stime;
-	private String sun_etime;
+	private Date mon_stime;
+	private Date mon_etime;
+	private Date tue_stime;
+	private Date tue_etime;
+	private Date wed_stime;
+	private Date wed_etime;
+	private Date thu_stime;
+	private Date thu_etime;
+	private Date fri_stime;
+	private Date fri_etime;
+	private Date sat_stime;
+	private Date sat_etime;
+	private Date sun_stime;
+	private Date sun_etime;
 	private String backoffice_no;
 	private String mon_dayoff;
 	private String tue_dayoff;
@@ -35,16 +35,16 @@ public class BackOfficeOperationgTimeVO implements Serializable{
 	private String sun_dayoff;
 	
 	
-	public BackOfficeOperationgTimeVO() {
+	public BackOfficeOperationgTimeVO_datetype() {
 		// TODO Auto-generated constructor stub
 	}
 
 
-	public BackOfficeOperationgTimeVO(String opetime_no, String mon_stime, String mon_etime, String tue_stime,
-			String tue_etime, String wed_stime, String wed_etime, String thu_stime, String thu_etime, String fri_stime,
-			String fri_etime, String sat_stime, String sat_etime, String sun_stime, String sun_etime,
-			String backoffice_no, String mon_dayoff, String tue_dayoff, String wed_dayoff, String thu_dayoff,
-			String fri_dayoff, String sat_dayoff, String sun_dayoff) {
+	public BackOfficeOperationgTimeVO_datetype(String opetime_no, Date mon_stime, Date mon_etime, Date tue_stime, Date tue_etime,
+			Date wed_stime, Date wed_etime, Date thu_stime, Date thu_etime, Date fri_stime, Date fri_etime,
+			Date sat_stime, Date sat_etime, Date sun_stime, Date sun_etime, String backoffice_no, String mon_dayoff,
+			String tue_dayoff, String wed_dayoff, String thu_dayoff, String fri_dayoff, String sat_dayoff,
+			String sun_dayoff) {
 		super();
 		this.opetime_no = opetime_no;
 		this.mon_stime = mon_stime;
@@ -82,142 +82,142 @@ public class BackOfficeOperationgTimeVO implements Serializable{
 	}
 
 
-	public String getMon_stime() {
+	public Date getMon_stime() {
 		return mon_stime;
 	}
 
 
-	public void setMon_stime(String mon_stime) {
+	public void setMon_stime(Date mon_stime) {
 		this.mon_stime = mon_stime;
 	}
 
 
-	public String getMon_etime() {
+	public Date getMon_etime() {
 		return mon_etime;
 	}
 
 
-	public void setMon_etime(String mon_etime) {
+	public void setMon_etime(Date mon_etime) {
 		this.mon_etime = mon_etime;
 	}
 
 
-	public String getTue_stime() {
+	public Date getTue_stime() {
 		return tue_stime;
 	}
 
 
-	public void setTue_stime(String tue_stime) {
+	public void setTue_stime(Date tue_stime) {
 		this.tue_stime = tue_stime;
 	}
 
 
-	public String getTue_etime() {
+	public Date getTue_etime() {
 		return tue_etime;
 	}
 
 
-	public void setTue_etime(String tue_etime) {
+	public void setTue_etime(Date tue_etime) {
 		this.tue_etime = tue_etime;
 	}
 
 
-	public String getWed_stime() {
+	public Date getWed_stime() {
 		return wed_stime;
 	}
 
 
-	public void setWed_stime(String wed_stime) {
+	public void setWed_stime(Date wed_stime) {
 		this.wed_stime = wed_stime;
 	}
 
 
-	public String getWed_etime() {
+	public Date getWed_etime() {
 		return wed_etime;
 	}
 
 
-	public void setWed_etime(String wed_etime) {
+	public void setWed_etime(Date wed_etime) {
 		this.wed_etime = wed_etime;
 	}
 
 
-	public String getThu_stime() {
+	public Date getThu_stime() {
 		return thu_stime;
 	}
 
 
-	public void setThu_stime(String thu_stime) {
+	public void setThu_stime(Date thu_stime) {
 		this.thu_stime = thu_stime;
 	}
 
 
-	public String getThu_etime() {
+	public Date getThu_etime() {
 		return thu_etime;
 	}
 
 
-	public void setThu_etime(String thu_etime) {
+	public void setThu_etime(Date thu_etime) {
 		this.thu_etime = thu_etime;
 	}
 
 
-	public String getFri_stime() {
+	public Date getFri_stime() {
 		return fri_stime;
 	}
 
 
-	public void setFri_stime(String fri_stime) {
+	public void setFri_stime(Date fri_stime) {
 		this.fri_stime = fri_stime;
 	}
 
 
-	public String getFri_etime() {
+	public Date getFri_etime() {
 		return fri_etime;
 	}
 
 
-	public void setFri_etime(String fri_etime) {
+	public void setFri_etime(Date fri_etime) {
 		this.fri_etime = fri_etime;
 	}
 
 
-	public String getSat_stime() {
+	public Date getSat_stime() {
 		return sat_stime;
 	}
 
 
-	public void setSat_stime(String sat_stime) {
+	public void setSat_stime(Date sat_stime) {
 		this.sat_stime = sat_stime;
 	}
 
 
-	public String getSat_etime() {
+	public Date getSat_etime() {
 		return sat_etime;
 	}
 
 
-	public void setSat_etime(String sat_etime) {
+	public void setSat_etime(Date sat_etime) {
 		this.sat_etime = sat_etime;
 	}
 
 
-	public String getSun_stime() {
+	public Date getSun_stime() {
 		return sun_stime;
 	}
 
 
-	public void setSun_stime(String sun_stime) {
+	public void setSun_stime(Date sun_stime) {
 		this.sun_stime = sun_stime;
 	}
 
 
-	public String getSun_etime() {
+	public Date getSun_etime() {
 		return sun_etime;
 	}
 
 
-	public void setSun_etime(String sun_etime) {
+	public void setSun_etime(Date sun_etime) {
 		this.sun_etime = sun_etime;
 	}
 
@@ -303,6 +303,19 @@ public class BackOfficeOperationgTimeVO implements Serializable{
 
 
 	@Override
+	public String toString() {
+		return "BackOfficeOperationgTimeVO [opetime_no=" + opetime_no + ", mon_stime=" + mon_stime + ", mon_etime="
+				+ mon_etime + ", tue_stime=" + tue_stime + ", tue_etime=" + tue_etime + ", wed_stime=" + wed_stime
+				+ ", wed_etime=" + wed_etime + ", thu_stime=" + thu_stime + ", thu_etime=" + thu_etime + ", fri_stime="
+				+ fri_stime + ", fri_etime=" + fri_etime + ", sat_stime=" + sat_stime + ", sat_etime=" + sat_etime
+				+ ", sun_stime=" + sun_stime + ", sun_etime=" + sun_etime + ", backoffice_no=" + backoffice_no
+				+ ", mon_dayoff=" + mon_dayoff + ", tue_dayoff=" + tue_dayoff + ", wed_dayoff=" + wed_dayoff
+				+ ", thu_dayoff=" + thu_dayoff + ", fri_dayoff=" + fri_dayoff + ", sat_dayoff=" + sat_dayoff
+				+ ", sun_dayoff=" + sun_dayoff + "]";
+	}
+
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -341,7 +354,7 @@ public class BackOfficeOperationgTimeVO implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		BackOfficeOperationgTimeVO other = (BackOfficeOperationgTimeVO) obj;
+		BackOfficeOperationgTimeVO_datetype other = (BackOfficeOperationgTimeVO_datetype) obj;
 		if (backoffice_no == null) {
 			if (other.backoffice_no != null)
 				return false;
@@ -459,19 +472,9 @@ public class BackOfficeOperationgTimeVO implements Serializable{
 			return false;
 		return true;
 	}
+	
+	
 
-
-	@Override
-	public String toString() {
-		return "BackOfficeOperationgTimeVO [opetime_no=" + opetime_no + ", mon_stime=" + mon_stime + ", mon_etime="
-				+ mon_etime + ", tue_stime=" + tue_stime + ", tue_etime=" + tue_etime + ", wed_stime=" + wed_stime
-				+ ", wed_etime=" + wed_etime + ", thu_stime=" + thu_stime + ", thu_etime=" + thu_etime + ", fri_stime="
-				+ fri_stime + ", fri_etime=" + fri_etime + ", sat_stime=" + sat_stime + ", sat_etime=" + sat_etime
-				+ ", sun_stime=" + sun_stime + ", sun_etime=" + sun_etime + ", backoffice_no=" + backoffice_no
-				+ ", mon_dayoff=" + mon_dayoff + ", tue_dayoff=" + tue_dayoff + ", wed_dayoff=" + wed_dayoff
-				+ ", thu_dayoff=" + thu_dayoff + ", fri_dayoff=" + fri_dayoff + ", sat_dayoff=" + sat_dayoff
-				+ ", sun_dayoff=" + sun_dayoff + "]";
-	}
-
+	
 	
 }
