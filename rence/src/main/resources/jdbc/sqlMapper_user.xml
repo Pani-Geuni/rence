@@ -57,6 +57,7 @@
 	</select>
 
 	<!-- 비밀번호 난수로 초기화 -->
+	<!-- 	암호화처리가 된 비밀번호로 저장 -->
 	<update id="SQL_USER_UPDATE_PW_INIT"
 		parameterType="test.com.rence.user.UserVO">
 		update userinfo set user_pw=#{user_pw}where
@@ -72,7 +73,8 @@
 	<!-- 비밀번호 수정 -->
 	<update id="SQL_USER_UPDATE_PW"
 		parameterType="test.com.rence.user.UserVO">
-		update userinfo set user_pw=#{user_pw} where user_no=#{user_no}
+		update userinfo set user_pw=#{user_pw} where
+		user_no=#{user_no}
 	</update>
 
 	<!-- 프로필이미지 수정 -->
@@ -93,7 +95,10 @@
 	<!-- 마이페이지에 정보 주기위해 정보가져오기 -->
 	<select id="SQL_SELECT_USER_MYPAGE"
 		resultType="test.com.rence.user.UserMypageVO">
-		select * from user_mypage_view where user_no=#{user_no}
+		SELECT u.user_no, u.user_name, u.user_image, u.user_id,
+		u.user_email, u.user_tel, u.user_birth, m.mileage_total
+		FROM userinfo u join mileage m
+		on u.user_no = m.user_no
 	</select>
 
 	<!-- 회원가입시 인증번호 전송후 테이블에 저장 -->
