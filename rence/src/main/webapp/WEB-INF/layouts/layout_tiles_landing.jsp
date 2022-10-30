@@ -24,6 +24,7 @@
 	<script src="${path}/resources/JS/backoffice/host_header.js"></script>
 	<script src="${path}/resources/JS/backoffice/host_popup.js"></script>
 	<script src="${path}/resources/JS/backoffice/host_insert.js"></script>
+	<script src="${path}/resources/JS/backoffice/custom-image-input.js"></script>
 
 	<!-- timepicker library script -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
