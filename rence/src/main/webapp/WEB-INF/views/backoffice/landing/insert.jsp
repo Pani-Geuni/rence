@@ -429,8 +429,8 @@
 
 				<div class="filebox">
 	              <input class="upload-name" value="" placeholder="첨부 파일" />
-	              <label for="file">파일찾기</label>
-	              <input type="file" id="file" name="multipartFile_room" accept=".jpg, .jpeg, .png" multiple />
+	              <label for="multipartFile_room">파일찾기</label>
+	              <input type="file" id="multipartFile_room" name="multipartFile_room" accept=".jpg, .jpeg, .png" multiple />
 	            </div>
 	          <input type="file" id="multipartFile_host" name="multipartFile_host" style="display: none;"/>
           </div>
