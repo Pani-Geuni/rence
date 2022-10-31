@@ -29,7 +29,6 @@ public class MasterDAOImpl implements MasterDAO {
 
 	@Override
 	public MasterVO master_login(MasterVO mvo) {
-		logger.info("mvo:{}", mvo);
 
 		MasterVO vo2 = sqlSession.selectOne("SQL_MASTER_LOGIN", mvo);
 

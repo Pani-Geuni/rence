@@ -52,32 +52,32 @@ public class MasterController {
 	 * 로그인 처리
 	 */
 	@RequestMapping(value = "/master_loginOK", method = RequestMethod.POST)
-	public String master_loginOK(MasterVO mvo, HttpServletResponse response) {
+	@ResponseBody
+	public JSONObject master_loginOK(MasterVO mvo, HttpServletResponse response) {
+		
+		JSONObject jsonObject = new JSONObject();
+		
 		logger.info("master_loginOK()...");
 		MasterVO mvo2 = service.master_login(mvo);
 		logger.info("result: {}.", mvo2);
 
-		String rt = "";
 
 		if (mvo2 != null) {
 			session.setAttribute("master_no", mvo2.getMaster_no());
-			Cookie cookie_1 = new Cookie("master_no", mvo2.getMaster_no());
-			session.setAttribute("master_id", mvo2.getMaster_id());
-			Cookie cookie_2 = new Cookie("master_id", mvo2.getMaster_id());
-			session.setAttribute("master_pw", mvo2.getMaster_pw());
-			Cookie cookie_3 = new Cookie("master_pw", mvo2.getMaster_pw());
-			logger.info("successed...");
-			response.addCookie(cookie_1);
-			response.addCookie(cookie_2);
-			response.addCookie(cookie_3);
-			rt = "redirect:master_main";
+			
+			Cookie cookie = new Cookie("master_no", mvo2.getMaster_no());
+			response.addCookie(cookie);
+			
+			// 로그인 성공
+			jsonObject.put("result", "1");
+			logger.info("Master Login succeed...");
 		} else {
-			logger.info("failed...");
-			rt = "redirect:master_login";
+			// 로그인 실패
+			logger.info("Master Login failed...");
+			jsonObject.put("result", "0");
 		}
 
-		return rt;
-
+		return jsonObject;
 	}
 
 	/**
@@ -140,6 +140,8 @@ public class MasterController {
 	public String master_main(Model model) {
 		List<BackOfficeVO> bvos = service.backoffice_applyList_selectAll();
 		logger.info("result: {}.", bvos.size());
+		
+		logger.info("bvos : {}", bvos);
 
 		model.addAttribute("vos", bvos);
 		model.addAttribute("cnt", bvos.size());
@@ -155,6 +157,7 @@ public class MasterController {
 	public JSONObject master_grant(Model model, BackOfficeVO bvo, EmailVO evo) {
 		logger.info("BackOfficeVO:{}", bvo);
 		JSONObject jsonObject = new JSONObject();
+		logger.info("jsonObject : {}", jsonObject);
 
 		int flag = service.backoffice_grant(bvo);
 		if (flag == 1) {
