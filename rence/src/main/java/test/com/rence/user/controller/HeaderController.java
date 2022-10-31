@@ -4,7 +4,7 @@
  * 회원 탈퇴
  */
 
-package test.com.rence.user;
+package test.com.rence.user.controller;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +16,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import test.com.rence.user.model.UserMypageVO;
+import test.com.rence.user.model.UserVO;
+import test.com.rence.user.service.UserSerivice;
 
 @Controller
 public class HeaderController {

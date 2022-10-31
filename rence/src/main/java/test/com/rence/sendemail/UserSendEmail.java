@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
-import test.com.rence.user.UserVO;
+import test.com.rence.user.model.UserVO;
 
 @Component
 public class UserSendEmail {

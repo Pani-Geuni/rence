@@ -1,4 +1,4 @@
-package test.com.rence.user;
+package test.com.rence.user.model;
 
 import java.io.File;
 import java.io.IOException;

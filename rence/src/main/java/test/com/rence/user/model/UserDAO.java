@@ -1,4 +1,4 @@
-package test.com.rence.user;
+package test.com.rence.user.model;
 
 import test.com.rence.sendemail.AuthVO;
 
@@ -39,6 +39,8 @@ public interface UserDAO {
 	public UserMileageVO user_mileage_select(UserVO uvo); // 유저 마일리지 상세페이지에 정보제공
 
 	public UserVO user_select_userno();
+
+	public UserMileageVO user_mileage_selectOne(UserVO uvo); // 마일리지 상세페이지에서 총마일리지 
 
 	
 

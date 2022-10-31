@@ -1,4 +1,4 @@
-package test.com.rence.user;
+package test.com.rence.user.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import test.com.rence.sendemail.AuthVO;
+import test.com.rence.user.model.UserDAO;
+import test.com.rence.user.model.UserMileageVO;
+import test.com.rence.user.model.UserMypageVO;
+import test.com.rence.user.model.UserVO;
 
 @Service
 public class UserSerivice {
@@ -117,6 +121,12 @@ public class UserSerivice {
 	public int user_mileage_zero_insert(UserVO uvo) {
 		logger.info("user_mileage_zero_insert().....");
 		return dao.user_mileage_zero_insert(uvo);
+	}
+
+	
+	public UserMileageVO user_mileage_selectOne(UserVO uvo) {
+		logger.info("user_mileage_zero_insert().....");
+		return dao.user_mileage_selectOne(uvo);
 	}
 
 	

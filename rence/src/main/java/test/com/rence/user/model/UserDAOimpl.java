@@ -1,4 +1,4 @@
-package test.com.rence.user;
+package test.com.rence.user.model;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
@@ -245,6 +245,17 @@ public class UserDAOimpl implements UserDAO {
 		logger.info("{}", uvo); // 유저의 정보를 출력
 		
 		UserMileageVO umvo = sqlSession.selectOne("SQL_SELECT_USER_MILEAGE", uvo);
+
+		return umvo;
+	}
+
+	//마일리지 상세페이지에 총 마일리지 정보 제공
+	@Override
+	public UserMileageVO user_mileage_selectOne(UserVO uvo) {
+		logger.info("user_mileage_selectOne().....");
+		logger.info("{}", uvo); // 유저의 정보를 출력
+		
+		UserMileageVO umvo = sqlSession.selectOne("SQL_SELECTONE_USER_MILEAGE", uvo);
 
 		return umvo;
 	}

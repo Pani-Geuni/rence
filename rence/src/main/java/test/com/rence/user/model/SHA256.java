@@ -6,7 +6,7 @@
  */
 
 
-package test.com.rence.user;
+package test.com.rence.user.model;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
