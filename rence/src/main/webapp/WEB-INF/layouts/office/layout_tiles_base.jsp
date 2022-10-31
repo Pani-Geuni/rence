@@ -26,8 +26,14 @@
     <script src="${path}/resources/JS/office/header.js"></script>
     <script src="${path}/resources/JS/office/user_popup.js"></script>
     
-    <script src="${path}/resources/JS/office/home.js"></script>
-    <script src="${path}/resources/JS/office/review_content.js"></script>
+<%--     <c:if test="${res.page eq 'space-introduce-detail'}"> --%>
+	    <link rel="stylesheet" href="../CSS/jquery-ui.css" />
+	    <link rel="stylesheet" href="../CSS/jquery-ui-timepicker.css" />
+	    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	    <script src="../JS/timepicker.js"></script>
+	    <script src="${path}/resources/JS/office/home.js"></script>
+	    <script src="${path}/resources/JS/office/space-detail-introduce.js"></script>
+<%--     </c:if> --%>
 </head>
 <body>
 	<div class ="pageWrap">
