@@ -66,7 +66,7 @@
 
 
 	<!-- 회원가입시 인증번호 동일한지 체크 -->
-	<!-- 	과거 인증코드는 인증이 안되도록 함 -->
+<!-- 	과거 인증코드는 인증이 안되도록 함 -->
 	<select id="SQL_SELECT_USER_AUTHOK" parameterType="hashmap"
 		resultType="test.com.rence.sendemail.AuthVO">
 		 SELECT * FROM
@@ -173,27 +173,9 @@
 	<!-- userinfo 테이블과 mileage 테이블조인한 뷰(user_mypage_view)를 사용하는 쿼리 -->
 	<select id="SQL_SELECT_USER_MYPAGE"
 		resultType="test.com.rence.user.UserMypageVO">
-<<<<<<< HEAD
-		select u.user_no, u.user_name, u.user_image, u.user_id,
-		u.user_email, u.user_tel, u.user_birth, m.mileage_total
-		FROM userinfo u join mileage m on u.user_no = m.user_no
-		
-=======
-		SELECT u.user_no, u.user_name, u.user_image, u.user_id,
-		u.user_email, u.user_tel, u.user_birth, m.mileage_total
-		FROM userinfo u join mileage m
-		on u.user_no = m.user_no
->>>>>>> main
+		select * from user_mypage_view where user_no=#{user_no}
 	</select>
 
-
-
-	<!-- 회원가입시 인증번호 전송후 테이블에 저장 -->
-	<insert id="SQL_INSERT_USER_AUTH"
-		parameterType="test.com.rence.sendemail.AuthVO">
-		INSERT INTO auth(auth_no, user_email, auth_code)
-		values('A'||seq_auth.nextval, #{user_email}, #{auth_code})
-	</insert>
 
 	<!-- 마이페이지에 정보 주기위해 정보가져오기 -->
 	<!-- user_detail_mileage_view 를 사용하는 쿼리 -->
