@@ -140,6 +140,8 @@ public class MasterController {
 	public String master_main(Model model) {
 		List<BackOfficeVO> bvos = service.backoffice_applyList_selectAll();
 		logger.info("result: {}.", bvos.size());
+		
+		logger.info("bvos : {}", bvos);
 
 		model.addAttribute("vos", bvos);
 		model.addAttribute("cnt", bvos.size());
@@ -155,6 +157,7 @@ public class MasterController {
 	public JSONObject master_grant(Model model, BackOfficeVO bvo, EmailVO evo) {
 		logger.info("BackOfficeVO:{}", bvo);
 		JSONObject jsonObject = new JSONObject();
+		logger.info("jsonObject : {}", jsonObject);
 
 		int flag = service.backoffice_grant(bvo);
 		if (flag == 1) {

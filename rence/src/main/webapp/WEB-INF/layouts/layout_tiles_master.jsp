@@ -10,7 +10,8 @@
 <head>
 	<title><tiles:getAsString name="title"></tiles:getAsString></title>
 	<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
-	
+
+	<link rel="stylesheet" href="${path}/resources/CSS/common/common.css" />	
 	<link rel="stylesheet" href="${path}/resources/CSS/common/custom-table.css" />
 	
 	<link rel="stylesheet" href="${path}/resources/CSS/master/master-header.css" />
@@ -21,11 +22,28 @@
 	<script src="${path}/resources/JS/master/master.js"></script>
 	
 </head>
+
 <body class="bodyWrap">
-	<tiles:insertAttribute name="header" />
-	<section class="pageWrap">
-		<tiles:insertAttribute name="content" />
-	</section>
+	<div class="pageWrap">
+		<tiles:insertAttribute name="header" />
+		<section class="pageWrap">
+			<tiles:insertAttribute name="content" />
+		</section>
+	</div>
+	
+	<div class="popup-background blind">
+		<div id ="grant-popup" class="confirm-popup blind">
+            <section class="confirm-txt-section">
+                <span class="logout-txt">
+                	해당 호스트를 승낙하시겠습니까?
+                </span>
+            </section>
+            <section class="confirm-btn-section">
+                <div id="grant-btn" class="confirm-yesBtn">가입 승인</div>
+                <div id="grant-closeBtn" class="confirm-noBtn">닫기</div>
+            </section>
+        </div>
+	</div>
 	
 </body>
 </html>
