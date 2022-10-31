@@ -53,16 +53,16 @@ public class BackOfficeController {
 
 	@Autowired
 	OperatingTime operatingTime;
-	
+
 	@Autowired
 	HttpSession session;
-	
+
 	@Autowired
 	BackOfficeFileService fileService;
-	
+
 //	@Autowired
 //	HttpServletResponse response;
-	
+
 	/**
 	 * 백오피스 랜딩
 	 */
@@ -71,50 +71,51 @@ public class BackOfficeController {
 
 		return ".landing/landing";
 	}
-	
+
 	/**
 	 * 백오피스 신청 폼 출력
 	 */
 	@RequestMapping(value = "/backoffice_insert", method = RequestMethod.GET)
 	public String backoffice_insert() {
-		
+
 		return ".landing/insert";
 	}
 
 	/**
 	 * 백오피스 신청 처리
-	 * @throws ParseException 
+	 * 
+	 * @throws ParseException
 	 */
 	@RequestMapping(value = "/backoffice_insertOK", method = RequestMethod.POST)
 	public String backoffice_insertOK(BackOfficeVO vo, BackOfficeOperatingTimeVO ovo) throws ParseException {
-		
+
 		BackOfficeOperatingTimeVO_datetype ovo2 = new BackOfficeOperatingTimeVO_datetype();
-		
-		logger.info("vo::::::::::::::::::::::::::{}",vo);
-		
-		//공간 이미지, 호스트 이미지
+
+		logger.info("vo::::::::::::::::::::::::::{}", vo);
+
+		// 공간 이미지, 호스트 이미지
 		vo = fileService.backoffice_image_upload(vo);
-		logger.info("filupload room:{}",vo);
+		logger.info("filupload room:{}", vo);
 		vo = fileService.host_image_upload(vo);
-		logger.info("filupload host:{}",vo);
+		logger.info("filupload host:{}", vo);
 
-		//운영시간
-		ovo2 = operatingTime.operatingTime(ovo,ovo2);
-		
-		//백오피스 insert
+		// 운영시간
+		ovo2 = operatingTime.operatingTime(ovo, ovo2);
+
+		// 백오피스 insert
 		BackOfficeVO bvo2 = service.backoffice_insertOK(vo);
-		logger.info("vo::::::::::::::::::::::::::{}",vo);
+		logger.info("vo::::::::::::::::::::::::::{}", vo);
 
-		//운영시간 insert
+		// 운영시간 insert
 		ovo2.setBackoffice_no(bvo2.getBackoffice_no());
 		int result = service.backoffice_operating_insert(ovo2);
-		logger.info("ovo::::::::::::::::::::::::::{}",ovo2);
+		logger.info("ovo::::::::::::::::::::::::::{}", ovo2);
 
 		String rt = "redirect:backoffice_landing";
-		if(result==0) {
+		if (result == 0) {
 			return "redirect:backoffice_insert";
 		}
-		
+
 		return rt;
 	}
 
@@ -126,39 +127,38 @@ public class BackOfficeController {
 	public JSONObject backoffice_auth(AuthVO avo, BackOfficeVO bvo, EmailVO evo) {
 		logger.info("Welcome sendMailOK.do");
 		logger.info("{}", bvo);
-		
+
 		JSONObject jsonObject = new JSONObject();
-		
-		//이메일 중복 체크
+
+		// 이메일 중복 체크
 		BackOfficeVO emailCheck = service.backoffice_email_check(bvo);
-		if(emailCheck==null || emailCheck.getBackoffice_state().matches("X")) {
-			
+		if (emailCheck == null || emailCheck.getBackoffice_state().equals("X") || emailCheck.getBackoffice_state().equals("N")) {
+
 			avo.setUser_email(bvo.getBackoffice_email());
-			
-			//이메일 전송
-			avo = authSendEmail.sendEmail(avo,evo);
-			if (avo !=null) {
-				
-				//avo2 = auth 테이블에 정보 저장 후, select 해온 결과값
+
+			// 이메일 전송
+			avo = authSendEmail.sendEmail(avo, evo);
+			if (avo != null) {
+
+				// avo2 = auth 테이블에 정보 저장 후, select 해온 결과값
 				AuthVO avo2 = service.backoffice_auth_insert(avo);
 				logger.info("successed...");
-				logger.info("=============avo2:{}",avo2);
-				
+				logger.info("=============avo2:{}", avo2);
+
 				jsonObject.put("result", "1");
 				jsonObject.put("auth_code", avo2.getAuth_code());
 				jsonObject.put("backoffice_email", avo2.getUser_email());
 				jsonObject.put("auth_no", avo2.getAuth_no());
-				
-			}else { //전송 실패
+
+			} else { // 전송 실패
 				logger.info("failed...");
 				jsonObject.put("result", "0");
 			}
-		}else { // 중복체크 실패
+		} else { // 중복체크 실패
 			logger.info("failed...");
 			jsonObject.put("result", "0");
 		}
-		
-		
+
 		return jsonObject;
 	}
 
@@ -168,24 +168,23 @@ public class BackOfficeController {
 	@RequestMapping(value = "/backoffice_authOK", method = RequestMethod.GET)
 	@ResponseBody
 	public JSONObject backoffice_authOK(AuthVO avo, String backoffice_email, String auth_code) {
-		 
-		AuthVO avo2 = service.backoffice_authOK_select(backoffice_email,auth_code);
+
+		AuthVO avo2 = service.backoffice_authOK_select(backoffice_email, auth_code);
 
 		JSONObject jsonObject = new JSONObject();
 
-	    if(avo2 != null){
-	    	logger.info("successed...");
-	    	jsonObject.put("result", "1");
-	    	service.backoffice_auth_delete(avo2);
+		if (avo2 != null) {
+			logger.info("successed...");
+			jsonObject.put("result", "1");
+			service.backoffice_auth_delete(avo2);
 
-	    }else{
-	    	logger.info("failed...");
-	    	jsonObject.put("result", "0");
-	    }
+		} else {
+			logger.info("failed...");
+			jsonObject.put("result", "0");
+		}
 		return jsonObject;
 	}
-	
-	
+
 	/**
 	 * 로그인 처리
 	 */
@@ -194,10 +193,10 @@ public class BackOfficeController {
 	public JSONObject backoffice_loginOK(BackOfficeVO bvo, HttpServletResponse response) {
 		logger.info("backoffice_loginOK()...");
 		BackOfficeVO bvo2 = service.backoffice_login(bvo);
-		logger.info("result: {}.",bvo2);
-		
+		logger.info("result: {}.", bvo2);
+
 		JSONObject jsonObject = new JSONObject();
-		
+
 		if (bvo2 != null) {
 			session.setAttribute("backoffice_no", bvo2.getBackoffice_no());
 			Cookie cookie_1 = new Cookie("backoffice_no", bvo2.getBackoffice_no());
@@ -206,44 +205,44 @@ public class BackOfficeController {
 			session.setAttribute("backoffice_pw", bvo2.getBackoffice_pw());
 			Cookie cookie_3 = new Cookie("backoffice_pw", bvo2.getBackoffice_pw());
 			jsonObject.put("result", "1");
-	    	logger.info("successed...");
-	    	response.addCookie(cookie_1);
+			logger.info("successed...");
+			response.addCookie(cookie_1);
 			response.addCookie(cookie_2);
 			response.addCookie(cookie_3);
 		} else {
 			logger.info("failed...");
 			jsonObject.put("result", "0");
 		}
-		
+
 		return jsonObject;
-		
+
 	}
-	
+
 	/**
 	 * 로그아웃 처리
 	 */
 	@RequestMapping(value = "/backoffice_logout", method = RequestMethod.GET)
-	public String backoffice_logout( HttpServletRequest request, HttpServletResponse response) {
+	public String backoffice_logout(HttpServletRequest request, HttpServletResponse response) {
 		logger.info("backoffice_logout()...");
 		session = request.getSession();
-        session.removeAttribute("backoffice_id");
-        
-        Cookie[] cookies = request.getCookies(); 
-		if (cookies != null) { 
+		session.removeAttribute("backoffice_id");
+
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null) {
 
 			for (int i = 0; i < cookies.length; i++) {
 
-				cookies[i].setMaxAge(0); 
+				cookies[i].setMaxAge(0);
 
-				response.addCookie(cookies[i]); 
+				response.addCookie(cookies[i]);
 
 			}
 
 		}
-		
-		return "redirect:/"; //백오피스 랜딩으로 이동
+
+		return "redirect:/"; // 백오피스 랜딩으로 이동
 	}
-	
+
 	/**
 	 * 비밀번호 초기화(찾기), 이메일로 임시 비밀번호 전송
 	 */
@@ -252,65 +251,69 @@ public class BackOfficeController {
 	public JSONObject backoffice_reset_pw(BackOfficeVO bvo, EmailVO evo) {
 		logger.info("backoffice_reset_pw ()...");
 		logger.info("{}", bvo);
-		
+
 		JSONObject jsonObject = new JSONObject();
-		
+
 		BackOfficeVO bvo2 = service.backoffice_id_email_select(bvo);
-		
-		if(bvo2!=null) {
-			bvo2 = authSendEmail.findPw(bvo2,evo);
-			
-			
-			if (bvo2!=null) {
+
+		if (bvo2 != null) {
+			bvo2 = authSendEmail.findPw(bvo2, evo);
+
+			if (bvo2 != null) {
 				service.backoffice_settingOK_pw(bvo2);
 				logger.info("successed...");
 				jsonObject.put("result", "1");
-				
-			}else {
+
+			} else {
 				logger.info("update failed...");
 				jsonObject.put("result", "0");
 			}
-		}else {
+		} else {
 			logger.info("send failed...");
 			jsonObject.put("result", "0");
 		}
-		
+
 		return jsonObject;
 	}
-	
+
 	/**
 	 * 비밀번호 초기화 페이지
 	 */
 	@RequestMapping(value = "/backoffice_setting_pw", method = RequestMethod.GET)
 	public String backoffice_setting_pw(Model model, BackOfficeVO bvo) {
-		model.addAttribute("vo",bvo.getBackoffice_no());
+		model.addAttribute("vo", bvo.getBackoffice_no());
 		return "backoffice/setting_pw";
 	}
-	
+
 	/**
 	 * 비밀번호 초기화 완료
 	 */
 	@RequestMapping(value = "/backoffice_settingOK_pw", method = RequestMethod.POST)
-	public String backoffice_settingOK_pw(BackOfficeVO bvo) {
+	public String backoffice_settingOK_pw(BackOfficeVO bvo, HttpServletRequest request, HttpServletResponse response) {
 		logger.info("backoffice_settingOK_pw ()...");
 		logger.info("{}", bvo);
 		
+		session = request.getSession();
+
 		int result = service.backoffice_settingOK_pw(bvo);
-		
+
 		String rt = "";
-		if (result==1) {
+		if (result == 1) {
+			if (session.getAttribute("backoffice_id") != null) {
+				logger.info("successed...");
+				rt = "redirect:backoffice_setting";
+			} else {
+				logger.info("successed...");
+				rt = "redirect:backoffice_landing";
+			}
+		} else if(result == 0){
 			logger.info("successed...");
-			rt = "redirect:backoffice_landing";
-		}
-		
-		else {
-			logger.info("failed...");
 			rt = "backoffice/setting_pw";
 		}
-		
+
 		return rt;
 	}
-	
+
 	/**
 	 * 환경설정 페이지 출력
 	 */
@@ -318,62 +321,62 @@ public class BackOfficeController {
 	public String backoffice_setting(BackOfficeVO bvo, Model model) {
 		logger.info("backoffice_setting()...");
 		BackOfficeVO bvo2 = service.backoffice_setting_selectOne(bvo);
-		logger.info("result: {}.",bvo2);
-		
-		model.addAttribute("vo",bvo2);
-		
+		logger.info("result: {}.", bvo2);
+
+		model.addAttribute("vo", bvo2);
+
 		return "backoffice/setting";
 	}
-	
+
 	/**
 	 * 환경설정에서 비밀번호 수정
 	 */
 	@RequestMapping(value = "/backoffice_update_pw", method = RequestMethod.POST)
-	public String backoffice_update_pw (BackOfficeVO bvo) {
+	public String backoffice_update_pw(BackOfficeVO bvo) {
 		logger.info("backoffice_update_pw ()...");
 		logger.info("{}", bvo);
-		
-		//비밀번호 일치 여부 확인
+
+		// 비밀번호 일치 여부 확인
 		BackOfficeVO bvo2 = service.backoffice_select_pw(bvo);
-		
+
 		String rt = "";
-		if (bvo2!=null) {
+		if (bvo2 != null) {
 			logger.info("successed...");
 			rt = "redirect:backoffice_setting_pw";
 		}
-		
+
 		else {
 			logger.info("failed...");
 			rt = "backoffice/setting";
 		}
-		
+
 		return rt;
 	}
-	
+
 	/**
 	 * 환경설정에서 업체 탈퇴 요청
 	 */
 	@RequestMapping(value = "/backoffice_setting_delete", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject backoffice_setting_delete (BackOfficeVO bvo) {
+	public JSONObject backoffice_setting_delete(BackOfficeVO bvo) {
 		logger.info("backoffice_setting_delete ()...");
 		logger.info("{}", bvo);
-		
+
 		JSONObject jsonObject = new JSONObject();
-		
+
 		int result = service.backoffice_setting_delete(bvo);
-		
-		if (result==1) {
+
+		if (result == 1) {
 			logger.info("successed...");
 			jsonObject.put("result", "1");
 		}
-		
+
 		else {
 			logger.info("failed...");
 			jsonObject.put("result", "0"); // 남은 예약이 있을 시
 		}
-		
+
 		return jsonObject;
 	}
-	
+
 }
