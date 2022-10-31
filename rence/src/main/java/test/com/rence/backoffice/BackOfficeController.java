@@ -86,15 +86,17 @@ public class BackOfficeController {
 	 * @throws ParseException 
 	 */
 	@RequestMapping(value = "/backoffice_insertOK", method = RequestMethod.POST)
-	public String backoffice_insertOK(BackOfficeVO vo, BackOfficeOperationgTimeVO ovo) throws ParseException {
+	public String backoffice_insertOK(BackOfficeVO vo, BackOfficeOperatingTimeVO ovo) throws ParseException {
 		
-		BackOfficeOperationgTimeVO_datetype ovo2 = new BackOfficeOperationgTimeVO_datetype();
+		BackOfficeOperatingTimeVO_datetype ovo2 = new BackOfficeOperatingTimeVO_datetype();
 		
 		logger.info("vo::::::::::::::::::::::::::{}",vo);
 		
 		//공간 이미지, 호스트 이미지
 		vo = fileService.backoffice_image_upload(vo);
+		logger.info("filupload room:{}",vo);
 		vo = fileService.host_image_upload(vo);
+		logger.info("filupload host:{}",vo);
 
 		//운영시간
 		ovo2 = operatingTime.operatingTime(ovo,ovo2);

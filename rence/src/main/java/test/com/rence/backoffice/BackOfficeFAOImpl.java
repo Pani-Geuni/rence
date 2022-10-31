@@ -34,6 +34,10 @@ public class BackOfficeFAOImpl implements BackOfficeFAO {
 			}
 
 			vo.setBackoffice_image(bimg);
+		} else {
+			if(vo.getBackoffice_image()==null) {
+			vo.setBackoffice_image("img_room_001.jpg");
+			}
 
 			String dir_path = context.getRealPath("resources/upload");
 			logger.info(dir_path);
@@ -50,10 +54,7 @@ public class BackOfficeFAOImpl implements BackOfficeFAO {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		} else {
-			if(vo.getBackoffice_image()==null) {
-			vo.setBackoffice_image("img_room_001.jpg");
-			}
+		
 		}
 		return vo;
 	}
@@ -66,7 +67,10 @@ public class BackOfficeFAOImpl implements BackOfficeFAO {
 			logger.info("{} byte", vo.getMultipartFile_host().getOriginalFilename());
 
 			vo.setHost_image(vo.getMultipartFile_host().getOriginalFilename());
-
+		} else {
+			if(vo.getHost_image()==null) {
+				vo.setHost_image("img_host_001.jpg");
+			}
 			String dir_path = context.getRealPath("resources/upload");
 			logger.info(dir_path);
 
@@ -82,10 +86,7 @@ public class BackOfficeFAOImpl implements BackOfficeFAO {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		} else {
-			if(vo.getHost_image()==null) {
-				vo.setHost_image("img_host_001.jpg");
-			}
+		
 		}
 		return vo;
 	}
