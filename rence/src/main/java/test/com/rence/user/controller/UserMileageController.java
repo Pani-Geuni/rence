@@ -6,7 +6,7 @@
  */
 
 
-package test.com.rence.user;
+package test.com.rence.user.controller;
 
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
@@ -16,6 +16,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import test.com.rence.user.model.UserVO;
+import test.com.rence.user.service.UserSerivice;
 
 @Controller
 public class UserMileageController {

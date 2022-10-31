@@ -4,7 +4,7 @@
  * 회원 탈퇴
  * 아이디, 비밀번호 찾기
  */
-package test.com.rence.user;
+package test.com.rence.user.controller;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
@@ -23,6 +23,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import test.com.rence.sendemail.EmailVO;
 import test.com.rence.sendemail.UserSendEmail;
+import test.com.rence.user.model.UserVO;
+import test.com.rence.user.service.UserFileuploadService;
+import test.com.rence.user.service.UserSerivice;
 
 @Controller
 public class UserController {

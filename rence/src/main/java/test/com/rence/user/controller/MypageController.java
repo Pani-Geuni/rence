@@ -7,7 +7,7 @@
  */
 
 
-package test.com.rence.user;
+package test.com.rence.user.controller;
 
 import java.sql.Date;
 
@@ -23,6 +23,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import test.com.rence.user.model.UserMileageVO;
+import test.com.rence.user.model.UserVO;
+import test.com.rence.user.service.UserFileuploadService;
+import test.com.rence.user.service.UserSerivice;
 
 @Controller
 public class MypageController {
@@ -65,8 +70,11 @@ public class MypageController {
 		
 		logger.info("user_logoutOK()...");
 		logger.info("UserVO: {}", uvo);
+		
+		//총 마일리지 부분
+		UserMileageVO umvo = service.user_mileage_selectOne(uvo);
 	
-		UserMileageVO umvo = service.user_mileage_select(uvo);
+//		UserMileageVO umvo = service.user_mileage_select(uvo);
 		
 		JSONObject jsonObject = new JSONObject();
 		

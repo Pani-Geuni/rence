@@ -3,7 +3,7 @@
 	 *  회원가입 처리 컨트롤러
 	 */
 
-package test.com.rence.user;
+package test.com.rence.user.controller;
 
 
 import java.text.DateFormat;
@@ -27,6 +27,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import test.com.rence.sendemail.AuthVO;
 import test.com.rence.sendemail.EmailVO;
 import test.com.rence.sendemail.UserSendEmail;
+import test.com.rence.user.model.UserVO;
+import test.com.rence.user.service.UserFileuploadService;
+import test.com.rence.user.service.UserSerivice;
 
 
 
@@ -71,7 +74,7 @@ public class UserJoinController {
 		
 		
 		// 탈퇴한 회원의 이메일로 재가입 가능
-//		if(emailCheck==null || emailCheck.getUser_state() == "N   ") {s
+//		if(emailCheck==null || emailCheck.getUser_state() == "N   ") {
 		if(emailCheck==null || emailCheck.getUser_state().equalsIgnoreCase("N   ")) {
 			avo.setUser_email(uvo.getUser_email());
 			logger.info("avo :   {}", avo);
@@ -133,16 +136,20 @@ public class UserJoinController {
 	public JSONObject user_idCheckOK(UserVO uvo) {
 		logger.info("Welcome! user_idCheckOK");
 		logger.info("result: {}", uvo);
-
-		UserVO uvo2 = service.idCheckOK(uvo);
-
+		
+		
 		JSONObject jsonObject = new JSONObject();
+		
 
-		// uvo가 null이 아니면 아이디 존재
-		if (uvo2 != null) {
+		UserVO idCheck = service.idCheckOK(uvo);
+		logger.info("idlCheck: {}", idCheck);
+
+		if(idCheck==null || idCheck.getUser_state().equalsIgnoreCase("N   ")) {
+			jsonObject.put("result", "1"); // 아이디 사용가능("OK")			
+		}else {
+			// uvo가 null이 아니면 아이디 존재
 			jsonObject.put("result", "0"); // 아이디 존재("NOT OK")
-		} else {
-			jsonObject.put("result", "1"); // 아이디 사용가능("OK")
+			
 		}
 
 		return jsonObject;

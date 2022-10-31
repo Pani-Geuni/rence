@@ -2,7 +2,7 @@
  * @author 김예은
  */
 
-package test.com.rence.user;
+package test.com.rence.user.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import test.com.rence.user.service.UserSerivice;
 
 @Controller
 public class ReserveController {

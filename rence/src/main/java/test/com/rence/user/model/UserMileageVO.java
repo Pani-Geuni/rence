@@ -5,7 +5,7 @@
  */
 
 
-package test.com.rence.user;
+package test.com.rence.user.model;
 
 import java.sql.Date;
 
