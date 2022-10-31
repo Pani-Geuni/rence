@@ -7,22 +7,19 @@ $(function(){
   /***** ************** *****/ 
   /***** 슬라이드 이미지 *****/ 
   /***** ************** *****/ 
+  let position = 0;
   $(".next").click(function () {
-    if (test == 1) {
-      $(".slideContainer").css("transform", "translateX(-100vw)");
-      test = test + 1;
-    } else if (test == 2) {
-      $(".slideContainer").css("transform", "translateX(-200vw)");
+    if (test < 7) {
+      position += 960;
+      $(".container").css("transform", "translateX(-"+position+"px)");
       test = test + 1;
     }
   });
 
   $(".prev").click(function () {
-    if (test == 3) {
-      $(".slideContainer").css("transform", "translateX(-100vw)");
-      test = test - 1;
-    } else if (test == 2) {
-      $(".slideContainer").css("transform", "translateX(0vw)");
+    if (test != 1) {
+      position -= 960;
+      $(".container").css("transform", "translateX(-"+position+"px)");
       test = test - 1;
     }
   });
@@ -30,12 +27,13 @@ $(function(){
 
   /***** ************** *****/ 
   /***** DATEPICKER부분 *****/ 
-  /***** ************** *****/ 
+  /***** ************** *****/
   $(".time-input").datetimepicker({
     dateFormat:'yy/mm/dd',
     monthNamesShort:[ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
     dayNamesMin:[ '일', '월', '화', '수', '목', '금', '토' ],
     showMonthAfterYear:true,
+    minDate: new Date().toLocaleDateString().replaceAll(". ", "/"),
 
     // timepicker 설정
     timeFormat:'HH:mm:ss',
@@ -93,23 +91,31 @@ $(function(){
   /***** *** ******** *****/ 
   /***** REVIEW POPUP *****/ 
   /***** *** ******** *****/
-  // 팝업 닫기 버튼 클릭 이벤트
+  /** 팝업 닫기 버튼 클릭 이벤트 */ 
   $("#review-close-btn").click(function(){
     // TEXTAREA 초기화
     $("#review-write").val("");
     // 글자수 초기화
     $(".review-length").text("0");
-
+    //선택한 셀렉트 값 초기화
+    $("#question-select-choice").text
     // 팝업 닫기
     $("#review-popup").addClass("blind");
   });
 
-  // 이미지 등록 버튼 클릭 이벤트
+  /** 이미지 등록 버튼 클릭 이벤트 */
   $(".review-upload-btn").click(function(){
     $(".file").click();
   });
 
-  // 이미지 등록 시 파일명 SHOW
+  /** 팝업 셀렉트 리스트 클릭 이벤트 */
+  $(".question-popup-select-li").click(function(){
+    $("#question-select-choice").val($(this).val());
+    $(".question-popup-select").addClass("blind");
+    $(".question-popup-select").removeClass("open-select");
+  });
+
+  /** 이미지 등록 시 파일명 SHOW */
   $(".file").on('change',function(){
     var fileName = $(".file").val();
     var fArr = fileName.split("\\");
@@ -117,6 +123,7 @@ $(function(){
     $(".review-upload-value").val(fArr[fArr.length - 1]);
   });
 
+  /** 문의글 작성 시 글자수 제한 */
   $("#review-write").on("keydown keyup", function(){
     if($(this).val().length > 500){
       $(this).val($(this).val().substring(0,500));

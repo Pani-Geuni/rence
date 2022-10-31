@@ -134,7 +134,7 @@
 
                                 <!-- select 열 때 open-select추가 -->
                                 <div class="question-popup-select-val-wrap">
-                                    <span class="question-popup-select-value">
+                                    <span id="question-select-choice" class="question-popup-select-value">
                                         타입을 선택해 주세요
                                     </span>
                                     <img src="${path}/resources/IMG/space-introduce/full-dropdown.svg" alt="full-dropdown" class="full-dropdown"></img>
@@ -243,13 +243,6 @@
                                         <img src="${path}/resources/IMG/common/star.svg" alt="후기 리뷰 별점 이미지" class="g-star r-star"/>
                                     </li>
                                 </ul>
-                            </section>
-                            <section class="review-upload-section">
-                                <span class="review-upload-btn">
-                                    이미지 등록
-                                </span>
-                                <input type="file" class="file">
-                                <input type="text" class="review-upload-value" readonly/>
                             </section>
                             <section class="quest-popup-btn-section">
                                 <span id="review-create-btn" class="popup-create-btn">등록</span>

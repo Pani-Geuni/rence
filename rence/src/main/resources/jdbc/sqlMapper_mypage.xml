@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test.com.rence.user">
+	<!-- 마이페이지 현재 예약 내역 페이지 - selectAll -->
+	<select id="SQL_SELECT_ALL_NOW_RESERVE" parameterType = "string" resultType="test.com.rence.user.MyPageReserveListVO">
+		select leftdb.reserve_no, leftdb.user_no, leftdb.reserve_sdate, leftdb.reserve_edate, leftdb.company_name, leftdb.roadname_address, leftdb.backoffice_image, p.payment_total from(
+		    select r.reserve_no, r.user_no,r.reserve_sdate, r.reserve_edate, b.company_name, b.roadname_address, b.backoffice_image
+		    from reserveinfo r left join backofficeinfo b 
+		    on r.backoffice_no = b.backoffice_no
+		) leftdb left join paymentinfo p
+		on leftdb.reserve_no = p.reserve_no
+		where leftdb.user_no = #{user_no} AND sysdate <![CDATA[<=]]> leftdb.reserve_edate
+	</select>
+	
+	<!-- 마이페이지 과거 예약 내역 페이지 - selectAll -->
+	<select id="SQL_SELECT_ALL_BEFORE_RESERVE" parameterType = "string" resultType="test.com.rence.user.MyPageReserveListVO">
+		select leftdb.reserve_no, leftdb.user_no, leftdb.reserve_sdate, leftdb.reserve_edate, leftdb.company_name, leftdb.roadname_address, leftdb.backoffice_image, p.payment_total from(
+		    select r.reserve_no, r.user_no,r.reserve_sdate, r.reserve_edate, b.company_name, b.roadname_address, b.backoffice_image
+		    from reserveinfo r left join backofficeinfo b 
+		    on r.backoffice_no = b.backoffice_no
+		) leftdb left join paymentinfo p
+		on leftdb.reserve_no = p.reserve_no
+		where leftdb.user_no = #{user_no} AND sysdate <![CDATA[>]]> leftdb.reserve_edate
+	</select>
+	
+	<!-- 마이페이지 후기 내역 페이지 - selectAll -->
+	<select id="SQL_SELECT_ALL_REVIEW" parameterType = "string" resultType="test.com.rence.user.ReviewVO">
+		select * from review where user_no = #{user_no};
+	</select>
+
+</mapper>

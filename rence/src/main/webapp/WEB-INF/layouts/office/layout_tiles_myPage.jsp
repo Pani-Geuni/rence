@@ -16,10 +16,6 @@
 	<link rel="stylesheet" href="${path}/resources/CSS/common/footer.css" />
 	<link rel="stylesheet" href="${path}/resources/CSS/office/login.css" />
 	
-	<link rel="stylesheet" href="${path}/resources/CSS/office/reserve-list.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/office/my-page.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/office/mileage-page.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/office/question-page.css" />
 	
 	<script type="text/javascript" src="${path}/resources/JS/common/core.min.js"></script>
 	<script type="text/javascript" src="${path}/resources/JS/common/sha256.min.js"></script>
@@ -29,9 +25,22 @@
 	<script src="${path}/resources/JS/office/header.js"></script>
 	<script src="${path}/resources/JS/office/user_popup.js"></script>
 	
-	<script src="${path}/resources/JS/office/my_page.js"></script>
-	<script src="${path}/resources/JS/office/mileage_list.js"></script>
-	<script src="${path}/resources/JS/office/reserve_list.js"></script>
+	<c:if test="${res.page eq 'reserve-list'}">
+		<link rel="stylesheet" href="${path}/resources/CSS/office/reserve-list.css" />
+		<script src="${path}/resources/JS/office/reserve_list.js"></script>
+	</c:if>
+	<c:if test="${res.page eq 'review'}">
+		<link rel="stylesheet" href="${path}/resources/CSS/office/review-page.css" />
+		<script src="${path}/resources/JS/office/reserve_list.js"></script>
+	</c:if>
+	<c:if test="${res.page ne 'reserve-list'}">
+		<link rel="stylesheet" href="${path}/resources/CSS/office/my-page.css" />
+		<link rel="stylesheet" href="${path}/resources/CSS/office/mileage-page.css" />
+		<link rel="stylesheet" href="${path}/resources/CSS/office/question-page.css" />
+		<script src="${path}/resources/JS/office/my_page.js"></script>
+		<script src="${path}/resources/JS/office/mileage_list.js"></script>
+	</c:if>
+	
 </head>
 <body>
 	<div class="pageWrap">
@@ -245,41 +254,21 @@
 				<span class="logout-txt"> 해당 댓글을 삭제하시겠습니까? </span>
 			</section>
 			<section class="confirm-btn-section">
-				<div class="confirm-yesBtn">예</div>
+				<div id="q-delete-btn" class="confirm-yesBtn">예</div>
 				<div id="q-delete-closeBtn" class="confirm-noBtn">닫기</div>
 			</section>
 		</div>
-
-		<!-- START 문의 수정 팝업창 -->
-		<div id="question-popup" class="question-popup-wrap blind">
-			<span class="question-popup-title">문의 수정하기</span>
-
-			<section class="question-popup-type-select-wrap">
-				<span class="question-popup-small-title">문의할 공간 타입</span>
-
-				<!-- select 열 때 open-select추가 -->
-				<div class="question-popup-select-val-wrap">
-					<span class="question-popup-select-value"> 타입을 선택해 주세요 </span> <img
-						src="${path}/resources/IMG/space-introduce/full-dropdown.svg" alt="full-dropdown"
-						class="full-dropdown"></img>
-				</div>
-
-				<ul class="question-popup-select blind">
-					<li class="question-popup-select-li">101호 (1인 데스크)</li>
-					<li class="question-popup-select-li">102호 (1인 데스크)</li>
-					<li class="question-popup-select-li">103호 (4인 미팅룸)</li>
-					<li class="question-popup-select-li">104호 (1인 미팅룸)</li>
-				</ul>
+		
+		<!-- START R-DELETE CONFIRM POPUP -->
+		<div id="r-delete-popup" class="confirm-popup blind">
+			<section class="confirm-txt-section">
+				<span class="logout-txt"> 해당 후기흫 삭제하시겠습니까? </span>
 			</section>
-			<section class="textarea-section">
-				<textarea id="question-modify-write" class="question-write"></textarea>
-			</section>
-			<section class="quest-popup-btn-section">
-				<span id="question-modify-btn" class="popup-create-btn">수정</span> <span
-					id="question-close-btn" class="popup-close-btn">취소</span>
+			<section class="confirm-btn-section">
+				<div id="r-delete-btn" class="confirm-yesBtn">예</div>
+				<div id="r-delete-closeBtn" class="confirm-noBtn">닫기</div>
 			</section>
 		</div>
-		<!-- END 문의 수정 팝업창 -->
 
 	</div>
 

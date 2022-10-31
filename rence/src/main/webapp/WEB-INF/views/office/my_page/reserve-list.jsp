@@ -7,7 +7,24 @@
 <div class="reserve-list-wrap">
     <div class="reserve-list">
         <section class="page-title-section">
-            <span class="page-title">과거에 예약한 내역을 보여드려요</span>
+            <span class="page-title">
+                <span class="timePoint-select-wrap">
+                	<c:if test="${res.type eq 'now'}">
+	                    <span class="timePoint-value" time-point="now">현재</span>
+                	</c:if>
+                	<c:if test="${res.type eq 'before'}">
+	                    <span class="timePoint-value" time-point="before">과거</span>
+                	</c:if>
+                    <img src="${path}/resources/IMG/space-introduce/full-dropdown.svg" alt="full-dropdown" class="full-dropdown"></img>
+                </span>
+                <span>예약한 내역을 보여드려요.</span>
+            </span>
+            <div class="timePoint-custom-select-wrap blind">
+                <ul class="timePoint-custom-select">
+                    <li id="timePoint-now" class="timePoint-custom-select-li">현재</li>
+                    <li id="timePoint-before" class="timePoint-custom-select-li">과거</li>
+                </ul>
+            </div>
         </section>
         <section class="reserve-list-section">
         	<c:if test="${res.cnt == 0}">
@@ -27,27 +44,27 @@
 	                <section class="box-section">
 						<!-- START forEach -->
 						<c:forEach var = "obj" items="${res.list}">
-		                    <div class = "reserve-box before" idx="${obj.no}">
+		                    <div class = "reserve-box before" idx="${obj.reserve_no}">
 		                        <section class="box-img-section">
-		                            <img src="${path}/resources/upload/${obj.img}" alt ="default-space-img" class="space-img" />
+		                            <img src="${path}/resources/upload/${obj.backoffice_image}" alt ="default-space-img" class="space-img" />
 		                        </section>
 		                        <section class="box-txt-section">
-		                            <span class="b-office-name">${obj.title}</span>
+		                            <span class="b-office-name">${obj.company_name}</span>
 		                            <span  class="b-office-location">
-		                                <img src = "${path}/resources/IMG/reserve-list/location-icon.svg" alt="location-icon" class ="location-icon" />
-		                                <span class="location-name">${obj.location}</span>
+		                                <img src = "${path}/resources/IMG/office/location-icon.svg" alt="location-icon" class ="location-icon" />
+		                                <span class="location-name">${obj.roadname_address}</span>
 		                            </span>
 		                            <span class="reserve-time">
 		                                <span class="reserve-start-time">
-		                                    ${obj.s_date} ~
+		                                    ${obj.reserve_sdate} ~
 		                                </span>
 		                                <span class="reserve-end-time">
-		                                    ${obj.e_date}
+		                                    ${obj.reserve_edate}
 		                                </span>
 		                            </span>
 		                            <span>
 		                                <span class="price-label">결제 금액</span>
-		                                <span class="price">${obj.price}원</span>
+		                                <span class="price">${obj.payment_total}원</span>
 		                            </span>
 		                        </section>
 		                    </div>
