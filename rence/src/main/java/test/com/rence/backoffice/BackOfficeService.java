@@ -44,9 +44,9 @@ public class BackOfficeService {
 
 	
 	//인증 번호 검색
-	public AuthVO backoffice_authOK_select(AuthVO avo) {
+	public AuthVO backoffice_authOK_select(String backoffice_email, String auth_code) {
 		logger.info("backoffice_auth_select()...");
-		return dao.backoffice_authok_select(avo);
+		return dao.backoffice_authok_select(backoffice_email,auth_code);
 	}
 	
 	// 백오피스 삽입

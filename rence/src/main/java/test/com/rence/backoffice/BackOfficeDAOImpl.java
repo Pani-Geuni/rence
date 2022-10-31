@@ -5,6 +5,9 @@
  */
 package test.com.rence.backoffice;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -84,11 +87,16 @@ public class BackOfficeDAOImpl implements BackOfficeDAO {
 	}
 
 	@Override
-	public AuthVO backoffice_authok_select(AuthVO avo) {
+	public AuthVO backoffice_authok_select(String backoffice_email, String auth_code) {
 		logger.info("backoffice_auth_select()...");
-		logger.info("{}", avo);
+		logger.info("{}",backoffice_email);
+		logger.info("{}",auth_code);
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("auth_code", auth_code);
+		map.put("backoffice_email", backoffice_email);
 
-		AuthVO avo2 = sqlSession.selectOne("SQL_SELECT_BACKOFFICE_AUTHOK",avo);
+		AuthVO avo2 = sqlSession.selectOne("SQL_SELECT_BACKOFFICE_AUTHOK",map);
 		
 		return avo2;
 	}

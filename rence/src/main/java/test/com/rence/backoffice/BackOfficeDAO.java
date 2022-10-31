@@ -19,7 +19,7 @@ public interface BackOfficeDAO {
 
 	public int backoffice_operating_insert(BackOfficeOperatingTimeVO_datetype ovo2);
 
-	public AuthVO backoffice_authok_select(AuthVO avo);
+	public AuthVO backoffice_authok_select(String backoffice_email, String auth_code);
 
 	public BackOfficeVO backoffice_login(BackOfficeVO bvo);
 
