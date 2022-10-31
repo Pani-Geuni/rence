@@ -27,7 +27,7 @@
 	
 	<!-- 마이페이지 후기 내역 페이지 - selectAll -->
 	<select id="SQL_SELECT_ALL_REVIEW" parameterType = "string" resultType="test.com.rence.user.ReviewVO">
-		select * from review where user_no = #{user_no};
+		select * from review where user_no = #{user_no}
 	</select>
 
 </mapper>
