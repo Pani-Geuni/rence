@@ -56,7 +56,20 @@
                 <div id="refuse-closeBtn" class="confirm-noBtn">닫기</div>
             </section>
         </div>
-        <!-- END grant popup -->
+        <!-- END refuse popup -->
+        
+         <div id ="delete-popup" class="confirm-popup blind">
+            <section class="confirm-txt-section">
+                <span class="refuse-txt">
+                	해당 호스트의 탈퇴를 진행하시겠습니까?
+                </span>
+            </section>
+            <section class="confirm-btn-section">
+                <div id="delete-btn" class="confirm-yesBtn">호스트 삭제</div>
+                <div id="delete-closeBtn" class="confirm-noBtn">닫기</div>
+            </section>
+        </div>
+        <!-- END delete popup -->
 	</div>
 	
 	

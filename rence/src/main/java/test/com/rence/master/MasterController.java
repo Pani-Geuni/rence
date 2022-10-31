@@ -212,7 +212,7 @@ public class MasterController {
 	/**
 	 * 백오피스 탈퇴 신청 리스트
 	 */
-	@RequestMapping(value = "/master_backoffice_end", method = RequestMethod.POST)
+	@RequestMapping(value = "/master_backoffice_end", method = RequestMethod.GET)
 	public String master_backoffice_end(BackOfficeVO bvo, Model model) {
 
 		List<BackOfficeVO> bvos = service.backoffice_endList_selectAll();

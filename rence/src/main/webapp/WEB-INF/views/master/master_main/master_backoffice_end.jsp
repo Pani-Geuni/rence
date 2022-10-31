@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
 
 <div class="tableWrap">
 	<section class="host-apply-list">
@@ -17,166 +19,25 @@
 			<!-- END ct-header -->
 
 			<div class="ct-body">
-				<div class="ct-body-row">
-					<div class="ct-body-cell">2022-10-13</div>
-					<div class="ct-body-cell">오라운트 주식회사</div>
-					<div class="ct-body-cell">김대표</div>
-					<div class="ct-body-cell">123-45-67890</div>
-					<div class="ct-body-cell">오라운트</div>
-					<div class="ct-body-cell">010-1234-5668</div>
-					<div class="ct-body-cell">qwerasdf@gmail.com</div>
-					<div class="ct-body-cell">
+				<c:forEach var="vo" items="${ vos }">
+					<div class="ct-body-row">
+						<div id="backoffice_no" class="ct-body-cell blind">${ vo.backoffice_no}</div>
+						<div id="apply_date" class="ct-body-cell">${ vo.apply_date }</div>
+						<div id="backoffice_name" class="ct-body-cell">${ vo.backoffice_name }</div>
+						<div id="owner_name" class="ct-body-cell">${ vo.owner_name }</div>
+						<div id="backoffice_id" class="ct-body-cell">${ vo.backoffice_id }</div>
+						<div id="company_name" class="ct-body-cell">${ vo.company_name }</div>
+						<div id="backoffice_tel" class="ct-body-cell">${ vo.backoffice_tel }</div>
+						<div id="backoffice_email" class="ct-body-cell">${ vo.backoffice_email }</div>
+						<div class="ct-body-cell">
 						<div class="btn-group">
 							<button id="btn-delete-host">삭제</button>
 						</div>
 						<!-- END btn-group -->
-					</div>
-				</div>
-				<!-- END ct-body-row -->
-				<div class="ct-body-row">
-					<div class="ct-body-cell">2022-10-13</div>
-					<div class="ct-body-cell">오라운트 주식회사</div>
-					<div class="ct-body-cell">김대표</div>
-					<div class="ct-body-cell">123-45-67890</div>
-					<div class="ct-body-cell">오라운트</div>
-					<div class="ct-body-cell">010-1234-5668</div>
-					<div class="ct-body-cell">qwerasdf@gmail.com</div>
-					<div class="ct-body-cell">
-						<div class="btn-group">
-							<button id="btn-delete-host">삭제</button>
 						</div>
-						<!-- END btn-group -->
 					</div>
-				</div>
-				<!-- END ct-body-row -->
-				<div class="ct-body-row">
-					<div class="ct-body-cell">2022-10-13</div>
-					<div class="ct-body-cell">오라운트 주식회사</div>
-					<div class="ct-body-cell">김대표</div>
-					<div class="ct-body-cell">123-45-67890</div>
-					<div class="ct-body-cell">오라운트</div>
-					<div class="ct-body-cell">010-1234-5668</div>
-					<div class="ct-body-cell">qwerasdf@gmail.com</div>
-					<div class="ct-body-cell">
-						<div class="btn-group">
-							<button id="btn-delete-host">삭제</button>
-						</div>
-						<!-- END btn-group -->
-					</div>
-				</div>
-				<!-- END ct-body-row -->
-				<div class="ct-body-row">
-					<div class="ct-body-cell">2022-10-13</div>
-					<div class="ct-body-cell">오라운트 주식회사</div>
-					<div class="ct-body-cell">김대표</div>
-					<div class="ct-body-cell">123-45-67890</div>
-					<div class="ct-body-cell">오라운트</div>
-					<div class="ct-body-cell">010-1234-5668</div>
-					<div class="ct-body-cell">qwerasdf@gmail.com</div>
-					<div class="ct-body-cell">
-						<div class="btn-group">
-							<button id="btn-delete-host">삭제</button>
-						</div>
-						<!-- END btn-group -->
-					</div>
-				</div>
-				<!-- END ct-body-row -->
-				<div class="ct-body-row">
-					<div class="ct-body-cell">2022-10-13</div>
-					<div class="ct-body-cell">오라운트 주식회사</div>
-					<div class="ct-body-cell">김대표</div>
-					<div class="ct-body-cell">123-45-67890</div>
-					<div class="ct-body-cell">오라운트</div>
-					<div class="ct-body-cell">010-1234-5668</div>
-					<div class="ct-body-cell">qwerasdf@gmail.com</div>
-					<div class="ct-body-cell">
-						<div class="btn-group">
-							<button id="btn-delete-host">삭제</button>
-						</div>
-						<!-- END btn-group -->
-					</div>
-				</div>
-				<!-- END ct-body-row -->
-				<div class="ct-body-row">
-					<div class="ct-body-cell">2022-10-13</div>
-					<div class="ct-body-cell">오라운트 주식회사</div>
-					<div class="ct-body-cell">김대표</div>
-					<div class="ct-body-cell">123-45-67890</div>
-					<div class="ct-body-cell">오라운트</div>
-					<div class="ct-body-cell">010-1234-5668</div>
-					<div class="ct-body-cell">qwerasdf@gmail.com</div>
-					<div class="ct-body-cell">
-						<div class="btn-group">
-							<button id="btn-delete-host">삭제</button>
-						</div>
-						<!-- END btn-group -->
-					</div>
-				</div>
-				<!-- END ct-body-row -->
-				<div class="ct-body-row">
-					<div class="ct-body-cell">2022-10-13</div>
-					<div class="ct-body-cell">오라운트 주식회사</div>
-					<div class="ct-body-cell">김대표</div>
-					<div class="ct-body-cell">123-45-67890</div>
-					<div class="ct-body-cell">오라운트</div>
-					<div class="ct-body-cell">010-1234-5668</div>
-					<div class="ct-body-cell">qwerasdf@gmail.com</div>
-					<div class="ct-body-cell">
-						<div class="btn-group">
-							<button id="btn-delete-host">삭제</button>
-						</div>
-						<!-- END btn-group -->
-					</div>
-				</div>
-				<!-- END ct-body-row -->
-				<div class="ct-body-row">
-					<div class="ct-body-cell">2022-10-13</div>
-					<div class="ct-body-cell">오라운트 주식회사</div>
-					<div class="ct-body-cell">김대표</div>
-					<div class="ct-body-cell">123-45-67890</div>
-					<div class="ct-body-cell">오라운트</div>
-					<div class="ct-body-cell">010-1234-5668</div>
-					<div class="ct-body-cell">qwerasdf@gmail.com</div>
-					<div class="ct-body-cell">
-						<div class="btn-group">
-							<button id="btn-delete-host">삭제</button>
-						</div>
-						<!-- END btn-group -->
-					</div>
-				</div>
-				<!-- END ct-body-row -->
-				<div class="ct-body-row">
-					<div class="ct-body-cell">2022-10-13</div>
-					<div class="ct-body-cell">오라운트 주식회사</div>
-					<div class="ct-body-cell">김대표</div>
-					<div class="ct-body-cell">123-45-67890</div>
-					<div class="ct-body-cell">오라운트</div>
-					<div class="ct-body-cell">010-1234-5668</div>
-					<div class="ct-body-cell">qwerasdf@gmail.com</div>
-					<div class="ct-body-cell">
-						<div class="btn-group">
-							<button id="btn-delete-host">삭제</button>
-						</div>
-						<!-- END btn-group -->
-					</div>
-				</div>
-				<!-- END ct-body-row -->
-				<div class="ct-body-row">
-					<div class="ct-body-cell">2022-10-13</div>
-					<div class="ct-body-cell">오라운트 주식회사</div>
-					<div class="ct-body-cell">김대표</div>
-					<div class="ct-body-cell">123-45-67890</div>
-					<div class="ct-body-cell">오라운트</div>
-					<div class="ct-body-cell">010-1234-5668</div>
-					<div class="ct-body-cell">qwerasdf@gmail.com</div>
-					<div class="ct-body-cell">
-						<div class="btn-group">
-							<button id="btn-delete-host">삭제</button>
-						</div>
-						<!-- END btn-group -->
-					</div>
-				</div>
-				<!-- END ct-body-row -->
+					<!-- END ct-body-row -->
+				</c:forEach>
 			</div>
 			<!-- END ct-body -->
 		</div>
