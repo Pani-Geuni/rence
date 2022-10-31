@@ -9,11 +9,8 @@
 
 package test.com.rence.user.controller;
 
-import java.sql.Date;
-
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -73,7 +70,7 @@ public class MypageController {
 		
 		//총 마일리지 부분
 		UserMileageVO umvo = service.user_mileage_selectOne(uvo);
-	
+		logger.info("umvo: {}", umvo);
 //		UserMileageVO umvo = service.user_mileage_select(uvo);
 		
 		JSONObject jsonObject = new JSONObject();
