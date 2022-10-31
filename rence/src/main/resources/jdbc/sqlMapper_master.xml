@@ -21,7 +21,7 @@
   	</update>
   	
   	<select id="SQL_SELECT_ALL_BACKOFFICE_END" resultType="test.com.rence.backoffice.BackOfficeVO">
-    	SELECT * from backofficeinfo where backoffice_state='O' order by apply_date desc;
+    	SELECT * from backofficeinfo where backoffice_state='O' order by apply_date desc
   	</select>
   	
   	<update id="SQL_UPDATE_BACKOFFICE_STATE_X" parameterType="test.com.rence.backoffice.BackOfficeVO">
