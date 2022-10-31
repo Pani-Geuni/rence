@@ -362,7 +362,7 @@
 									name="sun_etime" readonly />
 							</div>
 							<div class="table-body-cell">
-								<input type="checkbox" id="checkbox" name="sun_dayoff" value="T" />
+								<input type="checkbox" id="sun_dayoff" name="sun_dayoff" value="T" />
 							</div>
 						</div>
 						<!-- END table body row -->
@@ -378,7 +378,7 @@
 									name="mon_etime" readonly />
 							</div>
 							<div class="table-body-cell">
-								<input type="checkbox" id="checkbox" name="mon_dayoff" value="T" />
+								<input type="checkbox" id="mon_dayoff" name="mon_dayoff" value="T" />
 							</div>
 						</div>
 						<!-- END table body row -->
@@ -394,7 +394,7 @@
 									name="tue_etime" readonly />
 							</div>
 							<div class="table-body-cell">
-								<input type="checkbox" id="checkbox" name="tue_dayoff" value="T" />
+								<input type="checkbox" id="tue_dayoff" name="tue_dayoff" value="T" />
 							</div>
 						</div>
 						<!-- END table body row -->
@@ -410,7 +410,7 @@
 									name="wed_etime" readonly />
 							</div>
 							<div class="table-body-cell">
-								<input type="checkbox" id="checkbox" name="wed_dayoff" value="T" />
+								<input type="checkbox" id="wed_dayoff" name="wed_dayoff" value="T" />
 							</div>
 						</div>
 						<!-- END table body row -->
@@ -426,7 +426,7 @@
 									name="thu_etime" readonly />
 							</div>
 							<div class="table-body-cell">
-								<input type="checkbox" id="checkbox" name="thu_dayoff" value="T" />
+								<input type="checkbox" id="thu_dayoff" name="thu_dayoff" value="T" />
 							</div>
 						</div>
 						<!-- END table body row -->
@@ -442,7 +442,7 @@
 									name="fri_etime" readonly />
 							</div>
 							<div class="table-body-cell">
-								<input type="checkbox" id="checkbox" name="fri_dayoff" value="T" />
+								<input type="checkbox" id="fri_dayoff" name="fri_dayoff" value="T" />
 							</div>
 						</div>
 						<!-- END table body row -->
@@ -458,7 +458,7 @@
 									name="sat_etime" value="" readonly />
 							</div>
 							<div class="table-body-cell">
-								<input type="checkbox" id="checkbox" name="sat_dayoff" value="T" />
+								<input type="checkbox" id="sat_dayoff" name="sat_dayoff" value="T" />
 							</div>
 						</div>
 						<!-- END table body row -->
