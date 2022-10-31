@@ -13,31 +13,35 @@
   	</insert>
   	
   	<select id="SQL_SELECT_BACKOFFICE_AUTH" resultType="test.com.rence.sendemail.AuthVO">
-  	SELECT auth_no, auth_code, user_email from auth where user_email=#{user_email}
-<!--   	SELECT auth_no, auth_code, user_email from auth where auth_no=#{auth_no} -->
+  	SELECT auth_no, auth_code, user_email from (SELECT auth_no, auth_code, user_email from auth where user_email=#{user_email} order by rownum desc) where rownum = 1
   	</select>
+  	
+  	<select id="SQL_SELECT_BACKOFFICE_AUTHOK" resultType="test.com.rence.sendemail.AuthVO">
+  	SELECT * from auth where auth_code=#{auth_code} and user_email=#{user_email}
+  	</select>
+  	
+  	<delete id="SQL_DELETE_BACKOFFICE_AUTH" parameterType="test.com.rence.sendemail.AuthVO">
+  	DELETE FROM auth where auth_no = #{auth_no}
+  	</delete>
   
    	<insert id="SQL_INSERT_BACKOFFICE" parameterType="test.com.rence.backoffice.BackOfficeVO">
   	INSERT INTO backofficeinfo(backoffice_no, owner_name, backoffice_id, backoffice_name, company_name, backoffice_tel, backoffice_email,zipcode, roadname_address, number_address, detail_address, backoffice_tag, backoffice_info, backoffice_option, backoffice_around, backoffice_image, backoffice_state) 
-  	values('B'||seq_backoffice.nextval, #{owner_name}, #{backoffice_id}, #{backoffice_name}, #{company_name}, #{backoffice_tel},#{backoffice_email},#{zipcode},#{roadname_address},#{number_address},#{detail_address},#{backoffice_tag},#{backoffice_info},#{backoffice_option},#{backoffice_around},#{backoffice_image},'W')
+  	values('B'||seq_backoffice.nextval, #{owner_name}, #{backoffice_id}, #{backoffice_name}, #{company_name}, #{backoffice_tel},#{backoffice_email},#{zipcode},#{roadname_address},#{number_address},#{detail_address},#{backoffice_tag},#{backoffice_info},#{backoffice_option,jdbcType=VARCHAR},#{backoffice_around,jdbcType=VARCHAR},#{backoffice_image},'W')
 	</insert>
 	
 	<select id="SQL_SELECT_BACKOFFICE_NO" resultType="test.com.rence.backoffice.BackOfficeVO">
   	SELECT * from backofficeinfo where backoffice_email=#{backoffice_email}
   	</select>
 	
-   	<insert id="SQL_INSERT_OPERRATING_TIME" parameterType="test.com.rence.backoffice.BackOfficeVO">
-  	INSERT INTO BackOfficeOperationgTime(opetime_no, mon_stime, mon_etime, tue_stime, tue_etime, wed_stime, wed_etime, thu_stime, thu_etime, fri_stime, fri_etime, sat_stime, sat_etime, sun_stime, sun_etime, mon_dayoff, tue_dayoff, wed_dayoff, thu_dayoff, fri_dayoff, sat_dayoff, sun_dayoff, backoffice_no) 
-  	values('O'||seq_backofficeoperatingtime.nextval, #{mon_stime}, #{mon_etime}, #{tue_stime}, #{tue_etime}, #{wed_stime},#{wed_etime},#{thu_stime},#{thu_etime},#{fri_stime},#{fri_etime},#{sat_stime},#{sat_etime},#{sun_stime},#{sun_etime},#{mon_dayoff},#{tue_dayoff},#{wed_dayoff},#{thu_dayoff},#{fri_dayoff},#{sat_dayoff},#{sun_dayoff},#{backoffice_no})
+   	<insert id="SQL_INSERT_OPERRATING_TIME" parameterType="test.com.rence.backoffice.BackOfficeOperatingTimeVO_datetype">
+  	INSERT INTO BACKOFFICEOPERATINGTIME(opetime_no, mon_stime, mon_etime, tue_stime, tue_etime, wed_stime, wed_etime, thu_stime, thu_etime, fri_stime, fri_etime, sat_stime, sat_etime, sun_stime, sun_etime, sun_dayoff, mon_dayoff, tue_dayoff, wed_dayoff, thu_dayoff, fri_dayoff, sat_dayoff, backoffice_no) 
+  	values('O'||SEQ_BACKOFFICEOPERATINGTIME.nextval, #{mon_stime}, #{mon_etime}, #{tue_stime}, #{tue_etime}, #{wed_stime},#{wed_etime},#{thu_stime},#{thu_etime},#{fri_stime},#{fri_etime},#{sat_stime},#{sat_etime},#{sun_stime},#{sun_etime},#{sun_dayoff},#{mon_dayoff},#{tue_dayoff},#{wed_dayoff},#{thu_dayoff},#{fri_dayoff},#{sat_dayoff},#{backoffice_no})
 	</insert>
 	
-	<select id="SQL_SELECT_BACKOFFICE_AUTHOK" resultType="test.com.rence.sendemail.AuthVO">
-  	SELECT * from auth where auth_code=#{auth_code} and user_email=#{user_email} and #{user_email} not in(select backoffice_email from backofficeinfo where backoffice_state='X')
-  	</select>
-  	
-  	<delete id="SQL_DELETE_BACKOFFICE_AUTH" parameterType="test.com.rence.sendemail.AuthVO">
-  	DELETE FROM auth where auth_no = #{auth_no}
-  	</delete>
+<!--    	<insert id="SQL_INSERT_OPERRATING_TIME" parameterType="test.com.rence.backoffice.BackOfficeOperatingTimeVO_datetype">
+  	INSERT INTO BACKOFFICEOPERATINGTIME(opetime_no, mon_stime, mon_etime, tue_stime, tue_etime, wed_stime, wed_etime, thu_stime, thu_etime, fri_stime, fri_etime, sat_stime, sat_etime, sun_stime, sun_etime, sun_dayoff, mon_dayoff, tue_dayoff, wed_dayoff, thu_dayoff, fri_dayoff, sat_dayoff, backoffice_no) 
+  	values('O'||SEQ_BACKOFFICEOPERATINGTIME.nextval, #{mon_stime}, #{mon_etime}, #{tue_stime}, #{tue_etime}, #{wed_stime},#{wed_etime},#{thu_stime},#{thu_etime},#{fri_stime},#{fri_etime},#{sat_stime},#{sat_etime},#{sun_stime},#{sun_etime},#{sun_dayoff,jdbcType=CHAR},#{mon_dayoff,jdbcType=CHAR},#{tue_dayoff,jdbcType=CHAR},#{wed_dayoff,jdbcType=CHAR},#{thu_dayoff,jdbcType=CHAR},#{fri_dayoff,jdbcType=CHAR},#{sat_dayoff,jdbcType=CHAR},#{backoffice_no})
+	</insert> -->
 	
 	<select id="SQL_BACKOFFICE_LOGIN" resultType="test.com.rence.backoffice.BackOfficeVO">
   	select * from backofficeinfo where backoffice_id=#{backoffice_id} and backoffice_pw=#{backoffice_pw} and (backoffice_state='Y' or backoffice_state='O')

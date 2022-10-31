@@ -1,3 +1,7 @@
+/**
+* @author : 전판근
+*/
+
 $(function () {
 
   // HOST LOGIN 관련 팝업 JS

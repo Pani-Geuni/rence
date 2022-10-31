@@ -67,12 +67,14 @@ public class UserJoinController {
 		
 		//이메일 중복 체크
 		UserVO emailCheck = service.emailCheckOK(uvo);
-		logger.info("{}", emailCheck);
+		logger.info("emailCheck: {}", emailCheck);
+		logger.info("emailCheck.getUser_state(): {}", emailCheck.getUser_state());
 		
 		// 탈퇴한 회원의 이메일로 재가입 가능
-		if(emailCheck==null || emailCheck.getUser_state() == "N") {
+//		if(emailCheck==null || emailCheck.getUser_state() == "N   ") {s
+		if(emailCheck==null || emailCheck.getUser_state().equalsIgnoreCase("N   ")) {
 			avo.setUser_email(uvo.getUser_email());
-			
+			logger.info("avo :   {}", avo);
 			//이메일 전송
 			avo = authSendEmail.sendEmail(avo,evo);
 			logger.info("메일이 전송되었습니다.C_avo: {}",avo);
@@ -179,6 +181,14 @@ public class UserJoinController {
 			
 		}
 		else {
+			UserVO uvo2 = service.user_select_userno();
+			logger.info("uvo2: {}", uvo2);
+			int result2 = service.user_mileage_zero_insert(uvo2);
+			if(result2 == 0) {
+				//회원가입은 했지만 마일리지 데이터가 안들어갔으므로 실패
+//				jsonObject.put("result", "0");
+			}
+			logger.info("result2: {}", result2);
 			jsonObject.put("result", "1"); 
 		}
 //		return "redirect:/"; // 회원가입후 로그인을 위한 홈화면 이동

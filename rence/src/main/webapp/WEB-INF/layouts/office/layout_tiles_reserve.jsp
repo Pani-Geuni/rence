@@ -11,26 +11,25 @@
 	<title><tiles:getAsString name="title"></tiles:getAsString></title>
 	<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 	
-	<link rel="stylesheet" href="${path}/resources/CSS/common.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/login.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/header.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/home.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/footer.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/common/common.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/office/login.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/office/header.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/office/home.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/common/footer.css" />
 	
-    <script type="text/javascript" src="${path}/resources/JS/core.min.js"></script>
-    <script type="text/javascript" src="${path}/resources/JS/sha256.min.js"></script>
+    <script type="text/javascript" src="${path}/resources/JS/common/core.min.js"></script>
+    <script type="text/javascript" src="${path}/resources/JS/common/sha256.min.js"></script>
 
-    <script src="${path}/resources/JS/jquery-3.6.1.min.js"></script>
-    <script src="${path}/resources/JS/jquery.cookie.js"></script>
-    <script src="${path}/resources/JS/user_popup.js"></script>
-    <script src="${path}/resources/JS/header.js"></script>
+    <script src="${path}/resources/JS/common/jquery-3.6.1.min.js"></script>
+    <script src="${path}/resources/JS/common/jquery.cookie.js"></script>
+    <script src="${path}/resources/JS/office/header.js"></script>
+    <script src="${path}/resources/JS/office/user_popup.js"></script>
 </head>
 <body>
 	<div class ="pageWrap">
 		<tiles:insertAttribute name="header" />
 		<section class ="contentWrap">
 			<tiles:insertAttribute name="content" />
-			<tiles:insertAttribute name="footer" />
 		</section>
 	</div>
 	
@@ -159,6 +158,21 @@
                 <div id="logout-closeBtn" class="confirm-noBtn">닫기</div>
             </section>
         </div>
+        
+        <!-- START reserve-cancle CONFIRM POPUP -->
+        <div id ="reserve-cancle-popup" class="confirm-popup blind">
+            <section class="confirm-txt-section">
+                <span class="reserve-cancle-txt">
+                    예약을 정말로 취소하시겠습니까?<br><br>
+                    환불 규정에 따라 환불 될 예정입니다.
+                </span>
+            </section>
+            <section class="confirm-btn-section">
+                <div class="confirm-yesBtn">확인</div>
+                <div id="logout-closeBtn" class="confirm-noBtn">취소</div>
+            </section>
+        </div>
+        <!-- END reserve-cancle CONFIRM POPUP -->
     </div>
 
     <div class="popup-background blind">

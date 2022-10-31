@@ -11,23 +11,24 @@
 	<title><tiles:getAsString name="title"></tiles:getAsString></title>
 	<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 	
-	<link rel="stylesheet" href="${path}/resources/CSS/common.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/dash-commons.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/left-side-menu.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/common/common.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/common/custom-table.css" />
 	
-	<link rel="stylesheet" href="${path}/resources/CSS/dash-board.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/dash-space-list.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/dash-qna-list.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/dash-review-list.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/dash-reserve-list.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/dash-sales-list.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/dash-settings.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/custom-table.css" />
 	
-	<script src="${path}/resources/JS/jquery-3.6.1.min.js"></script>
-	<script src="${path}/resources/JS/dashboard.js"></script>
-	<script src="${path}/resources/JS/number_comma.js"></script>
-	<script src="${path}/resources/JS/host_popup.js"></script>
+	<link rel="stylesheet" href="${path}/resources/CSS/dash-board/dash-commons.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/dash-board/left-side-menu.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/dash-board/dash-board.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/dash-board/dash-space-list.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/dash-board/dash-qna-list.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/dash-board/dash-review-list.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/dash-board/dash-reserve-list.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/dash-board/dash-sales-list.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/dash-board/dash-settings.css" />
+	
+	<script src="${path}/resources/JS/common/jquery-3.6.1.min.js"></script>
+	<script src="${path}/resources/JS/backoffice/dashboard.js"></script>
+	<script src="${path}/resources/JS/backoffice/number_comma.js"></script>
+	<script src="${path}/resources/JS/backoffice/host_popup.js"></script>
 	
 </head>
 <body class="bodyWrap">

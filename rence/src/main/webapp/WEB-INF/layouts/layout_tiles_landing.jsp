@@ -11,19 +11,20 @@
 	<title><tiles:getAsString name="title"></tiles:getAsString></title>
 	<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 	
-	<link rel="stylesheet" href="${path}/resources/CSS/common.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/host-login.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/host-header.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/footer.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/common/common.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/common/footer.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/common/custom-timepicker.css" />
 	
-	<link rel="stylesheet" href="${path}/resources/CSS/host-landing.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/host-insert.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/custom-timepicker.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/backoffice/host-login.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/backoffice/host-header.css" />	
+	<link rel="stylesheet" href="${path}/resources/CSS/backoffice/host-landing.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/backoffice/host-insert.css" />
 	
-	<script src="${path}/resources/JS/jquery-3.6.1.min.js"></script>
-	<script src="${path}/resources/JS/host_header.js"></script>
-	<script src="${path}/resources/JS/host_popup.js"></script>
-	<script src="${path}/resources/JS/host_insert.js"></script>
+	<script src="${path}/resources/JS/common/jquery-3.6.1.min.js"></script>
+	<script src="${path}/resources/JS/backoffice/host_header.js"></script>
+	<script src="${path}/resources/JS/backoffice/host_popup.js"></script>
+	<script src="${path}/resources/JS/backoffice/host_insert.js"></script>
+	<script src="${path}/resources/JS/backoffice/custom-image-input.js"></script>
 
 	<!-- timepicker library script -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>

@@ -8,27 +8,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title><tiles:getAsString name="title"></tiles:getAsString></title>
-<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
-
-<link rel="stylesheet" href="${path}/resources/CSS/common.css" />
-<link rel="stylesheet" href="${path}/resources/CSS/login.css" />
-<link rel="stylesheet" href="${path}/resources/CSS/header.css" />
-<link rel="stylesheet" href="${path}/resources/CSS/footer.css" />
-
-<link rel="stylesheet" href="${path}/resources/CSS/reserve-list.css" />
-<link rel="stylesheet" href="${path}/resources/CSS/my-page.css" />
-<link rel="stylesheet" href="${path}/resources/CSS/mileage-page.css" />
-<link rel="stylesheet" href="${path}/resources/CSS/question-page.css" />
-
-<script type="text/javascript" src="${path}/resources/JS/core.min.js"></script>
-<script type="text/javascript" src="${path}/resources/JS/sha256.min.js"></script>
-
-<script src="${path}/resources/JS/jquery-3.6.1.min.js"></script>
-<script src="${path}/resources/JS/jquery.cookie.js"></script>
-<script src="${path}/resources/JS/user_popup.js"></script>
-<script src="${path}/resources/JS/header.js"></script>
-<script src="${path}/resources/JS/my_page.js"></script>
+	<title><tiles:getAsString name="title"></tiles:getAsString></title>
+	<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+	
+	<link rel="stylesheet" href="${path}/resources/CSS/common/common.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/office/header.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/common/footer.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/office/login.css" />
+	
+	<link rel="stylesheet" href="${path}/resources/CSS/office/reserve-list.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/office/my-page.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/office/mileage-page.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/office/question-page.css" />
+	
+	<script type="text/javascript" src="${path}/resources/JS/common/core.min.js"></script>
+	<script type="text/javascript" src="${path}/resources/JS/common/sha256.min.js"></script>
+	
+	<script src="${path}/resources/JS/common/jquery-3.6.1.min.js"></script>
+	<script src="${path}/resources/JS/common/jquery.cookie.js"></script>
+	<script src="${path}/resources/JS/office/header.js"></script>
+	<script src="${path}/resources/JS/office/user_popup.js"></script>
+	
+	<script src="${path}/resources/JS/office/my_page.js"></script>
+	<script src="${path}/resources/JS/office/mileage_list.js"></script>
+	<script src="${path}/resources/JS/office/reserve_list.js"></script>
 </head>
 <body>
 	<div class="pageWrap">

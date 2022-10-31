@@ -32,7 +32,8 @@ public class BackOfficeVO implements Serializable{
 	private String host_image;
 	private String backoffice_state;
 	private Date apply_date;
-	private MultipartFile multipartFile;
+	private MultipartFile multipartFile_room;
+	private MultipartFile multipartFile_host;
 	
 	public BackOfficeVO() {}
 
@@ -40,7 +41,8 @@ public class BackOfficeVO implements Serializable{
 			String company_name, String backoffice_pw, String backoffice_tel, String backoffice_email, String zipcode,
 			String roadname_address, String number_address, String detail_address, String backoffice_tag,
 			String backoffice_info, String backoffice_option, String backoffice_around, String backoffice_image,
-			String host_image, String backoffice_state, Date apply_date, MultipartFile multipartFile) {
+			String host_image, String backoffice_state, Date apply_date, MultipartFile multipartFile_room,
+			MultipartFile multipartFile_host) {
 		super();
 		this.backoffice_no = backoffice_no;
 		this.owner_name = owner_name;
@@ -62,7 +64,8 @@ public class BackOfficeVO implements Serializable{
 		this.host_image = host_image;
 		this.backoffice_state = backoffice_state;
 		this.apply_date = apply_date;
-		this.multipartFile = multipartFile;
+		this.multipartFile_room = multipartFile_room;
+		this.multipartFile_host = multipartFile_host;
 	}
 
 	public String getBackoffice_no() {
@@ -225,25 +228,20 @@ public class BackOfficeVO implements Serializable{
 		this.apply_date = apply_date;
 	}
 
-	public MultipartFile getMultipartFile() {
-		return multipartFile;
+	public MultipartFile getMultipartFile_room() {
+		return multipartFile_room;
 	}
 
-	public void setMultipartFile(MultipartFile multipartFile) {
-		this.multipartFile = multipartFile;
+	public void setMultipartFile_room(MultipartFile multipartFile_room) {
+		this.multipartFile_room = multipartFile_room;
 	}
 
-	@Override
-	public String toString() {
-		return "BackOfficeVO [backoffice_no=" + backoffice_no + ", owner_name=" + owner_name + ", backoffice_id="
-				+ backoffice_id + ", backoffice_name=" + backoffice_name + ", company_name=" + company_name
-				+ ", backoffice_pw=" + backoffice_pw + ", backoffice_tel=" + backoffice_tel + ", backoffice_email="
-				+ backoffice_email + ", zipcode=" + zipcode + ", roadname_address=" + roadname_address
-				+ ", number_address=" + number_address + ", detail_address=" + detail_address + ", backoffice_tag="
-				+ backoffice_tag + ", backoffice_info=" + backoffice_info + ", backoffice_option=" + backoffice_option
-				+ ", backoffice_around=" + backoffice_around + ", backoffice_image=" + backoffice_image
-				+ ", host_image=" + host_image + ", backoffice_state=" + backoffice_state + ", apply_date=" + apply_date
-				+ ", multipartFile=" + multipartFile + "]";
+	public MultipartFile getMultipartFile_host() {
+		return multipartFile_host;
+	}
+
+	public void setMultipartFile_host(MultipartFile multipartFile_host) {
+		this.multipartFile_host = multipartFile_host;
 	}
 
 	@Override
@@ -266,7 +264,8 @@ public class BackOfficeVO implements Serializable{
 		result = prime * result + ((company_name == null) ? 0 : company_name.hashCode());
 		result = prime * result + ((detail_address == null) ? 0 : detail_address.hashCode());
 		result = prime * result + ((host_image == null) ? 0 : host_image.hashCode());
-		result = prime * result + ((multipartFile == null) ? 0 : multipartFile.hashCode());
+		result = prime * result + ((multipartFile_host == null) ? 0 : multipartFile_host.hashCode());
+		result = prime * result + ((multipartFile_room == null) ? 0 : multipartFile_room.hashCode());
 		result = prime * result + ((number_address == null) ? 0 : number_address.hashCode());
 		result = prime * result + ((owner_name == null) ? 0 : owner_name.hashCode());
 		result = prime * result + ((roadname_address == null) ? 0 : roadname_address.hashCode());
@@ -363,10 +362,15 @@ public class BackOfficeVO implements Serializable{
 				return false;
 		} else if (!host_image.equals(other.host_image))
 			return false;
-		if (multipartFile == null) {
-			if (other.multipartFile != null)
+		if (multipartFile_host == null) {
+			if (other.multipartFile_host != null)
 				return false;
-		} else if (!multipartFile.equals(other.multipartFile))
+		} else if (!multipartFile_host.equals(other.multipartFile_host))
+			return false;
+		if (multipartFile_room == null) {
+			if (other.multipartFile_room != null)
+				return false;
+		} else if (!multipartFile_room.equals(other.multipartFile_room))
 			return false;
 		if (number_address == null) {
 			if (other.number_address != null)
@@ -390,6 +394,20 @@ public class BackOfficeVO implements Serializable{
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "BackOfficeVO [backoffice_no=" + backoffice_no + ", owner_name=" + owner_name + ", backoffice_id="
+				+ backoffice_id + ", backoffice_name=" + backoffice_name + ", company_name=" + company_name
+				+ ", backoffice_pw=" + backoffice_pw + ", backoffice_tel=" + backoffice_tel + ", backoffice_email="
+				+ backoffice_email + ", zipcode=" + zipcode + ", roadname_address=" + roadname_address
+				+ ", number_address=" + number_address + ", detail_address=" + detail_address + ", backoffice_tag="
+				+ backoffice_tag + ", backoffice_info=" + backoffice_info + ", backoffice_option=" + backoffice_option
+				+ ", backoffice_around=" + backoffice_around + ", backoffice_image=" + backoffice_image
+				+ ", host_image=" + host_image + ", backoffice_state=" + backoffice_state + ", apply_date=" + apply_date
+				+ ", multipartFile_room=" + multipartFile_room + ", multipartFile_host=" + multipartFile_host + "]";
+	}
+
 
 	
 }

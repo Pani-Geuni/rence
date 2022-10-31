@@ -125,5 +125,22 @@ public class MasterController {
 //		return jsonObject;
 //	}
 //	
-
+	
+	/**
+	 * 마스터 메인 페이지 (백오피스 가입 신청 리스트)
+	 */
+	@RequestMapping(value = "/master_main", method = RequestMethod.GET)
+	public String master_main() {
+		
+		return ".master_main/master_main";
+	}
+	
+	/**
+	 * 백오피스 탈퇴 신청 리스트
+	 */
+	@RequestMapping(value = "/master_backoffice_end", method = RequestMethod.GET)
+	public String master_backoffice_end() {
+		
+		return ".master_main/master_backoffice_end";
+	}
 }

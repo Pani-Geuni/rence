@@ -103,7 +103,7 @@
     flex-direction: column;
 }
 .mileage-history-title-section{
-    height: 40px;
+    height: 35px;
 
     border-top: 2px solid #e4e4e4;
     border-bottom: 2px solid #e4e4e4;
@@ -143,6 +143,9 @@
 .mileage-history-wrap *{
     font-family: 'OTWelcome';
     font-size: 14px;
+
+    max-height: 260px;
+    overflow-y: overlay;
 }
 .mileage-list{
     height: 39px;

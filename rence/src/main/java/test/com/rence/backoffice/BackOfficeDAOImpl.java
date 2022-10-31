@@ -74,7 +74,7 @@ public class BackOfficeDAOImpl implements BackOfficeDAO {
 //	}
 
 	@Override
-	public int backoffice_operating_insert(BackOfficeOperationgTimeVO ovo) {
+	public int backoffice_operating_insert(BackOfficeOperatingTimeVO_datetype ovo) {
 		logger.info("backoffice_operating_insert_DAOImpl()...");
 		logger.info("{}", ovo);
 
