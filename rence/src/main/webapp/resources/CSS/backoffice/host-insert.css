@@ -50,7 +50,7 @@
   border-radius: 8px;
 }
 
-.inputWrap input:focus {
+.inputWrap.input:focus {
   border: 1px solid #b2a4ff;
 }
 
@@ -140,10 +140,19 @@
 /* ************************ */
 /* Input BackOffice Options */
 /* ************************ */
-#checkbox {
-  box-sizing: border-box;
-  width: 15px;
-  height: 15px;
+.checkbox {
+  box-sizing: border-box !important;
+  width: 15px !important;
+  height: 15px !important;
+}
+
+.inputWrap.backoffice_type {
+  align-items: flex-start;
+  height: auto;
+}
+
+.inputWrap.backoffice_type p {
+  margin: 0;
 }
 
 .inputWrap.option {

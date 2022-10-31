@@ -81,23 +81,70 @@
 				<textarea id="backoffice_info" name="backoffice_info"
 					placeholder="공간 소개를 입력해 주세요"></textarea>
 			</div>
+			
+			<div class="inputWrap backoffice_type">
+	        	<p>공간 태그</p>
+	            <div class="option-group-column">
+	              <div class="option-group-row">
+	                <div class="option-item">
+	                  <input
+	                    type="checkbox"
+	                    id="type_checkbox_desk"
+	                    class="checkbox"
+	                    name="backoffice_type"
+	                    value="desk"
+	                    readonly
+	                  />
+	                  <label>데스크</label>
+	                </div>
+	                <!-- END option-item -->
+	                <div class="option-item">
+	                  <input
+	                    type="checkbox"
+	                    id="type_checkbox_meeting_room"
+	                    class="checkbox"
+	                    name="backoffice_type"
+	                    value="meeting_room"
+	                    readonly
+	                  />
+	                  <label>회의실</label>
+	                </div>
+	                <!-- END option-item -->
+	                <div class="option-item">
+	                  <input
+	                    type="checkbox"
+	                    id="type_checkbox_office"
+	                    class="checkbox"
+	                    name="backoffice_type"
+	                    value="office"
+	                    readonly
+	                  />
+	                  <label>오피스</label>
+	                </div>
+	                <!-- END option-item -->
+	              </div>
+	              <!-- END option-group-row -->
+	            </div>
+	            <!-- END option-group-column -->
+	          </div>
+	          <!-- END inputWrap backoffice_type -->
 
 			<div class="inputWrap option">
 				<p>공간 옵션</p>
 				<div class="option-group-column">
 					<div class="option-group-row">
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_option"
-								value="chair-desk" readonly /> <label>의자/테이블</label>
+							<input type="checkbox" id="chair-desk" class="checkbox" name="backoffice_option"
+								value="chair-desk"  readonly /> <label>의자/테이블</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_option"
+							<input type="checkbox" id="internet-wifi" class="checkbox" name="backoffice_option"
 								value="internet-wifi" /> <label>인터넷/Wi-Fi</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_option"
+							<input type="checkbox" id="restroom" class="checkbox" name="backoffice_option"
 								value="restroom" /> <label>내부 화장실</label>
 						</div>
 					</div>
@@ -105,17 +152,17 @@
 
 					<div class="option-group-row">
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_option"
+							<input type="checkbox" id="no-smoking" class="checkbox" name="backoffice_option"
 								value="no-smoking" /> <label>금연</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_option"
+							<input type="checkbox" id="smoking-room" class="checkbox" name="backoffice_option"
 								value="smoking-room" /> <label>흡연실</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_option"
+							<input type="checkbox" id="terrace-rooftop" class="checkbox" name="backoffice_option"
 								value="terrace-rooftop" /> <label>테라스/루프탑</label>
 						</div>
 					</div>
@@ -123,17 +170,17 @@
 
 					<div class="option-group-row">
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_option"
+							<input type="checkbox" id="tv-projector" class="checkbox" name="backoffice_option"
 								value="tv-projector" /> <label>TV/프로젝터</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_option"
+							<input type="checkbox" id="whiteboard" class="checkbox" name="backoffice_option"
 								value="whiteboard" /> <label>화이트보드</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_option"
+							<input type="checkbox" id="sound-microphone" class="checkbox" name="backoffice_option"
 								value="sound-microphone" /> <label>음향/마이크</label>
 						</div>
 					</div>
@@ -141,17 +188,17 @@
 
 					<div class="option-group-row">
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_option"
+							<input type="checkbox" id="parking" class="checkbox" name="backoffice_option"
 								value="parking" /> <label>주차</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_option"
+							<input type="checkbox" id="pc-laptop" class="checkbox" name="backoffice_option"
 								value="pc-laptop" /> <label>PC/노트북</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_option"
+							<input type="checkbox" id="printer" class="checkbox" name="backoffice_option"
 								value="printer" /> <label>복사/인쇄기</label>
 						</div>
 					</div>
@@ -159,17 +206,17 @@
 
 					<div class="option-group-row">
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_option" value="lounge" />
+							<input type="checkbox" id="lounge" class="checkbox" name="backoffice_option" value="lounge" />
 							<label>공용 라운지</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_option"
+							<input type="checkbox" id="kitchen" class="checkbox" name="backoffice_option"
 								value="kitchen" /> <label>공용 주방</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_option"
+							<input type="checkbox" id="water-purifier" class="checkbox" name="backoffice_option"
 								value="water-purifier" /> <label>정수기</label>
 						</div>
 					</div>
@@ -177,17 +224,17 @@
 
 					<div class="option-group-row">
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_option"
+							<input type="checkbox" id="can-food" class="checkbox" name="backoffice_option"
 								value="can-food" /> <label>음식물 반입 가능</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_option"
+							<input type="checkbox" id="can-drink" class="checkbox" name="backoffice_option"
 								value="can-drink" /> <label>주류 반입 가능</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_option"
+							<input type="checkbox" id="air-conditioner" class="checkbox" name="backoffice_option"
 								value="air-conditioner" /> <label>에어컨</label>
 						</div>
 					</div>
@@ -195,17 +242,17 @@
 
 					<div class="option-group-row">
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_option"
+							<input type="checkbox" id="fitting-room" class="checkbox" name="backoffice_option"
 								value="fitting-room" /> <label>탈의실</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_option" value="shower" />
+							<input type="checkbox" id="shower" class="checkbox" name="backoffice_option" value="shower" />
 							<label>샤워시설</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_option"
+							<input type="checkbox" id="body-mirror" class="checkbox" name="backoffice_option"
 								value="body-mirror" /> <label>전신거울</label>
 						</div>
 					</div>
@@ -213,29 +260,28 @@
 
 					<div class="option-group-row">
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_option"
+							<input type="checkbox" id="door-lock" class="checkbox" name="backoffice_option"
 								value="door-lock" /> <label>도어락</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_option"
+							<input type="checkbox" id="outlet-multitap" class="checkbox" name="backoffice_option"
 								value="outlet-multitap" /> <label>콘센트/멀티탭</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_option"
+							<input type="checkbox" id="personal-locker" class="checkbox" name="backoffice_option"
 								value="personal-locker" /> <label>개인락커</label>
 						</div>
 					</div>
 					<!-- END option-group row -->
 					<div class="option-group-row">
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_option" value="fax" />
+							<input type="checkbox" id="fax" class="checkbox" name="backoffice_option" value="fax" />
 							<label>팩스</label>
 						</div>
 					</div>
 					<!-- END option-group row -->
-					<input type="hidden" id="options" name="options" />
 				</div>
 				<!-- END option-group column -->
 			</div>
@@ -246,17 +292,17 @@
 				<div class="option-group-column">
 					<div class="option-group-row">
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_around"
+							<input type="checkbox" id="public-parking" class="checkbox" name="backoffice_around"
 								value="public-parking" /> <label>공영주차장</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_around"
+							<input type="checkbox" id="paid-parking" class="checkbox" name="backoffice_around"
 								value="paid-parking" /> <label>유료주차장</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_around"
+							<input type="checkbox" id="pharmacy" class="checkbox" name="backoffice_around"
 								value="pharmacy" /> <label>약국</label>
 						</div>
 					</div>
@@ -264,22 +310,21 @@
 
 					<div class="option-group-row">
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_around"
+							<input type="checkbox" id="hospital" class="checkbox" name="backoffice_around"
 								value="hospital" /> <label>병원</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_around"
+							<input type="checkbox" id="convenience-store" class="checkbox" name="backoffice_around"
 								value="convenience-store" /> <label>편의점</label>
 						</div>
 
 						<div class="option-item">
-							<input type="checkbox" id="checkbox" name="backoffice_around"
+							<input type="checkbox" id="cafe" class="checkbox" name="backoffice_around"
 								value="cafe" /> <label>카페</label>
 						</div>
 					</div>
 					<!-- END option-group row -->
-					<input type="hidden" id="nearby-options" name="nearby-options" />
 				</div>
 				<!-- END option-group column -->
 			</div>
