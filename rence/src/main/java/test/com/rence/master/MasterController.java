@@ -152,7 +152,7 @@ public class MasterController {
 	/**
 	 * 마스터 가입 승인
 	 */
-	@RequestMapping(value = "/master_grant", method = RequestMethod.GET)
+	@RequestMapping(value = "/master_grant", method = RequestMethod.POST)
 	@ResponseBody
 	public JSONObject master_grant(Model model, BackOfficeVO bvo, EmailVO evo) {
 		logger.info("BackOfficeVO:{}", bvo);
@@ -185,7 +185,7 @@ public class MasterController {
 	/**
 	 * 마스터 가입 거절
 	 */
-	@RequestMapping(value = "/master_refuse", method = RequestMethod.GET)
+	@RequestMapping(value = "/master_refuse", method = RequestMethod.POST)
 	@ResponseBody
 	public JSONObject master_refuse(BackOfficeVO bvo, EmailVO evo) {
 		logger.info("BackOfficeVO:{}", bvo);
@@ -212,7 +212,7 @@ public class MasterController {
 	/**
 	 * 백오피스 탈퇴 신청 리스트
 	 */
-	@RequestMapping(value = "/master_backoffice_end", method = RequestMethod.GET)
+	@RequestMapping(value = "/master_backoffice_end", method = RequestMethod.POST)
 	public String master_backoffice_end(BackOfficeVO bvo, Model model) {
 
 		List<BackOfficeVO> bvos = service.backoffice_endList_selectAll();

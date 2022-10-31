@@ -34,7 +34,7 @@
 	<div class="popup-background blind">
 		<div id ="grant-popup" class="confirm-popup blind">
             <section class="confirm-txt-section">
-                <span class="logout-txt">
+                <span class="grant-txt">
                 	해당 호스트를 승낙하시겠습니까?
                 </span>
             </section>
@@ -43,7 +43,22 @@
                 <div id="grant-closeBtn" class="confirm-noBtn">닫기</div>
             </section>
         </div>
+        <!-- END grant popup -->
+        
+        <div id ="refuse-popup" class="confirm-popup blind">
+            <section class="confirm-txt-section">
+                <span class="refuse-txt">
+                	해당 호스트를 거절하시겠습니까?
+                </span>
+            </section>
+            <section class="confirm-btn-section">
+                <div id="refuse-btn" class="confirm-yesBtn">가입 거절</div>
+                <div id="refuse-closeBtn" class="confirm-noBtn">닫기</div>
+            </section>
+        </div>
+        <!-- END grant popup -->
 	</div>
+	
 	
 </body>
 </html>
