@@ -27,6 +27,7 @@
     <script src="${path}/resources/JS/office/user_popup.js"></script>
     
     <script src="${path}/resources/JS/office/home.js"></script>
+    <script src="${path}/resources/JS/office/review_content.js"></script>
 </head>
 <body>
 	<div class ="pageWrap">

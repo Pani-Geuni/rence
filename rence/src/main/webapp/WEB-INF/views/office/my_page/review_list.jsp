@@ -30,7 +30,7 @@
 	                        <span class="list-title-txt list-num"><%=++cnt%></span>
 	                        <span class="list-title-txt list-company-name">{obj.company_name}</span>
 	                        <span class="list-title-txt list-content">
-	                            후기내용 후기내용 후기내용 후기내용 후기내용 후기내용
+	                            ${obj.review_content}
 	                        </span>
 	                        <span class="list-title-txt list-point">5</span>
 	                        <span class="list-title-txt list-date">2022.10.22</span>
