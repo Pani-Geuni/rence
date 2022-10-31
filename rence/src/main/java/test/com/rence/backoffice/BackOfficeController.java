@@ -167,9 +167,9 @@ public class BackOfficeController {
 	 */
 	@RequestMapping(value = "/backoffice_authOK", method = RequestMethod.GET)
 	@ResponseBody
-	public JSONObject backoffice_authOK(AuthVO avo) {
+	public JSONObject backoffice_authOK(AuthVO avo, String backoffice_email, String auth_code) {
 		 
-		AuthVO avo2 = service.backoffice_authOK_select(avo);
+		AuthVO avo2 = service.backoffice_authOK_select(backoffice_email,auth_code);
 
 		JSONObject jsonObject = new JSONObject();
 

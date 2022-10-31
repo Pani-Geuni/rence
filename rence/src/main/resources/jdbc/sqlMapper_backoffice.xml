@@ -17,7 +17,7 @@
   	</select>
   	
   	<select id="SQL_SELECT_BACKOFFICE_AUTHOK" resultType="test.com.rence.sendemail.AuthVO">
-  	SELECT * from auth where auth_code=#{auth_code} and user_email=#{user_email}
+  	SELECT * from (SELECT * from (SELECT * from auth where user_email=#{backoffice_email} order by rownum desc) where rownum = 1) where auth_code=#{auth_code} and user_email=#{backoffice_email} 
   	</select>
   	
   	<delete id="SQL_DELETE_BACKOFFICE_AUTH" parameterType="test.com.rence.sendemail.AuthVO">

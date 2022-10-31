@@ -257,7 +257,7 @@
 
 						<div class="option-item">
 							<input type="checkbox" id="checkbox" name="backoffice_around"
-								value=pharmacy " /> <label>약국</label>
+								value="pharmacy" /> <label>약국</label>
 						</div>
 					</div>
 					<!-- END option-group row -->
