@@ -56,7 +56,7 @@ public class BackOfficeService {
 	}
 
 	// 운영시간 삽입
-	public int backoffice_operating_insert(BackOfficeOperationgTimeVO_datetype ovo2) {
+	public int backoffice_operating_insert(BackOfficeOperatingTimeVO_datetype ovo2) {
 		logger.info("backoffice_operating_insert()...");
 		return dao.backoffice_operating_insert(ovo2);
 	}
