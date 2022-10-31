@@ -991,10 +991,10 @@ body .ui-tooltip {
 	/* background-image: url("images/ui-icons_222222_256x240.png"); */
 }
 .ui-datepicker-prev>.ui-icon-circle-triangle-w {
-	background-image: url("../IMG/space-introduce/left.svg");
+	background-image: url("../../IMG/office/left.svg");
 }
 .ui-datepicker-next>.ui-icon-circle-triangle-e {
-	background-image: url("../IMG/space-introduce/right.svg");
+	background-image: url("../../IMG/office/right.svg");
 }
 .ui-state-default .ui-icon {
 	background-image: url("images/ui-icons_888888_256x240.png");

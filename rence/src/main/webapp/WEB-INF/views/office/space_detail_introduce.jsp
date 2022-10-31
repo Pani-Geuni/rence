@@ -349,7 +349,7 @@
 					<!-- 타입 셀렉트 닫을 때 open-select클래스 remove해야함 -->
 					<div class="type-border">
 						<span class="type-border-txt">타입을 선택해주세요.</span> 
-						<img src="${path}/resources/IMG/space-introduce/full-dropdown.svg" alt="full-dropdown" class="full-dropdown"></img>
+						<img src="${path}/resources/IMG/office/full-dropdown.svg" alt="full-dropdown" class="full-dropdown"></img>
 					</div>
 
 					<!-- CUSTOM SELECT SECTION -->
