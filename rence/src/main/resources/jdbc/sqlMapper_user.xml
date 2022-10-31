@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="test.com.rence.user">
+<mapper namespace="test.com.rence.user.model">
 	<!-- 회원가입처리 SQL -->
 	<insert id="SQL_INSERT"
-		parameterType="test.com.rence.user.UserVO">
+		parameterType="test.com.rence.user.model.UserVO">
 		insert into
 		userinfo(user_no,user_id,user_pw,user_name,user_email,user_tel,user_birth,user_state)
 		values('U'||seq_user.nextval,#{user_id},#{user_pw},#{user_name},#{user_email},#{user_tel},#{user_birth},'Y')
@@ -16,7 +16,7 @@
 
 <!-- 	회원가입이후 마일리지테이블에 유저번호를 저장하기 위해서 정보추출 -->
 	<select id="SQL_USER_USERNO"
-		resultType="test.com.rence.user.UserVO">
+		resultType="test.com.rence.user.model.UserVO">
 		select user_no
 		from(
 		select user_no from userinfo order by user_no desc
@@ -27,7 +27,7 @@
 
 	<!-- 회원가입시 마일리지 테이블에 회원가입한 회원 마일리지 0삽입 -->
 	<insert id="SQL_INSERT_MILEAGE_ZERO_INSERT"
-		parameterType="test.com.rence.user.UserVO">
+		parameterType="test.com.rence.user.model.UserVO">
 		insert into
 		mileage(mileage_no,mileage_total,mileage_change,mileage_state,user_no)
 		values('M'||seq_mileage.nextval,0,0,'T',#{user_no})
@@ -83,7 +83,7 @@
 
 	<!-- Email 중복체크 SQL -->
 	<select id="SQL_EMAIL_CHECK"
-		resultType="test.com.rence.user.UserVO">
+		resultType="test.com.rence.user.model.UserVO">
 		select * from
 		userinfo where user_email=#{user_email}
 	</select>
@@ -93,7 +93,7 @@
 
 	<!-- 아이디 중복체크 SQL -->
 	<select id="SQL_ID_CHECK"
-		resultType="test.com.rence.user.UserVO">
+		resultType="test.com.rence.user.model.UserVO">
 		select * from
 		userinfo where user_id=#{user_id}
 	</select>
@@ -101,7 +101,7 @@
 
 	<!-- 유저로그인 -->
 	<select id="SQL_USER_LOGIN"
-		resultType="test.com.rence.user.UserVO">
+		resultType="test.com.rence.user.model.UserVO">
 		select * from
 		userinfo where user_id=#{user_id} and
 		user_pw=#{user_pw}
@@ -109,7 +109,7 @@
 
 	<!-- 아이디 찾기에서 이메일 가져오기 -->
 	<select id="SQL_SELECT_EMAIL"
-		resultType="test.com.rence.user.UserVO">
+		resultType="test.com.rence.user.model.UserVO">
 		select * from userinfo where user_email=#{user_email}
 	</select>
 
@@ -117,7 +117,7 @@
 	<!-- 비밀번호 찾기를 위한 아이디 이메일 -->
 	<!-- and 연산자를 통해서 아이디와 이메일 모두가 존재하여야 select가 가능함 -->
 	<select id="SQL_SELECT_USER_ID_EMAIL"
-		resultType="test.com.rence.user.UserVO">
+		resultType="test.com.rence.user.model.UserVO">
 		select * from userinfo where user_id=#{user_id} and
 		user_email=#{user_email}
 	</select>
@@ -125,7 +125,7 @@
 	<!-- 비밀번호 난수로 초기화 -->
 	<!-- 암호화처리가 된 비밀번호로 저장 -->
 	<update id="SQL_USER_UPDATE_PW_INIT"
-		parameterType="test.com.rence.user.UserVO">
+		parameterType="test.com.rence.user.model.UserVO">
 		update userinfo set user_pw=#{user_pw}where
 		user_id=#{user_id}
 	</update>
@@ -138,14 +138,14 @@
 
 	<!-- 비밀번호 수정 -->
 	<update id="SQL_USER_UPDATE_PW"
-		parameterType="test.com.rence.user.UserVO">
+		parameterType="test.com.rence.user.model.UserVO">
 		update userinfo set user_pw=#{user_pw} where
 		user_no=#{user_no}
 	</update>
 
 	<!-- 프로필이미지 수정 -->
 	<update id="SQL_USER_UPDATE_IMG"
-		parameterType="test.com.rence.user.UserVO">
+		parameterType="test.com.rence.user.model.UserVO">
 		update userinfo set user_image=#{user_image}where
 		user_no=#{user_no}
 	</update>
@@ -153,7 +153,7 @@
 	<!-- 회원탈퇴에 따른 회원상태 수정 -->
 	<!-- 회원인 상태에서는 user_state가 'Y' but, 회원탈퇴시 user_state 'N'으로 변경 -->
 	<update id="SQL_USER_SECEDE"
-		parameterType="test.com.rence.user.UserVO">
+		parameterType="test.com.rence.user.model.UserVO">
 		update userinfo set user_state='N' where
 		user_no=#{user_no}
 	</update>
@@ -161,7 +161,7 @@
 	<!-- 마이페이지에 정보 주기위해 정보가져오기 -->
 	<!-- userinfo 테이블과 mileage 테이블조인 -->
 	<!-- <select id="SQL_SELECT_USER_MYPAGE" -->
-	<!-- resultType="test.com.rence.user.UserMypageVO"> -->
+	<!-- resultType="test.com.rence.user.model.UserMypageVO"> -->
 	<!-- SELECT u.user_no, u.user_name, u.user_image, u.user_id, -->
 	<!-- u.user_email, u.user_tel, u.user_birth, m.mileage_total -->
 	<!-- FROM userinfo u join mileage m -->
@@ -173,7 +173,7 @@
 	<!-- userinfo 테이블과 mileage 테이블조인한 뷰(user_mypage_view)를 사용하는 쿼리 -->
 	<!-- 	마일리지 테이블에서 사용자의 고유번호로 조회를 하면 마일리지 리스트가 select되는데, 그중에 가격이 가장 높은 튜플 하나만 select -->
 	<select id="SQL_SELECT_USER_MYPAGE"
-		resultType="test.com.rence.user.UserMypageVO">
+		resultType="test.com.rence.user.model.UserMypageVO">
 	select *
 		from(
 		select * 
@@ -187,13 +187,20 @@
 <!-- 		select * from user_mypage_view where user_no=#{user_no} -->
 
 
-	<!-- 마이페이지에 정보 주기위해 정보가져오기 -->
+	<!-- 마일리지상세 페이지에 정보 주기위해 정보가져오기 -->
 	<!-- user_detail_mileage_view 를 사용하는 쿼리 -->
 	<select id="SQL_SELECT_USER_MILEAGE"
-		resultType="test.com.rence.user.UserMypageVO">
+		resultType="test.com.rence.user.model.UserMypageVO">
 		select * from user_detail_mileage_view where
 		user_no=#{user_no}
 	</select>
+	
+	<select id="SQL_SELECTONE_USER_MILEAGE"
+		resultType="test.com.rence.user.model.UserMypageVO">
+		select * from user_detail_mileage_view where
+		user_no=#{user_no}
+	</select>
+
 
 
 
