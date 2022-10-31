@@ -31,9 +31,9 @@
 	</c:if>
 	<c:if test="${res.page eq 'review'}">
 		<link rel="stylesheet" href="${path}/resources/CSS/office/review-page.css" />
-		<script src="${path}/resources/JS/office/reserve_list.js"></script>
+		<script src="${path}/resources/JS/office/review_page.js"></script>
 	</c:if>
-	<c:if test="${res.page ne 'reserve-list'}">
+	<c:if test="${res.page ne 'reserve-list' && res.page ne 'review'}">
 		<link rel="stylesheet" href="${path}/resources/CSS/office/my-page.css" />
 		<link rel="stylesheet" href="${path}/resources/CSS/office/mileage-page.css" />
 		<link rel="stylesheet" href="${path}/resources/CSS/office/question-page.css" />
@@ -262,7 +262,7 @@
 		<!-- START R-DELETE CONFIRM POPUP -->
 		<div id="r-delete-popup" class="confirm-popup blind">
 			<section class="confirm-txt-section">
-				<span class="logout-txt"> 해당 후기흫 삭제하시겠습니까? </span>
+				<span class="logout-txt"> 해당 후기를 삭제하시겠습니까? </span>
 			</section>
 			<section class="confirm-btn-section">
 				<div id="r-delete-btn" class="confirm-yesBtn">예</div>

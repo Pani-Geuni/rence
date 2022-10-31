@@ -1,4 +1,4 @@
-package test.com.rence.user;
+package test.com.rence.user.model;
 
 public class ReviewVO {
 	String review_no;
@@ -96,6 +96,8 @@ public class ReviewVO {
 	}
 
 
+	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -162,6 +164,5 @@ public class ReviewVO {
 				+ review_point + ", review_date=" + review_date + ", room_no=" + room_no + ", backoffice_no="
 				+ backoffice_no + ", user_no=" + user_no + "]";
 	}
-	
-	
+
 }

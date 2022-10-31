@@ -15,7 +15,6 @@
 	<link rel="stylesheet" href="${path}/resources/CSS/office/login.css" />
 	<link rel="stylesheet" href="${path}/resources/CSS/office/header.css" />
 	<link rel="stylesheet" href="${path}/resources/CSS/office/home.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/office/space-detail-introduce.css" />
 	<link rel="stylesheet" href="${path}/resources/CSS/common/footer.css" />
 	
     <script type="text/javascript" src="${path}/resources/JS/common/core.min.js"></script>
@@ -26,7 +25,12 @@
     <script src="${path}/resources/JS/office/header.js"></script>
     <script src="${path}/resources/JS/office/user_popup.js"></script>
     
+    <c:if test="${res.page eq 'list_page'}">
+		<link rel="stylesheet" href="${path}/resources/CSS/office/list-page.css" />
+	    <script src="${path}/resources/JS/office/list-page.js"></script>
+    </c:if>
 <%--     <c:if test="${res.page eq 'space-introduce-detail'}"> --%>
+	<link rel="stylesheet" href="${path}/resources/CSS/office/space-detail-introduce.css" />
 	    <link rel="stylesheet" href="${path}/resources/CSS/office/jquery-ui.css" />
 	    <link rel="stylesheet" href="${path}/resources/CSS/office/jquery-ui-timepicker.css" />
 	    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>

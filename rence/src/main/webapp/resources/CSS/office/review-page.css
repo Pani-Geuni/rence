@@ -1,4 +1,4 @@
-.question-list-wrap{
+.review-list-wrap{
     width: 100%;
     height: calc(100vh - 95px - 75px);
     display: flex;
@@ -73,6 +73,10 @@
 .list-company-name{
     width: 20%;
     text-align: center;
+
+    white-space : nowrap;
+    overflow : hidden;
+    text-overflow : ellipsis;
 }
 .list-content{
     width: 50%;
@@ -157,11 +161,12 @@
     align-items: center;
 
     position: relative;
+    margin-bottom: 5px;
 }
 .q_label{
-    color: #B2A4FF;
-    font-size: 15px;
-    font-weight: 700;
+    color: #808080;
+    font-size: 13px;
+    font-weight: f00;
 
     margin-right: 5px;
 }
