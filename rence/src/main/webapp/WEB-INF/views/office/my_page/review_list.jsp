@@ -32,8 +32,8 @@
 	                        <span class="list-title-txt list-content">
 	                            ${obj.review_content}
 	                        </span>
-	                        <span class="list-title-txt list-point">5</span>
-	                        <span class="list-title-txt list-date">2022.10.22</span>
+	                        <span class="list-title-txt list-point">${obj.review_point}</span>
+	                        <span class="list-title-txt list-date">${obj.review_date}</span>
 	                    </div>
 	                    <div class="detail-question-wrap">
 	                        <div class="question-line">
@@ -42,10 +42,7 @@
 	                                    <span class="question-btn">삭제</span>
 	                                </div>
 	                            </div>
-	                            <span>
-	                                혹시 11월 25일 3시 예약되어있던데 취소되면 바로 하고싶은데 예약걸어놓을 수 있을까요?
-	                                혹시 11월 25일 3시 예약되어있던데 취소되면 바로 하고싶은데 예약걸어놓을 수 있을까요?
-	                            </span>
+	                            <span>${obj.review_content}</span>
 	                        </div>
 	                    </div>
 	                </li>
