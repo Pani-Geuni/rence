@@ -104,6 +104,21 @@ public class UserSerivice {
 		logger.info("user_authOK_select().....");
 		return dao.user_authOK_select(user_email, email_code);
 	}
+
+	public UserMileageVO user_mileage_select(UserVO uvo) {
+		logger.info("user_mileage_select().....");
+		return dao.user_mileage_select(uvo);
+	}
+	public UserVO user_select_userno() {
+		logger.info("user_select_userno().....");
+		return dao.user_select_userno();
+	}
+
+	public int user_mileage_zero_insert(UserVO uvo) {
+		logger.info("user_mileage_zero_insert().....");
+		return dao.user_mileage_zero_insert(uvo);
+	}
+
 	
 	
 

@@ -7,15 +7,35 @@
 	<insert id="SQL_INSERT"
 		parameterType="test.com.rence.user.UserVO">
 		insert into
-		userinfo(user_no,user_id,user_pw,user_name,user_email,user_tel,user_birth,user_state,auth_no)
-		values('U'||seq_user.nextval,
-		#{user_id},#{user_pw},#{user_name},#{user_email},#{user_tel},#{user_birth},'Y','A1001')
+		userinfo(user_no,user_id,user_pw,user_name,user_email,user_tel,user_birth,user_state)
+		values('U'||seq_user.nextval,#{user_id},#{user_pw},#{user_name},#{user_email},#{user_tel},#{user_birth},'Y')
 	</insert>
 	<!-- TO_DATE('#{user_birth}','YYYYMMDD') -->
 
 
 
-		<!-- 회원가입시 인증번호 전송후 테이블에 저장 -->
+<!-- 	회원가입이후 마일리지테이블에 유저번호를 저장하기 위해서 정보추출 -->
+	<select id="SQL_USER_USERNO"
+		resultType="test.com.rence.user.UserVO">
+		select user_no
+		from(
+		select user_no from userinfo order by user_no desc
+		)
+		WHERE ROWNUM between 1 and 1
+	</select>
+
+
+	<!-- 회원가입시 마일리지 테이블에 회원가입한 회원 마일리지 0삽입 -->
+	<insert id="SQL_INSERT_MILEAGE_ZERO_INSERT"
+		parameterType="test.com.rence.user.UserVO">
+		insert into
+		mileage(mileage_no,mileage_total,mileage_change,mileage_state,user_no)
+		values('M'||seq_mileage.nextval,0,0,'T',#{user_no})
+	</insert>
+
+
+
+	<!-- 회원가입시 인증번호 전송후 테이블에 저장 -->
 	<insert id="SQL_INSERT_USER_AUTH"
 		parameterType="test.com.rence.sendemail.AuthVO">
 		INSERT INTO auth(auth_no, user_email, auth_code)
@@ -30,20 +50,35 @@
 
 	<!-- 인증테이블에 사용자 이메일이 들어갔는지 체크하고 이메일 가져오는 용도 -->
 	<!-- avo2 = auth 테이블에 정보 저장 후, select -->
+	<!-- 회원가입도중에 이메일전송까지 하고 어떠한 상황에 의해 데이터만 들어가게 되면 인증번호가 두개가 되어 인증이 안되는 -->
+	<!-- 버그발생 -> 이메일 중복시 최신 데이터 한개만 추출 -->
+
 	<select id="SQL_SELECT_USER_AUTH"
 		resultType="test.com.rence.sendemail.AuthVO">
-		SELECT auth_no, auth_code, user_email from auth where
+		SELECT * FROM
+		(SELECT user_email,auth_code,auth_no
+		FROM auth
+		WHERE
 		user_email=#{user_email}
+		ORDER BY AUTH_STIME DESC)
+		WHERE <![CDATA[ROWNUM <= 1]]>
 	</select>
 
 
 	<!-- 회원가입시 인증번호 동일한지 체크 -->
 	<select id="SQL_SELECT_USER_AUTHOK" parameterType="hashmap"
 		resultType="test.com.rence.sendemail.AuthVO">
-		SELECT * from auth where auth_code=#{email_code} and
-		user_email=#{user_email}
+		 SELECT * FROM
+       ( SELECT * FROM
+		(SELECT user_email,auth_code,auth_no
+		FROM auth
+		WHERE user_email=#{user_email}
+        ORDER BY AUTH_STIME DESC)
+		where (ROWNUM between 1 and 1))
+        where auth_code=#{email_code}
 	</select>
-
+	<!-- SELECT * from auth where auth_code=#{email_code} and -->
+	<!-- user_email=#{user_email} -->
 
 	<!-- Email 중복체크 SQL -->
 	<select id="SQL_EMAIL_CHECK"
@@ -145,9 +180,10 @@
 	<!-- user_detail_mileage_view 를 사용하는 쿼리 -->
 	<select id="SQL_SELECT_USER_MILEAGE"
 		resultType="test.com.rence.user.UserMypageVO">
-		select * from user_detail_mileage_view where user_no=#{user_no}
+		select * from user_detail_mileage_view where
+		user_no=#{user_no}
 	</select>
-	
-	
+
+
 
 </mapper>
