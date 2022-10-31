@@ -5,6 +5,8 @@ import test.com.rence.sendemail.AuthVO;
 public interface UserDAO {
 
 	public int user_insertOK(UserVO uvo); // 회원가입완료	
+	
+	public int user_mileage_zero_insert(UserVO uvo); //회원가입시 마일리지 테이블에 0값 삽입
 
 	public UserVO idCheckOK(UserVO uvo); //아이디중복체크
 
@@ -33,6 +35,12 @@ public interface UserDAO {
 	public int user_auth_delete(String user_email, String email_code); //이메일 인증 인증번호 삭제
 
 	public AuthVO user_authOK_select(String user_email, String email_code); //이메일 인증 인증번호 비교
+	
+	public UserMileageVO user_mileage_select(UserVO uvo); // 유저 마일리지 상세페이지에 정보제공
+
+	public UserVO user_select_userno();
+
+	
 
 	
 	
