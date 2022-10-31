@@ -50,7 +50,6 @@ $(function(){
 		
 		// 로그인 실패
 		else {
-			console.log("eeeerror");
 			if ($('#master-id').val().trim().length == 0) {
 				$("#master-id").addClass("null-input-border");
 			}
@@ -60,6 +59,11 @@ $(function(){
 			}
 		}
 	});
+	
+	// Master 로그아웃
+	$('#btn-logout').click(function() {
+		location.href='/rence/master_logoutOK';
+	})
 
 
 	// master header nav 변경
