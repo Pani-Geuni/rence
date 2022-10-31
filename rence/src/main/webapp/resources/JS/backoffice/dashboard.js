@@ -2,12 +2,18 @@
 * @author : 전판근
 */
 $(function() {
+
+	$('.logo-mku').click(function () {
+		location.href='/rence/backoffice_landing';
+	})
+	
+	$('#go-rence-home').click(function () {
+		location.href='/rence/';
+	})
 			
 	// ****************************************
 	// Dash Board Side Menu 현재 페이지 active 설정
 	// ****************************************
-	
-	console.log($(location).attr('pathname'))
 	// backoffice_main 일 때
 	
 	switch($(location).attr('pathname')) {
