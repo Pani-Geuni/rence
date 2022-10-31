@@ -1,4 +1,4 @@
-package test.com.rence.user;
+package test.com.rence.user.service;
 
 import java.util.List;
 
@@ -7,7 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import test.com.rence.sendemail.AuthVO;
+import test.com.rence.user.model.MyPageDAO;
+import test.com.rence.user.model.MyPageReserveListVO;
+import test.com.rence.user.model.MyPage_ReviewVO;
 
 @Service
 public class MyPageSerivice {
@@ -33,10 +35,16 @@ public class MyPageSerivice {
 		return list;
 	}
 	
-	public List<ReviewVO> select_all_review(String user_no){
-		List<ReviewVO> list = dao.select_all_review(user_no);
+	public List<MyPage_ReviewVO> select_all_review(String user_no){
+		List<MyPage_ReviewVO> list = dao.select_all_review(user_no);
 		
 		return list;
+	}
+	
+	public int delete_review(String review_no){
+		int result = dao.delete_review(review_no);
+		
+		return result;
 	}
 	
 

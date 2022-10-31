@@ -1,4 +1,4 @@
-package test.com.rence.user;
+package test.com.rence.user.model;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -55,10 +55,17 @@ public class MyPageDAOimpl implements MyPageDAO {
 	}
 	
 	@Override
-	public List<ReviewVO> select_all_review(String user_no) {
-		List<ReviewVO> list = sqlSession.selectList("SQL_SELECT_ALL_REVIEW", user_no);		
+	public List<MyPage_ReviewVO> select_all_review(String user_no) {
+		List<MyPage_ReviewVO> list = sqlSession.selectList("SQL_SELECT_ALL_REVIEW", user_no);		
 		
 		return list;
+	}
+	
+	@Override
+	public int delete_review(String review_no) {
+		int result = sqlSession.delete("SQL_DELETE_REVIEW", review_no);		
+		
+		return result;
 	}
 	
 

@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="test.com.rence.user">
 	<!-- 마이페이지 현재 예약 내역 페이지 - selectAll -->
-	<select id="SQL_SELECT_ALL_NOW_RESERVE" parameterType = "string" resultType="test.com.rence.user.MyPageReserveListVO">
+	<select id="SQL_SELECT_ALL_NOW_RESERVE" parameterType = "string" resultType="test.com.rence.user.model.MyPageReserveListVO">
 		select leftdb.reserve_no, leftdb.user_no, leftdb.reserve_sdate, leftdb.reserve_edate, leftdb.company_name, leftdb.roadname_address, leftdb.backoffice_image, p.payment_total from(
 		    select r.reserve_no, r.user_no,r.reserve_sdate, r.reserve_edate, b.company_name, b.roadname_address, b.backoffice_image
 		    from reserveinfo r left join backofficeinfo b 
@@ -15,7 +15,7 @@
 	</select>
 	
 	<!-- 마이페이지 과거 예약 내역 페이지 - selectAll -->
-	<select id="SQL_SELECT_ALL_BEFORE_RESERVE" parameterType = "string" resultType="test.com.rence.user.MyPageReserveListVO">
+	<select id="SQL_SELECT_ALL_BEFORE_RESERVE" parameterType = "string" resultType="test.com.rence.user.model.MyPageReserveListVO">
 		select leftdb.reserve_no, leftdb.user_no, leftdb.reserve_sdate, leftdb.reserve_edate, leftdb.company_name, leftdb.roadname_address, leftdb.backoffice_image, p.payment_total from(
 		    select r.reserve_no, r.user_no,r.reserve_sdate, r.reserve_edate, b.company_name, b.roadname_address, b.backoffice_image
 		    from reserveinfo r left join backofficeinfo b 
@@ -26,8 +26,20 @@
 	</select>
 	
 	<!-- 마이페이지 후기 내역 페이지 - selectAll -->
-	<select id="SQL_SELECT_ALL_REVIEW" parameterType = "string" resultType="test.com.rence.user.ReviewVO">
-		select * from review where user_no = #{user_no}
+	<select id="SQL_SELECT_ALL_REVIEW" parameterType = "string" resultType="test.com.rence.user.model.MyPage_ReviewVO">
+		select left.review_no, left.review_content, left.review_point, left.review_date, left.room_name, b.backoffice_name as company_name, left.user_no
+		from (
+		    select r.review_no, r.review_content, r.review_point, r.review_date, ri.room_name, r.backoffice_no, r.user_no
+		    from review r left join roominfo ri
+		    on r.room_no = ri.room_no
+		)left left join backofficeinfo b
+		on left.backoffice_no = b.backoffice_no
+		where left.user_no = #{user_no}
 	</select>
+	
+	<!-- 마이페이지 후기 내역 페이지 - 댓글 삭제 -->
+	<delete id="SQL_DELETE_REVIEW">
+		delete from review where review_no = #{review_no}
+	</delete>
 
 </mapper>

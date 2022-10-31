@@ -33,7 +33,7 @@ $(function(){
         location.href="/rence/review_list?user_no="+$.cookie("user_no");
     });
     $("#question-menu").click(function(){
-        location.href="/rence/go_question_list?user_no="+$.cookie("user_no");
+        location.href="/rence/question_list?user_no="+$.cookie("user_no");
     });
 
 

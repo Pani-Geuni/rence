@@ -24,28 +24,29 @@
         <section class="question-history-wrap">
             <ul>
             	<c:forEach var="obj" items="${res.list}">
-            	
-	                <li class="question-list" idx=${obj.review_no}>
-	                    <div class="question-content-wrap">
-	                        <span class="list-title-txt list-num"><%=++cnt%></span>
-	                        <span class="list-title-txt list-company-name">{obj.company_name}</span>
-	                        <span class="list-title-txt list-content">
-	                            ${obj.review_content}
-	                        </span>
-	                        <span class="list-title-txt list-point">${obj.review_point}</span>
-	                        <span class="list-title-txt list-date">${obj.review_date}</span>
-	                    </div>
-	                    <div class="detail-question-wrap">
-	                        <div class="question-line">
-	                            <div class="q-line">
-	                                <div class="question-btn-wrap">
-	                                    <span class="question-btn">삭제</span>
-	                                </div>
-	                            </div>
-	                            <span>${obj.review_content}</span>
-	                        </div>
-	                    </div>
-	                </li>
+	                <li class="question-list">
+                         <div class="question-content-wrap">
+                             <span class="list-title-txt list-num"><%=++cnt%></span>
+                             <span class="list-title-txt list-company-name">${obj.company_name}</span>
+                             <span class="list-title-txt list-content">${obj.review_content}</span>
+                             <span class="list-title-txt list-point">${obj.review_point}</span>
+                             <span class="list-title-txt list-date">${obj.review_date}</span>
+                         </div>
+                         <div class="detail-question-wrap blind">
+                             <div class="question-line">
+                                 <div class="q-line">
+                                     <label class="q_label">
+                                         이용 장소&nbsp;&nbsp;|&nbsp;&nbsp;
+                                         ${obj.company_name}&nbsp;(${obj.room_name})
+                                     </label>
+                                     <div class="question-btn-wrap">
+                                         <span class="question-btn" idx="${obj.review_no}">삭제</span>
+                                     </div>
+                                 </div>
+                                 <span>${obj.review_content}</span>
+                             </div>
+                         </div>
+                     </li>
             	</c:forEach>
             </ul>
         </section>
