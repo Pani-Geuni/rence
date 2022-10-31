@@ -14,9 +14,17 @@
     
 	<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 	
+	<link rel="stylesheet" href="${path}/resources/CSS/common/common.css" />
+	
 	<link rel="stylesheet" href="${path}/resources/CSS/master/master-login.css" />
 	
+	<script type="text/javascript" src="${path}/resources/JS/common/core.min.js"></script>
+    <script type="text/javascript" src="${path}/resources/JS/common/sha256.min.js"></script>
+	
 	<script src="${path}/resources/JS/common/jquery-3.6.1.min.js"></script>
+	<script src="${path}/resources/JS/common/jquery.cookie.js"></script>
+	
+	<script src="${path}/resources/JS/master/master.js"></script>
 	
 <title>Rence Master 로그인</title>
 </head>
@@ -30,12 +38,12 @@
 
         <div class="inputSection">
           <input
-            id="backoffice_id"
+            id="master-id"
             type="text"
-            placeholder="아이디를 입력하세요 (사업자 등록 번호)"
+            placeholder="관리자 아이디를 입력하세요"
           />
           <input
-            id="backoffice_pw"
+            id="master-pw"
             type="password"
             placeholder="비밀번호를 입력하세요"
           />
@@ -47,5 +55,17 @@
       <!-- END loginWrap -->
     </div>
     <!-- END contentWrap -->
+    
+    <div class="popup-background blind">
+    	<!-- START COMMON CUSTOM ALERT POPUP -->
+        <div id ="common-alert-popup" class="alert-popup blind">
+        	<section class="alert-txt-section">
+                <span class="common-alert-txt"></span>
+            </section>
+            <section id = "common-alert-btn" class="alert-btn-section">
+                <span>확인</span>
+            </section>
+        </div>
+    </div>
 </body>
 </html>
