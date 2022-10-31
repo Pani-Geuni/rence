@@ -33,16 +33,16 @@ public class MasterSendEmail {
 	//////////////////////////////////////////////////
 	// ******* (가입 승인) 비밀번호 초기화 링크 전송 *******//
 	/////////////////////////////////////////////////
-	public BackOfficeVO settingPw(BackOfficeVO vo, EmailVO evo) {
+	public BackOfficeVO settingPw(BackOfficeVO bvo, EmailVO evo) {
 		
 
-		String originText = vo.getBackoffice_no();
+		String originText = bvo.getBackoffice_no();
 
-//		String encText = aes.encryptAES("0123456789abcdefghij0123456789ab", originText, false);
-//        System.out.println("encText (encodeBase64) : " + encText);
+		String encText = aes.encryptAES("0123456789abcdefghij0123456789ab", originText, false);
+        System.out.println("encText (encodeBase64) : " + encText);
 
-		String encText = aes.encryptAES("0123456789abcdefghij0123456789ab", originText, true);
-		logger.info("encText (encodeBase64URLSafeString) : " + encText);
+//		String encText = aes.encryptAES("0123456789abcdefghij0123456789ab", originText, true);
+//		logger.info("encText (encodeBase64URLSafeString) : " + encText);
 
 		// 이메일 제목, 내용 설정
 		evo.setSubject("[rence] 호스트 비밀번호 설정");
@@ -54,26 +54,62 @@ public class MasterSendEmail {
 			// 전송
 			MimeMessage msg = javaMailSender.createMimeMessage();
 			msg.setSubject(evo.getSubject());
-			msg.setText("비밀번호 재설정 링크 : " + "http://localhost:8090/rence/backoffice_update_pw?backoffice_no="
+			msg.setText("비밀번호 재설정 링크 : " + "http://localhost:8090/rence/backoffice_setting_pw?backoffice_no="
 					+ encText);
-			msg.setRecipient(RecipientType.TO, new InternetAddress(vo.getBackoffice_email()));
+			msg.setRecipient(RecipientType.TO, new InternetAddress(bvo.getBackoffice_email()));
 
 			javaMailSender.send(msg);
 		} catch (MessagingException e) {
-			vo = null;
+			bvo = null;
 		}
-		return vo;
+		return bvo;
 	}
+
+
 
 	///////////////////////////////
 	// ******* (가입 거절) *******//
 	//////////////////////////////
+	public BackOfficeVO result_refuse(BackOfficeVO bvo, EmailVO evo) {
+		evo.setSubject("[rence] 호스트 가입 신청 결과");
+		evo.setContent("호스트 신청을 거절당하셨습니다.");
+		
+		try {
+			// 전송
+			MimeMessage msg = javaMailSender.createMimeMessage();
+			msg.setSubject(evo.getSubject());
+			msg.setText(evo.getContent());
+			msg.setRecipient(RecipientType.TO, new InternetAddress(bvo.getBackoffice_email()));
+
+			javaMailSender.send(msg);
+		} catch (MessagingException e) {
+			bvo = null;
+		}
+		return bvo;
+	}
+
 	
 	
 	///////////////////////////////
 	// ******* (탈퇴 완료) *******//
 	//////////////////////////////
-	
+	public BackOfficeVO backoffice_revoke(BackOfficeVO bvo, EmailVO evo) {
+		evo.setSubject("[rence] 호스트 탈퇴 신청 결과");
+		evo.setContent("호스트 탈퇴가 완료되었습니다.");
+		
+		try {
+			// 전송
+			MimeMessage msg = javaMailSender.createMimeMessage();
+			msg.setSubject(evo.getSubject());
+			msg.setText(evo.getContent());
+			msg.setRecipient(RecipientType.TO, new InternetAddress(bvo.getBackoffice_email()));
+
+			javaMailSender.send(msg);
+		} catch (MessagingException e) {
+			bvo = null;
+		}
+		return bvo;
+	}
 	
 
 

@@ -4,6 +4,32 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="test.com.rence.master">
   	
+  	<select id="SQL_MASTER_LOGIN" resultType="test.com.rence.master.MasterVO">
+  		SELECT * FROM MASTERINFO WHERE master_id=#{master_id} AND master_pw=#{master_pw}
+  	</select>
   	
+  	<select id="SQL_SELECT_ALL_BACKOFFICE_APPLY" resultType="test.com.rence.backoffice.BackOfficeVO">
+    	SELECT * from backofficeinfo where backoffice_state='W' order by apply_date desc
+  	</select>
+  	
+  	<update id="SQL_UPDATE_BACKOFFICE_STATE_Y" parameterType="test.com.rence.backoffice.BackOfficeVO">
+  		UPDATE backofficeinfo SET backoffice_state='Y' where backoffice_no=#{backoffice_no} and backoffice_email=#{backoffice_email}
+  	</update>
+  	
+  	<update id="SQL_UPDATE_BACKOFFICE_STATE_N" parameterType="test.com.rence.backoffice.BackOfficeVO">
+  		UPDATE backofficeinfo SET backoffice_state='N' where backoffice_no=#{backoffice_no} and backoffice_email=#{backoffice_email}
+  	</update>
+  	
+  	<select id="SQL_SELECT_ALL_BACKOFFICE_END" resultType="test.com.rence.backoffice.BackOfficeVO">
+    	SELECT * from backofficeinfo where backoffice_state='O' order by apply_date desc;
+  	</select>
+  	
+  	<update id="SQL_UPDATE_BACKOFFICE_STATE_X" parameterType="test.com.rence.backoffice.BackOfficeVO">
+  		UPDATE backofficeinfo SET backoffice_state='X' where backoffice_no=#{backoffice_no} and backoffice_email=#{backoffice_email}
+  	</update>
   
+  	<select id="SQL_SELECTONE_BACKOFFICE_DETAIL_M" resultType="test.com.rence.backoffice.BackOfficeVO">
+  		SELECT * from backofficeinfo where backoffice_no=#{backoffice_no}
+  	</select>
+  	
 </mapper>

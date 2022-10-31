@@ -34,6 +34,7 @@ public class BackOfficeVO implements Serializable{
 	private Date apply_date;
 	private MultipartFile multipartFile_room;
 	private MultipartFile multipartFile_host;
+	private String backoffice_type;
 	
 	public BackOfficeVO() {}
 
@@ -42,7 +43,7 @@ public class BackOfficeVO implements Serializable{
 			String roadname_address, String number_address, String detail_address, String backoffice_tag,
 			String backoffice_info, String backoffice_option, String backoffice_around, String backoffice_image,
 			String host_image, String backoffice_state, Date apply_date, MultipartFile multipartFile_room,
-			MultipartFile multipartFile_host) {
+			MultipartFile multipartFile_host, String backoffice_type) {
 		super();
 		this.backoffice_no = backoffice_no;
 		this.owner_name = owner_name;
@@ -66,6 +67,7 @@ public class BackOfficeVO implements Serializable{
 		this.apply_date = apply_date;
 		this.multipartFile_room = multipartFile_room;
 		this.multipartFile_host = multipartFile_host;
+		this.backoffice_type = backoffice_type;
 	}
 
 	public String getBackoffice_no() {
@@ -244,6 +246,28 @@ public class BackOfficeVO implements Serializable{
 		this.multipartFile_host = multipartFile_host;
 	}
 
+	public String getBackoffice_type() {
+		return backoffice_type;
+	}
+
+	public void setBackoffice_type(String backoffice_type) {
+		this.backoffice_type = backoffice_type;
+	}
+
+	@Override
+	public String toString() {
+		return "BackOfficeVO [backoffice_no=" + backoffice_no + ", owner_name=" + owner_name + ", backoffice_id="
+				+ backoffice_id + ", backoffice_name=" + backoffice_name + ", company_name=" + company_name
+				+ ", backoffice_pw=" + backoffice_pw + ", backoffice_tel=" + backoffice_tel + ", backoffice_email="
+				+ backoffice_email + ", zipcode=" + zipcode + ", roadname_address=" + roadname_address
+				+ ", number_address=" + number_address + ", detail_address=" + detail_address + ", backoffice_tag="
+				+ backoffice_tag + ", backoffice_info=" + backoffice_info + ", backoffice_option=" + backoffice_option
+				+ ", backoffice_around=" + backoffice_around + ", backoffice_image=" + backoffice_image
+				+ ", host_image=" + host_image + ", backoffice_state=" + backoffice_state + ", apply_date=" + apply_date
+				+ ", multipartFile_room=" + multipartFile_room + ", multipartFile_host=" + multipartFile_host
+				+ ", backoffice_type=" + backoffice_type + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -261,6 +285,7 @@ public class BackOfficeVO implements Serializable{
 		result = prime * result + ((backoffice_state == null) ? 0 : backoffice_state.hashCode());
 		result = prime * result + ((backoffice_tag == null) ? 0 : backoffice_tag.hashCode());
 		result = prime * result + ((backoffice_tel == null) ? 0 : backoffice_tel.hashCode());
+		result = prime * result + ((backoffice_type == null) ? 0 : backoffice_type.hashCode());
 		result = prime * result + ((company_name == null) ? 0 : company_name.hashCode());
 		result = prime * result + ((detail_address == null) ? 0 : detail_address.hashCode());
 		result = prime * result + ((host_image == null) ? 0 : host_image.hashCode());
@@ -347,6 +372,11 @@ public class BackOfficeVO implements Serializable{
 				return false;
 		} else if (!backoffice_tel.equals(other.backoffice_tel))
 			return false;
+		if (backoffice_type == null) {
+			if (other.backoffice_type != null)
+				return false;
+		} else if (!backoffice_type.equals(other.backoffice_type))
+			return false;
 		if (company_name == null) {
 			if (other.company_name != null)
 				return false;
@@ -395,19 +425,6 @@ public class BackOfficeVO implements Serializable{
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "BackOfficeVO [backoffice_no=" + backoffice_no + ", owner_name=" + owner_name + ", backoffice_id="
-				+ backoffice_id + ", backoffice_name=" + backoffice_name + ", company_name=" + company_name
-				+ ", backoffice_pw=" + backoffice_pw + ", backoffice_tel=" + backoffice_tel + ", backoffice_email="
-				+ backoffice_email + ", zipcode=" + zipcode + ", roadname_address=" + roadname_address
-				+ ", number_address=" + number_address + ", detail_address=" + detail_address + ", backoffice_tag="
-				+ backoffice_tag + ", backoffice_info=" + backoffice_info + ", backoffice_option=" + backoffice_option
-				+ ", backoffice_around=" + backoffice_around + ", backoffice_image=" + backoffice_image
-				+ ", host_image=" + host_image + ", backoffice_state=" + backoffice_state + ", apply_date=" + apply_date
-				+ ", multipartFile_room=" + multipartFile_room + ", multipartFile_host=" + multipartFile_host + "]";
-	}
-
-
+	
 	
 }
