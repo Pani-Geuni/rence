@@ -150,7 +150,7 @@ public class MasterController {
 	/**
 	 * 마스터 가입 승인
 	 */
-	@RequestMapping(value = "/master_grant", method = RequestMethod.POST)
+	@RequestMapping(value = "/master_grant", method = RequestMethod.GET)
 	@ResponseBody
 	public JSONObject master_grant(Model model, BackOfficeVO bvo, EmailVO evo) {
 		logger.info("BackOfficeVO:{}", bvo);
