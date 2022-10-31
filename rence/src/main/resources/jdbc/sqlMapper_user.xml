@@ -66,6 +66,7 @@
 
 
 	<!-- 회원가입시 인증번호 동일한지 체크 -->
+	<!-- 	과거 인증코드는 인증이 안되도록 함 -->
 	<select id="SQL_SELECT_USER_AUTHOK" parameterType="hashmap"
 		resultType="test.com.rence.sendemail.AuthVO">
 		 SELECT * FROM
