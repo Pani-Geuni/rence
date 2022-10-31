@@ -68,7 +68,7 @@ public class UserJoinController {
 		//이메일 중복 체크
 		UserVO emailCheck = service.emailCheckOK(uvo);
 		logger.info("emailCheck: {}", emailCheck);
-		logger.info("emailCheck.getUser_state(): {}", emailCheck.getUser_state());
+		
 		
 		// 탈퇴한 회원의 이메일로 재가입 가능
 //		if(emailCheck==null || emailCheck.getUser_state() == "N   ") {s
