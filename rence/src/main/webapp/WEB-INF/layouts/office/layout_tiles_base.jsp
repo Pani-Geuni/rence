@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="${path}/resources/CSS/office/login.css" />
 	<link rel="stylesheet" href="${path}/resources/CSS/office/header.css" />
 	<link rel="stylesheet" href="${path}/resources/CSS/office/home.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/office/space-detail-introduce.css" />
 	<link rel="stylesheet" href="${path}/resources/CSS/common/footer.css" />
 	
     <script type="text/javascript" src="${path}/resources/JS/common/core.min.js"></script>

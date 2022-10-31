@@ -23,17 +23,17 @@ $(function(){
     /****** ********************* ******/
     /****** 메뉴에 따른 페이지 이동 ******/
     /****** ********************* ******/
-    $("#now-reserve-menu").click(function(){
-        location.href="/rence/go_now_reserve";
-    });
-    $("#before-reserve-menu").click(function(){
-        location.href="/rence/go_before_reserve";
+    $("#reserve-menu").click(function(){
+        location.href="/rence/reserve_list?time_point=now&user_no="+$.cookie("user_no");
     });
     $("#mileage-menu").click(function(){
-        location.href="/rence/go_mileage";
+        location.href="/rence/go_mileage?user_no="+$.cookie("user_no");
+    });
+    $("#review-menu").click(function(){
+        location.href="/rence/review_list?user_no="+$.cookie("user_no");
     });
     $("#question-menu").click(function(){
-        location.href="/rence/go_question_list";
+        location.href="/rence/go_question_list?user_no="+$.cookie("user_no");
     });
 
 

@@ -25,11 +25,75 @@
     align-items: center;
     
     border-bottom: 2px solid #e4e4e4;
+    position: relative;
 }
 .page-title{
     font-size: 24px;
     font-weight: bold;
+
+    display: flex;
+    align-items: center;
 }
+.timePoint-select-wrap{
+    width: 90px;
+
+    padding: 7px;
+    margin-right: 10px;
+
+    border: 2px solid #2EE49D;
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    cursor: pointer;
+}
+.timePoint-value{
+    width: 90%;
+}
+.full-dropdown{
+    width: 10%;
+}
+
+
+/* timePoint-custom-select-wrap */
+.timePoint-custom-select-wrap{
+    position: absolute;
+    top: 80px;
+    left: 5px;
+    z-index: 100;
+}
+.timePoint-custom-select{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 1px 1px 4px 2px #e4e4e4;
+    border-radius: 10px;
+}
+.timePoint-custom-select-li{
+    width: 100px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+
+    cursor: pointer;
+}
+.timePoint-custom-select-li:nth-child(1){
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.timePoint-custom-select-li:last-child{
+    border-top: 2px solid #e4e4e4;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
 
 /**************************/
 /**** reserve-list SECTION ****/

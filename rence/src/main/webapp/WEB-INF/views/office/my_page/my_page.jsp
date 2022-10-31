@@ -35,49 +35,45 @@
 		</section>
 
 		<section class="my-page-menu-section">
-			<div id="now-reserve-menu" class="menu-box left-menu menu-top">
-				<section class="menu-box-img-section">
-					<img src="${path}/resources/IMG/my-page/calendar.svg"
-						alt="menu-box-img" class="menu-box-img" />
-				</section>
-				<section class="menu-box-txt-section">
-					<span class="menu-box-title">예약 현황</span> 
-					<span class="menu-box-txt">현재예약중인 내역을 확인해보세요.</span>
-				</section>
-			</div>
-			<div id="before-reserve-menu" class="menu-box menu-top">
-				<section class="menu-box-img-section">
-					<img src="${path}/resources/IMG/my-page/arrow.svg"
-						alt="menu-box-img" class="menu-box-img" />
-				</section>
-				<section class="menu-box-txt-section">
-					<span class="menu-box-title">예약 이력</span> 
-					<span class="menu-box-txt">과거 예약한 내역을 확인해보세요.</span>
-				</section>
-			</div>
-			<div id="mileage-menu" class="menu-box left-menu">
-				<section class="menu-box-img-section">
-					<img src="${path}/resources/IMG/my-page/bi_coin.svg"
-						alt="menu-box-img" class="menu-box-img" />
-				</section>
-				<section class="menu-box-txt-section">
-					<div class="menu-box-txt-wrap">
-						<span class="menu-box-title">마일리지 조회</span> 
-						<span class="point-txt">내 마일리지 : ${umvo.mileage_total}원</span>
-					</div>
-					<span class="menu-box-txt">쌓인 마일리지를 조회할 수 있어요.</span>
-				</section>
-			</div>
-			<div id="question-menu" class="menu-box">
-				<section class="menu-box-img-section">
-					<img src="${path}/resources/IMG/my-page/letter.svg"
-						alt="menu-box-img" class="menu-box-img" />
-				</section>
-				<section class="menu-box-txt-section">
-					<span class="menu-box-title">문의 내역</span> 
-					<span class="menu-box-txt">업체에 문의한 내용을 바로 볼 수 있어요.</span>
-				</section>
-			</div>
-		</section>
+             <div id="reserve-menu" class="menu-box left-menu menu-top">
+                 <section class="menu-box-img-section">
+                     <img src="${path}/resources/IMG/my-page/calendar.svg" alt="menu-box-img" class="menu-box-img" />
+                 </section>
+                 <section  class="menu-box-txt-section">
+                     <span class="menu-box-title">예약 현황</span>
+                     <span class="menu-box-txt">예약한 내역을 확인해보세요.</span>
+                 </section>
+             </div>
+             <div id="mileage-menu" class="menu-box menu-top">
+                 <section class="menu-box-img-section">
+                     <img src="${path}/resources/IMG/my-page/bi_coin.svg" alt="menu-box-img" class="menu-box-img" />
+                 </section>
+                 <section class="menu-box-txt-section">
+                     <div class="menu-box-txt-wrap">
+                         <span class="menu-box-title">마일리지 조회</span>
+                         <span  class="point-txt">내 마일리지 : ${umvo.mileage_total}원</span>
+                     </div>
+                     <span class="menu-box-txt">쌓인 마일리지를 조회할 수 있어요.</span>
+                 </section>
+             </div>
+             <div id="review-menu" class="menu-box left-menu">
+                 <section class="menu-box-img-section">
+                     <img src="${path}/resources/IMG/my-page/review.svg" alt="menu-box-img" class="menu-box-img" />
+                 </section>
+                 <section  class="menu-box-txt-section">
+                     <span class="menu-box-title">후기 내역</span>
+                     <span class="menu-box-txt">작성한 후기 내역을 확인해보세요.</span>
+                 </section>
+             </div>
+             <div id="question-menu" class="menu-box">
+                 <section class="menu-box-img-section">
+                     <img src="${path}/resources/IMG/my-page/letter.svg" alt="menu-box-img" class="menu-box-img" />
+                 </section>
+                 <section  class="menu-box-txt-section">
+                     <span class="menu-box-title">문의 내역</span>
+                     <span class="menu-box-txt">업체에 문의한 내용을 바로 볼 수 있어요.</span>
+                 </section>
+             </div>
+         </section>
 	</div>
 </div>

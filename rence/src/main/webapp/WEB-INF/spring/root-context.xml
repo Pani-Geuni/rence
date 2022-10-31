@@ -28,6 +28,7 @@
             <value>classpath:jdbc/sqlMapper_backoffice.xml</value>
             <value>classpath:jdbc/sqlMapper_office.xml</value>
             <value>classpath:jdbc/sqlMapper_user.xml</value>
+            <value>classpath:jdbc/sqlMapper_mypage.xml</value>
             <value>classpath:jdbc/sqlMapper_master.xml</value>
          </list>
       </property>
