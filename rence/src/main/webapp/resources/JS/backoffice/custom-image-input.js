@@ -1,6 +1,8 @@
 $(function () {
-  $('#file').on('change', function () {
-    var fileName = $('#file').val()
-    $('.upload-name').val(fileName)
+  $('#multipartFile_room').on('change', function () {
+    
+    var fileName = $('#multipartFile_room').val();
+    
+    $('.upload-name').val(fileName);
   })
 })
