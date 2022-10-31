@@ -93,4 +93,10 @@ $(function(){
 	$('#nav-item-delete').click(function() {
 		location.href="/rence/master_backoffice_end";
 	})
+	
+	// 로그인 실패 팝업 닫기
+	$('#common-alert-btn').click(function() {
+		$('#common-alert-popup').addClass('blind');
+		$('.popup-background').addClass('blind');
+	})
 })
