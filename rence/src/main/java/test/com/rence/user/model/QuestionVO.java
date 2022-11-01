@@ -5,25 +5,94 @@ public class QuestionVO {
 	String state;
 	String room_name;
 	String comment_content;
+	String answer_content;
 	String comment_date;
-	String answerDate;
+	String answer_date;
 	
 	
-	public QuestionVO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	public QuestionVO() { }
 
 
-	public QuestionVO(String comment_no, String state, String room_name, String comment_content, String comment_date,
-			String answerDate) {
+	public QuestionVO(String comment_no, String state, String room_name, String comment_content, String answer_content,
+			String comment_date, String answer_date) {
 		super();
 		this.comment_no = comment_no;
 		this.state = state;
 		this.room_name = room_name;
 		this.comment_content = comment_content;
+		this.answer_content = answer_content;
 		this.comment_date = comment_date;
-		this.answerDate = answerDate;
+		this.answer_date = answer_date;
+	}
+
+
+	public String getComment_no() {
+		return comment_no;
+	}
+
+
+	public void setComment_no(String comment_no) {
+		this.comment_no = comment_no;
+	}
+
+
+	public String getState() {
+		return state;
+	}
+
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+
+	public String getRoom_name() {
+		return room_name;
+	}
+
+
+	public void setRoom_name(String room_name) {
+		this.room_name = room_name;
+	}
+
+
+	public String getComment_content() {
+		return comment_content;
+	}
+
+
+	public void setComment_content(String comment_content) {
+		this.comment_content = comment_content;
+	}
+
+
+	public String getAnswer_content() {
+		return answer_content;
+	}
+
+
+	public void setAnswer_content(String answer_content) {
+		this.answer_content = answer_content;
+	}
+
+
+	public String getComment_date() {
+		return comment_date;
+	}
+
+
+	public void setComment_date(String comment_date) {
+		this.comment_date = comment_date;
+	}
+
+
+	public String getAnswer_date() {
+		return answer_date;
+	}
+
+
+	public void setAnswer_date(String answer_date) {
+		this.answer_date = answer_date;
 	}
 
 
@@ -31,7 +100,8 @@ public class QuestionVO {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((answerDate == null) ? 0 : answerDate.hashCode());
+		result = prime * result + ((answer_content == null) ? 0 : answer_content.hashCode());
+		result = prime * result + ((answer_date == null) ? 0 : answer_date.hashCode());
 		result = prime * result + ((comment_content == null) ? 0 : comment_content.hashCode());
 		result = prime * result + ((comment_date == null) ? 0 : comment_date.hashCode());
 		result = prime * result + ((comment_no == null) ? 0 : comment_no.hashCode());
@@ -50,10 +120,15 @@ public class QuestionVO {
 		if (getClass() != obj.getClass())
 			return false;
 		QuestionVO other = (QuestionVO) obj;
-		if (answerDate == null) {
-			if (other.answerDate != null)
+		if (answer_content == null) {
+			if (other.answer_content != null)
 				return false;
-		} else if (!answerDate.equals(other.answerDate))
+		} else if (!answer_content.equals(other.answer_content))
+			return false;
+		if (answer_date == null) {
+			if (other.answer_date != null)
+				return false;
+		} else if (!answer_date.equals(other.answer_date))
 			return false;
 		if (comment_content == null) {
 			if (other.comment_content != null)
@@ -87,8 +162,8 @@ public class QuestionVO {
 	@Override
 	public String toString() {
 		return "QuestionVO [comment_no=" + comment_no + ", state=" + state + ", room_name=" + room_name
-				+ ", comment_content=" + comment_content + ", comment_date=" + comment_date + ", answerDate="
-				+ answerDate + "]";
+				+ ", comment_content=" + comment_content + ", answer_content=" + answer_content + ", comment_date="
+				+ comment_date + ", answer_date=" + answer_date + "]";
 	}
-	
+
 }

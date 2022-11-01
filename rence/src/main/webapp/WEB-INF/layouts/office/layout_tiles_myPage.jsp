@@ -17,6 +17,9 @@
 	<link rel="stylesheet" href="${path}/resources/CSS/office/login.css" />
 	
 	
+	<link rel="stylesheet" href="${path}/resources/CSS/office/my-page.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/office/mileage-page.css" />
+	
 	<script type="text/javascript" src="${path}/resources/JS/common/core.min.js"></script>
 	<script type="text/javascript" src="${path}/resources/JS/common/sha256.min.js"></script>
 	
@@ -24,6 +27,9 @@
 	<script src="${path}/resources/JS/common/jquery.cookie.js"></script>
 	<script src="${path}/resources/JS/office/header.js"></script>
 	<script src="${path}/resources/JS/office/user_popup.js"></script>
+	
+	<script src="${path}/resources/JS/office/my_page.js"></script>
+	<script src="${path}/resources/JS/office/mileage_list.js"></script>
 	
 	<c:if test="${res.page eq 'reserve-list'}">
 		<link rel="stylesheet" href="${path}/resources/CSS/office/reserve-list.css" />
@@ -33,12 +39,9 @@
 		<link rel="stylesheet" href="${path}/resources/CSS/office/review-page.css" />
 		<script src="${path}/resources/JS/office/review_page.js"></script>
 	</c:if>
-	<c:if test="${res.page ne 'reserve-list' && res.page ne 'review'}">
-		<link rel="stylesheet" href="${path}/resources/CSS/office/my-page.css" />
-		<link rel="stylesheet" href="${path}/resources/CSS/office/mileage-page.css" />
+	<c:if test="${res.page eq 'question_list'}">
 		<link rel="stylesheet" href="${path}/resources/CSS/office/question-page.css" />
-		<script src="${path}/resources/JS/office/my_page.js"></script>
-		<script src="${path}/resources/JS/office/mileage_list.js"></script>
+		<script src="${path}/resources/JS/office/question_page.js"></script>
 	</c:if>
 	
 </head>

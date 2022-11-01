@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import test.com.rence.user.model.MyPageDAO;
 import test.com.rence.user.model.MyPageReserveListVO;
 import test.com.rence.user.model.MyPage_ReviewVO;
+import test.com.rence.user.model.QuestionVO;
 
 @Service
 public class MyPageSerivice {
@@ -45,6 +46,18 @@ public class MyPageSerivice {
 		int result = dao.delete_review(review_no);
 		
 		return result;
+	}
+	
+	public List<QuestionVO> select_all_question(String user_no){
+		List<QuestionVO> list = dao.select_all_question(user_no);
+		
+		return list;
+	}
+	
+	public QuestionVO select_one_answer(String mother_no){
+		QuestionVO vo = dao.select_one_answer(mother_no);
+		
+		return vo;
 	}
 	
 

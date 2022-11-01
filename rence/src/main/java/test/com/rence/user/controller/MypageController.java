@@ -68,40 +68,18 @@ public class MypageController {
 	 */
 	@RequestMapping(value = "/go_mileage", method = RequestMethod.GET)
 	public String go_mileage(UserVO uvo ,Model model, HttpServletRequest request) {
-		
 		logger.info("go_mileage()...");
 		logger.info("UserVO(사용자 고유번호): {}", uvo);
-		
-
-		//쿠키를 통해서 사용자no받아오기
-//		String user_no = null;
-//		Cookie[] cookies = request.getCookies();
-//		for (Cookie c : cookies) {
-//			if (c.getName().equals("user_no")) {
-//				user_no = c.getValue();
-//			}
-//		}
-//		uvo.setUser_no(user_no);
-		
-		
 		
 		//총 마일리지 부분
 		UserMileageVO umvo = service.user_mileage_selectOne(uvo);
 		logger.info("umvo: {}", umvo);
 
-		
 //		마일리지 콤마단위로 변환
 		DecimalFormat dc = new DecimalFormat("###,###,###,###,###");
 	
-		
-		
-		
 		String mileage_total = dc.format(umvo.getMileage_total());
 		logger.info("mileage_total: "+ mileage_total);
-	
-		
-		
-		
 		
 		
 		List<UserMileageVO> vos = service.user_mileage_selectAll(uvo);
@@ -112,18 +90,14 @@ public class MypageController {
 			vos.get(i).setMileage(dc.format(Integer.parseInt(vos.get(i).getMileage())));
 		}
 		logger.info("Type change vos: {}"+ vos);
-	
 
-		
-//		Map<String, String> map = new HashMap<String, String>();
 		Map<String, List<UserMileageVO>> map2 = new HashMap<String, List<UserMileageVO>>();
-		String searchKey = "all";
 
-//		map.put("mileage_total", mileage_total);
 		map2.put("list", vos);
 		model.addAttribute("res", map2);
 		model.addAttribute("mileage_total", mileage_total);
-		model.addAttribute("searchKey", searchKey);
+		model.addAttribute("searchKey", "all");
+		
 		return ".my_page/mileage";
 	}
 	
@@ -140,20 +114,11 @@ public class MypageController {
 		UserMileageVO umvo = service.user_mileage_selectOne(uvo);
 		logger.info("umvo: {}", umvo);
 
-		
 //		마일리지 콤마단위로 변환
 		DecimalFormat dc = new DecimalFormat("###,###,###,###,###");
 	
-		
-		
-		
 		String mileage_total = dc.format(umvo.getMileage_total());
 		logger.info("mileage_total: "+ mileage_total);
-	
-		
-		
-		
-		
 		
 		List<UserMileageVO> vos = service.user_mileage_search_list(uvo,searchKey);
 		logger.info("vos: {}"+ vos);
@@ -166,23 +131,15 @@ public class MypageController {
 	
 
 		
-//		Map<String, String> map = new HashMap<String, String>();
 		Map<String, List<UserMileageVO>> map2 = new HashMap<String, List<UserMileageVO>>();
-//		Map<String, String> searchKeyMap = new HashMap<String, String>();
-		
-//		map.put("mileage_total", mileage_total);
+
 		map2.put("list", vos);
-//		searchKeyMap.put("searchKey", searchKey);
 		model.addAttribute("res", map2);
 		model.addAttribute("mileage_total", mileage_total);
 		model.addAttribute("searchKey", searchKey);
 		
 		return ".my_page/mileage";
 	}
-	
-	
-	
-	
 	
 
 	/**
@@ -246,26 +203,15 @@ public class MypageController {
 	 * 마이페이지 -프로필 수정
 	 */
 	@RequestMapping(value = "/user_img_updateOK", method = RequestMethod.POST)
-	@ResponseBody
 	public String user_img_updateOK(UserVO uvo) {
 		logger.info("user_img_updateOK()...");
 		logger.info("result: {}", uvo);
-//	      logger.info("result: {}", uvo.getUser_image()); 
-
-		JSONObject jsonObject = new JSONObject();
 
 		// 사진(파일)업로드
 		uvo = fileuploadService.FileuploadOK(uvo);
 		logger.info("fileresult: {}", uvo);
 
 		int result = service.user_img_updateOK(uvo);
-
-		if (result == 1) {
-			logger.info("user_img_update successed...");
-		} else {
-			logger.info("user_img_update failed...");
-			jsonObject.put("result", "0");
-		}
 
 		return "redirect:/go_my_page";
 	}
