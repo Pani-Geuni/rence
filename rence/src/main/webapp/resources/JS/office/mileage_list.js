@@ -3,12 +3,12 @@
 */
 $(function(){
     $(".menus").click(function(){
-        if($(this).attr("id") == "all"){
-            //
-        }else if($(this).attr("id") == "plus"){
-            
-        }else if($(this).attr("id") == "minus"){
-            
-        }
+        $(".menus").removeClass("choice");
+        $(".menus").addClass("un-choice");
+
+        $(this).removeClass("un-choice");
+        $(this).addClass("choice");
+
+        location.href = "/rence/mileage_search_list?searchKey="+$(this).attr("id")+"&user_no="+$.cookie("user_no");
     })
 });
