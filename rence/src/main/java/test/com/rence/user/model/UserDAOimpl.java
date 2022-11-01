@@ -2,6 +2,7 @@ package test.com.rence.user.model;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -238,16 +239,7 @@ public class UserDAOimpl implements UserDAO {
 	}
 
 	
-	//마일리지 상세페이지에 정보 제공
-	@Override
-	public UserMileageVO user_mileage_select(UserVO uvo) {
-		logger.info("user_mileage_select().....");
-		logger.info("{}", uvo); // 유저의 정보를 출력
-		
-		UserMileageVO umvo = sqlSession.selectOne("SQL_SELECT_USER_MILEAGE", uvo);
-
-		return umvo;
-	}
+	
 
 	//마일리지 상세페이지에 총 마일리지 정보 제공
 	@Override
@@ -260,6 +252,18 @@ public class UserDAOimpl implements UserDAO {
 		return umvo;
 	}
 
+	//마일리지 상세페이지에 정보 제공
+	@Override
+	public List<UserMileageVO> user_mileage_selectAll(UserVO uvo) {
+		logger.info("user_mileage_selectAll().....");
+		logger.info("{}", uvo); // 유저의 정보를 출력
+		
+		
+		List<UserMileageVO> vos = sqlSession.selectList("SQL_SELECTALL_USER_MILEAGE", uvo);
+		logger.info("user_mileage_selectAll().....OK");
+		return vos;
+	}
+	
 
 	
 	
