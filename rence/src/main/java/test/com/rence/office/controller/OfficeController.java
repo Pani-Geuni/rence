@@ -40,7 +40,9 @@ public class OfficeController {
 		
 		String backoffice_no = bvo.getBackoffice_no();
 		
+		// ******************
 		// backoffice 기본 정보
+		// ******************
 		OfficeInfoVO ovo = service.select_one_office_info(backoffice_no);
 		List<String> type_list = new ArrayList<String>();
 		List<String> tag_list = new ArrayList<String>();
@@ -73,7 +75,9 @@ public class OfficeController {
 		
 		ovo.setShort_roadname_address(info_map.makeShortAddress(ovo.getRoadname_address()));
 		
+		// ******************
 		// backoffice 운영 시간
+		// ******************
 //		OfficeOperatingTimeVO_date
 		
 		// backoffice 기본 정보
