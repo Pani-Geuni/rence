@@ -129,10 +129,12 @@ public class MypageController {
 	}
 	
 	
-	@RequestMapping(value = "/go_mileage_search_list", method = RequestMethod.GET)
+	@RequestMapping(value = "/mileage_search_list", method = RequestMethod.GET)
 	public String go_mileage_search_list(UserVO uvo ,Model model, HttpServletRequest request, String searchKey ) {
 		
-		logger.info("go_mileage()...");
+		logger.info("mileage_search_list()...");
+		
+		logger.info("검색 키워드: "+searchKey);
 		logger.info("UserVO(사용자 고유번호): {}", uvo);
 		
 		//총 마일리지 부분

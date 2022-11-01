@@ -269,8 +269,11 @@ public class UserDAOimpl implements UserDAO {
 		logger.info("user_mileage_search_list().....");
 		logger.info("{}", searchKey); // 유저의 정보를 출력
 		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("user_no",uvo.getUser_no());
+		map.put("searchKey", searchKey);
 		
-		List<UserMileageVO> vos = sqlSession.selectList("SQL_USER_MILEAGE_SEARCH_LIST", searchKey);
+		List<UserMileageVO> vos = sqlSession.selectList("SQL_USER_MILEAGE_SEARCH_LIST", map);
 		logger.info("user_mileage_search_list().....OK");
 		return vos;
 	}

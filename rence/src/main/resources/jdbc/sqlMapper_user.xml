@@ -204,8 +204,8 @@
 	<!-- user_detail_mileage_view 를 사용하는 쿼리 -->
 	<select id="SQL_SELECTALL_USER_MILEAGE"
 		resultType="test.com.rence.user.model.UserMileageVO" parameterType="hashmap">
-		select * from user_detail_mileage_view where
-		user_no=#{user_no} order by no desc
+		select * from user_detail_mileage_view 
+		where user_no=#{user_no} order by no desc
 	</select>
 	
 	
@@ -213,6 +213,9 @@
 	<select id="SQL_USER_MILEAGE_SEARCH_LIST"
 		resultType="test.com.rence.user.model.UserMileageVO" parameterType="hashmap">
 		select * from user_detail_mileage_view
+		<if test="searchKey == 'all'">
+				where user_no=#{user_no} order by no desc
+		</if>
 		<if test="searchKey == 'plus'">
 			 where user_no=#{user_no} and state='T'
 			 order by no desc
