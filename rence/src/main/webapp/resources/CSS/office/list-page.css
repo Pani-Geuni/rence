@@ -190,6 +190,8 @@
 
     display: flex;
     flex-direction: column;
+
+    cursor: pointer;
 }
 .list-thumbnail{
     width: 300px;

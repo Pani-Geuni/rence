@@ -991,28 +991,28 @@ body .ui-tooltip {
 	/* background-image: url("images/ui-icons_222222_256x240.png"); */
 }
 .ui-datepicker-prev>.ui-icon-circle-triangle-w {
-	background-image: url("../../IMG/office/left.svg");
+	background-image: url("/rence/resources/IMG/office/left.svg");
 }
 .ui-datepicker-next>.ui-icon-circle-triangle-e {
-	background-image: url("../../IMG/office/right.svg");
+	background-image: url("/rence/resources/IMG/office/right.svg");
 }
-.ui-state-default .ui-icon {
-	background-image: url("images/ui-icons_888888_256x240.png");
-}
-.ui-state-hover .ui-icon,
-.ui-state-focus .ui-icon {
-	background-image: url("images/ui-icons_454545_256x240.png");
-}
-.ui-state-active .ui-icon {
-	background-image: url("images/ui-icons_454545_256x240.png");
-}
-.ui-state-highlight .ui-icon {
-	background-image: url("images/ui-icons_2e83ff_256x240.png");
-}
-.ui-state-error .ui-icon,
-.ui-state-error-text .ui-icon {
-	background-image: url("images/ui-icons_cd0a0a_256x240.png");
-}
+/* .ui-state-default .ui-icon { */
+/* 	background-image: url("images/ui-icons_888888_256x240.png"); */
+/* } */
+/* .ui-state-hover .ui-icon, */
+/* .ui-state-focus .ui-icon { */
+/* 	background-image: url("images/ui-icons_454545_256x240.png"); */
+/* } */
+/* .ui-state-active .ui-icon { */
+/* 	background-image: url("images/ui-icons_454545_256x240.png"); */
+/* } */
+/* .ui-state-highlight .ui-icon { */
+/* 	background-image: url("images/ui-icons_2e83ff_256x240.png"); */
+/* } */
+/* .ui-state-error .ui-icon, */
+/* .ui-state-error-text .ui-icon { */
+/* 	background-image: url("images/ui-icons_cd0a0a_256x240.png"); */
+/* } */
 
 /* positioning */
 .ui-icon-blank { background-position: 16px 16px; }
