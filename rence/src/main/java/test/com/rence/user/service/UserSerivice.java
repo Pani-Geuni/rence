@@ -135,6 +135,11 @@ public class UserSerivice {
 		logger.info("user_mileage_selectAll().....");
 		return dao.user_mileage_selectAll(uvo);
 	}
+	
+	public List<UserMileageVO> user_mileage_search_list(UserVO uvo, String searchKey){
+		logger.info("user_mileage_selectAll().....");
+		return dao.user_mileage_search_list(uvo, searchKey);		
+	}
 
 	
 	

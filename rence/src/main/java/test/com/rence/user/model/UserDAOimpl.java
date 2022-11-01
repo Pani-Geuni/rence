@@ -264,6 +264,20 @@ public class UserDAOimpl implements UserDAO {
 		return vos;
 	}
 	
+	//마일리지 적립,사용 조회
+	public List<UserMileageVO> user_mileage_search_list(UserVO uvo, String searchKey) {
+		logger.info("user_mileage_search_list().....");
+		logger.info("{}", searchKey); // 유저의 정보를 출력
+		
+		
+		List<UserMileageVO> vos = sqlSession.selectList("SQL_USER_MILEAGE_SEARCH_LIST", searchKey);
+		logger.info("user_mileage_search_list().....OK");
+		return vos;
+	}
+	
+	
+	
+	
 
 	
 	
