@@ -112,13 +112,6 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 	public BackOfficeVO backoffice_select_pw(BackOfficeVO bvo) {
 		logger.info("backoffice_pw_findOK()...");
 		logger.info("{}", bvo);
-
-//		String originText = bvo.getBackoffice_pw();
-
-//		String encText = aes.encryptAES("0123456789abcdefghij0123456789ab", originText, true);
-//		logger.info("encText (encodeBase64URLSafeString) : " + encText);
-		
-//		bvo.setBackoffice_pw(encText);
 		
 		BackOfficeVO bvo2 = sqlSession.selectOne("SQL_SELECT_BACKOFFICE_PW",bvo);
 
