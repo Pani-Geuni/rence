@@ -252,15 +252,17 @@
 
 		<!-- !!! QUESTION PAGE !!! -->
 		<!-- START Q-DELETE CONFIRM POPUP -->
-		<div id="q-delete-popup" class="confirm-popup blind">
-			<section class="confirm-txt-section">
-				<span class="logout-txt"> 해당 댓글을 삭제하시겠습니까? </span>
-			</section>
-			<section class="confirm-btn-section">
-				<div id="q-delete-btn" class="confirm-yesBtn">예</div>
-				<div id="q-delete-closeBtn" class="confirm-noBtn">닫기</div>
-			</section>
-		</div>
+        <div id ="q-delete-popup" class="confirm-popup blind">
+            <section class="confirm-txt-section">
+                <span class="logout-txt">
+                    해당 댓글을 삭제하시겠습니까?
+                </span>
+            </section>
+            <section class="confirm-btn-section">
+                <div id="q-delete-btn" class="confirm-yesBtn">예</div>
+                <div id="q-delete-closeBtn" class="confirm-noBtn">닫기</div>
+            </section>
+        </div>
 		
 		<!-- START R-DELETE CONFIRM POPUP -->
 		<div id="r-delete-popup" class="confirm-popup blind">

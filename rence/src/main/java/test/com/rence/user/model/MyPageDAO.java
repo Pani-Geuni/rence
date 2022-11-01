@@ -12,6 +12,7 @@ public interface MyPageDAO {
 	public QuestionVO select_one_answer(String mother_no);
 	
 	public int delete_review(String review_no);
+	public int delete_comment(String comment_no);
 	
 	
 }// end interface

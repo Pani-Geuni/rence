@@ -31,7 +31,7 @@
 	                        	<c:if test="${obj.state eq 'Y'}">처리</c:if>
 	                        	<c:if test="${obj.state eq 'N'}">미처리</c:if>
 							</span>
-	                        <span class="list-company-name">${obj.company_name}</span>
+	                        <span class="list-company-name">${obj.backoffice_name}</span>
 	                        <span class="list-content">
 	                            ${obj.comment_content}
 	                        </span>
@@ -39,13 +39,25 @@
 	                    </div>
 	                    <div class="detail-question-wrap blind">
 	                        <div class="question-line">
-	                            <label class="q_label">Q.</label><br>
-	                            <span>${obj.comment_content}</span>
-	                        </div>
-	                        <div class="answer-line">
-	                            <label class="a_label">A.</label><br>
-	                            <span>${obj.answer_content}</span>
-	                        </div>
+                                <div class="q-line">
+                                    <label class="q_label">Q.</label>
+                                    <c:if test="${obj.answer_content eq null}">
+	                                    <div class="question-btn-wrap">
+	                                        <span class="question-btn question-d-btn" idx="${obj.comment_no}">삭제</span>
+	                                    </div>
+                                    </c:if>
+                                </div>
+                                <span>${obj.comment_content}</span>
+                            </div>
+	                        <c:if test="${obj.answer_content ne null}">
+		                        <div class="answer-line">
+		                            <div class="answer-label">
+                                        <label class="a_label">A.</label>
+                                        <span class="answer-date">작성일&nbsp;&nbsp;|&nbsp;&nbsp;${obj.answer_date}</span>
+                                    </div>
+		                            <span>${obj.answer_content}</span>
+		                        </div>
+	                        </c:if>
 	                    </div>
 	                </li>
                 </c:forEach>

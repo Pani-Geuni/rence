@@ -60,5 +60,11 @@ public class MyPageSerivice {
 		return vo;
 	}
 	
+	public int delete_comment(String comment_no) {
+		int result = dao.delete_comment(comment_no);
+		
+		return result;
+	}
+	
 
 }// end class
