@@ -14,7 +14,7 @@
             <section class="mileage-section">
                 <section class="mileage">
                     <span class="mileage-label">현재 마일리지</span>
-                    <span id="now-mileage" class="mileage-won">{res.mileage_total} 원</span>
+                    <span id="now-mileage" class="mileage-won">${mileage_total} 원</span>
                 </section>
             </section>
         </section>
@@ -35,26 +35,26 @@
                         <span class="list-title-txt list-date">적용일</span>
                     </div>
                 </section>
-                            
+                           
                 <section class="mileage-history-wrap">
                 	<ul>
-	                  	<!-- START forEach -->
+<!-- 	                  	START forEach -->
 						<c:forEach var = "obj" items="${res.list}">
                             <li class="mileage-list">
-                                <span class="list-status <c:if test="${obj.state eq T}">plus-price-label</c:if>">
-									<c:if test="${obj.state eq T}">적립</c:if>
-									<c:if test="${obj.state eq F}">사용</c:if>
+                                <span class="list-status <c:if test="${obj.state eq 'T'}">plus-price-label</c:if>">
+									<c:if test="${obj.state eq 'T'}">적립</c:if>
+									<c:if test="${obj.state eq 'F'}">사용</c:if>
 								</span>
                                 <span class="list-mileage plus-price">
-                                	<c:if test="${obj.state eq T}">+</c:if>
-									<c:if test="${obj.state eq F}">-</c:if>
+                                	<c:if test="${obj.state eq 'T'}">+</c:if>
+									<c:if test="${obj.state eq 'F'}">-</c:if>
                                 	${obj.mileage}
                                 </span>
                                 <span class="list-content">${obj.room}</span>
                                 <span class="list-date">${obj.date}</span>
                             </li>
                        	</c:forEach>
-                       	<!-- END forEach -->
+<!--                        	END forEach -->
                     </ul>
                </section>
             </section>

@@ -1,5 +1,7 @@
 package test.com.rence.user.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,17 @@ public class UserSerivice {
 	public UserSerivice() {
 		logger.info("UserSerivice()...");
 	}
+	
+	public UserVO user_select_userno() {
+		logger.info("user_select_userno().....");
+		return dao.user_select_userno();
+	}
+
+	public int user_mileage_zero_insert(UserVO uvo) {
+		logger.info("user_mileage_zero_insert().....");
+		return dao.user_mileage_zero_insert(uvo);
+	}
+	
 
 	public int user_insertOK(UserVO uvo) {
 		logger.info("user_insertOK().....");
@@ -109,24 +122,18 @@ public class UserSerivice {
 		return dao.user_authOK_select(user_email, email_code);
 	}
 
-	public UserMileageVO user_mileage_select(UserVO uvo) {
-		logger.info("user_mileage_select().....");
-		return dao.user_mileage_select(uvo);
-	}
-	public UserVO user_select_userno() {
-		logger.info("user_select_userno().....");
-		return dao.user_select_userno();
-	}
 
-	public int user_mileage_zero_insert(UserVO uvo) {
-		logger.info("user_mileage_zero_insert().....");
-		return dao.user_mileage_zero_insert(uvo);
-	}
+	
 
 	
 	public UserMileageVO user_mileage_selectOne(UserVO uvo) {
-		logger.info("user_mileage_zero_insert().....");
+		logger.info("user_mileage_selectOne().....");
 		return dao.user_mileage_selectOne(uvo);
+	}
+
+	public List<UserMileageVO> user_mileage_selectAll(UserVO uvo) {
+		logger.info("user_mileage_selectAll().....");
+		return dao.user_mileage_selectAll(uvo);
 	}
 
 	
