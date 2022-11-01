@@ -68,6 +68,7 @@ input[type=button]{
     height: 160px;
     background-color: #ffffff;
     border-radius: 5px;
+    z-index: 100;
 }
 .alert-popup *{
     font-family: "OTWelcome";
@@ -102,6 +103,8 @@ input[type=button]{
     height: 200px;
     background-color: #ffffff;
     border-radius: 5px;
+
+    z-index: 100;
 }
 .confirm-popup *{
     font-family: "OTWelcome";

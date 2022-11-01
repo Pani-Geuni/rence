@@ -146,7 +146,7 @@
 
     border-radius: 15px;
     
-    z-index: 100;
+    z-index: 50;
 }
 .type-select-list{
     height: 40px;
@@ -181,7 +181,7 @@
 
     width: 280px;
     
-    z-index: 100;
+    z-index: 50;
 }
 .location-select{
     width: 140px;
@@ -244,7 +244,7 @@
 
     border-radius: 15px;
     
-    z-index: 100;
+    z-index: 50;
 }
 .user-select-wrap{
     display: flex;

@@ -28,9 +28,9 @@
                  <!-- START TYPE SELECT -->
                  <div id = "custom-type-select" class="type-select-wrap blind">
                      <ul class="type-select">
-                         <li id = "type-list-desk" class="type-select-list">데스크</li>
-                         <li id = "type-list-metting-room" class="type-select-list">회의실</li>
-                         <li id = "type-list-office" class="type-select-list">오피스</li>
+                        <li id = "type-list-desk" class="type-select-list" val="desk">데스크</li>
+                        <li id = "type-list-metting-room" class="type-select-list" val="meeting-room">회의실</li>
+                        <li id = "type-list-office" class="type-select-list" val="office">오피스</li>
                      </ul>
                  </div>
                  <!-- END TYPE SELECT -->

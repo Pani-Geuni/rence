@@ -7,10 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import test.com.rence.user.model.MyPageDAO;
-import test.com.rence.user.model.MyPageReserveListVO;
-import test.com.rence.user.model.MyPage_ReviewVO;
-
 @Service
 public class HomeService {
 
@@ -25,6 +21,12 @@ public class HomeService {
 
 	public List<ListVO> select_all_list(String type, String condition){
 		List<ListVO> list = dao.select_all_list(condition, type);
+		
+		return list;
+	}
+	
+	public List<ListVO> search_list(String type, String location, String searchWord, String condition){
+		List<ListVO> list = dao.search_list(type, location, searchWord, condition);
 		
 		return list;
 	}

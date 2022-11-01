@@ -51,7 +51,7 @@
 }
 .sort-select-box-wrap{
     position: absolute;
-    top: 23px;
+    top: 20px;
     right: 0px;
 
     width: auto;
@@ -77,6 +77,8 @@
     padding-top: 5px;
     padding-bottom: 5px;
     text-align: center;
+
+    background-color: white;
 
     font-family: "HallymGothic";
     font-size: 15px;

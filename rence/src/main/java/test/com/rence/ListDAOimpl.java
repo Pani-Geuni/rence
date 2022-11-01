@@ -1,7 +1,9 @@
 package test.com.rence;
 
 import java.text.DecimalFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -26,13 +28,13 @@ public class ListDAOimpl implements ListDAO {
 			list = sqlSession.selectList("SQL_SELECT_ALL_BACKOFFICE_SORT_DATE", "%"+type+"%");
 		}
 		else if(condition.equals("rating")) {
-			
+			list = sqlSession.selectList("SQL_SELECT_ALL_BACKOFFICE_SORT_RATING", "%"+type+"%");
 		}
 		else if(condition.equals("cheap")) {
-			
+			list = sqlSession.selectList("SQL_SELECT_ALL_BACKOFFICE_SORT_CHEAP", "%"+type+"%");
 		}
 		else if(condition.equals("expensive")) {
-			
+			list = sqlSession.selectList("SQL_SELECT_ALL_BACKOFFICE_SORT_EXPENSIVE", "%"+type+"%");
 		}
 		
 		if(list != null) {
@@ -50,5 +52,35 @@ public class ListDAOimpl implements ListDAO {
 
 		return list;
 	}
+
+
+	@Override
+	public List<ListVO> search_list(String type, String location, String searchWord, String condition) {
+		List<ListVO> list = null;
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("type", "%"+type+"%");
+		map.put("location", "%"+location+"%");
+		map.put("searchWord", "%"+searchWord+"%");
+		
+		if(condition.equals("date")) {
+			list = sqlSession.selectList("SQL_SEARCHLIST_SORT_DATE", map);
+		}
+		else if(condition.equals("rating")) {
+			list = sqlSession.selectList("SQL_SEARCHLIST_SORT_RATING", map);
+		}
+		else if(condition.equals("cheap")) {
+			list = sqlSession.selectList("SQL_SEARCHLIST_SORT_CHEAP", map);
+		}
+		else if(condition.equals("expensive")) {
+			list = sqlSession.selectList("SQL_SEARCHLIST_SORT_EXPENSIVE", map);
+		}
+		
+		logger.info("SEARCH - ListDAOimpl map : {}", map);
+		logger.info("SEARCH - ListDAOimpl : {}", list);
+		
+		return list;
+	}
+	
 
 }// end class

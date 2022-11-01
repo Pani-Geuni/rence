@@ -25,5 +25,148 @@
 		ORDER BY total.backoffice_no desc
 	</select>
 
+	<!-- 리스트 전체 출력 - 별점순 정렬 -->
+	<select id="SQL_SELECT_ALL_BACKOFFICE_SORT_RATING" resultType="test.com.rence.ListVO">
+		select * from(
+		    select left.backoffice_no, left.backoffice_type, company_name, roadname_address, backoffice_tag, REGEXP_SUBSTR(backoffice_image, '[^,]+', 1, 1) as backoffice_image, nvl(min_room_price, 0) as min_room_price, nvl(avg(rv.review_point), 0) as avg_rating 
+		    from(
+		        select b.backoffice_no, b.backoffice_type,b.company_name, b.roadname_address, b.backoffice_tag, b.backoffice_image, min(r.room_price)as min_room_price
+		        from backofficeinfo b left join roominfo r
+		        on b.backoffice_no = r.backoffice_no
+		        where b.backoffice_state = 'Y' group by b.backoffice_no, b.company_name, b.roadname_address, b.backoffice_tag, b.backoffice_image, b.backoffice_type
+		    )left left join review rv
+		    on left.backoffice_no = rv.backoffice_no 
+		    group by left.backoffice_no, company_name, roadname_address, backoffice_tag, backoffice_image, 
+		    min_room_price, nvl(min_room_price, 0), min_room_price, 0, min_room_price, 
+		    0, min_room_price, 0, REGEXP_SUBSTR(backoffice_image, '[^,]+', 1, 1), backoffice_image, 
+		    '[^,]+', 1, 1, left.backoffice_type
+		) total
+		where total.backoffice_type like #{type}
+		ORDER BY total.avg_rating desc, total.backoffice_no desc
+	</select>
+
+	<!-- 리스트 전체 출력 - 가격 낮은순 정렬 -->
+	<select id="SQL_SELECT_ALL_BACKOFFICE_SORT_CHEAP" resultType="test.com.rence.ListVO">
+		select * from(
+		    select left.backoffice_no, left.backoffice_type, company_name, roadname_address, backoffice_tag, REGEXP_SUBSTR(backoffice_image, '[^,]+', 1, 1) as backoffice_image, nvl(min_room_price, 0) as min_room_price, nvl(avg(rv.review_point), 0) as avg_rating 
+		    from(
+		        select b.backoffice_no, b.backoffice_type,b.company_name, b.roadname_address, b.backoffice_tag, b.backoffice_image, min(r.room_price)as min_room_price
+		        from backofficeinfo b left join roominfo r
+		        on b.backoffice_no = r.backoffice_no
+		        where b.backoffice_state = 'Y' group by b.backoffice_no, b.company_name, b.roadname_address, b.backoffice_tag, b.backoffice_image, b.backoffice_type
+		    )left left join review rv
+		    on left.backoffice_no = rv.backoffice_no 
+		    group by left.backoffice_no, company_name, roadname_address, backoffice_tag, backoffice_image, 
+		    min_room_price, nvl(min_room_price, 0), min_room_price, 0, min_room_price, 
+		    0, min_room_price, 0, REGEXP_SUBSTR(backoffice_image, '[^,]+', 1, 1), backoffice_image, 
+		    '[^,]+', 1, 1, left.backoffice_type
+		) total
+		where total.backoffice_type like #{type}
+		ORDER BY total.min_room_price, total.backoffice_no desc
+	</select>
+
+	<!-- 리스트 전체 출력 - 가격 높은순 정렬 -->
+	<select id="SQL_SELECT_ALL_BACKOFFICE_SORT_EXPENSIVE" resultType="test.com.rence.ListVO">
+		select * from(
+		    select left.backoffice_no, left.backoffice_type, company_name, roadname_address, backoffice_tag, REGEXP_SUBSTR(backoffice_image, '[^,]+', 1, 1) as backoffice_image, nvl(min_room_price, 0) as min_room_price, nvl(avg(rv.review_point), 0) as avg_rating 
+		    from(
+		        select b.backoffice_no, b.backoffice_type,b.company_name, b.roadname_address, b.backoffice_tag, b.backoffice_image, min(r.room_price)as min_room_price
+		        from backofficeinfo b left join roominfo r
+		        on b.backoffice_no = r.backoffice_no
+		        where b.backoffice_state = 'Y' group by b.backoffice_no, b.company_name, b.roadname_address, b.backoffice_tag, b.backoffice_image, b.backoffice_type
+		    )left left join review rv
+		    on left.backoffice_no = rv.backoffice_no 
+		    group by left.backoffice_no, company_name, roadname_address, backoffice_tag, backoffice_image, 
+		    min_room_price, nvl(min_room_price, 0), min_room_price, 0, min_room_price, 
+		    0, min_room_price, 0, REGEXP_SUBSTR(backoffice_image, '[^,]+', 1, 1), backoffice_image, 
+		    '[^,]+', 1, 1, left.backoffice_type
+		) total
+		where total.backoffice_type like #{type}
+		ORDER BY total.min_room_price desc, total.backoffice_no desc
+	</select>
+
+
+	
+	
+	<!-- 서치바 검색 - 최신순 정렬 -->
+	<select id="SQL_SEARCHLIST_SORT_DATE" resultType="test.com.rence.ListVO">
+		select * from(
+		    select left.backoffice_no, left.backoffice_type, company_name, roadname_address, backoffice_tag, REGEXP_SUBSTR(backoffice_image, '[^,]+', 1, 1) as backoffice_image, nvl(min_room_price, 0) as min_room_price, nvl(avg(rv.review_point), 0) as avg_rating 
+		    from(
+		        select b.backoffice_no, b.backoffice_type,b.company_name, b.roadname_address, b.backoffice_tag, b.backoffice_image, min(r.room_price)as min_room_price
+		        from backofficeinfo b left join roominfo r
+		        on b.backoffice_no = r.backoffice_no
+		        where b.backoffice_state = 'Y' group by b.backoffice_no, b.company_name, b.roadname_address, b.backoffice_tag, b.backoffice_image, b.backoffice_type
+		    )left left join review rv
+		    on left.backoffice_no = rv.backoffice_no 
+		    group by left.backoffice_no, company_name, roadname_address, backoffice_tag, backoffice_image, 
+		    min_room_price, nvl(min_room_price, 0), min_room_price, 0, min_room_price, 
+		    0, min_room_price, 0, REGEXP_SUBSTR(backoffice_image, '[^,]+', 1, 1), backoffice_image, 
+		    '[^,]+', 1, 1, left.backoffice_type
+		) total
+		where total.backoffice_type like #{type} AND total.roadname_address like #{location} AND total.company_name like #{searchWord}
+		ORDER BY total.backoffice_no desc
+	</select>
+
+	<!-- 서치바 검색 - 별점순 정렬 -->
+	<select id="SQL_SEARCHLIST_SORT_RATING" resultType="test.com.rence.ListVO">
+		select * from(
+		    select left.backoffice_no, left.backoffice_type, company_name, roadname_address, backoffice_tag, REGEXP_SUBSTR(backoffice_image, '[^,]+', 1, 1) as backoffice_image, nvl(min_room_price, 0) as min_room_price, nvl(avg(rv.review_point), 0) as avg_rating 
+		    from(
+		        select b.backoffice_no, b.backoffice_type,b.company_name, b.roadname_address, b.backoffice_tag, b.backoffice_image, min(r.room_price)as min_room_price
+		        from backofficeinfo b left join roominfo r
+		        on b.backoffice_no = r.backoffice_no
+		        where b.backoffice_state = 'Y' group by b.backoffice_no, b.company_name, b.roadname_address, b.backoffice_tag, b.backoffice_image, b.backoffice_type
+		    )left left join review rv
+		    on left.backoffice_no = rv.backoffice_no 
+		    group by left.backoffice_no, company_name, roadname_address, backoffice_tag, backoffice_image, 
+		    min_room_price, nvl(min_room_price, 0), min_room_price, 0, min_room_price, 
+		    0, min_room_price, 0, REGEXP_SUBSTR(backoffice_image, '[^,]+', 1, 1), backoffice_image, 
+		    '[^,]+', 1, 1, left.backoffice_type
+		) total
+		where total.backoffice_type like #{type} AND total.roadname_address like #{location} AND total.company_name like #{searchWord}
+		ORDER BY total.avg_rating desc, total.backoffice_no desc
+	</select>
+
+	<!-- 서치바 검색 - 가격 낮은순 정렬 -->
+	<select id="SQL_SEARCHLIST_SORT_CHEAP" resultType="test.com.rence.ListVO">
+		select * from(
+		    select left.backoffice_no, left.backoffice_type, company_name, roadname_address, backoffice_tag, REGEXP_SUBSTR(backoffice_image, '[^,]+', 1, 1) as backoffice_image, nvl(min_room_price, 0) as min_room_price, nvl(avg(rv.review_point), 0) as avg_rating 
+		    from(
+		        select b.backoffice_no, b.backoffice_type,b.company_name, b.roadname_address, b.backoffice_tag, b.backoffice_image, min(r.room_price)as min_room_price
+		        from backofficeinfo b left join roominfo r
+		        on b.backoffice_no = r.backoffice_no
+		        where b.backoffice_state = 'Y' group by b.backoffice_no, b.company_name, b.roadname_address, b.backoffice_tag, b.backoffice_image, b.backoffice_type
+		    )left left join review rv
+		    on left.backoffice_no = rv.backoffice_no 
+		    group by left.backoffice_no, company_name, roadname_address, backoffice_tag, backoffice_image, 
+		    min_room_price, nvl(min_room_price, 0), min_room_price, 0, min_room_price, 
+		    0, min_room_price, 0, REGEXP_SUBSTR(backoffice_image, '[^,]+', 1, 1), backoffice_image, 
+		    '[^,]+', 1, 1, left.backoffice_type
+		) total
+		where total.backoffice_type like #{type} AND total.roadname_address like #{location} AND total.company_name like #{searchWord}
+		ORDER BY total.min_room_price, total.backoffice_no desc
+	</select>
+
+	<!-- 서치바 검색 - 가격 높은순 정렬 -->
+	<select id="SQL_SEARCHLIST_SORT_EXPENSIVE" resultType="test.com.rence.ListVO">
+		select * from(
+		    select left.backoffice_no, left.backoffice_type, company_name, roadname_address, backoffice_tag, REGEXP_SUBSTR(backoffice_image, '[^,]+', 1, 1) as backoffice_image, nvl(min_room_price, 0) as min_room_price, nvl(avg(rv.review_point), 0) as avg_rating 
+		    from(
+		        select b.backoffice_no, b.backoffice_type,b.company_name, b.roadname_address, b.backoffice_tag, b.backoffice_image, min(r.room_price)as min_room_price
+		        from backofficeinfo b left join roominfo r
+		        on b.backoffice_no = r.backoffice_no
+		        where b.backoffice_state = 'Y' group by b.backoffice_no, b.company_name, b.roadname_address, b.backoffice_tag, b.backoffice_image, b.backoffice_type
+		    )left left join review rv
+		    on left.backoffice_no = rv.backoffice_no 
+		    group by left.backoffice_no, company_name, roadname_address, backoffice_tag, backoffice_image, 
+		    min_room_price, nvl(min_room_price, 0), min_room_price, 0, min_room_price, 
+		    0, min_room_price, 0, REGEXP_SUBSTR(backoffice_image, '[^,]+', 1, 1), backoffice_image, 
+		    '[^,]+', 1, 1, left.backoffice_type
+		) total
+		where total.backoffice_type like #{type} AND total.roadname_address like #{location} AND total.company_name like #{searchWord}
+		ORDER BY total.min_room_price desc, total.backoffice_no desc
+	</select>
+
 
 </mapper>
