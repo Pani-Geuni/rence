@@ -116,15 +116,15 @@ public class MypageController {
 	
 
 		
-		Map<String, String> map = new HashMap<String, String>();
+//		Map<String, String> map = new HashMap<String, String>();
 		Map<String, List<UserMileageVO>> map2 = new HashMap<String, List<UserMileageVO>>();
+		String searchKey = "all";
 
-		map.put("mileage_total", mileage_total);
+//		map.put("mileage_total", mileage_total);
 		map2.put("list", vos);
 		model.addAttribute("res", map2);
 		model.addAttribute("mileage_total", mileage_total);
-		
-		
+		model.addAttribute("searchKey", searchKey);
 		return ".my_page/mileage";
 	}
 	
@@ -167,14 +167,16 @@ public class MypageController {
 	
 
 		
-		Map<String, String> map = new HashMap<String, String>();
+//		Map<String, String> map = new HashMap<String, String>();
 		Map<String, List<UserMileageVO>> map2 = new HashMap<String, List<UserMileageVO>>();
-
-		map.put("mileage_total", mileage_total);
+//		Map<String, String> searchKeyMap = new HashMap<String, String>();
+		
+//		map.put("mileage_total", mileage_total);
 		map2.put("list", vos);
+//		searchKeyMap.put("searchKey", searchKey);
 		model.addAttribute("res", map2);
 		model.addAttribute("mileage_total", mileage_total);
-		
+		model.addAttribute("searchKey", searchKey);
 		
 		return ".my_page/mileage";
 	}
