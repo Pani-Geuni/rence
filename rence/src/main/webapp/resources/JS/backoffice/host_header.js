@@ -95,7 +95,7 @@ $(function(){
     				if (res.result == "1") {
     					location.href="/rence/backoffice_landing";
     				} else {
-    					console.log("success result 0");
+    					location.reload();
     				}
     			},
     			
@@ -103,10 +103,11 @@ $(function(){
     				console.log(error);
     				
     			}
-    			
     		});
     	} else {
     		console.log("no");
+    		$(".popup-background:eq(0)").removeClass("blind");
+    		$("#fail-alert-popup").removeClass("blind");
     	}
     });
 });

@@ -19,7 +19,7 @@ $(function () {
     $('#success-alert-popup').addClass('blind');
   })
   $('#fail-alert-btn').click(function () {
-    $('.popup-background:eq(1)').addClass('blind');
+    $('.popup-background').addClass('blind');
     $('#fail-alert-popup').addClass('blind');
   })
 

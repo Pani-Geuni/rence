@@ -203,9 +203,9 @@
 		<!-- START FAIL CUSTOM ALERT POPUP -->
 		<div id="fail-alert-popup" class="alert-popup blind">
 			<section class="alert-txt-section">
-				<span>빈 항목이 있습니다. 채워주세요.</span>
+				<span>올바른 정보를 입력해 주세요.</span>
 			</section>
-			<section id="empty-fail-alert-btn" class="alert-btn-section">
+			<section id="fail-alert-btn" class="alert-btn-section">
 				<span>확인</span>
 			</section>
 		</div>
