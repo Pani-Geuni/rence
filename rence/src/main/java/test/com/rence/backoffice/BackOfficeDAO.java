@@ -27,12 +27,6 @@ public interface BackOfficeDAO {
 
 	public int backoffice_settingOK_pw(BackOfficeVO bvo);
 
-	public BackOfficeVO backoffice_setting_selectOne(BackOfficeVO bvo);
-
-	public BackOfficeVO backoffice_select_pw(BackOfficeVO bvo);
-
-	public int backoffice_setting_delete(BackOfficeVO bvo);
-
 	public int backoffice_auth_delete(AuthVO avo2);
 
 

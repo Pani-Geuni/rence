@@ -79,24 +79,7 @@ public class BackOfficeService {
 		return dao.backoffice_settingOK_pw(bvo);
 	}
 
-	//환경설정 페이지 출력
-	public BackOfficeVO backoffice_setting_selectOne(BackOfficeVO bvo) {
-		logger.info("selectOne()...");
-		return dao.backoffice_setting_selectOne(bvo);
-	}
-
-	//환경설정에서 비밀번호 변경
-	public BackOfficeVO backoffice_select_pw(BackOfficeVO bvo) {
-		logger.info("backoffice_select_pw()...");
-		return dao.backoffice_select_pw(bvo);
-	}
-
-	//환경설정에서 업체 삭제 요청
-	public int backoffice_setting_delete(BackOfficeVO bvo) {
-		logger.info("backoffice_setting_delete()...");
-		return dao.backoffice_setting_delete(bvo);
-	}
-
+	//인증 후, 인증 번호 삭제
 	public int backoffice_auth_delete(AuthVO avo2) {
 		logger.info("backoffice_auth_delete()...");
 		return dao.backoffice_auth_delete(avo2);
