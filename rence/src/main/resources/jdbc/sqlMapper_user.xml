@@ -213,11 +213,11 @@
 	<select id="SQL_USER_MILEAGE_SEARCH_LIST"
 		resultType="test.com.rence.user.model.UserMileageVO" parameterType="hashmap">
 		select * from user_detail_mileage_view
-		<if test="searchKey == 'T'">
+		<if test="searchKey == 'plus'">
 			 where user_no=#{user_no} and state='T'
 			 order by no desc
 		</if>
-		<if test="searchKey == 'F'">
+		<if test="searchKey == 'minus'">
 			 where user_no=#{user_no} and state='F'
 			 order by no desc
 		</if>

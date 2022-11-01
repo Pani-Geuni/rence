@@ -71,18 +71,18 @@ public class MypageController {
 	public String go_mileage(UserVO uvo ,Model model, HttpServletRequest request) {
 		
 		logger.info("go_mileage()...");
-		logger.info("UserVO: {}", uvo);
+		logger.info("UserVO(사용자 고유번호): {}", uvo);
 		
-		String user_no = null;
 
 		//쿠키를 통해서 사용자no받아오기
-		Cookie[] cookies = request.getCookies();
-		for (Cookie c : cookies) {
-			if (c.getName().equals("user_no")) {
-				user_no = c.getValue();
-			}
-		}
-		uvo.setUser_no(user_no);
+//		String user_no = null;
+//		Cookie[] cookies = request.getCookies();
+//		for (Cookie c : cookies) {
+//			if (c.getName().equals("user_no")) {
+//				user_no = c.getValue();
+//			}
+//		}
+//		uvo.setUser_no(user_no);
 		
 		
 		
@@ -127,6 +127,60 @@ public class MypageController {
 		
 		return ".my_page/mileage";
 	}
+	
+	
+	@RequestMapping(value = "/go_mileage_search_list", method = RequestMethod.GET)
+	public String go_mileage_search_list(UserVO uvo ,Model model, HttpServletRequest request, String searchKey ) {
+		
+		logger.info("go_mileage()...");
+		logger.info("UserVO(사용자 고유번호): {}", uvo);
+		
+		//총 마일리지 부분
+		UserMileageVO umvo = service.user_mileage_selectOne(uvo);
+		logger.info("umvo: {}", umvo);
+
+		
+//		마일리지 콤마단위로 변환
+		DecimalFormat dc = new DecimalFormat("###,###,###,###,###");
+	
+		
+		
+		
+		String mileage_total = dc.format(umvo.getMileage_total());
+		logger.info("mileage_total: "+ mileage_total);
+	
+		
+		
+		
+		
+		
+		List<UserMileageVO> vos = service.user_mileage_search_list(uvo,searchKey);
+		logger.info("vos: {}"+ vos);
+		
+		
+		for (int i = 0; i < vos.size(); i++) {
+			vos.get(i).setMileage(dc.format(Integer.parseInt(vos.get(i).getMileage())));
+		}
+		logger.info("Type change vos: {}"+ vos);
+	
+
+		
+		Map<String, String> map = new HashMap<String, String>();
+		Map<String, List<UserMileageVO>> map2 = new HashMap<String, List<UserMileageVO>>();
+
+		map.put("mileage_total", mileage_total);
+		map2.put("list", vos);
+		model.addAttribute("res", map2);
+		model.addAttribute("mileage_total", mileage_total);
+		
+		
+		return ".my_page/mileage";
+	}
+	
+	
+	
+	
+	
 
 	/**
 	 * 문의 리스트 페이지 이동

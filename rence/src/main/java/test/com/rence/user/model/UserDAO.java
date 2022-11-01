@@ -44,7 +44,8 @@ public interface UserDAO {
 
 	public UserMileageVO user_mileage_selectOne(UserVO uvo); // 마일리지 상세페이지에서 총마일리지 
 
-
+	public List<UserMileageVO> user_mileage_search_list(UserVO uvo, String searchKey); //마일리지 적립,사용리스트조회
+	
 	
 
 	
