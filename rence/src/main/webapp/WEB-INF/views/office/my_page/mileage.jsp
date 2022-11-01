@@ -22,16 +22,16 @@
         <section class="mileage-list-section">
             <section class="mileage-list-menu">
                 <span id = "all" class="menus 
-               		<c:if test="${res.searchKey eq 'all'}">choice</c:if>
-               		<c:if test="${res.searchKey ne 'all'}">un-choice</c:if>
+               		<c:if test="${searchKey eq 'all'}">choice</c:if>
+               		<c:if test="${searchKey ne 'all'}">un-choice</c:if>
                 ">전체</span>
                 <span id = "plus" class="menus 
-               		<c:if test="${res.searchKey eq 'plus'}">choice</c:if>
-               		<c:if test="${res.searchKey ne 'plus'}">un-choice</c:if>
+               		<c:if test="${searchKey eq 'plus'}">choice</c:if>
+               		<c:if test="${searchKey ne 'plus'}">un-choice</c:if>
             	">적립</span>
                 <span id = "minus" class="menus 
-               		<c:if test="${res.searchKey eq 'minus'}">choice</c:if>
-               		<c:if test="${res.searchKey ne 'minus'}">un-choice</c:if>
+               		<c:if test="${searchKey eq 'minus'}">choice</c:if>
+               		<c:if test="${searchKey ne 'minus'}">un-choice</c:if>
                 ">사용</span>
             </section>
 
