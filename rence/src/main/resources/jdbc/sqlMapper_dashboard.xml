@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test.com.rence.dashboard">
+  	
+  	<select id="SQL_SELECT_ALL_RESERVE_SUMMARY" resultType="test.com.rence.dashboard.model.ReserveSummaryVO">
+    	select r.reserve_no, r.reserve_sdate, r.reserve_edate, rm.room_name, u.user_name, p.actual_payment, r.reserve_state 
+    	from reserveinfo r left outer join roominfo rm on r.backoffice_no=rm.backoffice_no left outer join paymentinfo p on rm.room_no = p.room_no left outer join userinfo u on p.user_no=u.user_no 
+		where r.backoffice_no=#{backoffice_no} and r.reserve_state!='false' 
+		order by r.reserve_sdate
+  	</select>
+
+	<select id="SQL_SELECT_ALL_COMMENT_SUMMARY" resultType="test.com.rence.dashboard.model.CommentSummaryVO">
+		select c.comment_no, rm.room_name, c.comment_date, c.comment_content
+		from comments c left outer join roominfo rm on c.room_no=rm.room_no 
+		where c.backoffice_no=#{backoffice_no} and c.user_no is not null
+		order by c.comment_date desc
+	</select>
+  	
+  	<select id="SQL_SELECT_ONE_PAYMENT_SUMMARY" resultType="test.com.rence.dashboard.model.SalesSettlementSummaryVO">
+  		select * from sales_view where backoffice_no=#{backoffice_no}
+  	</select>
+  	
+  	<select id="SQL_SELECT_ONE_ROOM_SUMMARY" resultType="test.com.rence.dashboard.model.RoomSummaryVO">
+  		select (select avg(review_point) from review )review_point ,
+			(select count(comment_no) from comments where user_no is not null)comment_no,
+			(select count(review_no) from review )review_no,
+			(select count(reserve_no) from reserveinfo )reserve_no
+		from backofficeinfo where backoffice_no=#{backoffice_no}
+  	</select>
+  	
+  	<select id="SQL_SELECT_ALL_B_RESERVE" resultType="test.com.rence.dashboard.model.ReserveVO" parameterType="hashmap">
+  		select * from (
+			select ROW_NUMBER() OVER(PARTITION BY rv.reserve_no ORDER BY rv.reserve_no ASC ) no, rv.reserve_no, rv.reserve_sdate, rv.reserve_edate, rm.room_name, u.user_name, u.user_tel, u.user_email, p.payment_total, p.payment_state
+			from reserveinfo rv left outer join roominfo rm on rv.room_no=rm.room_no 
+			left outer join paymentinfo p on rm.room_no=p.room_no
+			left outer join userinfo u on p.user_no=u.user_no 
+			where rv.backoffice_no=#{backoffice_no} and rv.reserve_state !='false' 
+		 
+  		<if test="reserve_state == 'all'">
+  			order by reserve_sdate desc
+  		</if>
+  		<if test="reserve_state == 'in_use'">
+  			and (reserve_state ='begin' or reserve_state ='in_use') order by reserve_sdate desc
+  		</if>
+  		<if test="reserve_state == 'end'">
+  			and reserve_state ='end' order by reserve_sdate desc
+  		</if>
+  		<if test="reserve_state == 'cancel'">
+  			and reserve_state ='cancel' order by reserve_sdate desc
+  		</if>
+  		)A where A.no=1
+  	</select>
+  	
+  	<select id="SQL_SELECT_ALL_B_RESERVE_SEARCH" resultType="test.com.rence.dashboard.model.ReserveVO" parameterType="hashmap">
+  		select * from (
+			select ROW_NUMBER() OVER(PARTITION BY rv.reserve_no ORDER BY rv.reserve_no ASC ) no, rv.reserve_no, rv.reserve_sdate, rv.reserve_edate, rm.room_name, u.user_name, u.user_tel, u.user_email, p.payment_total, p.payment_state
+			from reserveinfo rv left outer join roominfo rm on rv.room_no=rm.room_no 
+			left outer join paymentinfo p on rm.room_no=p.room_no
+			left outer join userinfo u on p.user_no=u.user_no 
+			where rv.backoffice_no=#{backoffice_no} and rv.reserve_state !='false' and u.user_name like #{searchword} order by reserve_sdate asc )A
+		where A.no=1
+  	</select>
+  	
+  
+</mapper>

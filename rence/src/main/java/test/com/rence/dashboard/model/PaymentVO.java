@@ -21,12 +21,14 @@ public class PaymentVO implements Serializable {
 	private String user_no;
 	private String mileage_no;
 	private String reserve_no;
+	private String sales_state;
+	private String backoffice_no;
 	
 	public PaymentVO() {}
-	
+
 	public PaymentVO(String payment_no, int payment_total, int add_mileage, int use_mileage, int actual_payment,
 			String payment_state, Date payment_date, String room_no, String user_no, String mileage_no,
-			String reserve_no) {
+			String reserve_no, String sales_state, String backoffice_no) {
 		super();
 		this.payment_no = payment_no;
 		this.payment_total = payment_total;
@@ -39,6 +41,8 @@ public class PaymentVO implements Serializable {
 		this.user_no = user_no;
 		this.mileage_no = mileage_no;
 		this.reserve_no = reserve_no;
+		this.sales_state = sales_state;
+		this.backoffice_no = backoffice_no;
 	}
 
 	public String getPayment_no() {
@@ -129,12 +133,29 @@ public class PaymentVO implements Serializable {
 		this.reserve_no = reserve_no;
 	}
 
+	public String getSales_state() {
+		return sales_state;
+	}
+
+	public void setSales_state(String sales_state) {
+		this.sales_state = sales_state;
+	}
+
+	public String getBackoffice_no() {
+		return backoffice_no;
+	}
+
+	public void setBackoffice_no(String backoffice_no) {
+		this.backoffice_no = backoffice_no;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + actual_payment;
 		result = prime * result + add_mileage;
+		result = prime * result + ((backoffice_no == null) ? 0 : backoffice_no.hashCode());
 		result = prime * result + ((mileage_no == null) ? 0 : mileage_no.hashCode());
 		result = prime * result + ((payment_date == null) ? 0 : payment_date.hashCode());
 		result = prime * result + ((payment_no == null) ? 0 : payment_no.hashCode());
@@ -142,6 +163,7 @@ public class PaymentVO implements Serializable {
 		result = prime * result + payment_total;
 		result = prime * result + ((reserve_no == null) ? 0 : reserve_no.hashCode());
 		result = prime * result + ((room_no == null) ? 0 : room_no.hashCode());
+		result = prime * result + ((sales_state == null) ? 0 : sales_state.hashCode());
 		result = prime * result + use_mileage;
 		result = prime * result + ((user_no == null) ? 0 : user_no.hashCode());
 		return result;
@@ -159,6 +181,11 @@ public class PaymentVO implements Serializable {
 		if (actual_payment != other.actual_payment)
 			return false;
 		if (add_mileage != other.add_mileage)
+			return false;
+		if (backoffice_no == null) {
+			if (other.backoffice_no != null)
+				return false;
+		} else if (!backoffice_no.equals(other.backoffice_no))
 			return false;
 		if (mileage_no == null) {
 			if (other.mileage_no != null)
@@ -192,6 +219,11 @@ public class PaymentVO implements Serializable {
 				return false;
 		} else if (!room_no.equals(other.room_no))
 			return false;
+		if (sales_state == null) {
+			if (other.sales_state != null)
+				return false;
+		} else if (!sales_state.equals(other.sales_state))
+			return false;
 		if (use_mileage != other.use_mileage)
 			return false;
 		if (user_no == null) {
@@ -207,9 +239,8 @@ public class PaymentVO implements Serializable {
 		return "PaymentVO [payment_no=" + payment_no + ", payment_total=" + payment_total + ", add_mileage="
 				+ add_mileage + ", use_mileage=" + use_mileage + ", actual_payment=" + actual_payment
 				+ ", payment_state=" + payment_state + ", payment_date=" + payment_date + ", room_no=" + room_no
-				+ ", user_no=" + user_no + ", mileage_no=" + mileage_no + ", reserve_no=" + reserve_no + "]";
+				+ ", user_no=" + user_no + ", mileage_no=" + mileage_no + ", reserve_no=" + reserve_no
+				+ ", sales_state=" + sales_state + ", backoffice_no=" + backoffice_no + "]";
 	}
-	
-	
 	
 }
