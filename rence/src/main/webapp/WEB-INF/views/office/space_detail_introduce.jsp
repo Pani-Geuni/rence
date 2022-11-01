@@ -3,30 +3,32 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />	
-	
+
+
 <section class="space-detail-introduce-section">
 	<div class="space-detail-introduce-wrap">
 		<section class="space-detail-title-section">
             <span  class="space-detail-company-name">
-                오라운트
+                ${ ovo.company_name }
             </span>
-            <span class="space-detail-type">데스크</span>
+            <c:forEach var="type_item" items="${ type_list }">
+	            <span class="space-detail-type">${ type_item }</span>
+            </c:forEach>
         </section>
         <section class="space-detail-info-section">
             <div class="space-rating">
                 <img src="${path}/resources/IMG/common/grey-star.svg" class="space-rating-icon" alt="space-rating-icon" />
-                <span class="space-info-txt">4.32</span>
+                <span class="space-info-txt">${ ovo.avg_rating }</span>
             </div>
             <div class="space-tags">
-                <span class="space-info-txt tag-txt">#경기광주</span>
-                <span class="space-info-txt tag-txt">#스터디룸</span>
-                <span class="space-info-txt tag-txt">#1인데스크</span>
-                <span class="space-info-txt tag-txt">#단독미팅룸</span>
+            	<c:forEach var="tag_item" items="${ tag_list }">
+	                <span class="space-info-txt tag-txt">${ tag_item }</span>
+            	</c:forEach>
             </div>
         </section>
         <div class="space-location">
             <img src="${path}/resources/IMG/common/location-icon.svg" class="space-location-icon" alt="space-location-icon" />
-            <span class="space-info-txt">경기도 광주시 경안로 98번길 1층</span>
+            <span class="space-info-txt">${ ovo.roadname_address } ${ ovo.detail_address }</span>
         </div>
 		<section class="spage-imgs-section">
 			<div class="window">
@@ -73,46 +75,25 @@
 
 				<!-- 공간 소개 -->
 				<div class="space-description-wrap">
-					<span class="space-description"> 국가는 대외무역을 육성하며, 이를 규제·조정할 수
-						있다. 선거운동은 각급 선거관리위원회의 관리하에 법률이 정하는 범위안에서 하되, 균등한 기회가 보장되어야 한다.
-						대한민국의 경제질서는 개인과 기업의 경제상의 자유와 창의를 존중함을 기본으로 한다. 모든 국민은 근로의 의무를 진다.
-						국가는 근로의 의무의 내용과 조건을 민주주의원칙에 따라 법률로 정한다.<br>
-					<br> 국회의원은 국가이익을 우선하여 양심에 따라 직무를 행한다. 대법원장과 대법관이 아닌 법관은 대법관회의의
-						동의를 얻어 대법원장이 임명한다. 국민경제자문회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다. 대통령이 궐위된
-						때 또는 대통령 당선자가 사망하거나 판결 기타의 사유로 그 자격을 상실한 때에는 60일 이내에 후임자를 선거한다.<br>
-					<br> 국가는 대외무역을 육성하며, 이를 규제·조정할 수 있다. 선거운동은 각급 선거관리위원회의 관리하에
-						법률이 정하는 범위안에서 하되, 균등한 기회가 보장되어야 한다. 대한민국의 경제질서는 개인과 기업의 경제상의 자유와
-						창의를 존중함을 기본으로 한다. 모든 국민은 근로의 의무를 진다. 국가는 근로의 의무의 내용과 조건을 민주주의원칙에
-						따라 법률로 정한다.<br>
-					<br> 국회의원은 국가이익을 우선하여 양심에 따라 직무를 행한다. 대법원장과 대법관이 아닌 법관은 대법관회의의
-						동의를 얻어 대법원장이 임명한다. 국민경제자문회의의 조직·직무범위 기타 필요한 사항은 법률로 정한다. 대통령이 궐위된
-						때 또는 대통령 당선자가 사망하거나 판결 기타의 사유로 그 자격을 상실한 때에는 60일 이내에 후임자를 선거한다.<br>
-					<br>
+					<span class="space-description"> 
+					${ ovo.backoffice_info }
 					</span>
 
 					<div class="option-wrap">
 						<label class="section-title"> 옵션 </label>
 						<ul class="option-list-wrap">
-							<li class="option-list">독서실 책상</li>
-							<li class="option-list">4인 미팅룸</li>
-							<li class="option-list">전자레인지</li>
-							<li class="option-list">독서실 책상</li>
-							<li class="option-list">4인 미팅룸</li>
-							<li class="option-list">전자레인지</li>
-							<li class="option-list">독서실 책상</li>
-							<li class="option-list">4인 미팅룸</li>
-							<li class="option-list">전자레인지</li>
-							<li class="option-list">독서실 책상</li>
-							<li class="option-list">4인 미팅룸</li>
-							<li class="option-list">전자레인지</li>
+							<c:forEach var="option_item" items="${ option_list }">
+								<li class="option-list">${ option_item }</li>
+							</c:forEach>
 						</ul>
 					</div>
 
 					<div class="around-info-wrap">
 						<label class="section-title"> 주변 시설 </label>
 						<ul id="" class="option-list-wrap">
-							<li class="option-list">주차장</li>
-							<li class="option-list">편의점</li>
+							<c:forEach var="around_item" items="${ around_option_list }">
+								<li class="option-list">${ around_item }</li>
+							</c:forEach>
 						</ul>
 					</div>
 				</div>
@@ -332,14 +313,16 @@
 					</section>
 					<section class="type-location-txt">
 						<div class="space-type-loca">
-							<label class="fixed-section-label"> 공간 유형 </label> 
-							<span class="fixed-section-txt"> 데스크 </span>
+							<label class="fixed-section-label"> 공간 유형 </label>
+							<c:forEach var="type_item" items="${ type_list }">
+								<span class="fixed-section-txt"> ${ type_item } </span>
+							</c:forEach> 
 						</div>
 						<div class="space-type-loca">
 							<label class="fixed-section-label"> 위치 </label>
 							<div class="fixed-section-loca">
 								<img src="${path}/resources/IMG/common/location-icon.svg" class="space-loca-icon" alt="location-icon"> 
-								<span class="fixed-section-txt"> 경기도 광주시 </span>
+								<span class="fixed-section-txt"> ${ ovo.short_roadname_address } </span>
 							</div>
 						</div>
 					</section>
