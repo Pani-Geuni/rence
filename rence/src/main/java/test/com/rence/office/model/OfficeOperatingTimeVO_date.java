@@ -62,6 +62,183 @@ public class OfficeOperatingTimeVO_date implements Serializable {
 		this.sat_dayoff = sat_dayoff;
 		this.sun_dayoff = sun_dayoff;
 	}
+	
+
+	public String getBackoffice_no() {
+		return backoffice_no;
+	}
+
+	public void setBackoffice_no(String backoffice_no) {
+		this.backoffice_no = backoffice_no;
+	}
+
+	public Date getMon_stime() {
+		return mon_stime;
+	}
+
+	public void setMon_stime(Date mon_stime) {
+		this.mon_stime = mon_stime;
+	}
+
+	public Date getMon_etime() {
+		return mon_etime;
+	}
+
+	public void setMon_etime(Date mon_etime) {
+		this.mon_etime = mon_etime;
+	}
+
+	public Date getTue_stime() {
+		return tue_stime;
+	}
+
+	public void setTue_stime(Date tue_stime) {
+		this.tue_stime = tue_stime;
+	}
+
+	public Date getTue_etime() {
+		return tue_etime;
+	}
+
+	public void setTue_etime(Date tue_etime) {
+		this.tue_etime = tue_etime;
+	}
+
+	public Date getWed_stime() {
+		return wed_stime;
+	}
+
+	public void setWed_stime(Date wed_stime) {
+		this.wed_stime = wed_stime;
+	}
+
+	public Date getWed_etime() {
+		return wed_etime;
+	}
+
+	public void setWed_etime(Date wed_etime) {
+		this.wed_etime = wed_etime;
+	}
+
+	public Date getThu_stime() {
+		return thu_stime;
+	}
+
+	public void setThu_stime(Date thu_stime) {
+		this.thu_stime = thu_stime;
+	}
+
+	public Date getThu_etime() {
+		return thu_etime;
+	}
+
+	public void setThu_etime(Date thu_etime) {
+		this.thu_etime = thu_etime;
+	}
+
+	public Date getFri_stime() {
+		return fri_stime;
+	}
+
+	public void setFri_stime(Date fri_stime) {
+		this.fri_stime = fri_stime;
+	}
+
+	public Date getFri_etime() {
+		return fri_etime;
+	}
+
+	public void setFri_etime(Date fri_etime) {
+		this.fri_etime = fri_etime;
+	}
+
+	public Date getSat_stime() {
+		return sat_stime;
+	}
+
+	public void setSat_stime(Date sat_stime) {
+		this.sat_stime = sat_stime;
+	}
+
+	public Date getSat_etime() {
+		return sat_etime;
+	}
+
+	public void setSat_etime(Date sat_etime) {
+		this.sat_etime = sat_etime;
+	}
+
+	public Date getSun_stime() {
+		return sun_stime;
+	}
+
+	public void setSun_stime(Date sun_stime) {
+		this.sun_stime = sun_stime;
+	}
+
+	public Date getSun_etime() {
+		return sun_etime;
+	}
+
+	public void setSun_etime(Date sun_etime) {
+		this.sun_etime = sun_etime;
+	}
+
+	public String getMon_dayoff() {
+		return mon_dayoff;
+	}
+
+	public void setMon_dayoff(String mon_dayoff) {
+		this.mon_dayoff = mon_dayoff;
+	}
+
+	public String getTue_dayoff() {
+		return tue_dayoff;
+	}
+
+	public void setTue_dayoff(String tue_dayoff) {
+		this.tue_dayoff = tue_dayoff;
+	}
+
+	public String getWed_dayoff() {
+		return wed_dayoff;
+	}
+
+	public void setWed_dayoff(String wed_dayoff) {
+		this.wed_dayoff = wed_dayoff;
+	}
+
+	public String getThu_dayoff() {
+		return thu_dayoff;
+	}
+
+	public void setThu_dayoff(String thu_dayoff) {
+		this.thu_dayoff = thu_dayoff;
+	}
+
+	public String getFri_dayoff() {
+		return fri_dayoff;
+	}
+
+	public void setFri_dayoff(String fri_dayoff) {
+		this.fri_dayoff = fri_dayoff;
+	}
+
+	public String getSat_dayoff() {
+		return sat_dayoff;
+	}
+
+	public void setSat_dayoff(String sat_dayoff) {
+		this.sat_dayoff = sat_dayoff;
+	}
+
+	public String getSun_dayoff() {
+		return sun_dayoff;
+	}
+
+	public void setSun_dayoff(String sun_dayoff) {
+		this.sun_dayoff = sun_dayoff;
+	}
 
 	@Override
 	public String toString() {

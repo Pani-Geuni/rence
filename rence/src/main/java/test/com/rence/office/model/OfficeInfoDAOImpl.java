@@ -1,5 +1,7 @@
 package test.com.rence.office.model;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +21,14 @@ public class OfficeInfoDAOImpl implements OfficeInfoDAO {
 	public OfficeInfoVO select_one_office_info(String backoffice_no) {
 	
 		OfficeInfoVO vo = sqlSession.selectOne("SQL_SELECT_ONE_OFFICE_INFO", backoffice_no);
+		
+		return vo;
+	}
+
+	@Override
+	public OfficeOperatingTimeVO_date select_one_operating_time(String backoffice_no) {
+		
+		OfficeOperatingTimeVO_date vo = sqlSession.selectOne("SQL_SELECT_ONE_OPERATING_TIME", backoffice_no);
 		
 		return vo;
 	}

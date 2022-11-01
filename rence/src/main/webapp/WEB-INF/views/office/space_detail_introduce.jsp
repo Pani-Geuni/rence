@@ -283,31 +283,80 @@
 						<ul class="running-time-li-wrap">
 							<li class="running-time-li">
 								<label>일</label> 
-								<span>11:00 ~ 24:00</span>
+								<c:choose>
+									<c:when test="${ otvo.sun_dayoff eq 'F' }">
+										<span>${ otvo.sun_stime } ~ ${ otvo.sun_etime }</span>
+									</c:when>
+									<c:otherwise>
+										<span>휴무</span>
+									</c:otherwise>
+								</c:choose>
 							</li>
 							<li class="running-time-li">
 								<label>월</label> 
-								<span>11:00 ~ 24:00</span>
+								<c:choose>
+									<c:when test="${ otvo.mon_dayoff eq 'F' }">
+										<span>${ otvo.mon_stime } ~ ${ otvo.mon_etime }</span>
+									</c:when>
+									<c:otherwise>
+										<span>휴무</span>
+									</c:otherwise>
+								</c:choose>
 							</li>
 							<li class="running-time-li">
 								<label>화</label> 
-								<span>11:00 ~ 24:00</span>
+								<c:choose>
+									<c:when test="${ otvo.tue_dayoff eq 'F' }">
+										<span>${ otvo.tue_stime } ~ ${ otvo.tue_etime }</span>
+									</c:when>
+									<c:otherwise>
+										<span>휴무</span>
+									</c:otherwise>
+								</c:choose>
 							</li>
 							<li class="running-time-li">
 								<label>수</label> 
-								<span>11:00 ~ 24:00</span>
+								<c:choose>
+									<c:when test="${ otvo.wed_dayoff eq 'F' }">
+										<span>${ otvo.wed_stime } ~ ${ otvo.wed_etime }</span>
+									</c:when>
+									<c:otherwise>
+										<span>휴무</span>
+									</c:otherwise>
+								</c:choose>
 							</li>
 							<li class="running-time-li">
 								<label>목</label> 
-								<span>11:00 ~ 24:00</span>
+								<c:choose>
+									<c:when test="${ otvo.thu_dayoff eq 'F' }">
+										<span>${ otvo.thu_stime } ~ ${ otvo.thu_etime }</span>
+									</c:when>
+									<c:otherwise>
+										<span>휴무</span>
+									</c:otherwise>
+								</c:choose>
 							</li>
 							<li class="running-time-li">
 								<label>금</label> 
-								<span>11:00 ~ 24:00</span>
+								<c:choose>
+									<c:when test="${ otvo.fri_dayoff eq 'F' }">
+										<span>${ otvo.fri_stime } ~ ${ otvo.fri_etime }</span>
+									</c:when>
+									<c:otherwise>
+										<span>휴무</span>
+									</c:otherwise>
+								</c:choose>
 							</li>
 							<li class="running-time-li">
 								<label>토</label> 
-								<span>11:00 ~ 24:00</span>
+								<c:choose>
+									<c:when test="${ otvo.sat_dayoff eq 'F' }">
+										<span>${ otvo.sat_stime } ~ ${ otvo.sat_etime }</span>
+									</c:when>
+									<c:otherwise>
+										<span>휴무</span>
+									</c:otherwise>
+								</c:choose>
 							</li>
 						</ul>
 					</section>

@@ -189,5 +189,11 @@
 		where backoffice_no=#{backoffice_no}
 	</select>
 
+	<!-- 공간 운영 시간 -->
+	<select id="SQL_SELECT_ONE_OPERATING_TIME" resultType="test.com.rence.office.model.OfficeOperatingTimeVO_date">
+		select *
+		from backofficeoperatingtime
+		where backoffice_no=#{backoffice_no}
+	</select>
 
 </mapper>

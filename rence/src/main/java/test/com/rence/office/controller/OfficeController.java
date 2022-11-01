@@ -1,5 +1,6 @@
 package test.com.rence.office.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import test.com.rence.backoffice.BackOfficeVO;
-import test.com.rence.common.OfficeInfoMap;
+import test.com.rence.common.CustomDateFormatter;
 import test.com.rence.master.MasterController;
+import test.com.rence.office.common.OfficeInfoMap;
 import test.com.rence.office.model.OfficeInfoVO;
+import test.com.rence.office.model.OfficeOperatingTimeVO;
 import test.com.rence.office.model.OfficeOperatingTimeVO_date;
 import test.com.rence.office.service.OfficeService;
 
@@ -78,7 +81,12 @@ public class OfficeController {
 		// ******************
 		// backoffice 운영 시간
 		// ******************
-//		OfficeOperatingTimeVO_date
+		OfficeOperatingTimeVO_date dotvo = service.select_one_operating_time(backoffice_no);
+		
+		CustomDateFormatter df = new CustomDateFormatter();
+		OfficeOperatingTimeVO otvo = df.showStringOfficeOperating(dotvo);
+		
+		logger.info("otvo_date :: {}", otvo);
 		
 		// backoffice 기본 정보
 		model.addAttribute("ovo", ovo);
@@ -87,6 +95,10 @@ public class OfficeController {
 		model.addAttribute("option_list", option_list);
 		model.addAttribute("around_option_list", around_option_list);
 
+		// backoffice 운영 시간
+		model.addAttribute("otvo", otvo);
+		
+		
 		return ".space";
 	}
 }
