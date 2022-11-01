@@ -233,11 +233,27 @@
   flex-direction: column;
 }
 
+.input-item {
+	display: flex;
+	flex-direction: column;
+	
+	margin-bottom: 20px;
+}
+
+.warning-text {
+	
+	margin-top: 4px;
+	margin-left: 4px;
+	
+	color: #FF5C5C;
+    font-size: 10px;
+}
+
 .input-group input {
   height: 32px;
 
   padding: 0 8px;
-  margin-bottom: 20px;
+  
 
   border: 1px solid #e4e4e4;
   border-radius: 8px;
@@ -264,7 +280,8 @@
   background-color: #c4c4c4;
 }
 
-#btn-popup-confirm {
+#btn-popup-confirm,
+#btn-pw-update {
   color: #ffffff;
 
   background-color: #b2a4ff;

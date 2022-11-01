@@ -11,6 +11,11 @@
 	<title><tiles:getAsString name="title"></tiles:getAsString></title>
 	<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 	
+	<!-- crypto library script -->
+	<script type="text/javascript" src="${path}/resources/JS/common/core.min.js"></script>
+    <script type="text/javascript" src="${path}/resources/JS/common/sha256.min.js"></script>
+
+	
 	<link rel="stylesheet" href="${path}/resources/CSS/common/common.css" />
 	<link rel="stylesheet" href="${path}/resources/CSS/common/footer.css" />
 	<link rel="stylesheet" href="${path}/resources/CSS/common/custom-timepicker.css" />
@@ -198,9 +203,9 @@
 		<!-- START FAIL CUSTOM ALERT POPUP -->
 		<div id="fail-alert-popup" class="alert-popup blind">
 			<section class="alert-txt-section">
-				<span>빈 항목이 있습니다. 채워주세요.</span>
+				<span>올바른 정보를 입력해 주세요.</span>
 			</section>
-			<section id="empty-fail-alert-btn" class="alert-btn-section">
+			<section id="fail-alert-btn" class="alert-btn-section">
 				<span>확인</span>
 			</section>
 		</div>

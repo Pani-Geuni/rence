@@ -1,6 +1,6 @@
 /**
  * 
- * @author 최진실
+ * @author 최진실, 전판근
  *
  */
 package test.com.rence.backoffice;
@@ -256,12 +256,13 @@ public class BackOfficeController {
 
 		BackOfficeVO bvo2 = service.backoffice_id_email_select(bvo);
 
+		logger.info("bvo2 :: {}", bvo2);
+		
 		if (bvo2 != null) {
 			bvo2 = authSendEmail.findPw(bvo2, evo);
 
 			if (bvo2 != null) {
 				service.backoffice_settingOK_pw(bvo2);
-				logger.info("successed...");
 				jsonObject.put("result", "1");
 
 			} else {
@@ -282,36 +283,43 @@ public class BackOfficeController {
 	@RequestMapping(value = "/backoffice_setting_pw", method = RequestMethod.GET)
 	public String backoffice_setting_pw(Model model, BackOfficeVO bvo) {
 		model.addAttribute("vo", bvo.getBackoffice_no());
-		return "backoffice/setting_pw";
+		return ".landing/setting_pw";
 	}
 
 	/**
 	 * 비밀번호 초기화 완료
 	 */
 	@RequestMapping(value = "/backoffice_settingOK_pw", method = RequestMethod.POST)
-	public String backoffice_settingOK_pw(BackOfficeVO bvo, HttpServletRequest request, HttpServletResponse response) {
+	@ResponseBody
+	public JSONObject backoffice_settingOK_pw(BackOfficeVO bvo, HttpServletRequest request, HttpServletResponse response) {
 		logger.info("backoffice_settingOK_pw ()...");
 		logger.info("{}", bvo);
 		
 		session = request.getSession();
 
 		int result = service.backoffice_settingOK_pw(bvo);
+		
+		JSONObject jsonObject = new JSONObject();
 
-		String rt = "";
 		if (result == 1) {
 			if (session.getAttribute("backoffice_id") != null) {
-				logger.info("successed...");
-				rt = "redirect:backoffice_setting";
+				// HOST 로그인 session이 존재할 때
+				// Host 환경설정 > 비밀번호 수정
+				logger.info("succeed...");
+				jsonObject.put("result", "1");
 			} else {
-				logger.info("successed...");
-				rt = "redirect:backoffice_landing";
+				// 가입 신청이 완료되어
+				// 신청자의 메일에서 링크 페이지를 열고 수정 했을 때
+				logger.info("succeed...");
+				jsonObject.put("result", "1");
+				
 			}
 		} else if(result == 0){
-			logger.info("successed...");
-			rt = "backoffice/setting_pw";
+			logger.info("fail...");
+			jsonObject.put("result", "0");
 		}
-
-		return rt;
+		
+		return jsonObject;
 	}
 
 	/**

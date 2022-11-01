@@ -134,5 +134,82 @@ $(function(){
 	})
 	
 	
+	// 신청 호스트 거절 버튼 클릭
+	$('#btn-refuse-host').click(function() {
+		$('.popup-background').removeClass('blind');
+		$('#refuse-popup').removeClass('blind');
+	})
+	
+	$('#refuse-closeBtn').click(function() {
+		$('#refuse-popup').addClass('blind');
+		$('.popup-background').addClass('blind');
+	})
+	
+	$('#refuse-btn').click(function() {
+	
+		$.ajax({
+			url : "/rence/master_refuse",
+			type : "POST",
+			dataType: "json",
+			data : {
+				backoffice_no : $("#backoffice_no").text(),
+				backoffice_email : $("#backoffice_email").text() 
+			},
+			
+			success : function(res) {
+				console.log("success");
+				
+				if (res.result == "1") {
+					location.href="/rence/master_main";
+				} else {
+					console.log("ajax fail");
+				}
+			},
+			error : function(error) {
+				console.log($("#backoffice_no").text())
+				console.log($("#backoffice_email").text())
+				console.log(error);
+			}
+		});
+	})
+	
+	// 삭제 신청 호스트 버튼 클릭
+	$('#btn-delete-host').click(function() {
+		$('.popup-background').removeClass('blind');
+		$('#delete-popup').removeClass('blind');
+	})
+	
+	$('#delete-closeBtn').click(function() {
+		$('#delete-popup').addClass('blind');
+		$('.popup-background').addClass('blind');
+	})
+	
+	$('#delete-btn').click(function() {
+	
+		$.ajax({
+			url : "/rence/master_revoke",
+			type : "POST",
+			dataType: "json",
+			data : {
+				backoffice_no : $("#backoffice_no").text(),
+				backoffice_email : $("#backoffice_email").text() 
+			},
+			
+			success : function(res) {
+				console.log("success");
+				
+				if (res.result == "1") {
+					location.href="/rence/master_backoffice_end";
+				} else {
+					console.log("ajax fail");
+				}
+			},
+			error : function(error) {
+				console.log($("#backoffice_no").text())
+				console.log($("#backoffice_email").text())
+				console.log(error);
+			}
+		});
+	})
 	
 })
