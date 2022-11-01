@@ -89,7 +89,7 @@ public class MypageController {
 		//총 마일리지 부분
 		UserMileageVO umvo = service.user_mileage_selectOne(uvo);
 		logger.info("umvo: {}", umvo);
-//		UserMileageVO umvo = service.user_mileage_select(uvo);
+
 		
 //		마일리지 콤마단위로 변환
 		DecimalFormat dc = new DecimalFormat("###,###,###,###,###");
@@ -100,9 +100,7 @@ public class MypageController {
 		String mileage_total = dc.format(umvo.getMileage_total());
 		logger.info("mileage_total: "+ mileage_total);
 	
-		Map<String, String> map = new HashMap<String, String>();
 		
-		map.put("mileage_total", mileage_total);
 		
 		
 		
@@ -110,43 +108,17 @@ public class MypageController {
 		List<UserMileageVO> vos = service.user_mileage_selectAll(uvo);
 		logger.info("vos: {}"+ vos);
 		
+		
 		for (int i = 0; i < vos.size(); i++) {
-			vos.get(i).setMileage(dc.format(umvo.getMileage_total()));
+			vos.get(i).setMileage(dc.format(Integer.parseInt(vos.get(i).getMileage())));
 		}
 		logger.info("Type change vos: {}"+ vos);
 	
-//		JSONObject obj = new JSONObject();
-//		try {
-//			JSONArray jarray= new JSONArray();
-//			for(int i=0; i<vos.size(); i++) {
-//				JSONObject sobj = new JSONObject();
-//				sobj.put("no", vos.get(i).getNo());
-//				sobj.put("state", vos.get(i).getState());
-//				sobj.put("mileage", vos.get(i).getMileage());
-//				sobj.put("room", vos.get(i).getRoom());
-//				sobj.put("date", vos.get(i).getDate());	
-//				jarray.add(sobj);
-//			}
-//			obj.put("mileage_total", mileage_total);
-//			obj.put("lsit", jarray);
-//			
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//		}
 
-//		model.addAttribute("res", obj);
 		
-	
+		Map<String, String> map = new HashMap<String, String>();
 		Map<String, List<UserMileageVO>> map2 = new HashMap<String, List<UserMileageVO>>();
-		
-//		for(int i=0; i<list.size(); i++) {
-//			map2.put("list",List<UserMileageVO>);
-//			map2.put("no", list.get(i).getNo());
-//			map2.put("state", list.get(i).getState());
-//			map2.put("mileage", list.get(i).getMileage());
-//			map2.put("room", list.get(i).getRoom());
-////			map2.put("date", list.get(i).getDate());	
-//		}
+
 		map.put("mileage_total", mileage_total);
 		map2.put("list", vos);
 		model.addAttribute("res", map2);

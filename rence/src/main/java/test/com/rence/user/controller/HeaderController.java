@@ -6,6 +6,8 @@
 
 package test.com.rence.user.controller;
 
+import java.text.DecimalFormat;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
@@ -57,7 +59,9 @@ public class HeaderController {
 
 		UserMypageVO umvo = service.user_mypage_select(uvo);
 		
-
+		//마일리지 콤마단위로 변환
+		DecimalFormat dc = new DecimalFormat("###,###,###,###,###");
+		umvo.setMileage_total(dc.format(Integer.parseInt(umvo.getMileage_total())));
 		
 		
 		logger.info("result umvo: {}",umvo);

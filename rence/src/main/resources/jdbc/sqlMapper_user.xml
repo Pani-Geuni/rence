@@ -179,7 +179,7 @@
 		select * 
 		from user_mypage_view 
 		where user_no=#{user_no}
-		order by mileage_total desc
+		order by mileage_no desc
 		)
 		WHERE ROWNUM between 1 and 1
 	</select>
@@ -206,9 +206,22 @@
 		resultType="test.com.rence.user.model.UserMileageVO" parameterType="hashmap">
 		select * from user_detail_mileage_view where
 		user_no=#{user_no} order by no desc
-		
 	</select>
 	
+	
+<!-- 	마일리지 상세페이지에서 적립 또는 사용한 내역만 보고 싶을때 -->
+	<select id="SQL_USER_MILEAGE_SEARCH_LIST"
+		resultType="test.com.rence.user.model.UserMileageVO" parameterType="hashmap">
+		select * from user_detail_mileage_view
+		<if test="searchKey == 'T'">
+			 where user_no=#{user_no} and state='T'
+			 order by no desc
+		</if>
+		<if test="searchKey == 'F'">
+			 where user_no=#{user_no} and state='F'
+			 order by no desc
+		</if>
+	</select>
 
 
 
