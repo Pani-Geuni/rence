@@ -7,25 +7,27 @@
 <section class="space-detail-introduce-section">
 	<div class="space-detail-introduce-wrap">
 		<section class="space-detail-title-section">
-			<span class="space-detail-company-name"> 오라운트 </span>
-			<span class="space-detail-type">데스크</span>
-		</section>
-		<section class="space-detail-info-section">
-			<div class="space-rating">
-				<img src="${path}/resources/IMG/common/grey-star.svg" class="space-rating-icon" alt="space-rating-icon" />
-				<span class="space-info-txt">4.32</span>
-			</div>
-			<div class="space-location">
-				<img src="${path}/resources/IMG/common/location-icon.svg" class="space-location-icon" alt="space-location-icon" /> 
-				<span class="space-info-txt">경기도 광주시</span>
-			</div>
-			<div class="space-tags">
-				<span class="space-info-txt tag-txt">#경기광주</span> 
-				<span class="space-info-txt tag-txt">#스터디룸</span> 
-				<span class="space-info-txt tag-txt">#1인데스크</span> 
-				<span class="space-info-txt tag-txt">#단독미팅룸</span>
-			</div>
-		</section>
+            <span  class="space-detail-company-name">
+                오라운트
+            </span>
+            <span class="space-detail-type">데스크</span>
+        </section>
+        <section class="space-detail-info-section">
+            <div class="space-rating">
+                <img src="${path}/resources/IMG/common/grey-star.svg" class="space-rating-icon" alt="space-rating-icon" />
+                <span class="space-info-txt">4.32</span>
+            </div>
+            <div class="space-tags">
+                <span class="space-info-txt tag-txt">#경기광주</span>
+                <span class="space-info-txt tag-txt">#스터디룸</span>
+                <span class="space-info-txt tag-txt">#1인데스크</span>
+                <span class="space-info-txt tag-txt">#단독미팅룸</span>
+            </div>
+        </section>
+        <div class="space-location">
+            <img src="${path}/resources/IMG/common/location-icon.svg" class="space-location-icon" alt="space-location-icon" />
+            <span class="space-info-txt">경기도 광주시 경안로 98번길 1층</span>
+        </div>
 		<section class="spage-imgs-section">
 			<div class="window">
 				<ul class="container">
@@ -383,17 +385,7 @@
 					<label class="fixed-section-label"> 예상 결제 금액 </label> 
 					<span class="fixed-section-label"> 40,000원 </span>
 				</section>
-				<section class="contact-section">
-					<div class="contact-wrap">
-						<img src="${path}/resources/IMG/space-introduce/tel.svg" alt="contact-img" class="contact-img" /> 
-						<span>전화 문의</span>
-					</div>
-					<div class="contact-wrap">
-						<img src="${path}/resources/IMG/space-introduce/mail.svg" alt="contact-img" class="contact-img" />
-						<span>메일 문의</span>
-					</div>
-				</section>
-				<section class="btn-section">
+				<section id="check_available" class="btn-section">
 					<span>예약 가능 여부 확인하기</span>
 				</section>
 			</section>

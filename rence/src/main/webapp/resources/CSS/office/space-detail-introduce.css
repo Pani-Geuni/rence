@@ -60,7 +60,7 @@
     display: flex;
     align-items: center;
 
-    margin-bottom: 20px;
+    margin-bottom: 9px;
 }
 
 .space-rating{
@@ -89,6 +89,7 @@
     align-items: center;
     
     margin-right: 15px;
+    margin-bottom: 17px;
 }
 .space-location-icon{
     width: 11px;
@@ -126,10 +127,18 @@
 }
 
 .container{
-    width: 100%;
+    width: calc(960px * 7);
+    transition: transform 1s;
+
+    display: flex;
+    overflow: hidden;
+    flex-wrap: wrap;
+}
+.img{
+    width: 960px;
 }
 .company-img{
-    width: 100%;
+    width: 960px;
     height: 300px;
     object-fit: contain;
 }

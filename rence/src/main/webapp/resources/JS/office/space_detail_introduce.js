@@ -9,7 +9,7 @@ $(function(){
   /***** ************** *****/ 
   let position = 0;
   $(".next").click(function () {
-    if (test < 7) {
+    if (test < $(".img").length) {
       position += 960;
       $(".container").css("transform", "translateX(-"+position+"px)");
       test = test + 1;
@@ -45,10 +45,50 @@ $(function(){
   /***** *** ******* *****/ 
   /***** 고정된 부분 *****/ 
   /***** *** ******* *****/ 
-  // 예약 시간 실패 팝업창 닫기 버튼 클릭
+  /*** 예약 시간 실패 팝업창 닫기 버튼 클릭 ***/
   $("#time-fail-close-btn").click(function(){
     $(".fixed-popup").addClass("blind");
   });
+
+  /*** 예약 타입 셀렉트 클릭 시 -> 커스텀 셀렉트 SHOW ***/
+  $(".type-border").click(function(){
+    if($(".custom-select-type").hasClass("blind")){
+      $(".custom-select-type").removeClass("blind");
+      $(".type-border").addClass("open-select");
+    }else{
+      $(".custom-select-type").addClass("blind");
+      $(".type-border").removeClass("open-select");
+    }
+  });
+  
+  /*** 예약 타입 리스트 클릭 ***/
+  $(".custom-select-type-list").click(function(){
+    $(".type-border-txt").text($(this).children(".room-name").text());
+    $(".type-border-txt").prop("check", true);
+    $(".custom-select-type").addClass("blind");
+    $(".type-border").removeClass("open-select");
+  });
+
+  /*** 예약 가능 여부 버튼 클릭 ***/
+  $("#check_available").click(function(){
+    // 예약 타입 선택 O
+    if($(".type-border-txt").prop("check")){
+      if($(".time-input:eq(0)").val() != '' && $(".time-input:eq(1)").val() != ''){
+        // 예약 가능 확인 로직
+      }
+      // 예약 타입 선택 O, 체크인 or 체크아웃 시간 X
+      else{
+        $(".fixed-popup").removeClass("blind");
+        $(".using-time-fail-txt").html("체크인 시간과 체크아웃 시간을<br><br>모두 선택하여 주십시오.");
+      }
+    }
+    // 예약 타입 선택 X
+    else{
+      $(".fixed-popup").removeClass("blind");
+      $(".using-time-fail-txt").html("예약 타입을 선택하여 주십시오.");
+    }
+  });
+
 
 
   /***** *** ********** *****/ 
@@ -116,12 +156,12 @@ $(function(){
   });
 
   /** 이미지 등록 시 파일명 SHOW */
-  $(".file").on('change',function(){
-    var fileName = $(".file").val();
-    var fArr = fileName.split("\\");
+  // $(".file").on('change',function(){
+  //   var fileName = $(".file").val();
+  //   var fArr = fileName.split("\\");
 
-    $(".review-upload-value").val(fArr[fArr.length - 1]);
-  });
+  //   $(".review-upload-value").val(fArr[fArr.length - 1]);
+  // });
 
   /** 문의글 작성 시 글자수 제한 */
   $("#review-write").on("keydown keyup", function(){
@@ -135,7 +175,7 @@ $(function(){
   /***** ************** *****/ 
   /***** QUESTION POPUP *****/ 
   /***** ************** *****/
-  // 팝업 닫기 버튼 클릭
+  /*** 팝업 닫기 버튼 클릭  ***/
   $("#question-close-btn").click(function(){
     // TEXTAREA 초기화
     $("#question-write").val("");
@@ -150,6 +190,7 @@ $(function(){
     $("#question-popup").addClass("blind");
   });
 
+  /*** 문의 작성 글자수 제한  ***/
   $("#question-write").on("keydown keyup", function(){
     if($(this).val().length > 500){
       $(this).val($(this).val().substring(0,500));
@@ -166,5 +207,12 @@ $(function(){
       $(".question-popup-select-val-wrap").removeClass("open-select");
       $(".question-popup-select").addClass("blind");
     }
+  });
+
+  /** 팝업 셀렉트 리스트 클릭 이벤트 */
+  $(".question-popup-select-li").click(function(){
+    $("#question-select-choice").text($(this).text());
+    $(".question-popup-select-val-wrap").removeClass("open-select");
+    $(".question-popup-select").addClass("blind");
   });
 });
