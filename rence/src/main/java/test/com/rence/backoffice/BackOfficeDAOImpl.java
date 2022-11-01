@@ -143,12 +143,12 @@ public class BackOfficeDAOImpl implements BackOfficeDAO {
 		logger.info("backoffice_settingOK_pw()...");
 		logger.info("{}", bvo);
 
-		String originText = bvo.getBackoffice_pw();
+		String originText = bvo.getBackoffice_no();
 
-		String encText = aes.encryptAES("0123456789abcdefghij0123456789ab", originText, true);
-		logger.info("encText (encodeBase64URLSafeString) : " + encText);
+		// backoffice_no decoding
+		String decText = aes.decryptAES("0123456789abcdefghij0123456789ab", originText);
 		
-		bvo.setBackoffice_pw(encText);
+		bvo.setBackoffice_no(decText);
 		
 		int flag = sqlSession.update("SQL_UPDATE_BACKOFFICE_SETTINGOK_PW",bvo);
 

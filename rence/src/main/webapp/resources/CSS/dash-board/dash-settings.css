@@ -65,7 +65,8 @@
   margin: 0;
 }
 
-.input-check-pw {
+.input-check-pw,
+.input-update-pw {
   box-sizing: border-box;
   width: 100%;
   height: 40px;
@@ -76,6 +77,11 @@
   padding: 0 8px;
 
   margin-bottom: 12px;
+}
+
+.input-check-pw::placeholder,
+.input-update-pw::placeholder {
+	font-family: 'OTWelcome';
 }
 
 .btn-popup-group {

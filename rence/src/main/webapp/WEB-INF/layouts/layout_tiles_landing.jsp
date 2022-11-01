@@ -11,6 +11,11 @@
 	<title><tiles:getAsString name="title"></tiles:getAsString></title>
 	<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 	
+	<!-- crypto library script -->
+	<script type="text/javascript" src="${path}/resources/JS/common/core.min.js"></script>
+    <script type="text/javascript" src="${path}/resources/JS/common/sha256.min.js"></script>
+
+	
 	<link rel="stylesheet" href="${path}/resources/CSS/common/common.css" />
 	<link rel="stylesheet" href="${path}/resources/CSS/common/footer.css" />
 	<link rel="stylesheet" href="${path}/resources/CSS/common/custom-timepicker.css" />
