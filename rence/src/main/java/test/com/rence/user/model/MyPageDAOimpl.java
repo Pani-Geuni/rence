@@ -82,5 +82,12 @@ public class MyPageDAOimpl implements MyPageDAO {
 		return result;
 	}
 	
+	@Override
+	public int delete_comment(String comment_no) {
+		int result = sqlSession.delete("SQL_DELETE_COMMENT", comment_no);
+		
+		return result;
+	}
+	
 
 }// end class

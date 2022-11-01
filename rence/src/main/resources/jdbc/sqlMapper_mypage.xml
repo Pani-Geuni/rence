@@ -52,7 +52,7 @@
 		order by c.comment_no desc
 	</select>
 
-	<!-- 내가 질문에 대한 답변 가져오기 -->
+	<!-- 내 질문에 대한 답변 가져오기 -->
 	<select id="SQL_SELECT_ONE_ANSWER" resultType="test.com.rence.user.model.QuestionVO">
 		select c.comment_no, b.backoffice_name, r.room_name, c.comment_content as answer_content, c.comment_date as answer_date
 		from backofficeinfo b right join comments c
@@ -60,5 +60,10 @@
 		left join roominfo r on c.room_no = r.room_no
 		where c.mother_no = #{mother_no}
 	</select>
+	
+	<!-- 마이페이지 후기 내역 페이지 - 댓글 삭제 -->
+	<delete id="SQL_DELETE_COMMENT">
+		delete from comments where comment_no = #{comment_no}
+	</delete>
 
 </mapper>

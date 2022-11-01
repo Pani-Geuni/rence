@@ -134,6 +134,8 @@
     padding-left: 18px;
     padding-right: 22px;
     padding-bottom: 10px;
+
+    border-bottom: 2px solid #e4e4e4;
 }
 .question-line{
     width: 100%;
@@ -158,7 +160,7 @@
     font-size: 15px;
     font-weight: 700;
 
-    margin-right: 5px;
+    margin-right: 6px;
 }
 .question-btn-wrap{
     position: absolute;
@@ -190,6 +192,15 @@
 .answer-line{
     width: 100%;
     padding-top: 10px;
+    
+    display: flex;
+    flex-direction: column;
+}
+.answer-label{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    padding-right: 14px;
 }
 .a_label{
     color: #FF5C71;
@@ -197,6 +208,11 @@
     font-weight: 700;
 
     margin-right: 5px;
+}
+.answer-date{
+    color: #808080;
+    font-size: 13.5px;
+    font-weight: 500;
 }
 
 /**************************/

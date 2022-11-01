@@ -4,6 +4,7 @@ public class QuestionVO {
 	String comment_no;
 	String state;
 	String room_name;
+	String backoffice_name;
 	String comment_content;
 	String answer_content;
 	String comment_date;
@@ -13,12 +14,13 @@ public class QuestionVO {
 	public QuestionVO() { }
 
 
-	public QuestionVO(String comment_no, String state, String room_name, String comment_content, String answer_content,
-			String comment_date, String answer_date) {
+	public QuestionVO(String comment_no, String state, String room_name, String backoffice_name, String comment_content,
+			String answer_content, String comment_date, String answer_date) {
 		super();
 		this.comment_no = comment_no;
 		this.state = state;
 		this.room_name = room_name;
+		this.backoffice_name = backoffice_name;
 		this.comment_content = comment_content;
 		this.answer_content = answer_content;
 		this.comment_date = comment_date;
@@ -53,6 +55,16 @@ public class QuestionVO {
 
 	public void setRoom_name(String room_name) {
 		this.room_name = room_name;
+	}
+
+
+	public String getBackoffice_name() {
+		return backoffice_name;
+	}
+
+
+	public void setBackoffice_name(String backoffice_name) {
+		this.backoffice_name = backoffice_name;
 	}
 
 
@@ -102,6 +114,7 @@ public class QuestionVO {
 		int result = 1;
 		result = prime * result + ((answer_content == null) ? 0 : answer_content.hashCode());
 		result = prime * result + ((answer_date == null) ? 0 : answer_date.hashCode());
+		result = prime * result + ((backoffice_name == null) ? 0 : backoffice_name.hashCode());
 		result = prime * result + ((comment_content == null) ? 0 : comment_content.hashCode());
 		result = prime * result + ((comment_date == null) ? 0 : comment_date.hashCode());
 		result = prime * result + ((comment_no == null) ? 0 : comment_no.hashCode());
@@ -129,6 +142,11 @@ public class QuestionVO {
 			if (other.answer_date != null)
 				return false;
 		} else if (!answer_date.equals(other.answer_date))
+			return false;
+		if (backoffice_name == null) {
+			if (other.backoffice_name != null)
+				return false;
+		} else if (!backoffice_name.equals(other.backoffice_name))
 			return false;
 		if (comment_content == null) {
 			if (other.comment_content != null)
@@ -162,8 +180,9 @@ public class QuestionVO {
 	@Override
 	public String toString() {
 		return "QuestionVO [comment_no=" + comment_no + ", state=" + state + ", room_name=" + room_name
-				+ ", comment_content=" + comment_content + ", answer_content=" + answer_content + ", comment_date="
-				+ comment_date + ", answer_date=" + answer_date + "]";
+				+ ", backoffice_name=" + backoffice_name + ", comment_content=" + comment_content + ", answer_content="
+				+ answer_content + ", comment_date=" + comment_date + ", answer_date=" + answer_date + "]";
 	}
+
 
 }

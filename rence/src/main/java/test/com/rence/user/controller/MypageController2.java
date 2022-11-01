@@ -119,4 +119,13 @@ public class MypageController2 {
 		return ".my_page/question-list";
 	}
 	
+	/**
+	 * 문의 리스트 페이지 이동
+	 */
+	@RequestMapping(value = "/delete_comment", method = RequestMethod.GET)
+	public String delete_comment(String user_no, String comment_no) {
+		int result = service.delete_comment(comment_no);
+		
+		return "redirect:/question_list?user_no="+user_no;
+	}
 }
