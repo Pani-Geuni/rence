@@ -65,16 +65,6 @@ public class BackOfficeDAOImpl implements BackOfficeDAO {
 
 		return avo2;
 	}
-	
-//	@Override
-//	public AuthVO backoffice_auth_select(AuthVO avo) {
-//		logger.info("backoffice_auth_select()...");
-//		logger.info("{}", avo);
-//
-//		AuthVO avo2 = sqlSession.selectOne("SQL_SELECT_BACKOFFICE_AUTH",avo);
-//		
-//		return avo2;
-//	}
 
 	@Override
 	public int backoffice_operating_insert(BackOfficeOperatingTimeVO_datetype ovo) {
@@ -115,13 +105,6 @@ public class BackOfficeDAOImpl implements BackOfficeDAO {
 	public BackOfficeVO backoffice_login(BackOfficeVO bvo) {
 		logger.info("backoffice_login()...");
 		logger.info("{}", bvo);
-
-		String originText = bvo.getBackoffice_pw();
-
-		String encText = aes.encryptAES("0123456789abcdefghij0123456789ab", originText, true);
-		logger.info("encText (encodeBase64URLSafeString) : " + encText);
-		
-		bvo.setBackoffice_pw(encText);
 		
 		BackOfficeVO bvo2 = sqlSession.selectOne("SQL_BACKOFFICE_LOGIN", bvo);	
 		
