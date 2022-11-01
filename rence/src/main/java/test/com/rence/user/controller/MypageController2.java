@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import test.com.rence.user.model.MyPageReserveListVO;
 import test.com.rence.user.model.MyPage_ReviewVO;
+import test.com.rence.user.model.QuestionVO;
 import test.com.rence.user.service.MyPageSerivice;
 
 @Controller
@@ -91,7 +92,29 @@ public class MypageController2 {
 	 * 문의 리스트 페이지 이동
 	 */
 	@RequestMapping(value = "/question_list", method = RequestMethod.GET)
-	public String question_list(String user_no) {
+	public String question_list(String user_no, Model model) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<QuestionVO> list = service.select_all_question(user_no);
+		
+		if(list != null) {
+			for(QuestionVO vo : list) {
+				QuestionVO vo2 = service.select_one_answer(vo.getComment_no());
+				if(vo2 !=null) {
+					vo.setAnswer_content(vo2.getAnswer_content());
+					vo.setAnswer_date(vo2.getAnswer_date());
+					vo.setState("Y");
+				}else {
+					vo.setState("N");
+				}
+			}
+		}
+		
+		map.put("page", "question_list");
+		map.put("list", list);
+		
+		model.addAttribute("res", map);
+		
+		logger.info("question_list : {}", map);
 		
 		return ".my_page/question-list";
 	}

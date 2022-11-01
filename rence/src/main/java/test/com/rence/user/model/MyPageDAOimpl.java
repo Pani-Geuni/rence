@@ -62,8 +62,22 @@ public class MyPageDAOimpl implements MyPageDAO {
 	}
 	
 	@Override
+	public List<QuestionVO> select_all_question(String user_no) {
+		List<QuestionVO> list = sqlSession.selectList("SQL_SELECT_ALL_QUESTION", user_no);		
+		
+		return list;
+	}
+	
+	@Override
+	public QuestionVO select_one_answer(String mother_no){
+		QuestionVO vo = sqlSession.selectOne("SQL_SELECT_ONE_ANSWER", mother_no);		
+		
+		return vo;
+	}
+	
+	@Override
 	public int delete_review(String review_no) {
-		int result = sqlSession.delete("SQL_DELETE_REVIEW", review_no);		
+		int result = sqlSession.delete("SQL_DELETE_REVIEW", review_no);
 		
 		return result;
 	}
