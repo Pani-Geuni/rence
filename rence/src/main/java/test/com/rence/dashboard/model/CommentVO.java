@@ -16,11 +16,12 @@ public class CommentVO implements Serializable {
 	private String room_no;
 	private String backoffice_no;
 	private String user_no;
+	private String host_no;
 	
 	public CommentVO() {}
 
 	public CommentVO(String comment_no, String mother_no, String comment_content, Date comment_date, String room_no,
-			String backoffice_no, String user_no) {
+			String backoffice_no, String user_no, String host_no) {
 		super();
 		this.comment_no = comment_no;
 		this.mother_no = mother_no;
@@ -29,6 +30,7 @@ public class CommentVO implements Serializable {
 		this.room_no = room_no;
 		this.backoffice_no = backoffice_no;
 		this.user_no = user_no;
+		this.host_no = host_no;
 	}
 
 	public String getComment_no() {
@@ -87,11 +89,12 @@ public class CommentVO implements Serializable {
 		this.user_no = user_no;
 	}
 
-	@Override
-	public String toString() {
-		return "CommentVO [comment_no=" + comment_no + ", mother_no=" + mother_no + ", comment_content="
-				+ comment_content + ", comment_date=" + comment_date + ", room_no=" + room_no + ", backoffice_no="
-				+ backoffice_no + ", user_no=" + user_no + "]";
+	public String getHost_no() {
+		return host_no;
+	}
+
+	public void setHost_no(String host_no) {
+		this.host_no = host_no;
 	}
 
 	@Override
@@ -102,6 +105,7 @@ public class CommentVO implements Serializable {
 		result = prime * result + ((comment_content == null) ? 0 : comment_content.hashCode());
 		result = prime * result + ((comment_date == null) ? 0 : comment_date.hashCode());
 		result = prime * result + ((comment_no == null) ? 0 : comment_no.hashCode());
+		result = prime * result + ((host_no == null) ? 0 : host_no.hashCode());
 		result = prime * result + ((mother_no == null) ? 0 : mother_no.hashCode());
 		result = prime * result + ((room_no == null) ? 0 : room_no.hashCode());
 		result = prime * result + ((user_no == null) ? 0 : user_no.hashCode());
@@ -137,6 +141,11 @@ public class CommentVO implements Serializable {
 				return false;
 		} else if (!comment_no.equals(other.comment_no))
 			return false;
+		if (host_no == null) {
+			if (other.host_no != null)
+				return false;
+		} else if (!host_no.equals(other.host_no))
+			return false;
 		if (mother_no == null) {
 			if (other.mother_no != null)
 				return false;
@@ -155,6 +164,12 @@ public class CommentVO implements Serializable {
 		return true;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "CommentVO [comment_no=" + comment_no + ", mother_no=" + mother_no + ", comment_content="
+				+ comment_content + ", comment_date=" + comment_date + ", room_no=" + room_no + ", backoffice_no="
+				+ backoffice_no + ", user_no=" + user_no + ", host_no=" + host_no + "]";
+	}
+
 	
 }

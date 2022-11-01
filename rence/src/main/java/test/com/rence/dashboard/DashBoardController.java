@@ -17,10 +17,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import test.com.rence.dashboard.model.CommentSummaryVO;
 import test.com.rence.dashboard.model.CommentVO;
 import test.com.rence.dashboard.model.PaymentVO;
+import test.com.rence.dashboard.model.ReserveSummaryVO;
 import test.com.rence.dashboard.model.ReserveVO;
+import test.com.rence.dashboard.model.RoomSummaryVO;
 import test.com.rence.dashboard.model.RoomVO;
+import test.com.rence.dashboard.model.SalesSettlementSummaryVO;
 import test.com.rence.dashboard.service.DashBoardService;
 
 @Controller
@@ -35,22 +39,23 @@ public class DashBoardController {
 	DashBoardService service;
 	
 	
+	/**
+	 * 대쉬보드 메인
+	 */
 	@RequestMapping(value = "/backoffice_main", method = RequestMethod.GET)
-	public String dashboard_main(Model model) {
+	public String dashboard_main(Model model, String backoffice_no) {
 		
-		List<ReserveVO> rvos = service.reserve_summary_selectAll();
-		List<CommentVO> cvos = service.comment_summary_selectAll();
-		List<PaymentVO> pvos = service.payment_summary_selectAll();
-		List<RoomVO> rmvos = service.room_summary_selectAll();		
+		List<ReserveSummaryVO> rvos = service.reserve_summary_selectAll(backoffice_no);
+		List<CommentSummaryVO> cvos = service.comment_summary_selectAll(backoffice_no);
+		SalesSettlementSummaryVO svo = service.payment_summary_selectOne(backoffice_no);
+		RoomSummaryVO rmvo = service.room_summary_selectOne(backoffice_no);		
 		
 		model.addAttribute("r_vos", rvos);
 		model.addAttribute("r_cnt", rvos.size());
 		model.addAttribute("c_vos", cvos);
 		model.addAttribute("c_cnt", cvos.size());
-		model.addAttribute("p_vos", pvos);
-		model.addAttribute("p_cnt", pvos.size());
-		model.addAttribute("rm_vos", rmvos);
-		model.addAttribute("rm_cnt", rmvos.size());
+		model.addAttribute("svo", svo);
+		model.addAttribute("rmvo", rmvo);
 		
 		return ".dash_board/main";
 	}
@@ -70,8 +75,25 @@ public class DashBoardController {
 		return ".dash_board/review_list";
 	}
 	
+	/**
+	 * 예약 관리(리스트)
+	 */
 	@RequestMapping(value = "/backoffice_reserve", method = RequestMethod.GET)
-	public String dashboard_reserve() {
+	public String dashboard_reserve(Model model, String backoffice_no, String reserve_state) {
+		List<ReserveVO> rvos = service.backoffice_reserve_selectAll(backoffice_no,reserve_state);
+		model.addAttribute("r_vos", rvos);
+		model.addAttribute("cnt", rvos.size());
+		return ".dash_board/reserve_list";
+	}
+	
+	/**
+	 * 예약 관리(리스트-검색)
+	 */
+	@RequestMapping(value = "/backoffice_search_reserve", method = RequestMethod.GET)
+	public String dashboard_reserve_search(Model model, String backoffice_no, String searchword) {
+		List<ReserveVO> rvos = service.backoffice_search_reserve(backoffice_no,searchword);
+		model.addAttribute("r_vos", rvos);
+		model.addAttribute("cnt", rvos.size());
 		return ".dash_board/reserve_list";
 	}
 	
