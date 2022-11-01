@@ -1,4 +1,4 @@
-package test.com.rence.common;
+package test.com.rence.office.common;
 
 import java.util.ArrayList;
 import java.util.HashMap;
