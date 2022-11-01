@@ -198,7 +198,7 @@ $(function(){
     $(".qna-length").text($(this).val().length);
   });
 
-  $(".question-popup-select-val-wrap").click(function(){
+  $("#question-popup").click(".question-popup-select-val-wrap", function(){
     if($(".question-popup-select").hasClass("blind")){
       $(".question-popup-select-val-wrap").addClass("open-select");
       $(".question-popup-select").removeClass("blind");

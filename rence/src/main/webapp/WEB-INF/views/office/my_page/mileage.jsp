@@ -21,9 +21,18 @@
 
         <section class="mileage-list-section">
             <section class="mileage-list-menu">
-                <span id = "all" class="menus choice">전체</span>
-                <span id = "plus" class="menus un-choice">적립</span>
-                <span id = "minus" class="menus un-choice">사용</span>
+                <span id = "all" class="menus 
+               		<c:if test="${res.searchKey eq 'all'}">choice</c:if>
+               		<c:if test="${res.searchKey ne 'all'}">un-choice</c:if>
+                ">전체</span>
+                <span id = "plus" class="menus 
+               		<c:if test="${res.searchKey eq 'plus'}">choice</c:if>
+               		<c:if test="${res.searchKey ne 'plus'}">un-choice</c:if>
+            	">적립</span>
+                <span id = "minus" class="menus 
+               		<c:if test="${res.searchKey eq 'minus'}">choice</c:if>
+               		<c:if test="${res.searchKey ne 'minus'}">un-choice</c:if>
+                ">사용</span>
             </section>
 
             <section class="mileage-history-section">
@@ -45,7 +54,10 @@
 									<c:if test="${obj.state eq 'T'}">적립</c:if>
 									<c:if test="${obj.state eq 'F'}">사용</c:if>
 								</span>
-                                <span class="list-mileage plus-price">
+                                <span class="list-mileage 
+                                		<c:if test="${obj.state eq 'T'}">plus-price</c:if>
+                                		<c:if test="${obj.state eq 'F'}">minus-price</c:if>
+                                	">
                                 	<c:if test="${obj.state eq 'T'}">+</c:if>
 									<c:if test="${obj.state eq 'F'}">-</c:if>
                                 	${obj.mileage}
