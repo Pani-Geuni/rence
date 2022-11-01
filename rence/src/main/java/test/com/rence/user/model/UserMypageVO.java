@@ -18,14 +18,14 @@ public class UserMypageVO {
 	private String user_email; //이메일
 	private String user_tel; //전화번호
 	private Date user_birth; //생년월일
-	private int mileage_total; // 총 마일리지
+	private String mileage_total; // 총 마일리지
 	
 	public UserMypageVO() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public UserMypageVO(String user_no, String user_image, String user_id, String user_name, String user_email,
-			String user_tel, Date user_birth, int mileage_total) {
+			String user_tel, Date user_birth, String mileage_total) {
 		super();
 		this.user_no = user_no;
 		this.user_image = user_image;
@@ -93,11 +93,11 @@ public class UserMypageVO {
 		this.user_birth = user_birth;
 	}
 
-	public int getMileage_total() {
+	public String getMileage_total() {
 		return mileage_total;
 	}
 
-	public void setMileage_total(int mileage_total) {
+	public void setMileage_total(String mileage_total) {
 		this.mileage_total = mileage_total;
 	}
 
@@ -105,7 +105,7 @@ public class UserMypageVO {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + mileage_total;
+		result = prime * result + ((mileage_total == null) ? 0 : mileage_total.hashCode());
 		result = prime * result + ((user_birth == null) ? 0 : user_birth.hashCode());
 		result = prime * result + ((user_email == null) ? 0 : user_email.hashCode());
 		result = prime * result + ((user_id == null) ? 0 : user_id.hashCode());
@@ -125,7 +125,10 @@ public class UserMypageVO {
 		if (getClass() != obj.getClass())
 			return false;
 		UserMypageVO other = (UserMypageVO) obj;
-		if (mileage_total != other.mileage_total)
+		if (mileage_total == null) {
+			if (other.mileage_total != null)
+				return false;
+		} else if (!mileage_total.equals(other.mileage_total))
 			return false;
 		if (user_birth == null) {
 			if (other.user_birth != null)
@@ -172,8 +175,6 @@ public class UserMypageVO {
 				+ user_birth + ", mileage_total=" + mileage_total + "]";
 	}
 
-	
-	
 	
 	
 	
