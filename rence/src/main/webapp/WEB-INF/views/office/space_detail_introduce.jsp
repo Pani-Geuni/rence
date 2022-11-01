@@ -224,23 +224,23 @@
                             <section class="popup-star-section">
                                 <span class="popup-star-title">별점</span>
                                 <ul class="popup-star-wrap">
-                                    <li class="popup-star-li sample">
-                                        <img src="${path}/resources/IMG/common/y-star.svg" alt="후기 리뷰 별점 이미지" class="y-star r-star blind" />
-                                        <img src="${path}/resources/IMG/common/star.svg" alt="후기 리뷰 별점 이미지" class="g-star r-star"/>
+                                    <li id="star_1" class="popup-star-li">
+                                        <img src="${path}/resources/IMG/common/y-star.svg" alt="후기 리뷰 별점 이미지" class="y-star r-star blind"/>
+                                        <img src="${path}/resources/IMG/common/star.svg" alt="후기 리뷰 별점 이미지" class="g-star r-star "/>
                                     </li>
-                                    <li class="popup-star-li">
+                                    <li id="star_2" class="popup-star-li">
+                                        <img src="${path}/resources/IMG/common/y-star.svg" alt="후기 리뷰 별점 이미지" class="y-star r-star blind"/>
+                                        <img src="${path}/resources/IMG/common/star.svg" alt="후기 리뷰 별점 이미지" class="g-star r-star "/>
+                                    </li>
+                                    <li id="star_3" class="popup-star-li">
                                         <img src="${path}/resources/IMG/common/y-star.svg" alt="후기 리뷰 별점 이미지" class="y-star r-star blind"/>
                                         <img src="${path}/resources/IMG/common/star.svg" alt="후기 리뷰 별점 이미지" class="g-star r-star"/>
                                     </li>
-                                    <li class="popup-star-li">
+                                    <li id="star_4" class="popup-star-li">
                                         <img src="${path}/resources/IMG/common/y-star.svg" alt="후기 리뷰 별점 이미지" class="y-star r-star blind"/>
                                         <img src="${path}/resources/IMG/common/star.svg" alt="후기 리뷰 별점 이미지" class="g-star r-star"/>
                                     </li>
-                                    <li class="popup-star-li">
-                                        <img src="${path}/resources/IMG/common/y-star.svg" alt="후기 리뷰 별점 이미지" class="y-star r-star blind"/>
-                                        <img src="${path}/resources/IMG/common/star.svg" alt="후기 리뷰 별점 이미지" class="g-star r-star"/>
-                                    </li>
-                                    <li class="popup-star-li">
+                                    <li id="star_5" class="popup-star-li">
                                         <img src="${path}/resources/IMG/common/y-star.svg" alt="후기 리뷰 별점 이미지" class="y-star r-star blind"/>
                                         <img src="${path}/resources/IMG/common/star.svg" alt="후기 리뷰 별점 이미지" class="g-star r-star"/>
                                     </li>

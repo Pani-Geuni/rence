@@ -41,5 +41,7 @@
 	<delete id="SQL_DELETE_REVIEW">
 		delete from review where review_no = #{review_no}
 	</delete>
+	
+
 
 </mapper>
