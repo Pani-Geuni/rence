@@ -202,6 +202,7 @@
 }
 .choice{
     color: #000000;
+    text-decoration: underline;
 }
 .un-choice{
     color: #808080;
