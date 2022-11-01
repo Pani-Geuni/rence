@@ -35,7 +35,7 @@ public class HeaderController {
 
 	@Autowired
 	UserSerivice service;
-	
+
 	@Autowired
 	HomeService service2;
 
@@ -59,32 +59,37 @@ public class HeaderController {
 		uvo.setUser_no(user_no);
 
 		UserMypageVO umvo = service.user_mypage_select(uvo);
-		
+
+		// 마일리지 콤마단위로 변환
+		DecimalFormat dc = new DecimalFormat("###,###,###,###,###");
+		umvo.setMileage_total(dc.format(Integer.parseInt(umvo.getMileage_total())));
+
 		model.addAttribute("umvo", umvo);
 
 		return ".my_page/my_page";
 	}
-	
+
 	// 서치바 검색
 	@RequestMapping(value = "/search_list", method = RequestMethod.GET)
 	public String search_list(String type, String location, String searchWord, String condition, Model model) {
 		logger.info("search_list()...");
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
-		
+
 		List<ListVO> list = null;
 		list = service2.search_list(type, location, searchWord, condition);
-		
-		if(list == null) map.put("cnt", 0);
-		else map.put("cnt", list.size());
-		
+
+		if (list == null)
+			map.put("cnt", 0);
+		else
+			map.put("cnt", list.size());
+
 		map.put("condition", condition);
 		map.put("page", "list_page");
 		map.put("list", list);
 		model.addAttribute("res", map);
-		
+
 		return ".list";
 	}
-	
 
 }// end class
