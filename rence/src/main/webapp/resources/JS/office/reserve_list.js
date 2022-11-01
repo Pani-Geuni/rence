@@ -2,6 +2,10 @@
 * @author 김예은
 */
 $(function(){
+    $("#go-home-btn").click(function(){
+        location.href="/rence/";
+    });
+
     $(".reserve-box").click(function(){
         if($(".timePoint-value").attr("time-point") == "before"){
             location.href = "/rence/reserve_detail_before?reservation_no="+$(this).attr("idx");

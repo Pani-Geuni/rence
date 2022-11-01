@@ -377,6 +377,15 @@ $(function(){
                 $(".warning-text:eq(3)").text("비밀번호 조건과 일치하지않습니다.");
             }else{
                 $(".warning-text:eq(3)").addClass("blind");
+
+                if($("#join-re-").val().trim().length > 0){
+                    if($(this).val().trim() != $("#join-re-pw").val().trim()){
+                        $(".warning-text:eq(4)").removeClass("blind");
+                        $(".warning-text:eq(4)").text("위 비밀번호와 일치하지않습니다.");
+                    }else{
+                        $(".warning-text:eq(4)").addClass("blind");
+                    }
+                }
             }
         }else if($(this).attr("id")=="join-re-pw"){
             if($(this).val().trim() != $("#join-pw").val().trim()){

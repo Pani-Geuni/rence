@@ -112,7 +112,7 @@ $(function(){
                         }else{
                             $(".popup-background:eq(1)").removeClass("blind");
                             $("#common-alert-popup").removeClass("blind");
-                            $(".common-alert-txt").text("예상치못한 오류로 비밀번호 변경에 실패하였습니다.");
+                            $(".common-alert-txt").text("비밀번호가 일치하지않습니다.");
                         }
                     },
                     error : function(error) {
@@ -220,7 +220,7 @@ $(function(){
                     $(".modify-error-txt:eq(1)").addClass("blind");
 
                     // 새 비밀번호가 현재 비밀번호와 다른지
-                    if($(this).val().trim() == $("#modify-pw-now").val.trim()){
+                    if($(this).val().trim() == $("#modify-pw-now").val().trim()){
                         $(".modify-error-txt:eq(1)").removeClass("blind");
                         $(".modify-error-txt:eq(1)").text("현재 비밀번호와 다른 비밀번호를 사용하세요.");
                     }else{

@@ -48,6 +48,7 @@ $(function(){
     });
     $(".type-select-list").click(function(e){
         $("#type>span").text($(this).text());
+        $("#type>span").attr("val",$(this).attr("val"));
         $("#custom-type-select").addClass("blind");
     });
     
@@ -55,7 +56,7 @@ $(function(){
     $("#location").click(function(){
         if(city.length == 0){
             $.ajax({
-                url : "../json/city.json",
+                url : "/rence/resources/json/city.json",
                 dataType : "json",
                 success : function(res) {
                     cityObject = res.slice();
@@ -101,6 +102,29 @@ $(function(){
     });
 
 
+    /*************************************/
+    /********* SEARCH-BAR SECTION*********/
+    /*************************************/
+    $("#input_searchBar").keydown(function(e){
+        if (e.keyCode  == 13) {
+            before_search();
+        }
+    });
+    $(".searchBar-btn").click(function(){
+        before_search();
+    });
+
+
+    /*****************************/ 
+    /******* 버튼 클릭 이벤트 *********/ 
+    /*****************************/ 
+    // 공용 알러트 창 닫기버튼
+    $("#common-alert-btn").click(function(){
+        $(".popup-background:eq(1)").addClass("blind");
+        $("#common-alert-popup").addClass("blind");
+    });
+
+
     /**********************************/
     /*********FUNCTION SECTION*********/
     /**********************************/
@@ -125,6 +149,23 @@ $(function(){
             sample.prop("idx", town[i]);
 
             $("#location-town").append(sample);
+        }
+    }
+    function before_search(){
+        if($("#type>span").attr("val") != undefined){
+            var type = $("#type>span").attr("val");
+            var location = $("#location_val").text();
+            if($("#location_val").prop("idx") == undefined){
+                location = "";
+            }
+            console.log("in");
+            console.log("/rence/search_list?type="+ type +"&location="+ location +"&searchWord="+$("#input_searchBar").val()+"&condition=date");
+            window.location.href="/rence/search_list?type="+ type +"&location="+ location +"&searchWord="+$("#input_searchBar").val()+"&condition=date";
+        }
+        else{
+            $(".popup-background:eq(1)").removeClass("blind");
+            $("#common-alert-popup").removeClass("blind");
+            $(".common-alert-txt").text("타입을 선택해주세요.");
         }
     }
 });

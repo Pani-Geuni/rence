@@ -6,6 +6,10 @@
 
 package test.com.rence.user.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,6 +21,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import test.com.rence.HomeService;
+import test.com.rence.ListVO;
 import test.com.rence.user.model.UserMypageVO;
 import test.com.rence.user.model.UserVO;
 import test.com.rence.user.service.UserSerivice;
@@ -28,6 +34,9 @@ public class HeaderController {
 
 	@Autowired
 	UserSerivice service;
+	
+	@Autowired
+	HomeService service2;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -36,12 +45,6 @@ public class HeaderController {
 	@RequestMapping(value = "/go_my_page", method = RequestMethod.GET)
 	public String go_my_page(Model model, HttpServletRequest request) {
 		logger.info("go_my_page()...");
-		
-//		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
-//		SimpleDateFormat  simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//		simpleDateFormat = new SimpleDateFormat("yyyy년MM월dd일");
-		// 원하는 데이터 포맷 지정
-		
 
 		String user_no = null;
 		UserVO uvo = new UserVO();
@@ -53,19 +56,34 @@ public class HeaderController {
 			}
 		}
 		uvo.setUser_no(user_no);
-		
 
 		UserMypageVO umvo = service.user_mypage_select(uvo);
-		
-
-		
-		
-		logger.info("result umvo: {}",umvo);
-		
 		
 		model.addAttribute("umvo", umvo);
 
 		return ".my_page/my_page";
 	}
+	
+	// 서치바 검색
+	@RequestMapping(value = "/search_list", method = RequestMethod.GET)
+	public String search_list(String type, String location, String searchWord, String condition, Model model) {
+		logger.info("search_list()...");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		List<ListVO> list = null;
+		list = service2.search_list(type, location, searchWord, condition);
+		
+		if(list == null) map.put("cnt", 0);
+		else map.put("cnt", list.size());
+		
+		map.put("condition", condition);
+		map.put("page", "list_page");
+		map.put("list", list);
+		model.addAttribute("res", map);
+		
+		return ".list";
+	}
+	
 
 }// end class

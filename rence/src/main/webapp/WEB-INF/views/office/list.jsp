@@ -24,15 +24,28 @@
 	<section class="listPage-section">
 	    <div class="sort-wrap">
 	        <div class="sort">
-	            <span class="choice-sort-text">최신순</span>
+	            <span class="choice-sort-text">
+		            <c:if test="${res.condition eq 'date'}">
+		            	최신순
+		            </c:if>
+		            <c:if test="${res.condition eq 'rating'}">
+		            	별점순
+		            </c:if>
+		            <c:if test="${res.condition eq 'cheap'}">
+		            	가격 낮은순
+		            </c:if>
+		            <c:if test="${res.condition eq 'expensive'}">
+		            	가격 높은순
+		            </c:if>
+	            </span>
 	            <img src="${path}/resources/IMG/list/dropdown.svg" alt="sort-dropdown-img" class="sort-dropdown-img" id="sort-dropdown-img"/>
 	        </div>
 	        <div class="sort-select-box-wrap blind">
 	            <ul class="sort-select-box">
-	                <li class="sort-select-list">최신순</li>
-	                <li class="sort-select-list">별점순</li>
-	                <li class="sort-select-list">가격 낮은순</li>
-	                <li class="sort-select-list">가격 높은순</li>
+	                <li condition="date" class="sort-select-list">최신순</li>
+                    <li condition="rating" class="sort-select-list">별점순</li>
+                    <li condition="cheap" class="sort-select-list">가격 낮은순</li>
+                    <li condition="expensive" class="sort-select-list">가격 높은순</li>
 	            </ul>
 	        </div>    
 	    </div>
@@ -57,7 +70,7 @@
 		                      </li>
 		                      <li class="box-price-rating-wrap">
 		                          <div class="box-room-min-price-wrap">
-		                              <span class="box-room-min-price">${obj.min_room_price}</span>
+		                              <span class="box-room-min-price">최소 ${obj.min_room_price}</span>
 		                              <span class="price-unit">원/시간</span>
 		                          </div>
 		                          <div class="box-room-rating">

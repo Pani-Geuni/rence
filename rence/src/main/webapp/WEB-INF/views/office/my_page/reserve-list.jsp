@@ -34,7 +34,7 @@
 	                </div>
 	                <div class="null-second-section">
 	                    <span class="advice-txt-small">원하는 공간을 예약하러 갈까요?</span>
-	                    <input type="button" id="" class="go-home" value="예약하러가기"/>
+                        <input type="button" id="go-home-btn" class="go-home" value="홈으로 가기"/>
 	                </div>
 	            </section>
         	</c:if>

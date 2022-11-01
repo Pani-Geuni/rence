@@ -46,6 +46,7 @@ public class HomeController {
 		if(list == null) map.put("cnt", 0);
 		else map.put("cnt", list.size());
 		
+		map.put("condition", condition);
 		map.put("page", "list_page");
 		map.put("list", list);
 		model.addAttribute("res", map);
