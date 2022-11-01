@@ -47,9 +47,9 @@ public class HeaderController {
 	public String go_my_page(Model model, HttpServletRequest request) {
 		logger.info("go_my_page()...");
 
-		String user_no = null;
 		UserVO uvo = new UserVO();
 
+		String user_no = null;
 		Cookie[] cookies = request.getCookies();
 		for (Cookie c : cookies) {
 			if (c.getName().equals("user_no")) {
@@ -59,7 +59,7 @@ public class HeaderController {
 		uvo.setUser_no(user_no);
 
 		UserMypageVO umvo = service.user_mypage_select(uvo);
-
+		logger.info("umvo: {}", umvo);
 		// 마일리지 콤마단위로 변환
 		DecimalFormat dc = new DecimalFormat("###,###,###,###,###");
 		umvo.setMileage_total(dc.format(Integer.parseInt(umvo.getMileage_total())));

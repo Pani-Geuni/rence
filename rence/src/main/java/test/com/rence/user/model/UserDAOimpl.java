@@ -213,7 +213,7 @@ public class UserDAOimpl implements UserDAO {
 		logger.info("{}", uvo);
 
 		int flag = sqlSession.update("SQL_USER_UPDATE_IMG", uvo);
-
+		logger.info("after uvo: {}", uvo);
 		return flag;
 	}
 
