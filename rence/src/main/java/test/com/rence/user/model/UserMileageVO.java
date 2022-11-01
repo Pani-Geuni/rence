@@ -5,17 +5,27 @@
  */
 
 
+//	Map<String, String> map = new HashMap<String, String>();
+//		map.put("mileage_no", no);
+//		map.put("mileage_state", state);
+//		map.put("mileage_change", mileage);
+//		map.put("company_name", room);
+//		map.put("payment_date", date);
+//		map.put("user_no", user_no);
+
+
 package test.com.rence.user.model;
 
 import java.sql.Date;
 
 public class UserMileageVO {
 	private int mileage_total;
-	private String mileage_no; // mileage_no
-	private String mileage_state;
-	private String mileage_change;
-	private String company_name;
-	private Date payment_date;
+	private String no; // mileage_no
+	private String user_no; // 
+	private String state; //mileage_state
+	private String mileage; //mileage_change
+	private String room; //company_name;
+	private Date date; // payment_date
 	
 	
 	public UserMileageVO() {
@@ -23,15 +33,16 @@ public class UserMileageVO {
 	}
 
 
-	public UserMileageVO(int mileage_total, String mileage_no, String mileage_state, String mileage_change,
-			String company_name, Date payment_date) {
+	public UserMileageVO(int mileage_total, String no, String user_no, String state, String mileage, String room,
+			Date date) {
 		super();
 		this.mileage_total = mileage_total;
-		this.mileage_no = mileage_no;
-		this.mileage_state = mileage_state;
-		this.mileage_change = mileage_change;
-		this.company_name = company_name;
-		this.payment_date = payment_date;
+		this.no = no;
+		this.user_no = user_no;
+		this.state = state;
+		this.mileage = mileage;
+		this.room = room;
+		this.date = date;
 	}
 
 
@@ -45,53 +56,63 @@ public class UserMileageVO {
 	}
 
 
-	public String getMileage_no() {
-		return mileage_no;
+	public String getNo() {
+		return no;
 	}
 
 
-	public void setMileage_no(String mileage_no) {
-		this.mileage_no = mileage_no;
+	public void setNo(String no) {
+		this.no = no;
 	}
 
 
-	public String getMileage_state() {
-		return mileage_state;
+	public String getUser_no() {
+		return user_no;
 	}
 
 
-	public void setMileage_state(String mileage_state) {
-		this.mileage_state = mileage_state;
+	public void setUser_no(String user_no) {
+		this.user_no = user_no;
 	}
 
 
-	public String getMileage_change() {
-		return mileage_change;
+	public String getState() {
+		return state;
 	}
 
 
-	public void setMileage_change(String mileage_change) {
-		this.mileage_change = mileage_change;
+	public void setState(String state) {
+		this.state = state;
 	}
 
 
-	public String getCompany_name() {
-		return company_name;
+	public String getMileage() {
+		return mileage;
 	}
 
 
-	public void setCompany_name(String company_name) {
-		this.company_name = company_name;
+	public void setMileage(String mileage) {
+		this.mileage = mileage;
 	}
 
 
-	public Date getPayment_date() {
-		return payment_date;
+	public String getRoom() {
+		return room;
 	}
 
 
-	public void setPayment_date(Date payment_date) {
-		this.payment_date = payment_date;
+	public void setRoom(String room) {
+		this.room = room;
+	}
+
+
+	public Date getDate() {
+		return date;
+	}
+
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 
@@ -99,12 +120,13 @@ public class UserMileageVO {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((company_name == null) ? 0 : company_name.hashCode());
-		result = prime * result + ((mileage_change == null) ? 0 : mileage_change.hashCode());
-		result = prime * result + ((mileage_no == null) ? 0 : mileage_no.hashCode());
-		result = prime * result + ((mileage_state == null) ? 0 : mileage_state.hashCode());
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + ((mileage == null) ? 0 : mileage.hashCode());
 		result = prime * result + mileage_total;
-		result = prime * result + ((payment_date == null) ? 0 : payment_date.hashCode());
+		result = prime * result + ((no == null) ? 0 : no.hashCode());
+		result = prime * result + ((room == null) ? 0 : room.hashCode());
+		result = prime * result + ((state == null) ? 0 : state.hashCode());
+		result = prime * result + ((user_no == null) ? 0 : user_no.hashCode());
 		return result;
 	}
 
@@ -118,32 +140,37 @@ public class UserMileageVO {
 		if (getClass() != obj.getClass())
 			return false;
 		UserMileageVO other = (UserMileageVO) obj;
-		if (company_name == null) {
-			if (other.company_name != null)
+		if (date == null) {
+			if (other.date != null)
 				return false;
-		} else if (!company_name.equals(other.company_name))
+		} else if (!date.equals(other.date))
 			return false;
-		if (mileage_change == null) {
-			if (other.mileage_change != null)
+		if (mileage == null) {
+			if (other.mileage != null)
 				return false;
-		} else if (!mileage_change.equals(other.mileage_change))
-			return false;
-		if (mileage_no == null) {
-			if (other.mileage_no != null)
-				return false;
-		} else if (!mileage_no.equals(other.mileage_no))
-			return false;
-		if (mileage_state == null) {
-			if (other.mileage_state != null)
-				return false;
-		} else if (!mileage_state.equals(other.mileage_state))
+		} else if (!mileage.equals(other.mileage))
 			return false;
 		if (mileage_total != other.mileage_total)
 			return false;
-		if (payment_date == null) {
-			if (other.payment_date != null)
+		if (no == null) {
+			if (other.no != null)
 				return false;
-		} else if (!payment_date.equals(other.payment_date))
+		} else if (!no.equals(other.no))
+			return false;
+		if (room == null) {
+			if (other.room != null)
+				return false;
+		} else if (!room.equals(other.room))
+			return false;
+		if (state == null) {
+			if (other.state != null)
+				return false;
+		} else if (!state.equals(other.state))
+			return false;
+		if (user_no == null) {
+			if (other.user_no != null)
+				return false;
+		} else if (!user_no.equals(other.user_no))
 			return false;
 		return true;
 	}
@@ -151,14 +178,11 @@ public class UserMileageVO {
 
 	@Override
 	public String toString() {
-		return "UserMileage [mileage_total=" + mileage_total + ", mileage_no=" + mileage_no + ", mileage_state="
-				+ mileage_state + ", mileage_change=" + mileage_change + ", company_name=" + company_name
-				+ ", payment_date=" + payment_date + "]";
+		return "UserMileageVO [mileage_total=" + mileage_total + ", no=" + no + ", user_no=" + user_no + ", state="
+				+ state + ", mileage=" + mileage + ", room=" + room + ", date=" + date + "]";
 	}
-	
-	
-	
-	
+
+
 	
 }//end class
 

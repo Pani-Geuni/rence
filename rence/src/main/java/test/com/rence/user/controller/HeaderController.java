@@ -9,6 +9,7 @@ package test.com.rence.user.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.text.DecimalFormat;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -68,6 +69,10 @@ public class HeaderController {
 	@RequestMapping(value = "/search_list", method = RequestMethod.GET)
 	public String search_list(String type, String location, String searchWord, String condition, Model model) {
 		logger.info("search_list()...");
+
+    //마일리지 콤마단위로 변환
+		DecimalFormat dc = new DecimalFormat("###,###,###,###,###");
+		umvo.setMileage_total(dc.format(Integer.parseInt(umvo.getMileage_total())));
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		

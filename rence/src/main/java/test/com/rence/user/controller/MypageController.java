@@ -6,9 +6,15 @@
  * 
  */
 
-
 package test.com.rence.user.controller;
 
+import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -30,73 +36,107 @@ import test.com.rence.user.service.UserSerivice;
 public class MypageController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MypageController.class);
-	
+
 	@Autowired
 	UserSerivice service;
-	
+
 	@Autowired
 	UserFileuploadService fileuploadService;
-	
+
 	@Autowired
 	HttpSession session;
-	
-	
+
 	/**
 	 * 현재예약리스트 이동
 	 */
 	@RequestMapping(value = "/go_now_reserve", method = RequestMethod.GET)
 	public String go_now_reserve() {
-		
+
 		return ".my_page/now-reserve-list";
 	}
-	
+
 	/**
 	 * 과거예약리스트 이동
 	 */
 	@RequestMapping(value = "/go_before_reserve", method = RequestMethod.GET)
 	public String go_before_reserve() {
-		
+
 		return ".my_page/before-reserve-list";
 	}
-	
+
 	/**
 	 * 마일리지 리스트 페이지 이동
 	 */
 	@RequestMapping(value = "/go_mileage", method = RequestMethod.GET)
-	public String go_mileage(UserVO uvo ,Model model) {
+	public String go_mileage(UserVO uvo ,Model model, HttpServletRequest request) {
 		
-		logger.info("user_logoutOK()...");
+		logger.info("go_mileage()...");
 		logger.info("UserVO: {}", uvo);
+		
+		String user_no = null;
+
+		//쿠키를 통해서 사용자no받아오기
+		Cookie[] cookies = request.getCookies();
+		for (Cookie c : cookies) {
+			if (c.getName().equals("user_no")) {
+				user_no = c.getValue();
+			}
+		}
+		uvo.setUser_no(user_no);
+		
+		
 		
 		//총 마일리지 부분
 		UserMileageVO umvo = service.user_mileage_selectOne(uvo);
 		logger.info("umvo: {}", umvo);
-//		UserMileageVO umvo = service.user_mileage_select(uvo);
+
 		
-		JSONObject jsonObject = new JSONObject();
-		
-//		jsonObject.put("",)
-		
+//		마일리지 콤마단위로 변환
+		DecimalFormat dc = new DecimalFormat("###,###,###,###,###");
 	
 		
 		
-		//모델에 JSONArray 담아서 주기 
-//		JSONArray array =new JSONArray();
-//		array.add(jsonObject);	
-//		model.addAttribute("res", array);
+		
+		String mileage_total = dc.format(umvo.getMileage_total());
+		logger.info("mileage_total: "+ mileage_total);
+	
+		
+		
+		
+		
+		
+		List<UserMileageVO> vos = service.user_mileage_selectAll(uvo);
+		logger.info("vos: {}"+ vos);
+		
+		
+		for (int i = 0; i < vos.size(); i++) {
+			vos.get(i).setMileage(dc.format(Integer.parseInt(vos.get(i).getMileage())));
+		}
+		logger.info("Type change vos: {}"+ vos);
+	
+
+		
+		Map<String, String> map = new HashMap<String, String>();
+		Map<String, List<UserMileageVO>> map2 = new HashMap<String, List<UserMileageVO>>();
+
+		map.put("mileage_total", mileage_total);
+		map2.put("list", vos);
+		model.addAttribute("res", map2);
+		model.addAttribute("mileage_total", mileage_total);
+		
 		
 		return ".my_page/mileage";
 	}
-	
+
 	/**
 	 * 문의 리스트 페이지 이동
 	 */
 	@RequestMapping(value = "/go_question_list", method = RequestMethod.GET)
 	public String go_question_list() {
-		
+
 		return ".my_page/question-list";
 	}
-	
+
 	/**
 	 * 마이페이지 - 비밀번호 수정
 	 */
@@ -121,7 +161,7 @@ public class MypageController {
 
 		return jsonObject;
 	}
-	
+
 	/**
 	 * 마이페이지 - 비밀번호 수정 - 현재 비밀번호 확인(본인인증)
 	 */
@@ -137,8 +177,7 @@ public class MypageController {
 		if (result == 1) {
 			logger.info("right now pw...");
 			jsonObject.put("result", "1");
-		}
-		else {
+		} else {
 			logger.info("not now pw...");
 			jsonObject.put("result", "0");
 		}
@@ -146,33 +185,33 @@ public class MypageController {
 		return jsonObject;
 	}
 
-	   /**
-	    * 마이페이지 -프로필 수정
-	    */
-	   @RequestMapping(value = "/user_img_updateOK", method = RequestMethod.POST)
-	   @ResponseBody
-	   public String user_img_updateOK(UserVO uvo) {
-	      logger.info("user_img_updateOK()...");
-	      logger.info("result: {}", uvo);
+	/**
+	 * 마이페이지 -프로필 수정
+	 */
+	@RequestMapping(value = "/user_img_updateOK", method = RequestMethod.POST)
+	@ResponseBody
+	public String user_img_updateOK(UserVO uvo) {
+		logger.info("user_img_updateOK()...");
+		logger.info("result: {}", uvo);
 //	      logger.info("result: {}", uvo.getUser_image()); 
 
-	      JSONObject jsonObject = new JSONObject();
+		JSONObject jsonObject = new JSONObject();
 
-	      // 사진(파일)업로드
-	      uvo = fileuploadService.FileuploadOK(uvo);
-	      logger.info("fileresult: {}", uvo);
+		// 사진(파일)업로드
+		uvo = fileuploadService.FileuploadOK(uvo);
+		logger.info("fileresult: {}", uvo);
 
-	      int result = service.user_img_updateOK(uvo);
-	      
-	      if (result == 1) {
-	         logger.info("user_img_update successed...");
-	      }else {
-	         logger.info("user_img_update failed...");
-	         jsonObject.put("result", "0");
-	      }
+		int result = service.user_img_updateOK(uvo);
 
-	      return "redirect:/go_my_page";
-	   }
+		if (result == 1) {
+			logger.info("user_img_update successed...");
+		} else {
+			logger.info("user_img_update failed...");
+			jsonObject.put("result", "0");
+		}
+
+		return "redirect:/go_my_page";
+	}
 
 	/**
 	 * 회원탈퇴

@@ -44,21 +44,30 @@ public class MasterSendEmail {
 //		String encText = aes.encryptAES("0123456789abcdefghij0123456789ab", originText, true);
 //		logger.info("encText (encodeBase64URLSafeString) : " + encText);
 
+        System.out.println("1111111111");
 		// 이메일 제목, 내용 설정
 		evo.setSubject("[rence] 호스트 비밀번호 설정");
 		evo.setContent("아래의 링크에 접속하여 비밀번호를 재설정 해주시길 바랍니다.");
 
+		System.out.println("2222");
 		// 비밀번호 재설정
 
 		try {
+			System.out.println("3333");
 			// 전송
 			MimeMessage msg = javaMailSender.createMimeMessage();
+			System.out.println("4");
 			msg.setSubject(evo.getSubject());
+			System.out.println("5");
 			msg.setText("비밀번호 재설정 링크 : " + "http://localhost:8090/rence/backoffice_setting_pw?backoffice_no="
 					+ encText);
+			System.out.println("6");
 			msg.setRecipient(RecipientType.TO, new InternetAddress(bvo.getBackoffice_email()));
+			System.out.println("7");
 
+			
 			javaMailSender.send(msg);
+			System.out.println("8");
 		} catch (MessagingException e) {
 			bvo = null;
 		}

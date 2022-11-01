@@ -1,5 +1,7 @@
 package test.com.rence.user.model;
 
+import java.util.List;
+
 import test.com.rence.sendemail.AuthVO;
 
 public interface UserDAO {
@@ -36,11 +38,12 @@ public interface UserDAO {
 
 	public AuthVO user_authOK_select(String user_email, String email_code); //이메일 인증 인증번호 비교
 	
-	public UserMileageVO user_mileage_select(UserVO uvo); // 유저 마일리지 상세페이지에 정보제공
+	public List<UserMileageVO> user_mileage_selectAll(UserVO uvo);
 
 	public UserVO user_select_userno();
 
 	public UserMileageVO user_mileage_selectOne(UserVO uvo); // 마일리지 상세페이지에서 총마일리지 
+
 
 	
 
