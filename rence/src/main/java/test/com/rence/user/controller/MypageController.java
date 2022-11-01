@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -203,9 +204,20 @@ public class MypageController {
 	 * 마이페이지 -프로필 수정
 	 */
 	@RequestMapping(value = "/user_img_updateOK", method = RequestMethod.POST)
-	public String user_img_updateOK(UserVO uvo) {
+	public String user_img_updateOK(UserVO uvo, HttpServletRequest request ) {
 		logger.info("user_img_updateOK()...");
 		logger.info("result: {}", uvo);
+		
+		//uvo.setUser_no("U1004");
+		String user_no = null;
+		Cookie[] cookies = request.getCookies();
+		for (Cookie c : cookies) {
+			if (c.getName().equals("user_no")) {
+				user_no = c.getValue();
+			}
+		}
+		uvo.setUser_no(user_no);
+		logger.info("==result==: {}", uvo);
 
 		// 사진(파일)업로드
 		uvo = fileuploadService.FileuploadOK(uvo);
