@@ -79,6 +79,19 @@ public class ListDAOimpl implements ListDAO {
 		logger.info("SEARCH - ListDAOimpl map : {}", map);
 		logger.info("SEARCH - ListDAOimpl : {}", list);
 		
+		if(list != null) {
+			for(ListVO vo : list) {
+				DecimalFormat dc = new DecimalFormat("###,###,###,###");	
+				String ch = dc.format(Integer.parseInt(vo.getMin_room_price()));
+				vo.setMin_room_price(ch);
+				
+				if(vo.getRoadname_address().contains(" ")) {
+					String road_name = vo.getRoadname_address().split(" ")[0] + " " + vo.getRoadname_address().split(" ")[1];
+					vo.setRoadname_address(road_name);
+				}
+			}
+		}
+		
 		return list;
 	}
 	
