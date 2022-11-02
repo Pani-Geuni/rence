@@ -173,17 +173,17 @@
 		select * from (
 		    select 
 		        bi.backoffice_no, 
-		        bi.owner_name, bi.backoffice_id, bi.backoffice_name, bi.company_name,
+		        bi.owner_name, bi.backoffice_id, bi.backoffice_name, bi.company_name, bi.backoffice_image,
 		        bi.backoffice_type, bi.backoffice_tag, bi.backoffice_option, bi.backoffice_around,
 		        bi.backoffice_tel, bi.backoffice_email, bi.backoffice_info,
 		        bi.zipcode, bi.roadname_address, bi.number_address, bi.detail_address,
 		        AVG(nvl(rv.review_point, 0)) avg_rating
 		from backofficeinfo bi 
 		left  join review rv
-		on bi.backoffice_no = rv.backoffice_no
+		on bi.backoffice_no = rv.backoffice_no 
 		group by 
 		    bi.backoffice_no, bi.owner_name, bi.backoffice_id, bi.backoffice_name, bi.company_name, 
-		    bi.backoffice_type, bi.backoffice_tag, bi.backoffice_option, bi.backoffice_around,
+		    bi.backoffice_image, bi.backoffice_type, bi.backoffice_tag, bi.backoffice_option, bi.backoffice_around, 
 		    bi.backoffice_tel, bi.backoffice_email, bi.backoffice_info, bi.zipcode, bi.roadname_address, 
 		    bi.number_address, bi.detail_address)
 		where backoffice_no=#{backoffice_no}

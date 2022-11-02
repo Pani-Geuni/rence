@@ -33,27 +33,11 @@
 		<section class="spage-imgs-section">
 			<div class="window">
 				<ul class="container">
-					<li class="img">
-						<img src="${path}/resources/IMG/common/18.jpg" class="company-img" />
-					</li>
-					<li class="img">
-						<img src="${path}/resources/IMG/common/18.jpg" class="company-img" />
-					</li>
-					<li class="img">
-						<img src="${path}/resources/IMG/common/18.jpg" class="company-img" />
-					</li>
-					<li class="img">
-						<img src="${path}/resources/IMG/common/18.jpg" class="company-img" />
-					</li>
-					<li class="img">
-						<img src="${path}/resources/IMG/common/18.jpg" class="company-img" />
-					</li>
-					<li class="img">
-						<img src="${path}/resources/IMG/common/18.jpg" class="company-img" />
-					</li>
-					<li class="img">
-						<img src="${path}/resources/IMG/common/18.jpg" class="company-img" />
-					</li>
+					<c:forEach var="img_item" items="${ img_list }">
+						<li class="img">
+							<img src="${path}/resources/IMG/common/${ img_item }" class="company-img" />
+						</li>
+					</c:forEach>
 				</ul>
 
 				<div class="button-container">

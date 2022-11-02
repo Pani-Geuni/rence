@@ -49,6 +49,7 @@ public class OfficeController {
 		OfficeInfoVO ovo = service.select_one_office_info(backoffice_no);
 		List<String> type_list = new ArrayList<String>();
 		List<String> tag_list = new ArrayList<String>();
+		List<String> img_list = new ArrayList<String>();
 		List<String> option_list = new ArrayList<String>();
 		List<String> around_option_list = new ArrayList<String>();
 		
@@ -63,6 +64,8 @@ public class OfficeController {
 		} else {
 			tag_list.add("옵션 없음");
 		}
+		
+		img_list = info_map.splitImage(ovo.getBackoffice_image());
 		
 		if (ovo.getBackoffice_option() != null) {
 			option_list = info_map.splitOption(ovo.getBackoffice_option());			
@@ -92,6 +95,7 @@ public class OfficeController {
 		model.addAttribute("ovo", ovo);
 		model.addAttribute("type_list", type_list);
 		model.addAttribute("tag_list", tag_list);
+		model.addAttribute("img_list", img_list);
 		model.addAttribute("option_list", option_list);
 		model.addAttribute("around_option_list", around_option_list);
 
