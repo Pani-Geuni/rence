@@ -49,6 +49,9 @@
 
   font-size: 14px;
 }
+.login-popup-input:nth-child(1){
+  margin-bottom: 7px;
+}
 #login-pw {
   margin-bottom: 20px;
 }

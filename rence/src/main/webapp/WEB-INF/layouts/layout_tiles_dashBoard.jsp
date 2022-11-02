@@ -36,6 +36,8 @@
 	href="${path}/resources/CSS/dash-board/dash-settings.css" />
 
 <script src="${path}/resources/JS/common/jquery-3.6.1.min.js"></script>
+<script src="${path}/resources/JS/common/jquery.cookie.js"></script>
+
 <script src="${path}/resources/JS/backoffice/dashboard.js"></script>
 <script src="${path}/resources/JS/backoffice/number_comma.js"></script>
 <script src="${path}/resources/JS/backoffice/host_popup.js"></script>
@@ -51,6 +53,21 @@
 	<!-- popup background -->
 	<!-- **************** -->
 	<div class="popup-background blind">
+		<!-- START LOGOUT CONFIRM POPUP -->
+		<div id="logout-popup" class="confirm-popup blind">
+			<section class="confirm-txt-section">
+				<span class="logout-txt">
+					로그아웃 하시겠습니까?<br><br>
+                    로그아웃 시 메인페이지로 이동됩니다.
+				</span>
+			</section>
+			<section class="confirm-btn-section">
+                <div id="logout-btn" class="confirm-yesBtn">로그아웃</div>
+				<div id="logout-closeBtn" class="confirm-noBtn">닫기</div>
+			</section>
+		</div>
+		<!-- END logout popup -->
+		
 		<!-- 공간 추가 팝업 Section -->
 		<div id="room-insert-section" class="blind">
 			<section class="room-popup-title-section">
@@ -241,5 +258,17 @@
 		<!-- END popup-update-pw -->
 	</div>
 	<!-- END popup-background blind -->
+	
+   	<div class="popup-background blind">
+    	<!-- START COMMON CUSTOM ALERT POPUP -->
+        <div id ="common-alert-popup" class="alert-popup blind">
+            <section class="alert-txt-section">
+                <span class="common-alert-txt"></span>
+            </section>
+            <section id = "common-alert-btn" class="alert-btn-section">
+                <span>확인</span>
+            </section>
+        </div>
+   	</div>
 </body>
 </html>

@@ -19,6 +19,7 @@
 	
 	
 	<script src="${path}/resources/JS/common/jquery-3.6.1.min.js"></script>
+	<script src="${path}/resources/JS/common/jquery.cookie.js"></script>
 	<script src="${path}/resources/JS/master/master.js"></script>
 	
 </head>
@@ -72,6 +73,38 @@
         <!-- END delete popup -->
 	</div>
 	
-	
+	<div class="popup-background blind">
+    	<!-- START COMMON CUSTOM ALERT POPUP -->
+        <div id ="common-alert-popup" class="alert-popup blind">
+            <section class="alert-txt-section">
+                <span class="common-alert-txt"></span>
+            </section>
+            <section id = "common-alert-btn" class="alert-btn-section">
+                <span>확인</span>
+            </section>
+        </div>
+        
+        <!-- START SUCCESS CUSTOM ALERT POPUP -->
+      <div id="success-alert-popup" class="alert-popup blind">
+        <section class="alert-txt-section">
+          <span>해당 이메일로 비밀번호를 전송하였습니다.</span>
+        </section>
+        <section id="success-alert-btn" class="alert-btn-section">
+          <span>확인</span>
+        </section>
+      </div>
+
+      <!-- START FAIL CUSTOM ALERT POPUP -->
+      <div id="fail-alert-popup" class="alert-popup blind">
+        <section class="alert-txt-section">
+          <span>이메일 혹은 사업자 등록 번호를 <br />
+            다시 확인해 주세요</span
+          >
+        </section>
+        <section id="fail-alert-btn" class="alert-btn-section">
+          <span>확인</span>
+        </section>
+      </div>
+   	</div>
 </body>
 </html>
