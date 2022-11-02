@@ -197,10 +197,36 @@
 	</select>
 	
 	<!-- 공간 예약 타입(예약 방) 불러오기 -->
-	<select id="SQL_SELECT_ALL_ROOM" resultType="test.com.rence.office.model.OfficeRoomVO">
+	<select id="SQL_SELECT_ALL_ROOM_INFO" resultType="test.com.rence.office.model.OfficeRoomVO">
 		select *
 		from roominfo
 		where backoffice_no=#{backoffice_no}
 	</select>
-
+	
+	<!-- 공간 문의 불러오기 -->
+	<select id="SQL_SELECT_ALL_COMMENTS_INFO" resultType="test.com.rence.office.model.OfficeCommentsVO">
+		select * from (
+		    select 
+		        comment_no, mother_no, comment_content, comment_date, room_no,
+		        backoffice_no, u.user_no, user_image, user_name
+		    from comments  c
+		    left join userinfo u
+		    on c.user_no = u.user_no
+		)
+		where backoffice_no=#{backoffice_no}
+	</select>
+	
+	<!-- 공간 후기 불러오기 -->
+	<select id="SQL_SELECT_ALL_REVIEW_INFO" resultType="test.com.rence.office.model.OfficeReviewVO">
+		select *
+		from
+			(select 
+			    review_no, review_content, review_point, review_date, room_no,
+			    backoffice_no, u.user_no, user_image, user_name
+			from review rv
+			left join userinfo u
+			on rv.user_no = u.user_no)
+		where backoffice_no=#{backoffice_no}
+	</select>
+	
 </mapper>

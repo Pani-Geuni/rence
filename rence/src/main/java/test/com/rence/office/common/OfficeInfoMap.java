@@ -15,6 +15,9 @@ public class OfficeInfoMap {
 		// BackOffice Type Map
 		type_map.put("desk", "데스크");
 		type_map.put("meeting_room", "미팅룸");
+		type_map.put("meeting_04", "4인 미팅룸");
+		type_map.put("meeting_06", "6인 미팅룸");
+		type_map.put("meeting_10", "10인 미팅룸");
 		type_map.put("office", "오피스");
 		
 		// BackOffice Option Map
@@ -54,6 +57,10 @@ public class OfficeInfoMap {
 	}
 	
 	// 타입
+	public String changeType(String type) {
+		return type_map.get(type);
+	}
+	
 	public List<String> splitType(String types) {
 		List<String> type_list = new ArrayList<String>();
 		String[] type_split = types.split(",");

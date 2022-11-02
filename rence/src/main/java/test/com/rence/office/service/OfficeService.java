@@ -7,9 +7,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import test.com.rence.office.model.OfficeCommentsVO;
 import test.com.rence.office.model.OfficeInfoDAO;
 import test.com.rence.office.model.OfficeInfoVO;
 import test.com.rence.office.model.OfficeOperatingTimeVO_date;
+import test.com.rence.office.model.OfficeReviewVO;
 import test.com.rence.office.model.OfficeRoomVO;
 
 @Service
@@ -43,6 +45,22 @@ public class OfficeService {
 		logger.info("select_all_room()...");
 		
 		List<OfficeRoomVO> vos = dao.select_all_room(backoffice_no);
+		
+		return vos;
+	}
+	
+	public List<OfficeCommentsVO> select_all_comment(String backoffice_no) {
+		logger.info("select_all_comment()...");
+		
+		List<OfficeCommentsVO> vos = dao.select_all_comment(backoffice_no);
+		
+		return vos;
+	}
+	
+	public List<OfficeReviewVO> select_all_review(String backoffice_no) {
+		logger.info("select_all_review()...");
+		
+		List<OfficeReviewVO> vos = dao.select_all_review(backoffice_no);
 		
 		return vos;
 	}
