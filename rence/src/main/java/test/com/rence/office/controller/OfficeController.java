@@ -20,6 +20,7 @@ import test.com.rence.office.common.OfficeInfoMap;
 import test.com.rence.office.model.OfficeInfoVO;
 import test.com.rence.office.model.OfficeOperatingTimeVO;
 import test.com.rence.office.model.OfficeOperatingTimeVO_date;
+import test.com.rence.office.model.OfficeRoomVO;
 import test.com.rence.office.service.OfficeService;
 
 @Controller
@@ -89,7 +90,12 @@ public class OfficeController {
 		CustomDateFormatter df = new CustomDateFormatter();
 		OfficeOperatingTimeVO otvo = df.showStringOfficeOperating(dotvo);
 		
-		logger.info("otvo_date :: {}", otvo);
+		// ************************
+		// backoffice 운영 공간(Room)
+		// ************************
+		List<OfficeRoomVO> rvo = service.select_all_room(backoffice_no);
+		
+		logger.info("rvo :: {}", rvo);
 		
 		// backoffice 기본 정보
 		model.addAttribute("ovo", ovo);

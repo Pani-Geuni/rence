@@ -1,5 +1,6 @@
 package test.com.rence.office.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -31,6 +32,16 @@ public class OfficeInfoDAOImpl implements OfficeInfoDAO {
 		OfficeOperatingTimeVO_date vo = sqlSession.selectOne("SQL_SELECT_ONE_OPERATING_TIME", backoffice_no);
 		
 		return vo;
+	}
+
+	@Override
+	public List<OfficeRoomVO> select_all_room(String backoffice_no) {
+		
+		List<OfficeRoomVO> list = sqlSession.selectList("SQL_SELECT_ALL_ROOM", backoffice_no);
+		
+		logger.info("room list :: {}", list);
+		
+		return list;
 	}
 
 }

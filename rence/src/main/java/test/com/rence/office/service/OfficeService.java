@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import test.com.rence.office.model.OfficeInfoDAO;
 import test.com.rence.office.model.OfficeInfoVO;
 import test.com.rence.office.model.OfficeOperatingTimeVO_date;
+import test.com.rence.office.model.OfficeRoomVO;
 
 @Service
 public class OfficeService {
@@ -36,6 +37,14 @@ public class OfficeService {
 		OfficeOperatingTimeVO_date vo = dao.select_one_operating_time(backoffice_no);
 		
 		return vo;
+	}
+	
+	public List<OfficeRoomVO> select_all_room(String backoffice_no) {
+		logger.info("select_all_room()...");
+		
+		List<OfficeRoomVO> vos = dao.select_all_room(backoffice_no);
+		
+		return vos;
 	}
 	
 	
