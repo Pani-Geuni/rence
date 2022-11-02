@@ -5,8 +5,12 @@
  */
 package test.com.rence.dashboard.model;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +35,13 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		logger.info("reserve_summary_selectAll...DAOImpl()...");
 
 		List<ReserveSummaryVO> rvos = sqlSession.selectList("SQL_SELECT_ALL_RESERVE_SUMMARY", backoffice_no);
-
+		for (int i = 0; i < rvos.size(); i++) {
+			DateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String sdate = sdFormat.format(rvos.get(i).getReserve_sdate());
+			String edate = sdFormat.format(rvos.get(i).getReserve_edate());
+			rvos.get(i).setReserve_sdate(sdate);
+			rvos.get(i).setReserve_edate(edate);
+		}
 		return rvos;
 	}
 
@@ -248,6 +258,12 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		RoomVO rmvo = sqlSession.selectOne("SQL_SELECT_ONE_ROOM_INFO", map);
 
 		return rmvo;
+	}
+
+	@Override
+	public List<CommentVO> backoffice_qna_selectAll(String backoffice_no) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
