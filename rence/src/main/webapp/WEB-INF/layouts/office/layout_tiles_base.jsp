@@ -5,6 +5,7 @@
 <%@ page import="java.util.*"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
+<!-- 공간 리스트 페이지 // 공간 소개 페이지 - 데스크,회의룸/오피스 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,21 +24,25 @@
     <script src="${path}/resources/JS/common/jquery-3.6.1.min.js"></script>
     <script src="${path}/resources/JS/common/jquery.cookie.js"></script>
     <script src="${path}/resources/JS/office/header.js"></script>
+    <script src="${path}/resources/JS/office/home.js"></script>
     <script src="${path}/resources/JS/office/user_popup.js"></script>
     
     <c:if test="${res.page eq 'list_page'}">
 		<link rel="stylesheet" href="${path}/resources/CSS/office/list-page.css" />
 	    <script src="${path}/resources/JS/office/list-page.js"></script>
     </c:if>
-<%--     <c:if test="${res.page eq 'space-introduce-detail'}"> --%>
-	<link rel="stylesheet" href="${path}/resources/CSS/office/space-detail-introduce.css" />
+    <c:if test="${page eq 'space_introduce_detail'}">
+		<link rel="stylesheet" href="${path}/resources/CSS/office/space-detail-introduce.css" />
 	    <link rel="stylesheet" href="${path}/resources/CSS/office/jquery-ui.css" />
 	    <link rel="stylesheet" href="${path}/resources/CSS/office/jquery-ui-timepicker.css" />
 	    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	    <script src="${path}/resources/JS/office/timepicker.js"></script>
-	    <script src="${path}/resources/JS/office/home.js"></script>
 	    <script src="${path}/resources/JS/office/space_detail_introduce.js"></script>
-<%--     </c:if> --%>
+    </c:if>
+    <c:if test="${page eq 'space_introduce_detail_office'}">
+		<link rel="stylesheet" href="${path}/resources/CSS/office/space-detail-introduce-office.css" />
+	    <script src="${path}/resources/JS/office/space_detail_introduce_office.js"></script>
+    </c:if>
 </head>
 <body>
 	<div class ="pageWrap">
