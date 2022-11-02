@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +17,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import test.com.rence.backoffice.BackOfficeVO;
 import test.com.rence.dashboard.model.CommentSummaryVO;
-import test.com.rence.dashboard.model.CommentVO;
-import test.com.rence.dashboard.model.PaymentVO;
 import test.com.rence.dashboard.model.ReserveSummaryVO;
 import test.com.rence.dashboard.model.ReserveVO;
 import test.com.rence.dashboard.model.RoomSummaryVO;
 import test.com.rence.dashboard.model.RoomVO;
+import test.com.rence.dashboard.model.SalesSettlementPreVO;
 import test.com.rence.dashboard.model.SalesSettlementSummaryVO;
+import test.com.rence.dashboard.model.SalesSettlementVO;
 import test.com.rence.dashboard.service.DashBoardService;
 
 @Controller
@@ -60,9 +63,45 @@ public class DashBoardController {
 		return ".dash_board/main";
 	}
 	
+	/**
+	 * 공간 리스트
+	 */
 	@RequestMapping(value = "/backoffice_room", method = RequestMethod.GET)
-	public String dashboard_list() {
+	public String dashboard_room_list(Model model, String backoffice_no) {
+		List<RoomVO> rmvos = service.dashboard_room_list(backoffice_no);
+		model.addAttribute("rm_vos", rmvos);
+		
 		return ".dash_board/room";
+	}
+	
+	/**
+	 * 공간 추가
+	 */
+	@RequestMapping(value = "/backoffice_insertOK_room ", method = RequestMethod.GET)
+	@ResponseBody
+	public JSONObject backoffice_insertOK_room (String backoffice_no, RoomVO rvo) {
+		logger.info("backoffice_insertOK_room ()...");
+		logger.info("{}", backoffice_no);
+		
+//		BackOfficeVO bvo = new BackOfficeVO();
+//		RoomVO rvo = new RoomVO();
+//		rvo.setRoom_type(bvo.getBackoffice_type());
+		
+		JSONObject jsonObject = new JSONObject();
+
+		int result = service.backoffice_insertOK_room(backoffice_no,rvo);
+
+		if (result == 1) {
+			logger.info("successed...");
+			jsonObject.put("result", "1");
+		}
+
+		else {
+			logger.info("failed...");
+			jsonObject.put("result", "0");
+		}
+
+		return jsonObject;
 	}
 	
 	@RequestMapping(value = "/backoffice_qna", method = RequestMethod.GET)
@@ -97,8 +136,16 @@ public class DashBoardController {
 		return ".dash_board/reserve_list";
 	}
 	
+	/**
+	 * 정산 관리(리스트)
+	 */
 	@RequestMapping(value = "/backoffice_day_sales", method = RequestMethod.GET)
-	public String dashboard_sales_day() {
+	public String dashboard_sales_day(Model model, String backoffice_no, String sales_date) {
+		SalesSettlementPreVO svo = service.backoffice_sales_selectOne(backoffice_no,sales_date);
+		List<SalesSettlementVO> svos = service.backoffice_sales_selectAll(backoffice_no);
+		model.addAttribute("svo", svo);
+		model.addAttribute("s_vos", svos);
+		model.addAttribute("cnt", svos.size());
 		return ".dash_board/sales_day";
 	}
 	
@@ -112,9 +159,97 @@ public class DashBoardController {
 		return ".dash_board/sales_month";
 	}
 	
+	/**
+	 * 정산 상태 변경
+	 */
+	@RequestMapping(value = "/backoffice_updateOK_sales", method = RequestMethod.GET)
+	@ResponseBody
+	public JSONObject backoffice_updateOK_sales(String backoffice_no, String room_no) {
+		logger.info("backoffice_updateOK_sales ()...");
+		logger.info("{}", backoffice_no);
+		
+		JSONObject jsonObject = new JSONObject();
+
+		int result = service.backoffice_updateOK_sales(backoffice_no,room_no);
+
+		if (result == 1) {
+			logger.info("successed...");
+			jsonObject.put("result", "1");
+		}
+
+		else {
+			logger.info("failed...");
+			jsonObject.put("result", "0");
+		}
+
+		return jsonObject;
+	}
+	
+	
+	/**
+	 * 환경설정 페이지 출력
+	 */
 	@RequestMapping(value = "/backoffice_settings", method = RequestMethod.GET)
-	public String dashboard_settings() {
+	public String backoffice_settings(BackOfficeVO bvo, Model model) {
+		logger.info("backoffice_settings()...");
+		BackOfficeVO bvo2 = service.backoffice_setting_selectOne(bvo);
+		logger.info("result: {}.", bvo2);
+
+		model.addAttribute("vo", bvo2);
+
 		return ".dash_board/setting";
 	}
+
+	/**
+	 * 환경설정에서 비밀번호 수정
+	 */
+	@RequestMapping(value = "/backoffice_update_pw", method = RequestMethod.POST)
+	public String backoffice_update_pw(BackOfficeVO bvo) {
+		logger.info("backoffice_update_pw ()...");
+		logger.info("{}", bvo);
+
+		// 비밀번호 일치 여부 확인
+		BackOfficeVO bvo2 = service.backoffice_select_pw(bvo);
+
+		String rt = "";
+		if (bvo2 != null) {
+			logger.info("successed...");
+			rt = "redirect:backoffice_setting_pw";
+		}
+
+		else {
+			logger.info("failed...");
+			rt = "backoffice/setting";
+		}
+
+		return rt;
+	}
+
+	/**
+	 * 환경설정에서 업체 탈퇴 요청
+	 */
+	@RequestMapping(value = "/backoffice_setting_delete", method = RequestMethod.POST)
+	@ResponseBody
+	public JSONObject backoffice_setting_delete(BackOfficeVO bvo) {
+		logger.info("backoffice_setting_delete ()...");
+		logger.info("{}", bvo);
+
+		JSONObject jsonObject = new JSONObject();
+
+		int result = service.backoffice_setting_delete(bvo);
+
+		if (result == 1) {
+			logger.info("successed...");
+			jsonObject.put("result", "1");
+		}
+
+		else {
+			logger.info("failed...");
+			jsonObject.put("result", "0"); // 남은 예약이 있을 시
+		}
+
+		return jsonObject;
+	}
+
 	
 }
