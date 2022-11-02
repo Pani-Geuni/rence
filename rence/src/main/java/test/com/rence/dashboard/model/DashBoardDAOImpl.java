@@ -205,8 +205,23 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		logger.info("{}", backoffice_no);
 		logger.info("{}", rvo);
 
-		int flag = 1;
-				//sqlSession.update("SQL_INSERT_ROOM", rvo);
+		int flag = sqlSession.update("SQL_UPDATE_ROOM", rvo);
+
+		return flag;
+	}
+
+	@Override
+	public int backoffice_deleteOK_room(String backoffice_no, String room_no) {
+		logger.info("backoffice_updateOK_room()...");
+		logger.info("{}", backoffice_no);
+		logger.info("{}", room_no);
+		
+
+		Map<String,String> map = new HashMap<String, String>();
+		map.put("backoffice_no", backoffice_no);
+		map.put("room_no", room_no);
+
+		int flag = sqlSession.update("SQL_DELETE_ROOM", map);
 
 		return flag;
 	}
