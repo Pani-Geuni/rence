@@ -10,5 +10,7 @@ public interface OfficeInfoDAO {
 	
 	public List<OfficeRoomVO> select_all_room(String backoffice_no);
 	
+	public List<OfficeCommentsVO> select_all_comment(String backoffice_no);
+	
 	public List<OfficeReviewVO> select_all_review(String backoffice_no);
 }

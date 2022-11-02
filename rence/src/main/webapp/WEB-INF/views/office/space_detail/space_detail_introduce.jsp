@@ -86,7 +86,7 @@
 				<div class="question-wrap blind">
 					<section class="question-wrap-title">
 						<section class="question-left">
-							<span class="big-title">문의</span> <span class="small-title">3개</span>
+							<span class="big-title">문의</span> <span class="small-title">${ cvos_cnt }개</span>
 						</section>
 						<section id="question-create-btn" class="question-right">
 							<span>문의하기</span>
@@ -138,19 +138,21 @@
 
 					<section class="quest-list-section">
 						<ul class="quest-list-wrap">
-							<li class="quest-list">
-								<section>
-									<img src="${path}/resources/IMG/header/loopy.jpg" alt="write-user-img" class="write-user-img" />
-								</section>
-								<section class="quest-content-section">
-									<ul class="quest-content-wrap">
-										<li class="quest-content-list quest-content-writer">팡근</li>
-										<li class="quest-content-list quest-content">장기 예약 문의도 가능할까요?</li>
-										<li class="quest-content-list quest-content-date">2022.10.21</li>
-									</ul>
-								</section>
-								<section class="answer-section"></section>
-							</li>
+							<c:forEach var="cvo" items="${ cvos }">
+								<li class="quest-list">
+									<section>
+										<img src="${path}/resources/IMG/header/loopy.jpg" alt="write-user-img" class="write-user-img" />
+									</section>
+									<section class="quest-content-section">
+										<ul class="quest-content-wrap">
+											<li class="quest-content-list quest-content-writer">${ cvo.user_name }</li>
+											<li class="quest-content-list quest-content">${ cvo.comment_content }</li>
+											<li class="quest-content-list quest-content-date">${ cvo.comment_date }</li>
+										</ul>
+									</section>
+									<section class="answer-section"></section>
+								</li>
+							</c:forEach>
 						</ul>
 					</section>
 				</div>
@@ -241,25 +243,6 @@
 									</section>
 								</li>
 							</c:forEach>
-<%-- 							<li class="quest-list">
-								<section>
-									<img src="${path}/resources/IMG/header/loopy.jpg" alt="write-user-img" class="write-user-img" />
-								</section>
-								<section class="quest-content-section">
-									<ul class="quest-content-wrap">
-										<li class="quest-content-list quest-content-writer">
-											<span class="quest-writer">팡근</span> 
-											
-											<span class="review-star-wrap">
-												<img src="${path}/resources/IMG/common/star.svg" class="review-star-img" alt="review-star-img" /> 
-												<span class="review-star-num">4</span>
-											</span>
-										</li>
-										<li class="quest-content-list quest-content">혼자 공부할 때 너무 좋아요!</li>
-										<li class="quest-content-list quest-content-date">2022.10.21</li>
-									</ul>
-								</section>
-							</li> --%>
 						</ul>
 					</section>
 				</div>

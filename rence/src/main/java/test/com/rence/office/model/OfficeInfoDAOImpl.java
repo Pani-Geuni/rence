@@ -49,6 +49,14 @@ public class OfficeInfoDAOImpl implements OfficeInfoDAO {
 		
 		return list;
 	}
+	
+	@Override
+	public List<OfficeCommentsVO> select_all_comment(String backoffice_no) {
+		
+		List<OfficeCommentsVO> list = sqlSession.selectList("SQL_SELECT_ALL_COMMENTS_INFO", backoffice_no);
+		
+		return list;
+	}
 
 	@Override
 	public List<OfficeReviewVO> select_all_review(String backoffice_no) {
@@ -58,5 +66,7 @@ public class OfficeInfoDAOImpl implements OfficeInfoDAO {
 		
 		return list;
 	}
+
+	
 
 }

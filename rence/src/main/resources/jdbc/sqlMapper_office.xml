@@ -203,6 +203,19 @@
 		where backoffice_no=#{backoffice_no}
 	</select>
 	
+	<!-- 공간 문의 불러오기 -->
+	<select id="SQL_SELECT_ALL_COMMENTS_INFO" resultType="test.com.rence.office.model.OfficeCommentsVO">
+		select * from (
+		    select 
+		        comment_no, mother_no, comment_content, comment_date, room_no,
+		        backoffice_no, u.user_no, user_image, user_name
+		    from comments  c
+		    left join userinfo u
+		    on c.user_no = u.user_no
+		)
+		where backoffice_no=#{backoffice_no}
+	</select>
+	
 	<!-- 공간 후기 불러오기 -->
 	<select id="SQL_SELECT_ALL_REVIEW_INFO" resultType="test.com.rence.office.model.OfficeReviewVO">
 		select *
