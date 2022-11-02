@@ -189,10 +189,26 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		return flag;
 	}
 
+	//공간 추가/수정 팝업
 	@Override
-	public OfficeInfoVO select_one_backoffice_info(String backoffice_no) {
-		// TODO Auto-generated method stub
-		return null;
+	public BackOfficeVO select_one_backoffice_info(String backoffice_no) {
+		logger.info("select_one_backoffice_info...DAOImpl()...");
+
+		BackOfficeVO bvo = sqlSession.selectOne("SQL_SELECT_ONE_BACKOFFICE_INFO", backoffice_no);
+
+		return bvo;
+	}
+
+	@Override
+	public int backoffice_updateOK_room(String backoffice_no, RoomVO rvo) {
+		logger.info("backoffice_updateOK_room()...");
+		logger.info("{}", backoffice_no);
+		logger.info("{}", rvo);
+
+		int flag = 1;
+				//sqlSession.update("SQL_INSERT_ROOM", rvo);
+
+		return flag;
 	}
 
 }

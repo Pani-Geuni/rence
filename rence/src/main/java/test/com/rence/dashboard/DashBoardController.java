@@ -78,7 +78,7 @@ public class DashBoardController {
 	}
 	
 	/**
-	 * 공간 추가 팝업
+	 * 공간 추가/수정 팝업
 	 */
 	@RequestMapping(value = "/backoffice_insert_room ", method = RequestMethod.GET)
 	@ResponseBody
@@ -88,26 +88,18 @@ public class DashBoardController {
 		
 		OfficeInfoMap info_map = new OfficeInfoMap();
 		
-		OfficeInfoVO ovo = service.select_one_backoffice_info(backoffice_no);
+		BackOfficeVO bvo = service.select_one_backoffice_info(backoffice_no);
 		List<String> type_list = new ArrayList<String>();
 		
-		if (ovo.getBackoffice_type() != null) {
-			type_list = info_map.splitType(ovo.getBackoffice_type());			
+		if (bvo.getBackoffice_type() != null) {
+			type_list = info_map.splitType(bvo.getBackoffice_type());			
 		} else {
 			type_list.add("타입 없음");
 		}
 		
 		JSONObject jsonObject = new JSONObject();
 
-//		if (result == 1) {
-//			logger.info("successed...");
-//			jsonObject.put("result", "1");
-//		}
-//
-//		else {
-//			logger.info("failed...");
-//			jsonObject.put("result", "0");
-//		}
+		jsonObject.put("room_type", type_list);
 
 		return jsonObject;
 	}
@@ -120,10 +112,6 @@ public class DashBoardController {
 	public JSONObject backoffice_insertOK_room (String backoffice_no, RoomVO rvo) {
 		logger.info("backoffice_insertOK_room ()...");
 		logger.info("{}", backoffice_no);
-		
-//		BackOfficeVO bvo = new BackOfficeVO();
-//		RoomVO rvo = new RoomVO();
-//		rvo.setRoom_type(bvo.getBackoffice_type());
 		
 		JSONObject jsonObject = new JSONObject();
 
@@ -139,6 +127,32 @@ public class DashBoardController {
 			jsonObject.put("result", "0");
 		}
 
+		return jsonObject;
+	}
+	
+	/**
+	 * 공간 수정
+	 */
+	@RequestMapping(value = "/backoffice_updateOK_room ", method = RequestMethod.GET)
+	@ResponseBody
+	public JSONObject backoffice_updateOK_room (String backoffice_no, RoomVO rvo) {
+		logger.info("backoffice_updateOK_room ()...");
+		logger.info("{}", backoffice_no);
+		
+		JSONObject jsonObject = new JSONObject();
+		
+		int result = service.backoffice_updateOK_room(backoffice_no,rvo);
+		
+		if (result == 1) {
+			logger.info("successed...");
+			jsonObject.put("result", "1");
+		}
+		
+		else {
+			logger.info("failed...");
+			jsonObject.put("result", "0");
+		}
+		
 		return jsonObject;
 	}
 	

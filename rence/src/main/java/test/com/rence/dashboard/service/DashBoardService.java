@@ -107,6 +107,12 @@ public class DashBoardService {
 		logger.info("dashboard_room_list()...");
 		return dao.dashboard_room_list(backoffice_no);
 	}
+	
+	//공간 추가/수정 팝업
+	public BackOfficeVO select_one_backoffice_info(String backoffice_no) {
+		logger.info("select_one_backoffice_info()...");
+		return dao.select_one_backoffice_info(backoffice_no);
+	}
 
 	//공간 추가
 	public int backoffice_insertOK_room(String backoffice_no, RoomVO rvo) {
@@ -114,8 +120,10 @@ public class DashBoardService {
 		return dao.backoffice_insertOK_room(backoffice_no,rvo);
 	}
 
-	public OfficeInfoVO select_one_backoffice_info(String backoffice_no) {
-		logger.info("select_one_backoffice_info()...");
-		return dao.select_one_backoffice_info(backoffice_no);
+	//공간 수정
+	public int backoffice_updateOK_room(String backoffice_no, RoomVO rvo) {
+		logger.info("backoffice_updateOK_room()...");
+		return dao.backoffice_updateOK_room(backoffice_no,rvo);
 	}
+
 }
