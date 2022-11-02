@@ -25,12 +25,12 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 	@Autowired
 	SqlSession sqlSession;
 
-	//main
+	// main
 	@Override
 	public List<ReserveSummaryVO> reserve_summary_selectAll(String backoffice_no) {
 		logger.info("reserve_summary_selectAll...DAOImpl()...");
 
-		List<ReserveSummaryVO> rvos = sqlSession.selectList("SQL_SELECT_ALL_RESERVE_SUMMARY",backoffice_no);
+		List<ReserveSummaryVO> rvos = sqlSession.selectList("SQL_SELECT_ALL_RESERVE_SUMMARY", backoffice_no);
 
 		return rvos;
 	}
@@ -39,7 +39,7 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 	public List<CommentSummaryVO> comment_summary_selectAll(String backoffice_no) {
 		logger.info("comment_summary_selectAll...DAOImpl()...");
 
-		List<CommentSummaryVO> cvos = sqlSession.selectList("SQL_SELECT_ALL_COMMENT_SUMMARY",backoffice_no);
+		List<CommentSummaryVO> cvos = sqlSession.selectList("SQL_SELECT_ALL_COMMENT_SUMMARY", backoffice_no);
 
 		return cvos;
 	}
@@ -48,16 +48,16 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 	public SalesSettlementSummaryVO payment_summary_selectOne(String backoffice_no) {
 		logger.info("payment_summary_selectOne...DAOImpl()...");
 
-		SalesSettlementSummaryVO svo = sqlSession.selectOne("SQL_SELECT_ONE_PAYMENT_SUMMARY",backoffice_no);
-		if (svo!=null) {
-			svo.setSales_income(svo.getSales_total()-svo.getSales_cancel());
-			
+		SalesSettlementSummaryVO svo = sqlSession.selectOne("SQL_SELECT_ONE_PAYMENT_SUMMARY", backoffice_no);
+		if (svo != null) {
+			svo.setSales_income(svo.getSales_total() - svo.getSales_cancel());
+
 			DecimalFormat df = new DecimalFormat("###,###");
 			svo.setSales_income(Integer.parseInt(df.format(svo.getSales_income())));
 			svo.setSales_total(Integer.parseInt(df.format(svo.getSales_total())));
 			svo.setSales_cancel(Integer.parseInt(df.format(svo.getSales_cancel())));
 		}
-		
+
 		return svo;
 	}
 
@@ -65,21 +65,21 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 	public RoomSummaryVO room_summary_selectOne(String backoffice_no) {
 		logger.info("room_summary_selectOne...DAOImpl()...");
 
-		RoomSummaryVO rmvo = sqlSession.selectOne("SQL_SELECT_ONE_ROOM_SUMMARY",backoffice_no);
+		RoomSummaryVO rmvo = sqlSession.selectOne("SQL_SELECT_ONE_ROOM_SUMMARY", backoffice_no);
 
 		return rmvo;
 	}
 
-	//예약 관리
+	// 예약 관리
 	@Override
 	public List<ReserveVO> backoffice_reserve_selectAll(String backoffice_no, String reserve_state) {
 		logger.info("backoffice_reserve_selectAll...DAOImpl()...");
-		
+
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("backoffice_no", backoffice_no);
 		map.put("reserve_state", reserve_state);
 
-		List<ReserveVO> rvos = sqlSession.selectList("SQL_SELECT_ALL_B_RESERVE",map);
+		List<ReserveVO> rvos = sqlSession.selectList("SQL_SELECT_ALL_B_RESERVE", map);
 
 		return rvos;
 	}
@@ -87,24 +87,24 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 	@Override
 	public List<ReserveVO> backoffice_search_reserve(String backoffice_no, String searchword) {
 		logger.info("backoffice_search_reserve...DAOImpl()...");
-		
+
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("backoffice_no", backoffice_no);
-		map.put("searchword", "%"+searchword+"%");
+		map.put("searchword", "%" + searchword + "%");
 
-		List<ReserveVO> rvos = sqlSession.selectList("SQL_SELECT_ALL_B_RESERVE_SEARCH",map);
+		List<ReserveVO> rvos = sqlSession.selectList("SQL_SELECT_ALL_B_RESERVE_SEARCH", map);
 
 		return rvos;
 	}
-	
-	//환경설정
+
+	// 환경설정
 	@Override
 	public BackOfficeVO backoffice_setting_selectOne(BackOfficeVO bvo) {
 		logger.info("backoffice_setting_selectOne()..");
 		logger.info("{}", bvo);
-		
-		BackOfficeVO bvo2 = sqlSession.selectOne("SQL_SELECTONE_BACKOFFICE_SETTING",bvo);
-		
+
+		BackOfficeVO bvo2 = sqlSession.selectOne("SQL_SELECTONE_BACKOFFICE_SETTING", bvo);
+
 		return bvo2;
 	}
 
@@ -112,8 +112,8 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 	public BackOfficeVO backoffice_select_pw(BackOfficeVO bvo) {
 		logger.info("backoffice_pw_findOK()...");
 		logger.info("{}", bvo);
-		
-		BackOfficeVO bvo2 = sqlSession.selectOne("SQL_SELECT_BACKOFFICE_PW",bvo);
+
+		BackOfficeVO bvo2 = sqlSession.selectOne("SQL_SELECT_BACKOFFICE_PW", bvo);
 
 		return bvo2;
 	}
@@ -123,7 +123,67 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		logger.info("backoffice_setting_delete()...");
 		logger.info("{}", bvo);
 
-		int flag = sqlSession.update("SQL_UPDATE_BACKOFFICE_SETTING_O",bvo);
+		int flag = sqlSession.update("SQL_UPDATE_BACKOFFICE_SETTING_O", bvo);
+
+		return flag;
+	}
+
+	// 정산 관리
+	@Override
+	public SalesSettlementPreVO backoffice_sales_selectOne(String backoffice_no, String sales_date) {
+		logger.info("backoffice_sales_selectOne...DAOImpl()...");
+
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("backoffice_no", backoffice_no);
+		map.put("reserve_state", sales_date);
+
+		SalesSettlementPreVO svos = sqlSession.selectOne("SQL_SELECT_ONE_SALES", map);
+
+		return svos;
+	}
+
+	@Override
+	public List<SalesSettlementVO> backoffice_sales_selectAll(String backoffice_no) {
+		logger.info("backoffice_sales_selectAll...DAOImpl()...");
+
+		List<SalesSettlementVO> svos = sqlSession.selectList("SQL_SELECT_ALL_SALES", backoffice_no);
+
+		return svos;
+	}
+
+	//정산 상태 변경
+	@Override
+	public int backoffice_updateOK_sales(String backoffice_no, String room_no) {
+		logger.info("backoffice_updateOK_sales()...");
+		logger.info("{}", backoffice_no);
+		
+		Map<String,String> map = new HashMap<String, String>();
+		map.put("backoffice_no", backoffice_no);
+		map.put("room_no", room_no);
+
+		int flag = sqlSession.update("SQL_UPDATE_SALES_STATE_T", map);
+
+		return flag;
+	}
+
+	//공간 관리 (리스트)
+	@Override
+	public List<RoomVO> dashboard_room_list(String backoffice_no) {
+		logger.info("dashboard_room_list...DAOImpl()...");
+
+		List<RoomVO> rvos = sqlSession.selectList("SQL_SELECT_ALL_ROOM", backoffice_no);
+
+		return rvos;
+	}
+
+	//공간 추가
+	@Override
+	public int backoffice_insertOK_room(String backoffice_no, RoomVO rvo) {
+		logger.info("backoffice_insertOK_room()...");
+		logger.info("{}", backoffice_no);
+		logger.info("{}", rvo);
+
+		int flag = sqlSession.update("SQL_INSERT_ROOM", rvo);
 
 		return flag;
 	}

@@ -22,11 +22,20 @@ public interface DashBoardDAO {
 	public List<ReserveVO> backoffice_reserve_selectAll(String backoffice_no, String reserve_state);
 
 	public List<ReserveVO> backoffice_search_reserve(String backoffice_no, String searchword);
-	
+
+	public SalesSettlementPreVO backoffice_sales_selectOne(String backoffice_no, String sales_date);
+
+	public List<SalesSettlementVO> backoffice_sales_selectAll(String backoffice_no);
+
 	public BackOfficeVO backoffice_setting_selectOne(BackOfficeVO bvo);
-
+	
 	public BackOfficeVO backoffice_select_pw(BackOfficeVO bvo);
-
+	
 	public int backoffice_setting_delete(BackOfficeVO bvo);
 
+	public int backoffice_updateOK_sales(String backoffice_no, String room_no);
+
+	public List<RoomVO> dashboard_room_list(String backoffice_no);
+
+	public int backoffice_insertOK_room(String backoffice_no, RoomVO rvo);
 }
