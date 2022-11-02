@@ -98,6 +98,7 @@ public class OfficeController {
 		logger.info("rvo :: {}", rvo);
 		
 		// backoffice 기본 정보
+		model.addAttribute("page", "space_introduce_detail");
 		model.addAttribute("ovo", ovo);
 		model.addAttribute("type_list", type_list);
 		model.addAttribute("tag_list", tag_list);
@@ -179,6 +180,7 @@ public class OfficeController {
 		logger.info("rvo :: {}", rvo);
 		
 		// backoffice 기본 정보
+		model.addAttribute("page", "space_introduce_detail_office");
 		model.addAttribute("ovo", ovo);
 		model.addAttribute("type_list", type_list);
 		model.addAttribute("tag_list", tag_list);
