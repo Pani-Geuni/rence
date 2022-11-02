@@ -30,10 +30,10 @@
   	</select>
   	
   	<select id="SQL_SELECT_ONE_ROOM_SUMMARY" resultType="test.com.rence.dashboard.model.RoomSummaryVO">
-  		select (select round(avg(review_point),2) from review )review_point ,
-			(select count(comment_no) from comments where user_no is not null)comment_no,
-			(select count(review_no) from review )review_no,
-			(select count(reserve_no) from reserveinfo )reserve_no
+  		 select (select round(avg(review_point),2) from review where backoffice_no=#{backoffice_no})review_point ,
+			(select count(comment_no) from comments where user_no is not null and backoffice_no='B1001')comment_no,
+			(select count(review_no) from review where backoffice_no=#{backoffice_no} )review_no,
+			(select count(reserve_no) from reserveinfo where backoffice_no=#{backoffice_no})reserve_no
 		from backofficeinfo where backoffice_no=#{backoffice_no}
   	</select>
   	
