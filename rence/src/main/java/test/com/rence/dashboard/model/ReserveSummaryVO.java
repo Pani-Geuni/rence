@@ -6,8 +6,8 @@ import java.util.Date;
 public class ReserveSummaryVO implements Serializable{
 
 	private String reserve_no;
-	private Date reserve_sdate;
-	private Date reserve_edate;
+	private String reserve_sdate;
+	private String reserve_edate;
 	private String room_name;
 	private String user_name;
 	private int actual_payment;
@@ -15,7 +15,7 @@ public class ReserveSummaryVO implements Serializable{
 	
 	public ReserveSummaryVO() {}
 
-	public ReserveSummaryVO(String reserve_no, Date reserve_sdate, Date reserve_edate, String room_name,
+	public ReserveSummaryVO(String reserve_no, String reserve_sdate, String reserve_edate, String room_name,
 			String user_name, int actual_payment, String reserve_state) {
 		super();
 		this.reserve_no = reserve_no;
@@ -35,19 +35,19 @@ public class ReserveSummaryVO implements Serializable{
 		this.reserve_no = reserve_no;
 	}
 
-	public Date getReserve_sdate() {
+	public String getReserve_sdate() {
 		return reserve_sdate;
 	}
 
-	public void setReserve_sdate(Date reserve_sdate) {
+	public void setReserve_sdate(String reserve_sdate) {
 		this.reserve_sdate = reserve_sdate;
 	}
 
-	public Date getReserve_edate() {
+	public String getReserve_edate() {
 		return reserve_edate;
 	}
 
-	public void setReserve_edate(Date reserve_edate) {
+	public void setReserve_edate(String reserve_edate) {
 		this.reserve_edate = reserve_edate;
 	}
 
@@ -81,6 +81,13 @@ public class ReserveSummaryVO implements Serializable{
 
 	public void setReserve_state(String reserve_state) {
 		this.reserve_state = reserve_state;
+	}
+
+	@Override
+	public String toString() {
+		return "ReserveSummaryVO [reserve_no=" + reserve_no + ", reserve_sdate=" + reserve_sdate + ", reserve_edate="
+				+ reserve_edate + ", room_name=" + room_name + ", user_name=" + user_name + ", actual_payment="
+				+ actual_payment + ", reserve_state=" + reserve_state + "]";
 	}
 
 	@Override
@@ -141,12 +148,6 @@ public class ReserveSummaryVO implements Serializable{
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "ReserveSummaryVO [reserve_no=" + reserve_no + ", reserve_sdate=" + reserve_sdate + ", reserve_edate="
-				+ reserve_edate + ", room_name=" + room_name + ", user_name=" + user_name + ", actual_payment="
-				+ actual_payment + ", reserve_state=" + reserve_state + "]";
-	}
-
+	
 	
 }

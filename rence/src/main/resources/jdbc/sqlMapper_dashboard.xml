@@ -6,7 +6,7 @@
   	
   	<select id="SQL_SELECT_ALL_RESERVE_SUMMARY" resultType="test.com.rence.dashboard.model.ReserveSummaryVO">
   		<![CDATA[
-    	select reserve_no, reserve_sdate, reserve_edate, room_name, user_name, actual_payment, reserve_state  
+    	select reserve_no, TO_CHAR(reserve_sdate, 'YYYY-MM-DD HH24:MI:SS') as reserve_sdate , TO_CHAR(reserve_edate, 'YYYY-MM-DD HH24:MI:SS') as reserve_edate, room_name, user_name, actual_payment, reserve_state  
 		from (
 			select ROW_NUMBER() OVER(PARTITION BY r.reserve_no ORDER BY r.reserve_no ASC ) no, r.reserve_no, r.reserve_sdate, r.reserve_edate, rm.room_name, u.user_name, p.actual_payment, r.reserve_state 
 			from reserveinfo r left outer join userinfo u on r.user_no=u.user_no 

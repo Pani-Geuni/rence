@@ -36,21 +36,7 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		logger.info("reserve_summary_selectAll...DAOImpl()...");
 
 		List<ReserveSummaryVO> rvos = sqlSession.selectList("SQL_SELECT_ALL_RESERVE_SUMMARY", backoffice_no);
-		for (int i = 0; i < rvos.size(); i++) {
-			DateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String sdate = sdFormat.format(rvos.get(i).getReserve_sdate());
-			String edate = sdFormat.format(rvos.get(i).getReserve_edate());
-			Date sd=null;
-			Date ed=null;
-			try {
-				sd = sdFormat.parse(sdate);
-				ed = sdFormat.parse(edate);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			rvos.get(i).setReserve_sdate(sd);
-			rvos.get(i).setReserve_edate(ed);
-		}
+
 		return rvos;
 	}
 
@@ -170,13 +156,13 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		return svos;
 	}
 
-	//정산 상태 변경
+	// 정산 상태 변경
 	@Override
 	public int backoffice_updateOK_sales(String backoffice_no, String room_no) {
 		logger.info("backoffice_updateOK_sales()...");
 		logger.info("{}", backoffice_no);
-		
-		Map<String,String> map = new HashMap<String, String>();
+
+		Map<String, String> map = new HashMap<String, String>();
 		map.put("backoffice_no", backoffice_no);
 		map.put("room_no", room_no);
 
@@ -185,7 +171,7 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		return flag;
 	}
 
-	//공간 관리 (리스트)
+	// 공간 관리 (리스트)
 	@Override
 	public List<RoomVO> dashboard_room_list(String backoffice_no) {
 		logger.info("dashboard_room_list...DAOImpl()...");
@@ -195,7 +181,7 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		return rvos;
 	}
 
-	//공간 추가
+	// 공간 추가
 	@Override
 	public int backoffice_insertOK_room(String backoffice_no, RoomVO rvo) {
 		logger.info("backoffice_insertOK_room()...");
@@ -207,7 +193,7 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		return flag;
 	}
 
-	//공간 추가/수정 팝업
+	// 공간 추가/수정 팝업
 	@Override
 	public BackOfficeVO select_one_backoffice_info(String backoffice_no) {
 		logger.info("select_one_backoffice_info...DAOImpl()...");
@@ -217,7 +203,7 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		return bvo;
 	}
 
-	//공간 수정
+	// 공간 수정
 	@Override
 	public int backoffice_updateOK_room(String backoffice_no, RoomVO rvo) {
 		logger.info("backoffice_updateOK_room()...");
@@ -229,15 +215,14 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		return flag;
 	}
 
-	//공간 삭제
+	// 공간 삭제
 	@Override
 	public int backoffice_deleteOK_room(String backoffice_no, String room_no) {
 		logger.info("backoffice_updateOK_room()...");
 		logger.info("{}", backoffice_no);
 		logger.info("{}", room_no);
-		
 
-		Map<String,String> map = new HashMap<String, String>();
+		Map<String, String> map = new HashMap<String, String>();
 		map.put("backoffice_no", backoffice_no);
 		map.put("room_no", room_no);
 
@@ -252,7 +237,7 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		logger.info("backoffice_review_selectAll...DAOImpl()...");
 
 		List<ReviewVO> rvvos = sqlSession.selectList("SQL_SELECT_ALL_REVIEW", backoffice_no);
-		
+
 		return rvvos;
 	}
 
@@ -260,10 +245,10 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 	public RoomVO select_one_room_info(String backoffice_no, String room_no) {
 		logger.info("select_one_room_info...DAOImpl()...");
 
-		Map<String,String> map = new HashMap<String, String>();
+		Map<String, String> map = new HashMap<String, String>();
 		map.put("backoffice_no", backoffice_no);
 		map.put("room_no", room_no);
-		
+
 		RoomVO rmvo = sqlSession.selectOne("SQL_SELECT_ONE_ROOM_INFO", map);
 
 		return rmvo;
