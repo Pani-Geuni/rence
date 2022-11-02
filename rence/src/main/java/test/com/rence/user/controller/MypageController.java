@@ -15,6 +15,7 @@ import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -233,7 +234,7 @@ public class MypageController {
 	 */
 	@RequestMapping(value = "/secedeOK", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject user_secedeOK(UserVO uvo) {
+	public JSONObject user_secedeOK(UserVO uvo, HttpServletRequest request, HttpServletResponse response) {
 		logger.info("user_secedeOK()...");
 		logger.info("result: {}", uvo);
 
@@ -245,6 +246,17 @@ public class MypageController {
 			session.invalidate();
 			logger.info("user_secede successed...");
 			jsonObject.put("result", "1");
+			
+			//쿠키 삭제
+			Cookie[] cookies = request.getCookies(); // 모든 쿠키의 정보를 cookies에 저장
+			if (cookies != null) { // 쿠키가 한개라도 있으면 실행
+				for (int i = 0; i < cookies.length; i++) {
+					cookies[i].setMaxAge(0); // 유효시간을 0으로 설정
+					response.addCookie(cookies[i]); // 응답 헤더에 추가
+				}
+			}
+			
+			
 		} else {
 			logger.info("user_secede failed...");
 			jsonObject.put("result", "0");
