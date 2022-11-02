@@ -159,7 +159,7 @@
 				<div id="review-wrap" class="question-wrap blind">
 					<section class="question-wrap-title">
 						<section class="question-left">
-							<span class="big-title">후기</span> <span class="small-title">3개</span>
+							<span class="big-title">후기</span> <span class="small-title">${ review_cnt }개</span>
 						</section>
 						<section id="review-write-btn" class="question-right">
 							<span>후기쓰기</span>
@@ -220,7 +220,28 @@
 
 					<section class="quest-list-section">
 						<ul class="quest-list-wrap">
-							<li class="quest-list">
+							<c:forEach var="revo" items="${ revos }">
+								<li class="quest-list">
+									<section>
+										<img src="${path}/resources/IMG/header/loopy.jpg" alt="write-user-img" class="write-user-img" />
+									</section>
+									<section class="quest-content-section">
+										<ul class="quest-content-wrap">
+											<li class="quest-content-list quest-content-writer">
+												<span class="quest-writer">${ revo.user_name }</span> 
+												
+												<span class="review-star-wrap">
+													<img src="${path}/resources/IMG/common/star.svg" class="review-star-img" alt="review-star-img" /> 
+													<span class="review-star-num">${ revo.review_point }</span>
+												</span>
+											</li>
+											<li class="quest-content-list quest-content">${ revo.review_content }</li>
+											<li class="quest-content-list quest-content-date">${ revo.review_date }</li>
+										</ul>
+									</section>
+								</li>
+							</c:forEach>
+<%-- 							<li class="quest-list">
 								<section>
 									<img src="${path}/resources/IMG/header/loopy.jpg" alt="write-user-img" class="write-user-img" />
 								</section>
@@ -238,7 +259,7 @@
 										<li class="quest-content-list quest-content-date">2022.10.21</li>
 									</ul>
 								</section>
-							</li>
+							</li> --%>
 						</ul>
 					</section>
 				</div>

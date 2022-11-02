@@ -1,5 +1,6 @@
 package test.com.rence.office.model;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +39,22 @@ public class OfficeInfoDAOImpl implements OfficeInfoDAO {
 	public List<OfficeRoomVO> select_all_room(String backoffice_no) {
 		
 		List<OfficeRoomVO> list = sqlSession.selectList("SQL_SELECT_ALL_ROOM_INFO", backoffice_no);
+		
+		if (list != null) {
+			for (OfficeRoomVO vo : list) {
+				DecimalFormat dc = new DecimalFormat("###,###,###,###");
+				vo.setRoom_price(dc.format(Integer.parseInt(vo.getRoom_price())));
+			}
+		}
+		
+		return list;
+	}
+
+	@Override
+	public List<OfficeReviewVO> select_all_review(String backoffice_no) {
+		
+		List<OfficeReviewVO> list = sqlSession.selectList("SQL_SELECT_ALL_REVIEW_INFO", backoffice_no);
+		
 		
 		return list;
 	}

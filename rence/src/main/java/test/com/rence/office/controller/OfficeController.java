@@ -20,6 +20,7 @@ import test.com.rence.office.common.OfficeInfoMap;
 import test.com.rence.office.model.OfficeInfoVO;
 import test.com.rence.office.model.OfficeOperatingTimeVO;
 import test.com.rence.office.model.OfficeOperatingTimeVO_date;
+import test.com.rence.office.model.OfficeReviewVO;
 import test.com.rence.office.model.OfficeRoomVO;
 import test.com.rence.office.service.OfficeService;
 
@@ -96,11 +97,18 @@ public class OfficeController {
 		List<OfficeRoomVO> rvos = service.select_all_room(backoffice_no);
 		
 		for (OfficeRoomVO vo : rvos) {
-			logger.info("vo name :: {}", info_map.changeType(vo.getRoom_type()));
 			vo.setRoom_type(info_map.changeType(vo.getRoom_type()));
 		}
 		
 		logger.info("rvos :: {}", rvos);
+		
+		// **************
+		// backoffice 후기
+		// **************
+		List<OfficeReviewVO> revos = service.select_all_review(backoffice_no);
+				
+		logger.info("revos :: {}", revos);
+		logger.info("revos :: {}", revos.size());
 		
 		// backoffice 기본 정보
 		model.addAttribute("page", "space_introduce_detail");
@@ -116,6 +124,10 @@ public class OfficeController {
 		
 		// backoffice 운영 공간
 		model.addAttribute("rvos", rvos);
+		
+		// backoffice 후기
+		model.addAttribute("revos", revos);
+		model.addAttribute("review_cnt", revos.size());
 		
 		
 		return ".space/space_detail_introduce";
@@ -191,6 +203,15 @@ public class OfficeController {
 		}
 				
 		logger.info("rvos :: {}", rvos);
+		
+		// **************
+		// backoffice 후기
+		// **************
+		List<OfficeReviewVO> revos = service.select_all_review(backoffice_no);
+		
+		logger.info("revos :: {}", revos);
+		logger.info("revos :: {}", revos.size());
+		
 		
 		// backoffice 기본 정보
 		model.addAttribute("page", "space_introduce_detail_office");

@@ -9,13 +9,13 @@ public class OfficeRoomVO implements Serializable {
 	private String room_no;
 	private String room_type;
 	private String room_name;
-	private int room_price;
+	private String room_price;
 	
 	public OfficeRoomVO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public OfficeRoomVO(String backoffice_no, String room_no, String room_type, String room_name, int room_price) {
+	public OfficeRoomVO(String backoffice_no, String room_no, String room_type, String room_name, String room_price) {
 		super();
 		this.backoffice_no = backoffice_no;
 		this.room_no = room_no;
@@ -56,11 +56,11 @@ public class OfficeRoomVO implements Serializable {
 		this.room_name = room_name;
 	}
 
-	public int getRoom_price() {
+	public String getRoom_price() {
 		return room_price;
 	}
 
-	public void setRoom_price(int room_price) {
+	public void setRoom_price(String room_price) {
 		this.room_price = room_price;
 	}
 
@@ -77,7 +77,7 @@ public class OfficeRoomVO implements Serializable {
 		result = prime * result + ((backoffice_no == null) ? 0 : backoffice_no.hashCode());
 		result = prime * result + ((room_name == null) ? 0 : room_name.hashCode());
 		result = prime * result + ((room_no == null) ? 0 : room_no.hashCode());
-		result = prime * result + room_price;
+		result = prime * result + ((room_price == null) ? 0 : room_price.hashCode());
 		result = prime * result + ((room_type == null) ? 0 : room_type.hashCode());
 		return result;
 	}
@@ -106,7 +106,10 @@ public class OfficeRoomVO implements Serializable {
 				return false;
 		} else if (!room_no.equals(other.room_no))
 			return false;
-		if (room_price != other.room_price)
+		if (room_price == null) {
+			if (other.room_price != null)
+				return false;
+		} else if (!room_price.equals(other.room_price))
 			return false;
 		if (room_type == null) {
 			if (other.room_type != null)

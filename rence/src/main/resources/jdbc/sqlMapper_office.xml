@@ -202,5 +202,18 @@
 		from roominfo
 		where backoffice_no=#{backoffice_no}
 	</select>
-
+	
+	<!-- 공간 후기 불러오기 -->
+	<select id="SQL_SELECT_ALL_REVIEW_INFO" resultType="test.com.rence.office.model.OfficeReviewVO">
+		select *
+		from
+			(select 
+			    review_no, review_content, review_point, review_date, room_no,
+			    backoffice_no, u.user_no, user_image, user_name
+			from review rv
+			left join userinfo u
+			on rv.user_no = u.user_no)
+		where backoffice_no=#{backoffice_no}
+	</select>
+	
 </mapper>
