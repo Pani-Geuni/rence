@@ -378,7 +378,7 @@ $(function(){
             }else{
                 $(".warning-text:eq(3)").addClass("blind");
 
-                if($("#join-re-").val().trim().length > 0){
+                if($("#join-re-pw").val().trim().length > 0){
                     if($(this).val().trim() != $("#join-re-pw").val().trim()){
                         $(".warning-text:eq(4)").removeClass("blind");
                         $(".warning-text:eq(4)").text("위 비밀번호와 일치하지않습니다.");
@@ -561,7 +561,7 @@ $(function(){
                         }else{
                             $(".popup-background:eq(1)").removeClass("blind");
                             $("#common-alert-popup").removeClass("blind");
-                            $(".common-alert-txt").text("오류 발생으로 인해 인증번호 확인에 실패하였습니다.");
+                            $(".common-alert-txt").text("알맞지 않은 인증번호입니다.");
                         }
                     },
                     error : function(error) {
