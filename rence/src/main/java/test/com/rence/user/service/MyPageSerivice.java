@@ -12,6 +12,7 @@ import test.com.rence.user.model.MyPageReserveListVO;
 import test.com.rence.user.model.MyPage_ReviewVO;
 import test.com.rence.user.model.QuestionVO;
 import test.com.rence.user.model.ReserveInfoVO;
+import test.com.rence.user.model.UserVO;
 
 @Service
 public class MyPageSerivice {
@@ -70,6 +71,12 @@ public class MyPageSerivice {
 	
 	public ReserveInfoVO select_one_reserve_info(String reserve_no){
 		ReserveInfoVO vo = dao.select_one_reserve_info(reserve_no);
+		
+		return vo;
+	}
+	
+	public UserVO select_one_user_info(String user_no){
+		UserVO vo = dao.select_one_user_info(user_no);
 		
 		return vo;
 	}

@@ -129,8 +129,8 @@
 }
 
 .info-li-wrap{
-    width: 686px;
-    height: calc(100%-70px);
+    width: 100%;
+    height: auto;
     padding-top: 17px;
 
     display: flex;
@@ -148,7 +148,7 @@
     width: 280px;
 }
 .info-li:nth-child(2n){
-    width: 406px;
+    width: calc(100% - 280px);
 }
 .info-label{
     font-family: 'HallymGothic';
