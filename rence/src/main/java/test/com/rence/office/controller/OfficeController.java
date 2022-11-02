@@ -95,6 +95,11 @@ public class OfficeController {
 		// ************************
 		List<OfficeRoomVO> rvos = service.select_all_room(backoffice_no);
 		
+		for (OfficeRoomVO vo : rvos) {
+			logger.info("vo name :: {}", info_map.changeType(vo.getRoom_type()));
+			vo.setRoom_type(info_map.changeType(vo.getRoom_type()));
+		}
+		
 		logger.info("rvos :: {}", rvos);
 		
 		// backoffice 기본 정보
@@ -179,6 +184,11 @@ public class OfficeController {
 		// backoffice 운영 공간(Room)
 		// ************************
 		List<OfficeRoomVO> rvos = service.select_all_room(backoffice_no);
+		
+		for (OfficeRoomVO vo : rvos) {
+			logger.info("vo name :: {}", info_map.changeType(vo.getRoom_type()));
+			vo.setRoom_name(info_map.changeType(vo.getRoom_type()));
+		}
 				
 		logger.info("rvos :: {}", rvos);
 		
