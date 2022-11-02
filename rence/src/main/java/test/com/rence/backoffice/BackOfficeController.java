@@ -165,7 +165,7 @@ public class BackOfficeController {
 	/**
 	 * 이메일 인증번호 확인
 	 */
-	@RequestMapping(value = "/backoffice_authOK", method = RequestMethod.GET)
+	@RequestMapping(value = "/backoffice_authOK", method = RequestMethod.POST)
 	@ResponseBody
 	public JSONObject backoffice_authOK(AuthVO avo, String backoffice_email, String auth_code) {
 
@@ -198,17 +198,11 @@ public class BackOfficeController {
 		JSONObject jsonObject = new JSONObject();
 
 		if (bvo2 != null) {
-			session.setAttribute("backoffice_no", bvo2.getBackoffice_no());
-			Cookie cookie_1 = new Cookie("backoffice_no", bvo2.getBackoffice_no());
 			session.setAttribute("backoffice_id", bvo2.getBackoffice_id());
-			Cookie cookie_2 = new Cookie("backoffice_id", bvo2.getBackoffice_id());
-			session.setAttribute("backoffice_pw", bvo2.getBackoffice_pw());
-			Cookie cookie_3 = new Cookie("backoffice_pw", bvo2.getBackoffice_pw());
+			Cookie cookie = new Cookie("backoffice_no", bvo2.getBackoffice_no());
 			jsonObject.put("result", "1");
 			logger.info("successed...");
-			response.addCookie(cookie_1);
-			response.addCookie(cookie_2);
-			response.addCookie(cookie_3);
+			response.addCookie(cookie);
 		} else {
 			logger.info("failed...");
 			jsonObject.put("result", "0");

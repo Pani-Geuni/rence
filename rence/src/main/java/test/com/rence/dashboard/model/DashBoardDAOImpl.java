@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import test.com.rence.backoffice.BackOfficeVO;
-import test.com.rence.office.model.OfficeInfoVO;
 
 @Repository
 public class DashBoardDAOImpl implements DashBoardDAO {
@@ -199,6 +198,7 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		return bvo;
 	}
 
+	//공간 수정
 	@Override
 	public int backoffice_updateOK_room(String backoffice_no, RoomVO rvo) {
 		logger.info("backoffice_updateOK_room()...");
@@ -210,6 +210,7 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		return flag;
 	}
 
+	//공간 삭제
 	@Override
 	public int backoffice_deleteOK_room(String backoffice_no, String room_no) {
 		logger.info("backoffice_updateOK_room()...");
@@ -224,6 +225,29 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		int flag = sqlSession.update("SQL_DELETE_ROOM", map);
 
 		return flag;
+	}
+
+	// 후기 리스트
+	@Override
+	public List<ReviewVO> backoffice_review_selectAll(String backoffice_no) {
+		logger.info("backoffice_review_selectAll...DAOImpl()...");
+
+		List<ReviewVO> rvvos = sqlSession.selectList("SQL_SELECT_ALL_REVIEW", backoffice_no);
+		
+		return rvvos;
+	}
+
+	@Override
+	public RoomVO select_one_room_info(String backoffice_no, String room_no) {
+		logger.info("select_one_room_info...DAOImpl()...");
+
+		Map<String,String> map = new HashMap<String, String>();
+		map.put("backoffice_no", backoffice_no);
+		map.put("room_no", room_no);
+		
+		RoomVO rmvo = sqlSession.selectOne("SQL_SELECT_ONE_ROOM_INFO", map);
+
+		return rmvo;
 	}
 
 }

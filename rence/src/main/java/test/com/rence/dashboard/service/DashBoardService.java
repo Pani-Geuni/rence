@@ -14,17 +14,15 @@ import org.springframework.stereotype.Service;
 
 import test.com.rence.backoffice.BackOfficeVO;
 import test.com.rence.dashboard.model.CommentSummaryVO;
-import test.com.rence.dashboard.model.CommentVO;
 import test.com.rence.dashboard.model.DashBoardDAO;
-import test.com.rence.dashboard.model.PaymentVO;
 import test.com.rence.dashboard.model.ReserveSummaryVO;
 import test.com.rence.dashboard.model.ReserveVO;
+import test.com.rence.dashboard.model.ReviewVO;
 import test.com.rence.dashboard.model.RoomSummaryVO;
 import test.com.rence.dashboard.model.RoomVO;
 import test.com.rence.dashboard.model.SalesSettlementPreVO;
 import test.com.rence.dashboard.model.SalesSettlementSummaryVO;
 import test.com.rence.dashboard.model.SalesSettlementVO;
-import test.com.rence.office.model.OfficeInfoVO;
 
 @Service
 public class DashBoardService {
@@ -126,9 +124,22 @@ public class DashBoardService {
 		return dao.backoffice_updateOK_room(backoffice_no,rvo);
 	}
 
+	//공간 삭제
 	public int backoffice_deleteOK_room(String backoffice_no, String room_no) {
 		logger.info("backoffice_deleteOK_room()...");
 		return dao.backoffice_deleteOK_room(backoffice_no,room_no);
+	}
+
+	//리뷰 리스트
+	public List<ReviewVO> backoffice_review_selectAll(String backoffice_no) {
+		logger.info("backoffice_review_selectAll()...");
+		return dao.backoffice_review_selectAll(backoffice_no);
+	}
+
+	//공간 수정 시, 공간 정보 가져옴
+	public RoomVO select_one_room_info(String backoffice_no, String room_no) {
+		logger.info("select_one_room_info()...");
+		return dao.select_one_room_info(backoffice_no,room_no);
 	}
 
 }
