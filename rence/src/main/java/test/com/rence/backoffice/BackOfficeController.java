@@ -234,7 +234,7 @@ public class BackOfficeController {
 
 		}
 
-		return "redirect:/"; // 백오피스 랜딩으로 이동
+		return "redirect:backoffice_landing"; // 백오피스 랜딩으로 이동
 	}
 
 	/**

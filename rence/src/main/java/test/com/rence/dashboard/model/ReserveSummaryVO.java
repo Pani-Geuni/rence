@@ -6,8 +6,8 @@ import java.util.Date;
 public class ReserveSummaryVO implements Serializable{
 
 	private String reserve_no;
-	private String reserve_sdate;
-	private String reserve_edate;
+	private Date reserve_sdate;
+	private Date reserve_edate;
 	private String room_name;
 	private String user_name;
 	private int actual_payment;
@@ -15,7 +15,7 @@ public class ReserveSummaryVO implements Serializable{
 	
 	public ReserveSummaryVO() {}
 
-	public ReserveSummaryVO(String reserve_no, String reserve_sdate, String reserve_edate, String room_name,
+	public ReserveSummaryVO(String reserve_no, Date reserve_sdate, Date reserve_edate, String room_name,
 			String user_name, int actual_payment, String reserve_state) {
 		super();
 		this.reserve_no = reserve_no;
@@ -35,19 +35,19 @@ public class ReserveSummaryVO implements Serializable{
 		this.reserve_no = reserve_no;
 	}
 
-	public String getReserve_sdate() {
+	public Date getReserve_sdate() {
 		return reserve_sdate;
 	}
 
-	public void setReserve_sdate(String reserve_sdate) {
+	public void setReserve_sdate(Date reserve_sdate) {
 		this.reserve_sdate = reserve_sdate;
 	}
 
-	public String getReserve_edate() {
+	public Date getReserve_edate() {
 		return reserve_edate;
 	}
 
-	public void setReserve_edate(String reserve_edate) {
+	public void setReserve_edate(Date reserve_edate) {
 		this.reserve_edate = reserve_edate;
 	}
 
@@ -148,4 +148,5 @@ public class ReserveSummaryVO implements Serializable{
 				+ actual_payment + ", reserve_state=" + reserve_state + "]";
 	}
 
+	
 }

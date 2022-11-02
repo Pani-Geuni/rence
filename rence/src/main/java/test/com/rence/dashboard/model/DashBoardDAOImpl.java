@@ -7,6 +7,7 @@ package test.com.rence.dashboard.model;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -39,8 +40,16 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 			DateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String sdate = sdFormat.format(rvos.get(i).getReserve_sdate());
 			String edate = sdFormat.format(rvos.get(i).getReserve_edate());
-			rvos.get(i).setReserve_sdate(sdate);
-			rvos.get(i).setReserve_edate(edate);
+			Date sd=null;
+			Date ed=null;
+			try {
+				sd = sdFormat.parse(sdate);
+				ed = sdFormat.parse(edate);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			rvos.get(i).setReserve_sdate(sd);
+			rvos.get(i).setReserve_edate(ed);
 		}
 		return rvos;
 	}
