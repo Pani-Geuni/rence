@@ -9,6 +9,7 @@
 <!-- ******************* -->
 <!-- Master Header SECTION -->
 <!-- ******************* -->
+<c:if test="${master_id ne null}">
 <section class="headerWrap">
 	<div class = "logo-section">
          <img src="${path}/resources/IMG/common/Rence-Master.svg" class="logo-mku">
@@ -22,3 +23,4 @@
 		</li>
 	</ul>
 </section>
+</c:if>

@@ -10,7 +10,7 @@
      </div>
      
      <div class="hostMenu-section ">
-     	<c:if test="${master_id eq null}">
+     	<c:if test="${backoffice_id eq null}">
 	         <!-- 로그인 전 유저 메뉴 -->
 	         <section id="before_login" class="">
 	             <div id = "before_hostMenu" class ="hostMenu">
@@ -29,7 +29,7 @@
 	         </section>
      	</c:if>
          
-       	<c:if test="${master_id ne null}">
+       	<c:if test="${backoffice_id ne null}">
 	         <!-- 로그인 후 유저 메뉴 -->
 	         <section id="after_login"  class="">
 	             <div id = "after_hostMenu" class ="hostMenu">
