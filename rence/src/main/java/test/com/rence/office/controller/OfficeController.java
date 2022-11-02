@@ -93,9 +93,9 @@ public class OfficeController {
 		// ************************
 		// backoffice 운영 공간(Room)
 		// ************************
-		List<OfficeRoomVO> rvo = service.select_all_room(backoffice_no);
+		List<OfficeRoomVO> rvos = service.select_all_room(backoffice_no);
 		
-		logger.info("rvo :: {}", rvo);
+		logger.info("rvos :: {}", rvos);
 		
 		// backoffice 기본 정보
 		model.addAttribute("page", "space_introduce_detail");
@@ -108,6 +108,9 @@ public class OfficeController {
 
 		// backoffice 운영 시간
 		model.addAttribute("otvo", otvo);
+		
+		// backoffice 운영 공간
+		model.addAttribute("rvos", rvos);
 		
 		
 		return ".space/space_detail_introduce";
@@ -175,9 +178,9 @@ public class OfficeController {
 		// ************************
 		// backoffice 운영 공간(Room)
 		// ************************
-		List<OfficeRoomVO> rvo = service.select_all_room(backoffice_no);
-		
-		logger.info("rvo :: {}", rvo);
+		List<OfficeRoomVO> rvos = service.select_all_room(backoffice_no);
+				
+		logger.info("rvos :: {}", rvos);
 		
 		// backoffice 기본 정보
 		model.addAttribute("page", "space_introduce_detail_office");
@@ -191,6 +194,9 @@ public class OfficeController {
 		// backoffice 운영 시간
 		model.addAttribute("otvo", otvo);
 		
+		// backoffice 운영 공간
+		model.addAttribute("rvos", rvos);
+				
 		
 		return ".space/space_detail_introduce_office";
 	}

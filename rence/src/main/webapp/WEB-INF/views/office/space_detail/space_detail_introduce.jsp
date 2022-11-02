@@ -372,13 +372,15 @@
 
 					<!-- CUSTOM SELECT SECTION -->
 					<ul class="custom-select-type blind">
-						<li class="custom-select-type-list">
-							<span class="room-name"> 101호 (1인 데스크) </span> 
-							<span class="room-price-unit"> 
-								<span class="room-price-big"> 10,000원 </span> 
-								<span class="room-unit-small"> /시간 </span> 
-							</span>
-						</li>
+						<c:forEach var="rvo" items="${ rvos }">
+							<li class="custom-select-type-list">
+								<span class="room-name"> ${ rvo.room_name } (${ rvo.room_type }) </span> 
+								<span class="room-price-unit"> 
+									<span class="room-price-big"> ${ rvo.room_price} 원</span> 
+									<span class="room-unit-small"> /시간 </span> 
+								</span>
+							</li>						
+						</c:forEach>
 					</ul>
 				</section>
 				<section class="using-time-section">

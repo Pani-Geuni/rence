@@ -37,9 +37,7 @@ public class OfficeInfoDAOImpl implements OfficeInfoDAO {
 	@Override
 	public List<OfficeRoomVO> select_all_room(String backoffice_no) {
 		
-		List<OfficeRoomVO> list = sqlSession.selectList("SQL_SELECT_ALL_ROOM", backoffice_no);
-		
-		logger.info("room list :: {}", list);
+		List<OfficeRoomVO> list = sqlSession.selectList("SQL_SELECT_ALL_ROOM_INFO", backoffice_no);
 		
 		return list;
 	}

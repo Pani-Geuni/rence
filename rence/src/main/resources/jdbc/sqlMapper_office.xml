@@ -197,7 +197,7 @@
 	</select>
 	
 	<!-- 공간 예약 타입(예약 방) 불러오기 -->
-	<select id="SQL_SELECT_ALL_ROOM" resultType="test.com.rence.office.model.OfficeRoomVO">
+	<select id="SQL_SELECT_ALL_ROOM_INFO" resultType="test.com.rence.office.model.OfficeRoomVO">
 		select *
 		from roominfo
 		where backoffice_no=#{backoffice_no}
