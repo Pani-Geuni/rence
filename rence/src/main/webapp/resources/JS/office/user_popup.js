@@ -440,6 +440,7 @@ $(function(){
     // 아이디 중복 체크 버튼 클릭 이벤트
     $("#check_id").click(function(){
         if($("#check_id").prop("check") == true){
+            $("#check_id").prop("check", false);
             $("#join-id").attr("readonly", false);
             $("#join-id").removeClass("readOnly");
             $("#check_id").val("중복확인");
