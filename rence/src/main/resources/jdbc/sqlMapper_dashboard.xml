@@ -136,4 +136,22 @@
   		</if>
   		where backoffice_no=#{backoffice_no} and room_no=#{room_no}
  	</update>
+ 	
+ 	<delete id="SQL_DELETE_ROOM" parameterType="hashmap">
+ 		DELETE FROM roominfo where backoffice_no=#{backoffice_no} and room_no=#{room_no}
+ 	</delete>
+ 	
+ 	<select id="SQL_SELECT_ALL_REVIEW" resultType="test.com.rence.dashboard.model.ReviewVO">
+  		select review_no, review_content, review_point, review_date, user_image, substr(user_name,1,1)||lpad('*',length(user_name)-2,'*') 
+		from(
+			select ROW_NUMBER() OVER(PARTITION BY rv.review_no ORDER BY rv.review_no ASC ) no, review_no, review_content, review_point, review_date, user_image, user_name 
+			from review rv left outer join userinfo u on rv.user_no=u.user_no
+			where backoffice_no=#{backoffice_no})A
+		where A.no=1 order by review_date desc
+  	</select>
+  	
+  	<select id="SQL_SELECT_ONE_ROOM_INFO" resultType="test.com.rence.dashboard.model.RoomVO">
+  		select * from roominfo where backoffice_no=#{backoffice_no} and room_no=#{room_no}
+  	</select>
+  	
 </mapper>

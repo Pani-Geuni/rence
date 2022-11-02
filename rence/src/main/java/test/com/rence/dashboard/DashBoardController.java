@@ -24,6 +24,7 @@ import test.com.rence.backoffice.BackOfficeVO;
 import test.com.rence.dashboard.model.CommentSummaryVO;
 import test.com.rence.dashboard.model.ReserveSummaryVO;
 import test.com.rence.dashboard.model.ReserveVO;
+import test.com.rence.dashboard.model.ReviewVO;
 import test.com.rence.dashboard.model.RoomSummaryVO;
 import test.com.rence.dashboard.model.RoomVO;
 import test.com.rence.dashboard.model.SalesSettlementPreVO;
@@ -31,7 +32,6 @@ import test.com.rence.dashboard.model.SalesSettlementSummaryVO;
 import test.com.rence.dashboard.model.SalesSettlementVO;
 import test.com.rence.dashboard.service.DashBoardService;
 import test.com.rence.office.common.OfficeInfoMap;
-import test.com.rence.office.model.OfficeInfoVO;
 
 @Controller
 public class DashBoardController {
@@ -82,10 +82,11 @@ public class DashBoardController {
 	 */
 	@RequestMapping(value = "/backoffice_insert_room ", method = RequestMethod.GET)
 	@ResponseBody
-	public JSONObject backoffice_insert_room (String backoffice_no) {
+	public JSONObject backoffice_insert_room (String backoffice_no,String room_no) {
 		logger.info("backoffice_insertOK_room ()...");
 		logger.info("{}", backoffice_no);
 		
+		JSONObject jsonObject = new JSONObject();
 		OfficeInfoMap info_map = new OfficeInfoMap();
 		
 		BackOfficeVO bvo = service.select_one_backoffice_info(backoffice_no);
@@ -97,7 +98,11 @@ public class DashBoardController {
 			type_list.add("타입 없음");
 		}
 		
-		JSONObject jsonObject = new JSONObject();
+		if(room_no!=null) {
+			RoomVO rmvo = service.select_one_room_info(backoffice_no, room_no);
+			jsonObject.put("rmvo", rmvo);
+		}
+		
 
 		jsonObject.put("room_type", type_list);
 
@@ -188,7 +193,10 @@ public class DashBoardController {
 	}
 	
 	@RequestMapping(value = "/backoffice_review", method = RequestMethod.GET)
-	public String dashboard_review() {
+	public String dashboard_review(Model model, String backoffice_no) {
+		List<ReviewVO> rvvos = service.backoffice_review_selectAll(backoffice_no);
+		model.addAttribute("rv_vos", rvvos);
+		model.addAttribute("cnt", rvvos.size());
 		return ".dash_board/review_list";
 	}
 	
@@ -281,7 +289,7 @@ public class DashBoardController {
 	/**
 	 * 환경설정에서 비밀번호 수정
 	 */
-	@RequestMapping(value = "/backoffice_update_pw", method = RequestMethod.POST)
+	@RequestMapping(value = "/backoffice_update_pw", method = RequestMethod.GET)
 	public String backoffice_update_pw(BackOfficeVO bvo) {
 		logger.info("backoffice_update_pw ()...");
 		logger.info("{}", bvo);
