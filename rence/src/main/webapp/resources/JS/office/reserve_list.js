@@ -5,12 +5,13 @@ $(function(){
     $("#go-home-btn").click(function(){
         location.href="/rence/";
     });
+    
 
     $(".reserve-box").click(function(){
         if($(".timePoint-value").attr("time-point") == "before"){
-            location.href = "/rence/reserve_detail_before?reservation_no="+$(this).attr("idx");
+            location.href = "/rence/reserved_info?reserve_no="+$(this).attr("idx");
         }else if($(".timePoint-value").attr("time-point") == "now"){
-            location.href = "/rence/reserve_detail_now?reservation_no="+$(this).attr("idx");
+            location.href = "/rence/reserve_info?reservation_no="+$(this).attr("idx");
         }
     });
 

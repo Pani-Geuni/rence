@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import test.com.rence.user.model.MyPageReserveListVO;
 import test.com.rence.user.model.MyPage_ReviewVO;
 import test.com.rence.user.model.QuestionVO;
+import test.com.rence.user.model.ReserveInfoVO;
 import test.com.rence.user.service.MyPageSerivice;
 
 @Controller
@@ -59,6 +60,37 @@ public class MypageController2 {
 		logger.info("reserve_list : {}", map);
 		
 		return ".my_page/reserve-list";
+	}
+	
+	/**
+	 * 예약 리스트 이동
+	 */
+	@RequestMapping(value = "/reserve_info", method = RequestMethod.GET)
+	public String reserve_info(String reserve_no, Model model) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		ReserveInfoVO vo = service.select_one_reserve_info(reserve_no);
+		map.put("reserve_no", reserve_no);
+		map.put("info_obj", vo);
+		model.addAttribute("res", map);
+		
+		logger.info("reserve_info : {}", map);
+		
+		return ".reserve-info";
+	}
+	
+	@RequestMapping(value = "/reserved_info", method = RequestMethod.GET)
+	public String reserved_info(String reserve_no, Model model) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		ReserveInfoVO vo = service.select_one_reserve_info(reserve_no);
+		map.put("reserve_no", reserve_no);
+		map.put("info_obj", vo);
+		model.addAttribute("res", map);
+		
+		logger.info("reserved_info : {}", map);
+		
+		return ".reserved-info";
 	}
 	
 	/**
