@@ -24,6 +24,7 @@ import test.com.rence.dashboard.model.RoomVO;
 import test.com.rence.dashboard.model.SalesSettlementPreVO;
 import test.com.rence.dashboard.model.SalesSettlementSummaryVO;
 import test.com.rence.dashboard.model.SalesSettlementVO;
+import test.com.rence.office.model.OfficeInfoVO;
 
 @Service
 public class DashBoardService {
@@ -111,5 +112,10 @@ public class DashBoardService {
 	public int backoffice_insertOK_room(String backoffice_no, RoomVO rvo) {
 		logger.info("backoffice_insertOK_room()...");
 		return dao.backoffice_insertOK_room(backoffice_no,rvo);
+	}
+
+	public OfficeInfoVO select_one_backoffice_info(String backoffice_no) {
+		logger.info("select_one_backoffice_info()...");
+		return dao.select_one_backoffice_info(backoffice_no);
 	}
 }

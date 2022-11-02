@@ -81,7 +81,7 @@
 			select ROW_NUMBER() OVER(PARTITION BY rv.reserve_no ORDER BY rv.reserve_no ASC ) no, reserve_sdate, reserve_edate, room_name, actual_payment, payment_state, sales_state, rv.backoffice_no
 			from reserveinfo rv left outer join paymentinfo p on rv.reserve_no=p.reserve_no
 			left outer join roominfo rm on p.room_no=rm.room_no)A
-		where A.no=1 and backoffice_no=#{backoffice_no} order by reserve_sdate desc;
+		where A.no=1 and backoffice_no=#{backoffice_no} order by reserve_sdate desc
   	</select>
   	
   	
@@ -90,7 +90,7 @@
   	</update>
   	
   	<select id="SQL_SELECT_ALL_ROOM" resultType="test.com.rence.dashboard.model.roomVO">
-  		select * from roominfo where backoffice_no=#{backoffice_no} order by reserve_sdate desc;
+  		select * from roominfo where backoffice_no=#{backoffice_no} order by reserve_sdate desc
   	</select>
   
  	<insert id="SQL_INSERT_ROOM" parameterType="test.com.rence.dashboard.model.roomVO">

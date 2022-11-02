@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import test.com.rence.backoffice.BackOfficeVO;
+import test.com.rence.office.model.OfficeInfoVO;
 
 @Repository
 public class DashBoardDAOImpl implements DashBoardDAO {
@@ -186,6 +187,12 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		int flag = sqlSession.update("SQL_INSERT_ROOM", rvo);
 
 		return flag;
+	}
+
+	@Override
+	public OfficeInfoVO select_one_backoffice_info(String backoffice_no) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
