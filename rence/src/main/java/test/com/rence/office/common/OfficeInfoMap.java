@@ -1,4 +1,4 @@
-package test.com.rence.common;
+package test.com.rence.office.common;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -89,6 +89,18 @@ public class OfficeInfoMap {
 		return option_list;
 	}
 	
+	// 공간 사진
+		public List<String> splitImage(String images) {
+			List<String> option_list = new ArrayList<String>();
+			String[] image_split = images.split(",");
+			
+			for (int i = 0; i < image_split.length; i++) {
+				option_list.add(image_split[i]);
+			}
+			
+			return option_list;
+		}
+	
 	// 주변 시설
 	public List<String> splitAroundOption(String options) {
 		List<String> option_list = new ArrayList<String>();
@@ -116,16 +128,5 @@ public class OfficeInfoMap {
 		return short_address;
 	}
 	
-	// 공간 사진
-	public List<String> splitImage(String images) {
-		List<String> option_list = new ArrayList<String>();
-		String[] image_split = images.split(",");
-		
-		for (int i = 0; i < image_split.length; i++) {
-			option_list.add(image_split[i]);
-		}
-		
-		return option_list;
-		
-	}
+	
 }

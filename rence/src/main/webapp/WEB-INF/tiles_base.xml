@@ -15,7 +15,7 @@
     <put-attribute name="content" value="/WEB-INF/views/office/list.jsp" />
   </definition>
   
-  <definition name=".space" extends=".home">
-  	<put-attribute name="content" value="/WEB-INF/views/office/space_detail_introduce.jsp"></put-attribute>
+  <definition name=".space/*" extends=".home">
+  	<put-attribute name="content" value="/WEB-INF/views/office/space_detail/{1}.jsp"></put-attribute>
   </definition>
 </tiles-definitions>
