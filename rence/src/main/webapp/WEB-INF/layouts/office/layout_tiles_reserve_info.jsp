@@ -5,6 +5,7 @@
 <%@ page import="java.util.*"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
+<!-- 과거 예약 상세 정보 / 현재 예약 상세 정보 / 예약 및 결제 페이지 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,50 +13,27 @@
 	<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 	
 	<link rel="stylesheet" href="${path}/resources/CSS/common/common.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/office/header.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/common/footer.css" />
 	<link rel="stylesheet" href="${path}/resources/CSS/office/login.css" />
-	
-	
-	<link rel="stylesheet" href="${path}/resources/CSS/office/my-page.css" />
-	<link rel="stylesheet" href="${path}/resources/CSS/office/mileage-page.css" />
-	
-	<script type="text/javascript" src="${path}/resources/JS/common/core.min.js"></script>
-	<script type="text/javascript" src="${path}/resources/JS/common/sha256.min.js"></script>
-	
-	<script src="${path}/resources/JS/common/jquery-3.6.1.min.js"></script>
-	<script src="${path}/resources/JS/common/jquery.cookie.js"></script>
-	<script src="${path}/resources/JS/office/header.js"></script>
-	<script src="${path}/resources/JS/office/user_popup.js"></script>
-	
-	<script src="${path}/resources/JS/office/my_page.js"></script>
-	<script src="${path}/resources/JS/office/mileage_list.js"></script>
-	
-	<c:if test="${res.page eq 'reserve-list'}">
-		<link rel="stylesheet" href="${path}/resources/CSS/office/reserve-list.css" />
-		<script src="${path}/resources/JS/office/reserve_list.js"></script>
-	</c:if>
-	<c:if test="${res.page eq 'review'}">
-		<link rel="stylesheet" href="${path}/resources/CSS/office/review-page.css" />
-		<script src="${path}/resources/JS/office/review_page.js"></script>
-	</c:if>
-	<c:if test="${res.page eq 'question_list'}">
-		<link rel="stylesheet" href="${path}/resources/CSS/office/question-page.css" />
-		<script src="${path}/resources/JS/office/question_page.js"></script>
-	</c:if>
-	
+	<link rel="stylesheet" href="${path}/resources/CSS/office/header.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/office/reserve_info.css" />
+	<link rel="stylesheet" href="${path}/resources/CSS/common/footer.css" />
+
+    <script src="${path}/resources/JS/common/jquery-3.6.1.min.js"></script>
+    <script src="${path}/resources/JS/common/jquery.cookie.js"></script>
+    <script src="${path}/resources/JS/office/header.js"></script>
+    <script src="${path}/resources/JS/office/user_popup.js"></script>
 </head>
 <body>
-	<div class="pageWrap">
+	<div class ="pageWrap">
 		<tiles:insertAttribute name="header" />
-		<section class="contentWrap">
+		<section class ="contentWrap">
 			<tiles:insertAttribute name="content" />
 			<tiles:insertAttribute name="footer" />
 		</section>
 	</div>
-
+	
 	<div class="popup-background blind">
-       <!-- START LOGIN SECTION -->
+        <!-- START LOGIN SECTION -->
         <div id="login-section" class="blind">
             <section class="login-popup-logo-section">
                 <img src="${path}/resources/IMG/common/RENCE.svg" class="popup-logo">
@@ -166,118 +144,52 @@
         </div>
         <!-- END FIND-PW SECTION -->
 
-		<!-- START LOGOUT CONFIRM POPUP -->
-		<div id="logout-popup" class="confirm-popup blind">
-			<section class="confirm-txt-section">
-				<span class="logout-txt">
-					로그아웃 하시겠습니까?<br><br>
-                    로그아웃 시 메인페이지로 이동됩니다.
-				</span>
-			</section>
-			<section class="confirm-btn-section">
-                <div id="logout-btn" class="confirm-yesBtn">로그아웃</div>
-				<div id="logout-closeBtn" class="confirm-noBtn">닫기</div>
-			</section>
-		</div>
-
-		<!-- !!! MY PAGE !!! -->
-		<!-- START MODIFY-PW SECTION -->
-        <div id="modify-pw-section" class="modify-section blind">
-            <section class="modify-popup-title-section">
-                <span>비밀번호 변경</span>
-            </section>
-            <section class="modify-popup-input-section">
-                <div class="modify-popup-input-list">
-                    <div class="modify-popup-input-list-title">
-                        <span class="modify-guide-txt">현재 비밀번호</span>
-                        <span class="modify-error-txt blind">현재 비밀번호와 일치하지않습니다.</span>
-                    </div>
-                    <div class="modify-now-pw-check-section">
-                        <input type="email" id="modify-pw-now" class="modify-popup-input-short" placeholder="현재 비밀번호를 입력하세요."/>
-                        <input type="button" id="check-now-pw" class="modify-popup-check-btn" value="확인"/>
-                    </div>
-                </div>
-
-                <div class="modify-popup-input-list">
-                    <div class="modify-popup-input-list-title">
-                        <span class="modify-guide-txt">새 비밀번호 확인</span>
-                        <span class="modify-error-txt blind">비밀번호 조건에 일치하지않습니다.</span>
-                    </div>
-                    <input type="text" id="modify-pw-new" class="modify-popup-input" placeholder="비밀번호(영문+숫자+특수문자 = 8~10글자)"/>
-                </div>
-
-                <div>
-                    <div class="modify-popup-input-list-title">
-                        <span class="modify-guide-txt">새 비밀번호 확인</span>
-                        <span class="modify-error-txt blind">비밀번호가 일치하지않습니다.</span>
-                    </div>
-                    <input type="text" id="modify-pw-renew" class="modify-popup-input" placeholder="변경할 비밀번호를 확인해 주세요."/>
-                </div>
-            </section>
-            <section class="modify-popup-btn-section">
-                <div id="modify-btn" class="modify-btn">수정</div>
-                <div id="modify-close-btn" class="modify-btn">닫기</div>
-            </section>
-        </div>
-        <!-- END MODIFY-PW SECTION -->
-
-		<!-- START MODIFY PROFILE IMAGE -->
-		<form action="/rence/user_img_updateOK" method="post" enctype="multipart/form-data">
-			<div id="modify-img-section" class="confirm-popup blind">
-				<section class="review-upload-section">
-					<input type="text" class="review-upload-value" value="" readonly />
-					<span class="review-upload-btn"> 이미지 등록 </span> 
-					<input type="file" class="file" name="multipartFile">
-				</section>
-				<section class="confirm-btn-section">
-					<input type="submit" id="modify-img-modifyBtn" class="confirm-yesBtn" value="수정">
-					<div id="modify-img-closeBtn" class="confirm-noBtn">닫기</div>
-				</section>
-			</div>
-		</form>
-		<!-- END MODIFY PROFILE IMAGE -->
-		
-		<!-- START USER_DELETE CUSTOM CONFIRM POPUP -->
-        <div id ="user-delete-confirm-popup" class="confirm-popup blind">
-            <section class="confirm-txt-section">
-                <span class="common-confirm-txt">회원 탈퇴하시겠습니까?</span>
-            </section>
-            <section class="confirm-btn-section">
-                <div id="user-delete" class="confirm-yesBtn">확인</div>
-                <div id="user-delete-popup-close" class="confirm-noBtn">닫기</div>
-            </section>
-        </div>
-
-
-		<!-- !!! QUESTION PAGE !!! -->
-		<!-- START Q-DELETE CONFIRM POPUP -->
-        <div id ="q-delete-popup" class="confirm-popup blind">
+        <!-- START LOGOUT CONFIRM POPUP -->
+        <div id ="logout-popup" class="confirm-popup blind">
             <section class="confirm-txt-section">
                 <span class="logout-txt">
-                    해당 댓글을 삭제하시겠습니까?
+                	로그아웃 하시겠습니까?<br><br>
+                    로그아웃 시 메인페이지로 이동됩니다.
                 </span>
             </section>
             <section class="confirm-btn-section">
-                <div id="q-delete-btn" class="confirm-yesBtn">예</div>
-                <div id="q-delete-closeBtn" class="confirm-noBtn">닫기</div>
+                <div id="logout-btn" class="confirm-yesBtn">로그아웃</div>
+                <div id="logout-closeBtn" class="confirm-noBtn">닫기</div>
             </section>
         </div>
-		
-		<!-- START R-DELETE CONFIRM POPUP -->
-		<div id="r-delete-popup" class="confirm-popup blind">
-			<section class="confirm-txt-section">
-				<span class="logout-txt"> 해당 후기를 삭제하시겠습니까? </span>
-			</section>
-			<section class="confirm-btn-section">
-				<div id="r-delete-btn" class="confirm-yesBtn">예</div>
-				<div id="r-delete-closeBtn" class="confirm-noBtn">닫기</div>
-			</section>
-		</div>
+        
+		<!-- 현재 예약 리스트 예약 상세 정보 페이지 -->
+		<!-- START RESERVE-CANCLE CONFIRM POPUP -->
+        <div id ="reserve-cancle-popup" class="confirm-popup blind">
+            <section class="confirm-txt-section">
+                <span class="reserve-cancle-txt">
+                    예약을 정말로 취소하시겠습니까?<br><br>
+                    환불 규정에 따라 환불 될 예정입니다.
+                </span>
+            </section>
+            <section class="confirm-btn-section">
+                <div id="refund-btn" class="confirm-yesBtn">확인</div>
+                <div id="refund-closeBtn" class="confirm-noBtn">취소</div>
+            </section>
+        </div>
+        <!-- END RESERVE-CANCLE CONFIRM POPUP -->
+        
+		<!-- 예약 및 결제 페이지 -->
+        <!-- START reserve-success ALERT POPUP -->
+        <div id ="reserve-success-alert-popup" class="alert-popup blind">
+            <section class="alert-txt-section">
+                <span>
+                    예약에 성공하였습니다.
+                </span>
+            </section>
+            <section id = "reserve-success-alert-btn" class="alert-btn-section">
+                <span>확인</span>
+            </section>
+        </div>
+    </div>
 
-	</div>
-
-	<div class="popup-background blind">
-		<!-- START COMMON CUSTOM ALERT POPUP -->
+    <div class="popup-background blind">
+    	<!-- START COMMON CUSTOM ALERT POPUP -->
         <div id ="common-alert-popup" class="alert-popup blind">
             <section class="alert-txt-section">
                 <span class="common-alert-txt"></span>
@@ -287,25 +199,25 @@
             </section>
         </div>
         
-		<!-- START SUCCESS CUSTOM ALERT POPUP -->
-		<div id="success-alert-popup" class="alert-popup blind">
-			<section class="alert-txt-section">
-				<span>해당 이메일로 비밀번호를 전송하였습니다.</span>
-			</section>
-			<section id="success-alert-btn" class="alert-btn-section">
-				<span>확인</span>
-			</section>
-		</div>
+        <!-- START SUCCESS CUSTOM ALERT POPUP -->
+        <div id ="success-alert-popup" class="alert-popup blind">
+            <section class="alert-txt-section">
+                <span>해당 이메일로 비밀번호를 전송하였습니다.</span>
+            </section>
+            <section id = "success-alert-btn" class="alert-btn-section">
+                <span>확인</span>
+            </section>
+        </div>
 
-		<!-- START FAIL CUSTOM ALERT POPUP -->
-		<div id="fail-alert-popup" class="alert-popup blind">
-			<section class="alert-txt-section">
-				<span>해당 이메일로 가입된 회원이 없습니다.</span>
-			</section>
-			<section id="fail-alert-btn" class="alert-btn-section">
-				<span>확인</span>
-			</section>
-		</div>
-	</div>
+        <!-- START FAIL CUSTOM ALERT POPUP -->
+        <div id ="fail-alert-popup" class="alert-popup blind">
+            <section class="alert-txt-section">
+                <span>해당 이메일로 가입된 회원이 없습니다.</span>
+            </section>
+            <section id = "fail-alert-btn" class="alert-btn-section">
+                <span>확인</span>
+            </section>
+        </div>
+    </div>
 </body>
 </html>

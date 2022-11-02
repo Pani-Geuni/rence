@@ -89,5 +89,12 @@ public class MyPageDAOimpl implements MyPageDAO {
 		return result;
 	}
 	
+	@Override
+	public ReserveInfoVO select_one_reserve_info(String reserve_no){
+		ReserveInfoVO vo = sqlSession.selectOne("SQL_SELECT_ONE_RESERVE_INFO", reserve_no);		
+		
+		return vo;
+	}
+	
 
 }// end class
