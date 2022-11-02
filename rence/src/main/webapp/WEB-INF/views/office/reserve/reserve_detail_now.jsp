@@ -8,9 +8,11 @@
     <section class="page-title-section">
         <span class="page-title">현재 나의 예약 상세 정보를 보여드려요</span>
     </section>
-
+	
+	<!-- START BODY-SEMI-WRAP  -->
     <section class="body-semi-wrap">
         <div class="deatil-info-section">
+        	<!-- START RESERVE-INFO-SECTION  -->
             <section class="reserve-info-section">
                 <span class="section-title">예약 정보</span>
                 <div class="reserve-info-wrap">
@@ -18,68 +20,53 @@
                         <img src="${path}/resources/IMG/reserve-list/default-space.svg" alt="result-img" class="reserve-info-img" />
                     </section>
                     <section class="reserve-info-txt">
-                        <span class="info-company-name">오라운트 스터디룸</span>
+                        <span class="info-company-name">${res.info_obj.company_name}</span>
                         <ul class="info-li-wrap">
                             <li class="info-li">
                                 <label class="info-label">공간 타입</label>
-                                <span class="info-text">데스크</span>
+                                <span class="info-text">${res.info_obj.room_type}</span>
                             </li>
                             <li class="info-li">
                                 <label class="info-label">예약 날짜</label>
-                                <span class="info-text">2022.10.30 10:00 ~ 2022.10.30 12:00</span>
+                                <span class="info-text">${res.info_obj.reserve_sdate} ~ ${res.info_obj.reserve_edate}</span>
                             </li>
                             <li class="info-li">
                                 <label class="info-label">공간 이름</label>
-                                <span class="info-text">101호 1인 데스크</span>
+                                <span class="info-text">${res.info_obj.room_name}</span>
                             </li>
                             <li class="info-li">
                                 <label class="info-label">공간 가격</label>
-                                <span class="info-text">10,000원/시간</span>
+                                <span class="info-text">${res.info_obj.room_price}원/시간</span>
                             </li>
                         </ul>
                     </section>
                 </div>
             </section>
-            <section class="user-host-info-section">
-                <section class="uh-info-section">
-                    <span class="person-type-title">예약자 정보</span>
-                    <div class="uh-info-wrap">
-                        <ul>
-                            <li class="host-info-li">
-                                <label class="uh-label">예약자</label>
-                                <span class="uh-text">전판근</span>
-                            </li>
-                            <li class="host-info-li">
-                                <label  class="uh-label">연락처</label>
-                                <span class="uh-text">010-1234-5678</span>
-                            </li>
-                            <li class="host-info-li">
-                                <label  class="uh-label">이메일</label>
-                                <span class="uh-text">asdc@naver.com</span>
-                            </li>
-                        </ul>
-                    </div>
-                </section>
-                <section class="uh-info-section">
-                    <span class="person-type-title">호스트 정보</span>
-                    <div class="uh-info-wrap">
-                        <ul>
-                            <li class="host-info-li">
-                                <label class="uh-label">사업자명</label>
-                                <span class="uh-text">오라운트</span>
-                            </li>
-                            <li class="host-info-li">
-                                <label  class="uh-label">위치</label>
-                                <span class="uh-text">경기도 광주시 오포읍 양벌로 320-4 (오라운트)</span>
-                            </li>
-                            <li class="host-info-li">
-                                <label  class="uh-label">연락처</label>
-                                <span class="uh-text">010-1234-5678 aaa@gmail.com</span>
-                            </li>
-                        </ul>
-                    </div>
-                </section>
+            <!-- END RESERVE-INFO-SECTION  -->
+            
+            <!-- START UH-INFO-SECTION  -->
+            <section class="uh-info-section">
+                <span class="person-type-title">호스트 정보</span>
+                <div class="uh-info-wrap">
+                    <ul>
+                        <li class="host-info-li">
+                            <label class="uh-label">사업자명</label>
+                            <span class="uh-text">${res.info_obj.backoffice_name}</span>
+                        </li>
+                        <li class="host-info-li">
+                            <label  class="uh-label">위치</label>
+                            <span class="uh-text">${res.info_obj.full_address}</span>
+                        </li>
+                        <li class="host-info-li">
+                            <label  class="uh-label">연락처</label>
+                            <span class="uh-text">${res.info_obj.backoffice_tel} ${res.info_obj.backoffice_email}</span>
+                        </li>
+                    </ul>
+                </div>
             </section>
+            <!-- END UH-INFO-SECTION  -->
+            
+            <!-- START CAREFUL-INFO-SECTION  -->
             <section  class="careful-info-section">
                 <span class="section-title">예약시 주의 사항</span>
 
@@ -93,6 +80,9 @@
                     <li class="section-list">7. 선결제 시, 총 결제 금액의 5%가 마일리지로 적립됩니다.</li>
                 </ul>
             </section>
+            <!-- END CAREFUL-INFO-SECTION  -->
+            
+            <!-- START REFUND-INFO-SECTION  -->
             <section class="refund-info-section">
                 <span class="section-title">환불 규정 안내</span>
                 <ul class="refund-list-wrap">
@@ -110,6 +100,9 @@
                     </li>
                 </ul>
             </section>
+            <!-- END REFUND-INFO-SECTION  -->
+            
+            <!-- START PAYMENT-SECTION  -->
             <section class="payment-section">
                 <span class="section-title">결제 금액 안내</span>
                 <div class="payment-info-wrap">
@@ -117,44 +110,51 @@
                         <ul class="payment-info-li-wrap">
                             <li class="info-li">
                                 <label class="info-label">공간 타입</label>
-                                <span class="info-text">데스크</span>
+                                <span class="info-text">${res.info_obj.room_type}</span>
                             </li>
                             <li class="info-li">
                                 <label class="info-label">예약 날짜</label>
-                                <span class="info-text">2022.10.30 10:00 ~ 2022.10.30 12:00</span>
+                                <span class="info-text">${res.info_obj.reserve_sdate} ~ ${res.info_obj.reserve_edate}</span>
                             </li>
                             <li class="info-li">
                                 <label class="info-label">공간 이름</label>
-                                <span class="info-text">101호 1인 데스크</span>
+                                <span class="info-text">${res.info_obj.room_name}</span>
                             </li>
                             <li class="info-li">
                                 <label class="info-label">공간 가격</label>
-                                <span class="info-text">10,000원/시간</span>
+                                <span class="info-text">${res.info_obj.room_price}원/시간</span>
                             </li>
                         </ul>
                     </section>
                     <section class="pay-mileage-section">
                         <ul class="payment-info-li-wrap">
                             <li class="info-li">
-                                <label class="pay-info-label">총 결제 금액</label>
-                                <span class="pay-info-text">40,000원</span>
+                                <label class="pay-info-label">결제 금액</label>
+                                <span class="pay-info-text">${res.info_obj.actual_payment}원</span>
                             </li>
                             <li class="info-li">
-                                <label class="pay-info-label">마일리지 예상 적립 금액</label>
-                                <span class="pay-info-text">200원</span>
+                                <label class="pay-info-label">마일리지 적립 금액</label>
+                                <span class="pay-info-text">${res.info_obj.mileage_change}원</span>
                             </li>
                         </ul>
                     </section>
                 </div>
             </section>
+            <!-- END PAYMENT-SECTION  -->
+            
+            <!-- START BTN-SECTION  -->
             <section class="btn-section">
-                <div class="pay-btn">
+                <div class="pay-btn" idx="${res.info_obj.reserve_info}">
                     <span>예약 취소</span>
                 </div>
             </section>
+            <!-- END BTN-SECTION  -->
         </div>
+        
+        
         <div id = "footerWrap">
             <h5>© Golfzon Tech Academy, Inc. All rights reserved.</h5>
         </div>
     </section>
+    <!-- END BODY-SEMI-WRAP  -->
 </div>

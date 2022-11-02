@@ -10,6 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +66,7 @@ public class MypageController2 {
 	}
 	
 	/**
-	 * 예약 리스트 이동
+	 * 예약 리스트 이동 - 현재
 	 */
 	@RequestMapping(value = "/reserve_info", method = RequestMethod.GET)
 	public String reserve_info(String reserve_no, Model model) {
@@ -79,13 +82,25 @@ public class MypageController2 {
 		return ".reserve-info";
 	}
 	
+	/**
+	 * 예약 리스트 이동 - 과거
+	 */
 	@RequestMapping(value = "/reserved_info", method = RequestMethod.GET)
-	public String reserved_info(String reserve_no, Model model) {
+	public String reserved_info(String reserve_no, Model model, HttpServletRequest request) {
+		String user_no = null;
+		Cookie[] cookies = request.getCookies();
+		for (Cookie c : cookies) {
+			if (c.getName().equals("user_no")) {
+				user_no = c.getValue();
+			}
+		}
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		ReserveInfoVO vo = service.select_one_reserve_info(reserve_no);
 		map.put("reserve_no", reserve_no);
 		map.put("info_obj", vo);
+		map.put("user_obj", service.select_one_user_info(user_no));
 		model.addAttribute("res", map);
 		
 		logger.info("reserved_info : {}", map);

@@ -67,7 +67,6 @@
 	</delete>
 
 
-	<!-- 나중에 오피스 매퍼로 옮기기 -->
 	<!-- 예약 정보 불러오기 -->
 	<select id="SQL_SELECT_ONE_RESERVE_INFO" resultType="test.com.rence.user.model.ReserveInfoVO">
 		select r.reserve_no, b.company_name, r.room_type, r.reserve_sdate, r.reserve_edate, rm.room_name, rm.room_price,
@@ -82,6 +81,11 @@
 		left join mileage m
 		on p.mileage_no = m.mileage_no
 		where r.reserve_no = #{reserve_no}
+	</select>
+	
+	<!--  예약 정보 불러오기에 필요한 사용자 데이터  -->
+	<select id="SQL_SELECT_ONE_USER_INFO"  resultType="test.com.rence.user.model.UserVO">
+		select user_no, user_name, user_tel, user_email from userinfo where user_no = #{user_no}
 	</select>
 
 </mapper>

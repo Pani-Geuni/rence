@@ -93,6 +93,32 @@ public class MyPageDAOimpl implements MyPageDAO {
 	public ReserveInfoVO select_one_reserve_info(String reserve_no){
 		ReserveInfoVO vo = sqlSession.selectOne("SQL_SELECT_ONE_RESERVE_INFO", reserve_no);		
 		
+		if(vo != null) {
+			if(vo.getRoom_type().equals("office")) vo.setRoom_type("오피스");
+			if(vo.getRoom_type().equals("desk")) vo.setRoom_type("desk");
+			if(vo.getRoom_type().equals("meeting_room")) vo.setRoom_type("회의룸");
+			
+			DecimalFormat dc = new DecimalFormat("###,###,###,###");	
+			String pt = dc.format(Integer.parseInt(vo.getPayment_total()));
+			vo.setPayment_total(pt);
+			
+			String ap = dc.format(Integer.parseInt(vo.getActual_payment()));
+			vo.setActual_payment(ap);
+			
+			String mc = dc.format(Integer.parseInt(vo.getMileage_change()));
+			vo.setMileage_change(mc);
+			
+			String rp = dc.format(Integer.parseInt(vo.getRoom_price()));
+			vo.setRoom_price(rp);
+		}
+		
+		return vo;
+	}
+	
+	@Override
+	public UserVO select_one_user_info(String user_no){
+		UserVO vo = sqlSession.selectOne("SQL_SELECT_ONE_USER_INFO", user_no);		
+		
 		return vo;
 	}
 	
