@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import test.com.rence.backoffice.BackOfficeVO;
 import test.com.rence.dashboard.model.CommentSummaryVO;
+import test.com.rence.dashboard.model.CommentVO;
 import test.com.rence.dashboard.model.ReserveSummaryVO;
 import test.com.rence.dashboard.model.ReserveVO;
 import test.com.rence.dashboard.model.ReviewVO;
@@ -187,13 +188,27 @@ public class DashBoardController {
 		return jsonObject;
 	}
 	
+	/**
+	 * 문의(리스트)
+	 */
 	@RequestMapping(value = "/backoffice_qna", method = RequestMethod.GET)
-	public String dashboard_qna() {
+	public String dashboard_qna(Model model, String backoffice_no) {
+		logger.info("backoffice_qna ()...");
+		logger.info("{}", backoffice_no);
+		List<CommentVO> cvos = service.backoffice_qna_selectAll(backoffice_no);
+		model.addAttribute("c_vos", cvos);
+		model.addAttribute("cnt", cvos.size());
 		return ".dash_board/qna_list";
 	}
 	
+	/**
+	 * 리뷰 (리스트)
+	 */
+
 	@RequestMapping(value = "/backoffice_review", method = RequestMethod.GET)
 	public String dashboard_review(Model model, String backoffice_no) {
+		logger.info("backoffice_review ()...");
+		logger.info("{}", backoffice_no);
 		List<ReviewVO> rvvos = service.backoffice_review_selectAll(backoffice_no);
 		model.addAttribute("rv_vos", rvvos);
 		model.addAttribute("cnt", rvvos.size());
@@ -205,6 +220,8 @@ public class DashBoardController {
 	 */
 	@RequestMapping(value = "/backoffice_reserve", method = RequestMethod.GET)
 	public String dashboard_reserve(Model model, String backoffice_no, String reserve_state) {
+		logger.info("backoffice_reserve ()...");
+		logger.info("{}", backoffice_no);
 		List<ReserveVO> rvos = service.backoffice_reserve_selectAll(backoffice_no,reserve_state);
 		model.addAttribute("r_vos", rvos);
 		model.addAttribute("cnt", rvos.size());
@@ -216,6 +233,8 @@ public class DashBoardController {
 	 */
 	@RequestMapping(value = "/backoffice_search_reserve", method = RequestMethod.GET)
 	public String dashboard_reserve_search(Model model, String backoffice_no, String searchword) {
+		logger.info("backoffice_search_reserve ()...");
+		logger.info("{}", backoffice_no);
 		List<ReserveVO> rvos = service.backoffice_search_reserve(backoffice_no,searchword);
 		model.addAttribute("r_vos", rvos);
 		model.addAttribute("cnt", rvos.size());
@@ -227,6 +246,8 @@ public class DashBoardController {
 	 */
 	@RequestMapping(value = "/backoffice_day_sales", method = RequestMethod.GET)
 	public String dashboard_sales_day(Model model, String backoffice_no, String sales_date) {
+		logger.info("backoffice_day_sales()...");
+		logger.info("{}", backoffice_no);
 		SalesSettlementPreVO svo = service.backoffice_sales_selectOne(backoffice_no,sales_date);
 		List<SalesSettlementVO> svos = service.backoffice_sales_selectAll(backoffice_no);
 		model.addAttribute("svo", svo);

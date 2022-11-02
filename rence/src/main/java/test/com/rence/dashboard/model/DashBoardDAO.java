@@ -48,4 +48,6 @@ public interface DashBoardDAO {
 	public List<ReviewVO> backoffice_review_selectAll(String backoffice_no);
 
 	public RoomVO select_one_room_info(String backoffice_no, String room_no);
+
+	public List<CommentVO> backoffice_qna_selectAll(String backoffice_no);
 }

@@ -5,21 +5,28 @@
 <mapper namespace="test.com.rence.dashboard">
   	
   	<select id="SQL_SELECT_ALL_RESERVE_SUMMARY" resultType="test.com.rence.dashboard.model.ReserveSummaryVO">
-    	select r.reserve_no, r.reserve_sdate, r.reserve_edate, rm.room_name, u.user_name, p.actual_payment, r.reserve_state 
-    	from reserveinfo r left outer join roominfo rm on r.backoffice_no=rm.backoffice_no left outer join paymentinfo p on rm.room_no = p.room_no left outer join userinfo u on p.user_no=u.user_no 
-		where r.backoffice_no=#{backoffice_no} and r.reserve_state!='false' 
-		order by r.reserve_sdate
+  		<![CDATA[
+    	select reserve_no, reserve_sdate, reserve_edate, room_name, user_name, actual_payment, reserve_state  
+		from (
+			select ROW_NUMBER() OVER(PARTITION BY r.reserve_no ORDER BY r.reserve_no ASC ) no, r.reserve_no, r.reserve_sdate, r.reserve_edate, rm.room_name, u.user_name, p.actual_payment, r.reserve_state 
+			from reserveinfo r left outer join userinfo u on r.user_no=u.user_no 
+			left outer join paymentinfo p on u.user_no=p.user_no 
+			left outer join backofficeinfo b on p.backoffice_no = b.backoffice_no 
+			left outer join roominfo rm on b.backoffice_no = rm.backoffice_no
+			where r.backoffice_no=#{backoffice_no} and r.reserve_state!='false')A
+		where A.no=1 and ROWNUM <= 6
+		order by reserve_sdate desc
+		]]> 
   	</select>
 
 	<select id="SQL_SELECT_ALL_COMMENT_SUMMARY" resultType="test.com.rence.dashboard.model.CommentSummaryVO">
 		select c.comment_no, rm.room_name, c.comment_date, c.comment_content
 		from comments c left outer join roominfo rm on c.room_no=rm.room_no 
-		where c.backoffice_no=#{backoffice_no} and c.user_no is not null
-		order by c.comment_date desc
+		where c.backoffice_no=#{backoffice_no} and c.host_no is null and comment_no not in (select mother_no from comments where mother_no is not null)
 	</select>
   	
   	<select id="SQL_SELECT_ONE_PAYMENT_SUMMARY" resultType="test.com.rence.dashboard.model.SalesSettlementSummaryVO">
-  		select * from sales_view where backoffice_no=#{backoffice_no}
+  		select sales_total, sales_cancel from sales_view where trunc(payment_date)=trunc(SYSDATE) and backoffice_no=#{backoffice_no}
   	</select>
   	
   	<select id="SQL_SELECT_ONE_ROOM_SUMMARY" resultType="test.com.rence.dashboard.model.RoomSummaryVO">
@@ -63,7 +70,7 @@
 		where A.no=1
   	</select>
   	
-  	<select id="SQL_SELECT_ONE_SALES" resultType="test.com.rence.dashboard.model.SalesSettlementPreVO">
+  	<select id="SQL_SELECT_SALES" resultType="test.com.rence.dashboard.model.SalesSettlementPreVO">
   		select * from sales_one_view where backoffice_no=#{backoffice_no}
   		<if test="sales_date == 'day'">
   			and payment_date=sysdate

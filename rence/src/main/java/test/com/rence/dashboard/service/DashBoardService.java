@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import test.com.rence.backoffice.BackOfficeVO;
 import test.com.rence.dashboard.model.CommentSummaryVO;
+import test.com.rence.dashboard.model.CommentVO;
 import test.com.rence.dashboard.model.DashBoardDAO;
 import test.com.rence.dashboard.model.ReserveSummaryVO;
 import test.com.rence.dashboard.model.ReserveVO;
@@ -140,6 +141,11 @@ public class DashBoardService {
 	public RoomVO select_one_room_info(String backoffice_no, String room_no) {
 		logger.info("select_one_room_info()...");
 		return dao.select_one_room_info(backoffice_no,room_no);
+	}
+
+	public List<CommentVO> backoffice_qna_selectAll(String backoffice_no) {
+		logger.info("backoffice_qna_selectAll()...");
+		return dao.backoffice_qna_selectAll(backoffice_no);
 	}
 
 }
