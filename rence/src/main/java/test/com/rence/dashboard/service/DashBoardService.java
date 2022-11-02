@@ -126,4 +126,9 @@ public class DashBoardService {
 		return dao.backoffice_updateOK_room(backoffice_no,rvo);
 	}
 
+	public int backoffice_deleteOK_room(String backoffice_no, String room_no) {
+		logger.info("backoffice_deleteOK_room()...");
+		return dao.backoffice_deleteOK_room(backoffice_no,room_no);
+	}
+
 }

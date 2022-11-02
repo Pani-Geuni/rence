@@ -107,7 +107,7 @@ public class DashBoardController {
 	/**
 	 * 공간 추가
 	 */
-	@RequestMapping(value = "/backoffice_insertOK_room ", method = RequestMethod.GET)
+	@RequestMapping(value = "/backoffice_insertOK_room ", method = RequestMethod.POST)
 	@ResponseBody
 	public JSONObject backoffice_insertOK_room (String backoffice_no, RoomVO rvo) {
 		logger.info("backoffice_insertOK_room ()...");
@@ -133,7 +133,7 @@ public class DashBoardController {
 	/**
 	 * 공간 수정
 	 */
-	@RequestMapping(value = "/backoffice_updateOK_room ", method = RequestMethod.GET)
+	@RequestMapping(value = "/backoffice_updateOK_room ", method = RequestMethod.POST)
 	@ResponseBody
 	public JSONObject backoffice_updateOK_room (String backoffice_no, RoomVO rvo) {
 		logger.info("backoffice_updateOK_room ()...");
@@ -142,6 +142,32 @@ public class DashBoardController {
 		JSONObject jsonObject = new JSONObject();
 		
 		int result = service.backoffice_updateOK_room(backoffice_no,rvo);
+		
+		if (result == 1) {
+			logger.info("successed...");
+			jsonObject.put("result", "1");
+		}
+		
+		else {
+			logger.info("failed...");
+			jsonObject.put("result", "0");
+		}
+		
+		return jsonObject;
+	}
+	
+	/**
+	 * 공간 삭제
+	 */
+	@RequestMapping(value = "/backoffice_deleteOK_room ", method = RequestMethod.POST)
+	@ResponseBody
+	public JSONObject backoffice_deleteOK_room (String backoffice_no, String room_no) {
+		logger.info("backoffice_deleteOK_room ()...");
+		logger.info("{}", backoffice_no);
+		
+		JSONObject jsonObject = new JSONObject();
+		
+		int result = service.backoffice_deleteOK_room(backoffice_no,room_no);
 		
 		if (result == 1) {
 			logger.info("successed...");
@@ -214,7 +240,7 @@ public class DashBoardController {
 	/**
 	 * 정산 상태 변경
 	 */
-	@RequestMapping(value = "/backoffice_updateOK_sales", method = RequestMethod.GET)
+	@RequestMapping(value = "/backoffice_updateOK_sales", method = RequestMethod.POST)
 	@ResponseBody
 	public JSONObject backoffice_updateOK_sales(String backoffice_no, String room_no) {
 		logger.info("backoffice_updateOK_sales ()...");

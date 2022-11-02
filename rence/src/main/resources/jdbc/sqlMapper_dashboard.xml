@@ -116,4 +116,24 @@
   			#{room_price})
   		</if>
  	</insert>
+ 	
+ 	<update id="SQL_UPDATE_ROOM" parameterType="test.com.rence.dashboard.model.RoomVO">
+ 		update roominfo set room_name=#{room_name}, room_type=#{room_type}, room_price=
+ 		<if test="room_type == 'desk'">
+  			'10000')
+  		</if>
+  		<if test="room_type == 'meet_04'">
+  			'20000')
+  		</if>
+  		<if test="room_type == 'meet_06'">
+  			'30000')
+  		</if>
+  		<if test="room_type == 'meet_10'">
+  			'50000')
+  		</if>
+  		<if test="room_type == 'office'">
+  			#{room_price})
+  		</if>
+  		where backoffice_no=#{backoffice_no} and room_no=#{room_no}
+ 	</update>
 </mapper>

@@ -43,4 +43,6 @@ public interface DashBoardDAO {
 	public BackOfficeVO select_one_backoffice_info(String backoffice_no);
 
 	public int backoffice_updateOK_room(String backoffice_no, RoomVO rvo);
+
+	public int backoffice_deleteOK_room(String backoffice_no, String room_no);
 }
