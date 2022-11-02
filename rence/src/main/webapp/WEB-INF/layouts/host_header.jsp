@@ -22,8 +22,8 @@
 	             <div class = "custom-select-host blind">
 	                 <ul class="host-select-wrap">
 	                     <li id = "go-login" class="host-select-list">로그인</li>
-	                     <li id = "go-backOffice" class="host-select-list">공간등록신청</li>
-	                     <li id = "go-user-home" class="host-select-list">Rence 이동</li>
+	                     <li id = "go-backOffice" class="host-select-list">호스트등록신청</li>
+	                     <li id = "go-user-home" class="host-select-list">Rence로 이동</li>
 	                 </ul>
 	             </div>
 	         </section>

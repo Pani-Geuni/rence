@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- <section class="board-contentWrap"> -->
 <div class="titleSection">
@@ -11,7 +12,6 @@
 	<div class="cardSection reserve">
 		<div class="card-title">
 			<h3>예약 관리 요약</h3>
-			<p id="reserve-more" class="btn-more">자세히 보기</p>
 		</div>
 		<div class="custom-table">
 			<div class="ct-header">
@@ -19,111 +19,37 @@
 				<div class="ct-header-cell">예약 공간</div>
 				<div class="ct-header-cell">예약자</div>
 				<div class="ct-header-cell">결제 금액</div>
-				<div class="ct-header-cell">취소 여부</div>
+				<div class="ct-header-cell">상태</div>
 			</div>
 			<!-- END ct-header -->
 
 			<div class="ct-body">
-				<div class="ct-body-row">
-					<div class="ct-body-cell">
-						<p>
-							2022-10-23 10:00 ~ <br />2022-10-23 14:00
-						</p>
+				<c:forEach var = "vos" items="${r_vos}">
+					<div class="ct-body-row" idx="${vos.reserve_no}">
+						<div class="ct-body-cell">
+							<p>
+								${vos.reserve_sdate} ~ <br />${vos.reserve_edate}
+							</p>
+						</div>
+						<div class="ct-body-cell">
+							<p>${vos.room_name}</p>
+						</div>
+						<div class="ct-body-cell">
+							<p>${vos.user_name}</p>
+						</div>
+						<div class="ct-body-cell">
+							<p class="reserve-price">${vos.actual_payment}</p>
+						</div>
+						<div class="ct-body-cell">
+							<p>
+								<c:if test = "${vos.reserve_state eq 'begin'}">결제완료</c:if>
+								<c:if test = "${vos.reserve_state eq 'in_use'}">이용중</c:if>
+								<c:if test = "${vos.reserve_state eq 'end'}">이용완료</c:if>
+								<c:if test = "${vos.reserve_state eq 'cancel'}">취소</c:if>
+							</p>
+						</div>
 					</div>
-					<div class="ct-body-cell">
-						<p>101호 1인 데스크</p>
-					</div>
-					<div class="ct-body-cell">
-						<p>전판근</p>
-					</div>
-					<div class="ct-body-cell">
-						<p class="reserve-price">40000</p>
-					</div>
-					<div class="ct-body-cell">
-						<p>예약 중</p>
-					</div>
-				</div>
-				<!-- END ct-body-row -->
-				<div class="ct-body-row">
-					<div class="ct-body-cell">
-						<p>
-							2022-10-23 10:00 ~ <br />2022-10-23 14:00
-						</p>
-					</div>
-					<div class="ct-body-cell">
-						<p>101호 1인 데스크</p>
-					</div>
-					<div class="ct-body-cell">
-						<p>전판근</p>
-					</div>
-					<div class="ct-body-cell">
-						<p class="reserve-price">45000</p>
-					</div>
-					<div class="ct-body-cell">
-						<p>예약 중</p>
-					</div>
-				</div>
-				<!-- END ct-body-row -->
-				<div class="ct-body-row">
-					<div class="ct-body-cell">
-						<p>
-							2022-10-23 10:00 ~ <br />2022-10-23 14:00
-						</p>
-					</div>
-					<div class="ct-body-cell">
-						<p>101호 1인 데스크</p>
-					</div>
-					<div class="ct-body-cell">
-						<p>전판근</p>
-					</div>
-					<div class="ct-body-cell">
-						<p class="reserve-price">40000</p>
-					</div>
-					<div class="ct-body-cell">
-						<p>예약 중</p>
-					</div>
-				</div>
-				<!-- END ct-body-row -->
-				<div class="ct-body-row">
-					<div class="ct-body-cell">
-						<p>
-							2022-10-23 10:00 ~ <br />2022-10-23 14:00
-						</p>
-					</div>
-					<div class="ct-body-cell">
-						<p>101호 1인 데스크</p>
-					</div>
-					<div class="ct-body-cell">
-						<p>전판근</p>
-					</div>
-					<div class="ct-body-cell">
-						<p class="reserve-price">40000</p>
-					</div>
-					<div class="ct-body-cell">
-						<p>예약 중</p>
-					</div>
-				</div>
-				<!-- END ct-body-row -->
-				<div class="ct-body-row">
-					<div class="ct-body-cell">
-						<p>
-							2022-10-23 10:00 ~ <br />2022-10-23 14:00
-						</p>
-					</div>
-					<div class="ct-body-cell">
-						<p>101호 1인 데스크</p>
-					</div>
-					<div class="ct-body-cell">
-						<p>전판근</p>
-					</div>
-					<div class="ct-body-cell">
-						<p class="reserve-price">40000</p>
-					</div>
-					<div class="ct-body-cell">
-						<p>예약 중</p>
-					</div>
-				</div>
-				<!-- END ct-body-row -->
+				</c:forEach>
 			</div>
 			<!-- END ct-body -->
 		</div>
@@ -136,58 +62,20 @@
 			<h3>최신 문의 내역</h3>
 		</div>
 		<div class="comment-list">
-			<div class="comment-item">
-				<div class="comment-title">
-					<p>101호 개인 데스크</p>
-					<p>2022.10.24</p>
+			<c:forEach var = "vos" items="${c_vos}">
+				<div class="comment-item" idx="${vos.comment_no}">
+					<div class="comment-title">
+						<p>${vos.room_name}</p>
+						<p>${vos.comment_date}</p>
+					</div>
+					<!-- END comment-title -->
+					<div class="comment-content">
+						<p>${vos.comment_content}</p>
+					</div>
 				</div>
-				<!-- END comment-title -->
-				<div class="comment-content">
-					<p>나, 문희 나, 문희 나, 문희 나, 문희 나, 문희 나, 문희 나, 문희나, 문희 나, 문희 나, 문희
-						나, 문희 나, 문희 나, 문희 나, 문희나, 문희 나, 문희 나, 문희 나, 문희 나, 문희 나, 문희 나, 문희나,
-						문희 나, 문희 나, 문희 나, 문희 나, 문희 나, 문희 나, 문희</p>
-				</div>
-			</div>
-			<!-- END comment-item -->
-			<div class="comment-item">
-				<div class="comment-title">
-					<p>101호 개인 데스크</p>
-					<p>2022.10.24</p>
-				</div>
-				<!-- END comment-title -->
-				<div class="comment-content">
-					<p>나, 문희 나, 문희 나, 문희 나, 문희 나, 문희 나, 문희 나, 문희나, 문희 나, 문희 나, 문희
-						나, 문희 나, 문희 나, 문희 나, 문희나, 문희 나, 문희 나, 문희 나, 문희 나, 문희 나, 문희 나, 문희나,
-						문희 나, 문희 나, 문희 나, 문희 나, 문희 나, 문희 나, 문희</p>
-				</div>
-			</div>
-			<!-- END comment-item -->
-			<div class="comment-item">
-				<div class="comment-title">
-					<p>101호 개인 데스크</p>
-					<p>2022.10.24</p>
-				</div>
-				<!-- END comment-title -->
-				<div class="comment-content">
-					<p>나, 문희 나, 문희 나, 문희 나, 문희 나, 문희 나, 문희 나, 문희나, 문희 나, 문희 나, 문희
-						나, 문희 나, 문희 나, 문희 나, 문희나, 문희 나, 문희 나, 문희 나, 문희 나, 문희 나, 문희 나, 문희나,
-						문희 나, 문희 나, 문희 나, 문희 나, 문희 나, 문희 나, 문희</p>
-				</div>
-			</div>
-			<!-- END comment-item -->
-			<div class="comment-item">
-				<div class="comment-title">
-					<p>101호 개인 데스크</p>
-					<p>2022.10.24</p>
-				</div>
-				<!-- END comment-title -->
-				<div class="comment-content">
-					<p>나, 문희 나, 문희 나, 문희 나, 문희 나, 문희 나, 문희 나, 문희나, 문희 나, 문희 나, 문희
-						나, 문희 나, 문희 나, 문희 나, 문희나, 문희 나, 문희 나, 문희 나, 문희 나, 문희 나, 문희 나, 문희나,
-						문희 나, 문희 나, 문희 나, 문희 나, 문희 나, 문희 나, 문희</p>
-				</div>
-			</div>
-			<!-- END comment-item -->
+				<!-- END comment-item -->
+			</c:forEach>
+			
 		</div>
 		<!-- END comment-list -->
 	</div>
@@ -199,23 +87,22 @@
 	<div class="cardSection sales">
 		<div class="card-title">
 			<h3>일일 정산 요약</h3>
-			<p id="sales-more" class="btn-more">자세히 보기</p>
 		</div>
 
 		<div class="sales-list">
 			<div class="sales-item">
 				<p>매출 순이익</p>
-				<span class="sales-income">2134000</span>
+				<span class="sales-income">${svo.sales_income}</span>
 			</div>
 			<!-- END sales-item -->
 			<div class="sales-item">
 				<p>매출액</p>
-				<span class="sales-revenue">21879000</span>
+				<span class="sales-revenue">${svo.sales_total}</span>
 			</div>
 			<!-- END sales-item -->
 			<div class="sales-item">
 				<p>취소 금액</p>
-				<span class="sales-cancel">539000</span>
+				<span class="sales-cancel">${svo.sales_cancel}</span>
 			</div>
 			<!-- END sales-item -->
 		</div>
@@ -230,12 +117,12 @@
 			<div class="summary-list-row">
 				<div class="summary-list-item">
 					<p>별점</p>
-					<span>4.3</span>
+					<span>${rmvo.review_point}</span>
 				</div>
 				<!-- END summary-list-item -->
 				<div class="summary-list-item">
 					<p>총 예약</p>
-					<span class="reserve-count">123456</span>
+					<span class="reserve-count">${rmvo.reserve_no}</span>
 				</div>
 				<!-- END summary-list-item -->
 			</div>
@@ -243,12 +130,12 @@
 			<div class="summary-list-row">
 				<div class="summary-list-item">
 					<p>문의</p>
-					<span class="qna-count">3456</span>
+					<span class="qna-count">${rmvo.comment_no}</span>
 				</div>
 				<!-- END summary-list-item -->
 				<div class="summary-list-item">
 					<p>후기</p>
-					<span class="review-count">1024</span>
+					<span class="review-count">${rmvo.review_no}</span>
 				</div>
 				<!-- END summary-list-item -->
 			</div>

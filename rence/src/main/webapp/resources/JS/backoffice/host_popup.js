@@ -1,79 +1,88 @@
 /**
-* @author : 전판근
+* @author : 전판근, 김예은
 */
-
 $(function () {
+  // 공용 알러트 창 닫기버튼
+  $("#common-alert-btn").click(function(){
+    $(".popup-background:eq(1)").addClass("blind");
+    $("#common-alert-popup").addClass("blind");
+  });
 
-  // HOST LOGIN 관련 팝업 JS
-  $('#login-btn').click(function () {
-    $('#login-section').addClass('blind');
-    $('.popup-background:eq(0)').addClass('blind');
-  })
+  /******************************* */
+  /***********로그인 팝업 ********* */
+  /******************************* */
+  $(".login-popup-input").click(function(){
+    if($(this).hasClass("null-input-border")){
+        $(this).removeClass("null-input-border");
+    }
+  });
+  $("#login-btn").click(function(){
+    if($("#login-id").val().trim().length == 0){
+      $("#login-id").addClass("null-input-border");
+    }
+    if($("#login-pw").val().trim().length == 0){
+      $("#login-pw").addClass("null-input-border");
+    }
+
+    if($("#login-id").val().trim().length > 0 && $("#login-pw").val().trim().length > 0){
+      $.ajax({
+        url : "/rence/backoffice_loginOK",
+        type : "POST",
+        dataType : 'json',
+        data : {
+          backoffice_id : $("#login-id").val().trim(),
+          backoffice_pw : CryptoJS.SHA256($("#login-pw").val().trim()).toString()
+        },
+        success : function(res) {
+            // 로그인 성공
+            if(res.result == 1){
+                //INPUT 초기화
+                $("#login-id").val("");
+                $("#login-pw").val("");
+
+                $("#login-id").removeClass("null-input-border");
+                $("#login-pw").removeClass("null-input-border");
+
+                // 팝업 관련창 닫음
+                $('.popup-background:eq(0)').removeClass('blind');
+                $('#login-section').removeClass('blind');
+
+                location.reload();
+            }else{
+                $(".popup-background:eq(1)").removeClass("blind");
+                $("#common-alert-popup").removeClass("blind");
+                $(".common-alert-txt").text("로그인에 실패하였습니다.");
+            }
+        },
+        error : function(error) {
+            console.log(error);
+            $(".popup-background:eq(1)").removeClass("blind");
+            $("#common-alert-popup").removeClass("blind");
+            $(".common-alert-txt").text("오류 발생으로 인해 처리에 실패하였습니다.");
+        }
+    });
+    }
+  });
   $('#join-btn').click(function () {
-    $('#join-section').addClass('blind');
-    $('.popup-background:eq(0)').addClass('blind');
+    $('#join-section').addClass('blind')
+    $('.popup-background:eq(0)').addClass('blind')
   })
 
   $('#success-alert-btn').click(function () {
-    $('.popup-background').addClass('blind');
-    $('#success-alert-popup').addClass('blind');
+    $('.popup-background').addClass('blind')
+    $('#success-alert-popup').addClass('blind')
   })
   $('#fail-alert-btn').click(function () {
-    $('.popup-background').addClass('blind');
-    $('#fail-alert-popup').addClass('blind');
+    $('.popup-background:eq(1)').addClass('blind')
+    $('#fail-alert-popup').addClass('blind')
   })
 
   $('#logout-closeBtn').click(function () {
-    $('#logout-popup').addClass('blind');
-    $('.popup-background:eq(0)').addClass('blind');
+    $('#logout-popup').addClass('blind')
+    $('.popup-background:eq(0)').addClass('blind')
   })
-  
-  // 비밀번호 찾기 버튼 클릭
-  $('#go-find-pw').click(function () {
-    //INPUT 초기화
-    $("#login-id").val("");
-    $("#login-pw").val("");
 
-    $("#login-id").removeClass("null-input-border");
-    $("#login-pw").removeClass("null-input-border");
-
-    // 팝업 관련창 닫음
-    $("#login-section").addClass("blind");
-    
-    $("#find-pw-section").removeClass("blind");
-    
-    // $(".popup-background:eq(0)").addClass("blind");
-  })
-  
-  //창닫기 찾기 버튼 클릭 이벤트
-  $(".login-close").click(function(){
-      //INPUT 초기화
-      $("#login-id").val("");
-      $("#login-pw").val("");
-
-      $("#login-id").removeClass("null-input-border");
-      $("#login-pw").removeClass("null-input-border");
-
-      // 팝업 관련창 닫음
-      $("#login-section").addClass("blind");
-      $(".popup-background:eq(0)").addClass("blind");
-  });
-  
-  $(".find-pw-close").click(function () {
-  	  //INPUT 초기화
-      $("#find-pw-email").val("");
-      $("#find-guide-text").val("");
-
-      $("#find-pw-email").removeClass("null-input-border");
-      $("#find-guide-text").removeClass("null-input-border");
-
-      // 팝업 관련창 닫음
-      $("#find-pw-section").addClass("blind");
-      $(".popup-background:eq(0)").addClass("blind");
-  })
-  
-  // Dash Board 팝업 JS
-$('#btn-room-add').click(function () {
+  $('#btn-room-add').click(function () {
     $('#room-insert-section').removeClass('blind')
     $('.popup-background').removeClass('blind')
   })
@@ -155,5 +164,4 @@ $('#btn-room-add').click(function () {
     $('#host-delete-popup').addClass('blind')
     $('.popup-background').addClass('blind')
   })
-  
-})
+});
