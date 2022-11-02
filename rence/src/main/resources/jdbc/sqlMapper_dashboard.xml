@@ -89,12 +89,16 @@
   		update paymentinfo set sales_state='T' where backoffice_no=#{backoffice_no} and room_no=#{room_no}
   	</update>
   	
-  	<select id="SQL_SELECT_ALL_ROOM" resultType="test.com.rence.dashboard.model.roomVO">
+  	<select id="SQL_SELECT_ALL_ROOM" resultType="test.com.rence.dashboard.model.RoomVO">
   		select * from roominfo where backoffice_no=#{backoffice_no} order by reserve_sdate desc
   	</select>
+  	
+  	<select id="SQL_SELECT_ONE_BACKOFFICE_INFO" resultType="test.com.rence.backoffice.BackOfficeVO">
+  		select * from backofficeinfo where backoffice_no=#{backoffice_no}
+  	</select>
   
- 	<insert id="SQL_INSERT_ROOM" parameterType="test.com.rence.dashboard.model.roomVO">
- 		insert into roominfo(room_no,room_name,room_type,room_price) values('RM'||seq_room.nextval,#{room_name},#{room_type},
+ 	<insert id="SQL_INSERT_ROOM" parameterType="test.com.rence.dashboard.model.RoomVO">
+ 		insert into roominfo(room_no,room_name,room_type,backoffice_no,room_price) values('RM'||seq_room.nextval,#{room_name},#{room_type},#{backoffice_no},
  		
   		<if test="room_type == 'desk'">
   			'10000')
