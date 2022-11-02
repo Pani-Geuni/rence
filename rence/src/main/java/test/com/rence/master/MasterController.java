@@ -64,9 +64,15 @@ public class MasterController {
 
 		if (mvo2 != null) {
 			session.setAttribute("master_no", mvo2.getMaster_no());
+			Cookie cookie_1 = new Cookie("master_no", mvo2.getMaster_no());
+			session.setAttribute("master_id", mvo2.getMaster_id());
+			Cookie cookie_2 = new Cookie("master_id", mvo2.getMaster_id());
+			session.setAttribute("master_pw", mvo2.getMaster_pw());
+			Cookie cookie_3 = new Cookie("master_pw", mvo2.getMaster_pw());
 			
-			Cookie cookie = new Cookie("master_no", mvo2.getMaster_no());
-			response.addCookie(cookie);
+			response.addCookie(cookie_1);
+			response.addCookie(cookie_2);
+			response.addCookie(cookie_3);
 			
 			// 로그인 성공
 			jsonObject.put("result", "1");

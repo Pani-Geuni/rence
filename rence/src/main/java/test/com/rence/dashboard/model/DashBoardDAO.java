@@ -8,6 +8,7 @@ package test.com.rence.dashboard.model;
 import java.util.List;
 
 import test.com.rence.backoffice.BackOfficeVO;
+import test.com.rence.office.model.OfficeInfoVO;
 
 public interface DashBoardDAO {
 
@@ -38,4 +39,6 @@ public interface DashBoardDAO {
 	public List<RoomVO> dashboard_room_list(String backoffice_no);
 
 	public int backoffice_insertOK_room(String backoffice_no, RoomVO rvo);
+
+	public OfficeInfoVO select_one_backoffice_info(String backoffice_no);
 }
