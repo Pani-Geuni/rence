@@ -40,6 +40,10 @@
 	    <script src="${path}/resources/JS/office/space_detail_introduce.js"></script>
     </c:if>
     <c:if test="${page eq 'space_introduce_detail_office'}">
+	    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		
 		<link rel="stylesheet" href="${path}/resources/CSS/office/space-detail-introduce-office.css" />
 	    <script src="${path}/resources/JS/office/space_detail_introduce_office.js"></script>
     </c:if>
