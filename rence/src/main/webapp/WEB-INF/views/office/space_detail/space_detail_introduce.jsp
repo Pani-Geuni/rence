@@ -370,7 +370,7 @@
 					<!-- 타입 셀렉트 열 때 open-select클래스 add해야함 -->
 					<!-- 타입 셀렉트 닫을 때 open-select클래스 remove해야함 -->
 					<div class="type-border">
-						<span class="type-border-txt">타입을 선택해주세요.</span> 
+						<span id="type-choice-value" class="type-border-txt" room_no="${ rvo.room_no }">타입을 선택해주세요.</span> 
 						<img src="${path}/resources/IMG/office/full-dropdown.svg" alt="full-dropdown" class="full-dropdown"></img>
 					</div>
 
@@ -378,7 +378,7 @@
 					<ul class="custom-select-type blind">
 						<c:forEach var="rvo" items="${ rvos }">
 							<li class="custom-select-type-list">
-								<span class="room-name"> ${ rvo.room_name } (${ rvo.room_type }) </span> 
+								<span class="room-name" room_no="${ rvo.room_no }"> ${ rvo.room_name } (${ rvo.room_type }) </span> 
 								<span class="room-price-unit"> 
 									<span class="room-price-big"> ${ rvo.room_price} 원</span> 
 									<span class="room-unit-small"> /시간 </span> 

@@ -65,6 +65,10 @@ $(function(){
   $(".custom-select-type-list").click(function(){
     $(".type-border-txt").text($(this).children(".room-name").text());
     $(".type-border-txt").prop("check", true);
+    
+    let attr_room_no = $(this).children(".room-name").attr("room_no");
+    $("#type-choice-value").attr("room_no", attr_room_no);
+    
     $(".custom-select-type").addClass("blind");
     $(".type-border").removeClass("open-select");
   });
@@ -75,6 +79,52 @@ $(function(){
     if($(".type-border-txt").prop("check")){
       if($(".time-input:eq(0)").val() != '' && $(".time-input:eq(1)").val() != ''){
         // 예약 가능 확인 로직
+
+        // ================
+        // 예약 가능 테스트 코드
+        // ================
+        
+        let query = location.search;
+        let param = new URLSearchParams(query);
+        let backoffice_no = param.get('backoffice_no');
+        let room_no = $("#type-choice-value").attr("room_no");
+        let reserve_stime = $(".time-input:eq(0)").val();
+        let reserve_etime = $(".time-input:eq(1)").val();
+        
+        console.log("room no :: ", room_no);
+        
+        $.ajax({
+        	url : "/rence/reserve_checkOK",
+        	type : "GET",
+        	dataType : "json",
+        	data : {
+        		reserve_stime : reserve_stime,
+        		reserve_etime : reserve_etime,
+        		room_no : room_no,
+        		backoffice_no : backoffice_no,
+        		user_no : $.cookie("user_no")
+        	},
+        	
+        	success : function(res) {
+        		
+				if (res.result == 1) {
+					console.log("success");
+					// location.href = "/rence/"
+				} else if (res.result == 0) {
+					console.log("fail");
+					$(".fixed-popup").removeClass("blind");
+        			$(".using-time-fail-txt").html("해당 시간은 예약 할 수 없습니다.");
+				}
+        	},
+        	error : function(error) {
+        		console.log(error)
+        	}
+        	
+        });
+        
+        // ==================
+        // 예약 가능 테스트 코드 끝
+        // ==================
       }
       // 예약 타입 선택 O, 체크인 or 체크아웃 시간 X
       else{

@@ -1,5 +1,6 @@
 package test.com.rence.office.service;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,6 +12,7 @@ import test.com.rence.office.model.OfficeCommentsVO;
 import test.com.rence.office.model.OfficeInfoDAO;
 import test.com.rence.office.model.OfficeInfoVO;
 import test.com.rence.office.model.OfficeOperatingTimeVO_date;
+import test.com.rence.office.model.OfficeReserveVO;
 import test.com.rence.office.model.OfficeReviewVO;
 import test.com.rence.office.model.OfficeRoomVO;
 
@@ -65,5 +67,12 @@ public class OfficeService {
 		return vos;
 	}
 	
+	public int check_reserve(OfficeReserveVO vo) throws ParseException {
+		logger.info("check_reserve()...");
+		
+		int result = dao.check_reserve(vo);
+		
+		return result;
+	}
 	
 }
