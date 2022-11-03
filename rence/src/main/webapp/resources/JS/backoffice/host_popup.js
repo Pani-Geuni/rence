@@ -227,7 +227,7 @@ $(function () {
     $('#insert-room-type-label').text(type);
     $('#insert-room-type-label').css('color', '#000000');
     $('.insert-type-select-list').addClass('blind');
-  })
+  });
 
   $('.edit-type-select-item').on('click', function(){
     let type = $(this).text();
@@ -235,12 +235,12 @@ $(function () {
     $('#edit-room-type-label').text(type);
     $('#edit-room-type-label').css('color', '#000000');
     $('.edit-type-select-list').addClass('blind');
-  })
+  });
 
   // 리뷰 답글 작성
   $('.review-add').on('click', function(){
     $('#comment-section').removeClass('blind');
-    $('.popup-background:eq(0)').addClass('blind');
+    $('.popup-background:eq(0)').removeClass('blind');
   });
 
   $('.btn-comment-cancel').on('click', function(){
@@ -248,10 +248,12 @@ $(function () {
     $('.popup-background:eq(0)').addClass('blind');
   });
 
-  // 환경 설정 부분 팝업 관련
+  /** *********************** **/ 
+  /** 환경 설정 부분 팝업 관련 **/ 
+  /** *********************** **/ 
   $('#btn-update-pw').on('click', function(){
     $('#popup-update-pw').removeClass('blind');
-    $('.popup-background:eq(0)').addClass('blind');
+    $('.popup-background:eq(0)').removeClass('blind');
   });
 
   $('#btn-popup-close').on('click', function(){
@@ -261,7 +263,7 @@ $(function () {
 
   $('#btn-host-delete').on('click', function(){
     $('#host-delete-popup').removeClass('blind');
-    $('.popup-background:eq(0)').addClass('blind');
+    $('.popup-background:eq(0)').removeClass('blind');
   });
 
   $('#delete-closeBtn').on('click', function(){
