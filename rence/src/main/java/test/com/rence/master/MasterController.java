@@ -5,6 +5,7 @@
  */
 package test.com.rence.master;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -153,10 +154,11 @@ public class MasterController {
 
 	/**
 	 * 마스터 가입 승인
+	 * @throws UnsupportedEncodingException 
 	 */
 	@RequestMapping(value = "/master_grant", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject master_grant(Model model, BackOfficeVO bvo, EmailVO evo) {
+	public JSONObject master_grant(Model model, BackOfficeVO bvo, EmailVO evo) throws UnsupportedEncodingException {
 		logger.info("BackOfficeVO:{}", bvo);
 		JSONObject jsonObject = new JSONObject();
 		logger.info("jsonObject : {}", jsonObject);

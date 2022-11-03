@@ -318,15 +318,18 @@ public class DashBoardController {
 	 * 정산 관리(리스트)
 	 */
 	@RequestMapping(value = "/backoffice_day_sales", method = RequestMethod.GET)
+	
 	public String dashboard_sales_day(Model model, String backoffice_no, String sales_date) {
 		logger.info("backoffice_day_sales()...");
 		logger.info("{}", backoffice_no);
+		
 		SalesSettlementPreVO svo = service.backoffice_sales_selectOne(backoffice_no, sales_date);
-		List<SalesSettlementVO> svos = service.backoffice_sales_selectAll(backoffice_no);
 		model.addAttribute("svo", svo);
+		model.addAttribute("sales_date",sales_date);
+		
+		List<SalesSettlementVO> svos = service.backoffice_sales_selectAll(backoffice_no);
 		model.addAttribute("s_vos", svos);
 		model.addAttribute("cnt", svos.size());
-		model.addAttribute("sales_date",sales_date);
 		return ".dash_board/sales_day";
 	}
 
