@@ -142,6 +142,6 @@ dl{
     margin-left: 10px;
 }
 
-.ui-timepicker-select.ui-state-default.ui-corner-all>option:not(:first-child){
+.ui_tpicker_minute_slider>.ui-timepicker-select.ui-state-default.ui-corner-all>option:not(:first-child){
     display: none;
 }
