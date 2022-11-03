@@ -7,12 +7,12 @@ public class CommentSummaryVO implements Serializable{
 
 	private String comment_no;
 	private String room_name;
-	private Date comment_date;
+	private String comment_date;
 	private String comment_content;
 	
 	public CommentSummaryVO() {}
 
-	public CommentSummaryVO(String comment_no, String room_name, Date comment_date, String comment_content) {
+	public CommentSummaryVO(String comment_no, String room_name, String comment_date, String comment_content) {
 		super();
 		this.comment_no = comment_no;
 		this.room_name = room_name;
@@ -36,11 +36,11 @@ public class CommentSummaryVO implements Serializable{
 		this.room_name = room_name;
 	}
 
-	public Date getComment_date() {
+	public String getComment_date() {
 		return comment_date;
 	}
 
-	public void setComment_date(Date comment_date) {
+	public void setComment_date(String comment_date) {
 		this.comment_date = comment_date;
 	}
 
@@ -50,12 +50,6 @@ public class CommentSummaryVO implements Serializable{
 
 	public void setComment_content(String comment_content) {
 		this.comment_content = comment_content;
-	}
-
-	@Override
-	public String toString() {
-		return "CommentSummaryVO [comment_no=" + comment_no + ", room_name=" + room_name + ", comment_date="
-				+ comment_date + ", comment_content=" + comment_content + "]";
 	}
 
 	@Override
@@ -100,6 +94,11 @@ public class CommentSummaryVO implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "CommentSummaryVO [comment_no=" + comment_no + ", room_name=" + room_name + ", comment_date="
+				+ comment_date + ", comment_content=" + comment_content + "]";
+	}
+
 }

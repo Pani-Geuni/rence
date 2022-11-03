@@ -11,8 +11,8 @@ import java.util.Date;
 public class ReserveVO implements Serializable {
 
 	private String reserve_no;
-	private Date reserve_sdate;
-	private Date reserve_edate;
+	private String reserve_sdate;
+	private String reserve_edate;
 	private String reserve_state;
 	private String room_name;
 	private String user_name;
@@ -23,8 +23,9 @@ public class ReserveVO implements Serializable {
 	
 	public ReserveVO() {}
 
-	public ReserveVO(String reserve_no, Date reserve_sdate, Date reserve_edate, String reserve_state, String room_name,
-			String user_name, String user_tel, String user_email, String actual_payment, String payment_state) {
+	public ReserveVO(String reserve_no, String reserve_sdate, String reserve_edate, String reserve_state,
+			String room_name, String user_name, String user_tel, String user_email, String actual_payment,
+			String payment_state) {
 		super();
 		this.reserve_no = reserve_no;
 		this.reserve_sdate = reserve_sdate;
@@ -46,19 +47,19 @@ public class ReserveVO implements Serializable {
 		this.reserve_no = reserve_no;
 	}
 
-	public Date getReserve_sdate() {
+	public String getReserve_sdate() {
 		return reserve_sdate;
 	}
 
-	public void setReserve_sdate(Date reserve_sdate) {
+	public void setReserve_sdate(String reserve_sdate) {
 		this.reserve_sdate = reserve_sdate;
 	}
 
-	public Date getReserve_edate() {
+	public String getReserve_edate() {
 		return reserve_edate;
 	}
 
-	public void setReserve_edate(Date reserve_edate) {
+	public void setReserve_edate(String reserve_edate) {
 		this.reserve_edate = reserve_edate;
 	}
 
@@ -102,11 +103,11 @@ public class ReserveVO implements Serializable {
 		this.user_email = user_email;
 	}
 
-	public String getactual_payment() {
+	public String getActual_payment() {
 		return actual_payment;
 	}
 
-	public void setactual_payment(String actual_payment) {
+	public void setActual_payment(String actual_payment) {
 		this.actual_payment = actual_payment;
 	}
 
@@ -122,8 +123,8 @@ public class ReserveVO implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((payment_state == null) ? 0 : payment_state.hashCode());
 		result = prime * result + ((actual_payment == null) ? 0 : actual_payment.hashCode());
+		result = prime * result + ((payment_state == null) ? 0 : payment_state.hashCode());
 		result = prime * result + ((reserve_edate == null) ? 0 : reserve_edate.hashCode());
 		result = prime * result + ((reserve_no == null) ? 0 : reserve_no.hashCode());
 		result = prime * result + ((reserve_sdate == null) ? 0 : reserve_sdate.hashCode());
@@ -144,15 +145,15 @@ public class ReserveVO implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		ReserveVO other = (ReserveVO) obj;
-		if (payment_state == null) {
-			if (other.payment_state != null)
-				return false;
-		} else if (!payment_state.equals(other.payment_state))
-			return false;
 		if (actual_payment == null) {
 			if (other.actual_payment != null)
 				return false;
 		} else if (!actual_payment.equals(other.actual_payment))
+			return false;
+		if (payment_state == null) {
+			if (other.payment_state != null)
+				return false;
+		} else if (!payment_state.equals(other.payment_state))
 			return false;
 		if (reserve_edate == null) {
 			if (other.reserve_edate != null)
@@ -204,7 +205,6 @@ public class ReserveVO implements Serializable {
 				+ user_name + ", user_tel=" + user_tel + ", user_email=" + user_email + ", actual_payment="
 				+ actual_payment + ", payment_state=" + payment_state + "]";
 	}
-	
-	
+
 	
 }

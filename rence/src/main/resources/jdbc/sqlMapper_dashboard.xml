@@ -20,7 +20,7 @@
   	</select>
 
 	<select id="SQL_SELECT_ALL_COMMENT_SUMMARY" resultType="test.com.rence.dashboard.model.CommentSummaryVO">
-		select c.comment_no, rm.room_name, c.comment_date, c.comment_content
+		select c.comment_no, rm.room_name,TO_CHAR(c.comment_date, 'YYYY-MM-DD HH24:MI:SS') as comment_date, c.comment_content
 		from comments c left outer join roominfo rm on c.room_no=rm.room_no 
 		where c.backoffice_no=#{backoffice_no} and c.host_no is null and comment_no not in (select mother_no from comments where mother_no is not null)
 	</select>
@@ -39,7 +39,7 @@
   	
   	<select id="SQL_SELECT_ALL_B_RESERVE" resultType="test.com.rence.dashboard.model.ReserveVO" parameterType="hashmap">
   		select * from (
-			select ROW_NUMBER() OVER(PARTITION BY rv.reserve_no ORDER BY rv.reserve_no ASC ) no, rv.reserve_no, rv.reserve_sdate, rv.reserve_edate, rm.room_name, u.user_name, u.user_tel, u.user_email, p.actual_payment, p.payment_state
+			select ROW_NUMBER() OVER(PARTITION BY rv.reserve_no ORDER BY rv.reserve_no ASC ) no, rv.reserve_no, TO_CHAR(reserve_sdate, 'YYYY-MM-DD HH24:MI:SS') as reserve_sdate, TO_CHAR(reserve_edate, 'YYYY-MM-DD HH24:MI:SS') as reserve_edate, rm.room_name, u.user_name, u.user_tel, u.user_email, p.actual_payment, p.payment_state
 			from reserveinfo rv left outer join roominfo rm on rv.room_no=rm.room_no 
 			left outer join paymentinfo p on rm.room_no=p.room_no
 			left outer join userinfo u on p.user_no=u.user_no 
@@ -62,7 +62,7 @@
   	
   	<select id="SQL_SELECT_ALL_B_RESERVE_SEARCH" resultType="test.com.rence.dashboard.model.ReserveVO" parameterType="hashmap">
   		select * from (
-			select ROW_NUMBER() OVER(PARTITION BY rv.reserve_no ORDER BY rv.reserve_no ASC ) no, rv.reserve_no, rv.reserve_sdate, rv.reserve_edate, rm.room_name, u.user_name, u.user_tel, u.user_email, p.actual_payment, p.payment_state
+			select ROW_NUMBER() OVER(PARTITION BY rv.reserve_no ORDER BY rv.reserve_no ASC ) no, rv.reserve_no, TO_CHAR(reserve_sdate, 'YYYY-MM-DD HH24:MI:SS') as reserve_sdate, TO_CHAR(reserve_edate, 'YYYY-MM-DD HH24:MI:SS') as reserve_edate, rm.room_name, u.user_name, u.user_tel, u.user_email, p.actual_payment, p.payment_state
 			from reserveinfo rv left outer join roominfo rm on rv.room_no=rm.room_no 
 			left outer join paymentinfo p on rm.room_no=p.room_no
 			left outer join userinfo u on p.user_no=u.user_no 
@@ -71,20 +71,31 @@
   	</select>
   	
   	<select id="SQL_SELECT_SALES" resultType="test.com.rence.dashboard.model.SalesSettlementPreVO">
-  		select * from sales_one_view where backoffice_no=#{backoffice_no}
+  		select * from sales_view where backoffice_no=#{backoffice_no}
   		<if test="sales_date == 'day'">
-  			and payment_date=sysdate
+  			and trunc(payment_date)=trunc(SYSDATE)
   		</if>
   		<if test="sales_date == 'week'">
-  			and payment_date between add_months(sysdate,-1) and sysdate
+  			and trunc(payment_date) between add_months(trunc(SYSDATE),-1) and trunc(SYSDATE)
   		</if>
   		<if test="sales_date == 'month'">
-  			and payment_date between sysdate - interval '7' day and sysdate
+  			and trunc(payment_date) between trunc(SYSDATE) - interval '7' day and trunc(SYSDATE)
+  		</if>
+  		union
+  		select * from sales_view where backoffice_no=#{backoffice_no}
+  		<if test="sales_date == 'day'">
+  			and trunc(payment_date)=trunc(SYSDATE)
+  		</if>
+  		<if test="sales_date == 'week'">
+  			and trunc(payment_date) between trunc(SYSDATE) - interval '7' day and trunc(SYSDATE)
+  		</if>
+  		<if test="sales_date == 'month'">
+  			and trunc(payment_date) between add_months(trunc(SYSDATE),-1) and trunc(SYSDATE)
   		</if>
   	</select>
   	
   	<select id="SQL_SELECT_ALL_SALES" resultType="test.com.rence.dashboard.model.SalesSettlementPreVO">
-  		select reserve_sdate, reserve_edate, room_name, actual_payment, payment_state, sales_state from(
+  		select TO_CHAR(reserve_sdate, 'YYYY-MM-DD HH24:MI:SS') as reserve_sdate, TO_CHAR(reserve_edate, 'YYYY-MM-DD HH24:MI:SS') as reserve_edate, room_name, actual_payment, payment_state, sales_state from(
 			select ROW_NUMBER() OVER(PARTITION BY rv.reserve_no ORDER BY rv.reserve_no ASC ) no, reserve_sdate, reserve_edate, room_name, actual_payment, payment_state, sales_state, rv.backoffice_no
 			from reserveinfo rv left outer join paymentinfo p on rv.reserve_no=p.reserve_no
 			left outer join roominfo rm on p.room_no=rm.room_no)A
@@ -148,8 +159,8 @@
  		DELETE FROM roominfo where backoffice_no=#{backoffice_no} and room_no=#{room_no}
  	</delete>
  	
- 	<select id="SQL_SELECT_ALL_REVIEW" resultType="test.com.rence.dashboard.model.ReviewVO">
-  		select review_no, review_content, review_point, review_date, user_image, substr(user_name,1,1)||lpad('*',length(user_name)-2,'*') 
+ 	<select id="SQL_SELECT_ALL_REVIEW_LIST" resultType="test.com.rence.dashboard.model.ReviewVO">
+  		select review_no, review_content, review_point, TO_CHAR(review_date, 'YYYY-MM-DD HH24:MI:SS') as review_date, user_image, substr(user_name,1,1)||lpad('*',length(user_name)-2,'*') 
 		from(
 			select ROW_NUMBER() OVER(PARTITION BY rv.review_no ORDER BY rv.review_no ASC ) no, review_no, review_content, review_point, review_date, user_image, user_name 
 			from review rv left outer join userinfo u on rv.user_no=u.user_no
@@ -160,5 +171,51 @@
   	<select id="SQL_SELECT_ONE_ROOM_INFO" resultType="test.com.rence.dashboard.model.RoomVO">
   		select * from roominfo where backoffice_no=#{backoffice_no} and room_no=#{room_no}
   	</select>
+  	
+  	<select id="SQL_SELECT_ALL_QNA_Q" resultType="test.com.rence.dashboard.model.CommentVO">
+  		select comment_no,comment_state, room_name, comment_content, TO_CHAR(comment_date, 'YYYY-MM-DD HH24:MI:SS') as comment_date
+		from (
+			select ROW_NUMBER() OVER(PARTITION BY c.comment_no ORDER BY c.comment_no ASC ) no, 
+			c.comment_no, c.user_no, c.comment_content, c.comment_date, rm.room_name, c.comment_state
+			from userinfo u left outer join comments c on u.user_no=c.user_no
+			left outer join roominfo rm on c.room_no=rm.room_no
+			left outer join backofficeinfo b on rm.backoffice_no=b.backoffice_no
+			where b.backoffice_no=#{backoffice_no})A
+		where A.no=1;
+  	</select>
+  	
+  	<select id="SQL_SELECT_ALL_QNA_A" resultType="test.com.rence.dashboard.model.CommentVO">
+  		select comment_no,mother_no, room_name, comment_content, TO_CHAR(comment_date, 'YYYY-MM-DD HH24:MI:SS') as comment_date
+		from (
+			select ROW_NUMBER() OVER(PARTITION BY c.comment_no ORDER BY c.comment_no ASC ) no, 
+			c.comment_no, c.mother_no, c.host_no, c.comment_content, c.comment_date, rm.room_name, c.comment_state
+			from userinfo u left outer join comments c on u.user_no=c.user_no
+			left outer join roominfo rm on c.room_no=rm.room_no
+			left outer join backofficeinfo b on rm.backoffice_no=b.backoffice_no
+			where b.backoffice_no=#{backoffice_no})A
+		where A.no=1;
+  	</select>
+  	
+  	<select id="SQL_SELECT_ONE_COMMENT_INFO" resultType="test.com.rence.dashboard.model.CommentVO">
+  		select * from comments where backoffice_no=#{backoffice_no} and room_no=#{room_no} and content_no=#{comment_no}
+  	</select>
+  	
+  	<insert id="SQL_INSERT_QNA" parameterType="test.com.rence.dashboard.model.CommentVO">
+ 		insert into comments(comments_no, room_no, backoffice_no, mother_no, comment_content, comment_date, writer, comment_state, host_no) 
+		value ('C'||seq_comments.nextval,#{room_no},#{backoffice_no},#{mother_no},#{comment_content}, sysdate, '관리자', 'T', #{backoffice_no})
+ 	</insert>
+  	
+  	<delete id="SQL_DELETE_QNA_A" parameterType="hashmap">
+ 		DELETE FROM comments where backoffice_no=#{backoffice_no} and comment_no=#{comment_no}
+ 	</delete>
+ 	
+ 	<update id="SQL_UPDATE_Q_STATE_T" parameterType="test.com.rence.dashboard.model.CommentVO">
+  		update comments set comment_state='T' where backoffice_no=#{backoffice_no} and comment_no=#{mother_no}
+  	</update>
+  	
+ 	<update id="SQL_UPDATE_Q_STATE_F" parameterType="test.com.rence.dashboard.model.CommentVO">
+  		update comments set comment_state='F' where backoffice_no=#{backoffice_no} and comment_no=#{mother_no}
+  	</update>
+  	
   	
 </mapper>

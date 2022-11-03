@@ -14,17 +14,18 @@ public class CommentVO implements Serializable {
 	private String comment_state;
 	private String romm_name;
 	private String comment_content;
-	private Date comment_date;
+	private String comment_date;
 	private String room_no;
 	private String backoffice_no;
 	private String user_no;
 	private String host_no;
+	private String writer;
 	
 	public CommentVO() {}
 
 	public CommentVO(String comment_no, String mother_no, String comment_state, String romm_name,
-			String comment_content, Date comment_date, String room_no, String backoffice_no, String user_no,
-			String host_no) {
+			String comment_content, String comment_date, String room_no, String backoffice_no, String user_no,
+			String host_no, String writer) {
 		super();
 		this.comment_no = comment_no;
 		this.mother_no = mother_no;
@@ -36,6 +37,7 @@ public class CommentVO implements Serializable {
 		this.backoffice_no = backoffice_no;
 		this.user_no = user_no;
 		this.host_no = host_no;
+		this.writer = writer;
 	}
 
 	public String getComment_no() {
@@ -78,11 +80,11 @@ public class CommentVO implements Serializable {
 		this.comment_content = comment_content;
 	}
 
-	public Date getComment_date() {
+	public String getComment_date() {
 		return comment_date;
 	}
 
-	public void setComment_date(Date comment_date) {
+	public void setComment_date(String comment_date) {
 		this.comment_date = comment_date;
 	}
 
@@ -118,6 +120,22 @@ public class CommentVO implements Serializable {
 		this.host_no = host_no;
 	}
 
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+
+	@Override
+	public String toString() {
+		return "CommentVO [comment_no=" + comment_no + ", mother_no=" + mother_no + ", comment_state=" + comment_state
+				+ ", romm_name=" + romm_name + ", comment_content=" + comment_content + ", comment_date=" + comment_date
+				+ ", room_no=" + room_no + ", backoffice_no=" + backoffice_no + ", user_no=" + user_no + ", host_no="
+				+ host_no + ", writer=" + writer + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -132,6 +150,7 @@ public class CommentVO implements Serializable {
 		result = prime * result + ((romm_name == null) ? 0 : romm_name.hashCode());
 		result = prime * result + ((room_no == null) ? 0 : room_no.hashCode());
 		result = prime * result + ((user_no == null) ? 0 : user_no.hashCode());
+		result = prime * result + ((writer == null) ? 0 : writer.hashCode());
 		return result;
 	}
 
@@ -194,17 +213,13 @@ public class CommentVO implements Serializable {
 				return false;
 		} else if (!user_no.equals(other.user_no))
 			return false;
+		if (writer == null) {
+			if (other.writer != null)
+				return false;
+		} else if (!writer.equals(other.writer))
+			return false;
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "CommentVO [comment_no=" + comment_no + ", mother_no=" + mother_no + ", comment_state=" + comment_state
-				+ ", romm_name=" + romm_name + ", comment_content=" + comment_content + ", comment_date=" + comment_date
-				+ ", room_no=" + room_no + ", backoffice_no=" + backoffice_no + ", user_no=" + user_no + ", host_no="
-				+ host_no + "]";
-	}
 
-	
-	
 }
