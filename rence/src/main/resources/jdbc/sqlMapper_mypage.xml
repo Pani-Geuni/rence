@@ -27,7 +27,7 @@
 	
 	<!-- 마이페이지 후기 내역 페이지 - selectAll -->
 	<select id="SQL_SELECT_ALL_REVIEW" parameterType = "string" resultType="test.com.rence.user.model.MyPage_ReviewVO">
-		select left.review_no, left.review_content, left.review_point, left.review_date, left.room_name, b.backoffice_name as company_name, left.user_no
+		select left.review_no, left.review_content, left.review_point, left.review_date, left.room_name, b.company_name as company_name, left.user_no
 		from (
 		    select r.review_no, r.review_content, r.review_point, r.review_date, ri.room_name, r.backoffice_no, r.user_no
 		    from review r left join roominfo ri
@@ -44,7 +44,7 @@
 
 	<!-- 내가 질문한 내역 가져오기 -->
 	<select id="SQL_SELECT_ALL_QUESTION" resultType="test.com.rence.user.model.QuestionVO">
-		select c.comment_no, b.backoffice_name, r.room_name, c.comment_content, c.comment_date
+		select c.comment_no, b.company_name as backoffice_name, r.room_name, c.comment_content, c.comment_date
 		from backofficeinfo b right join comments c
 		on c.backoffice_no = b.backoffice_no 
 		left join roominfo r on c.room_no = r.room_no
@@ -54,7 +54,7 @@
 
 	<!-- 내 질문에 대한 답변 가져오기 -->
 	<select id="SQL_SELECT_ONE_ANSWER" resultType="test.com.rence.user.model.QuestionVO">
-		select c.comment_no, b.backoffice_name, r.room_name, c.comment_content as answer_content, c.comment_date as answer_date
+		select c.comment_no, b.company_name as backoffice_name, r.room_name, c.comment_content as answer_content, c.comment_date as answer_date
 		from backofficeinfo b right join comments c
 		on c.backoffice_no = b.backoffice_no 
 		left join roominfo r on c.room_no = r.room_no
