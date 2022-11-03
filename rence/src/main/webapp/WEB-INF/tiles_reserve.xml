@@ -15,6 +15,6 @@
   </definition>
   
   <definition name=".payment_page" extends=".reserve-info">
-    <put-attribute name="content" value="/WEB-INF/views/office/reserve/reserve_detail_before.jsp" />
+    <put-attribute name="content" value="/WEB-INF/views/office/reserve/payment_page.jsp" />
   </definition>
 </tiles-definitions>

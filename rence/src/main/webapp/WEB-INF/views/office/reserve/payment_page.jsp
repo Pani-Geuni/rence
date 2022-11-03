@@ -14,7 +14,7 @@
                 <span class="section-title">예약 정보</span>
                 <div class="reserve-info-wrap">
                     <section>
-                        <img src="../IMG/reserve-list/default-space.svg" alt="result-img" class="reserve-info-img" />
+                        <img src="${path}/resources/IMG/reserve-list/default-space.svg" alt="result-img" class="reserve-info-img" />
                     </section>
                     <section class="reserve-info-txt">
                         <span class="info-company-name">오라운트 스터디룸</span>
