@@ -48,7 +48,7 @@
 		from backofficeinfo b right join comments c
 		on c.backoffice_no = b.backoffice_no 
 		left join roominfo r on c.room_no = r.room_no
-		where c.mother_no is null
+		where c.mother_no is null and user_no=#{user_no}
 		order by c.comment_no desc
 	</select>
 
