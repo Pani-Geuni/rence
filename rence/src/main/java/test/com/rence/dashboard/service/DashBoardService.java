@@ -143,9 +143,35 @@ public class DashBoardService {
 		return dao.select_one_room_info(backoffice_no,room_no);
 	}
 
-	public List<CommentVO> backoffice_qna_selectAll(String backoffice_no) {
+	//문의 리스트
+	public List<CommentVO> backoffice_qna_q_selectAll(String backoffice_no) {
 		logger.info("backoffice_qna_selectAll()...");
-		return dao.backoffice_qna_selectAll(backoffice_no);
+		return dao.backoffice_qna_q_selectAll(backoffice_no);
 	}
+	
+	//답변 리스트
+	public List<CommentVO> backoffice_qna_a_selectAll(String backoffice_no) {
+		logger.info("backoffice_qna_selectAll()...");
+		return dao.backoffice_qna_a_selectAll(backoffice_no);
+	}
+	
+	//답변 작성 팝업
+	public CommentVO backoffice_insert_comment(String backoffice_no, String room_no, String comment_no) {
+		logger.info("backoffice_insert_comment()...");
+		return dao.backoffice_insert_comment(backoffice_no,room_no,comment_no);
+	}
+	
+	//답변 작성
+	public int backoffice_insertOK_comment(String backoffice_no, CommentVO cvo) {
+		logger.info("backoffice_insertOK_comment()...");
+		return dao.backoffice_insertOK_comment(backoffice_no,cvo);
+	}
+
+	//답변 삭제
+	public int backoffice_deleteOK_comment(String backoffice_no, String comment_no, String mother_no) {
+		logger.info("backoffice_deleteOK_comment()...");
+		return dao.backoffice_deleteOK_comment(backoffice_no,comment_no, mother_no);
+	}
+
 
 }

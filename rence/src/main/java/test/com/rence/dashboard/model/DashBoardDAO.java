@@ -49,5 +49,13 @@ public interface DashBoardDAO {
 
 	public RoomVO select_one_room_info(String backoffice_no, String room_no);
 
-	public List<CommentVO> backoffice_qna_selectAll(String backoffice_no);
+	public List<CommentVO> backoffice_qna_q_selectAll(String backoffice_no);
+	
+	public List<CommentVO> backoffice_qna_a_selectAll(String backoffice_no);
+
+	public int backoffice_insertOK_comment(String backoffice_no, CommentVO cvo);
+
+	public CommentVO backoffice_insert_comment(String backoffice_no, String room_no, String comment_no);
+
+	public int backoffice_deleteOK_comment(String backoffice_no, String comment_no, String mother_no);
 }

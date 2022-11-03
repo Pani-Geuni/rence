@@ -236,11 +236,12 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 	public List<ReviewVO> backoffice_review_selectAll(String backoffice_no) {
 		logger.info("backoffice_review_selectAll...DAOImpl()...");
 
-		List<ReviewVO> rvvos = sqlSession.selectList("SQL_SELECT_ALL_REVIEW", backoffice_no);
+		List<ReviewVO> rvvos = sqlSession.selectList("SQL_SELECT_ALL_REVIEW_LIST", backoffice_no);
 
 		return rvvos;
 	}
 
+	//공간 정보
 	@Override
 	public RoomVO select_one_room_info(String backoffice_no, String room_no) {
 		logger.info("select_one_room_info...DAOImpl()...");
@@ -254,10 +255,89 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		return rmvo;
 	}
 
+	//QnA 리스트
 	@Override
-	public List<CommentVO> backoffice_qna_selectAll(String backoffice_no) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CommentVO> backoffice_qna_q_selectAll(String backoffice_no) {
+		logger.info("backoffice_qna_q_selectAll...DAOImpl()...");
+
+		List<CommentVO> qvos = sqlSession.selectList("SQL_SELECT_ALL_QNA_Q", backoffice_no);
+		
+		return qvos;
 	}
+	
+	//QnA 리스트
+	@Override
+	public List<CommentVO> backoffice_qna_a_selectAll(String backoffice_no) {
+		logger.info("backoffice_qna_a_selectAll...DAOImpl()...");
+		
+		List<CommentVO> avos = sqlSession.selectList("SQL_SELECT_ALL_QNA_A", backoffice_no);
+		
+		return avos;
+	}
+
+	//답변 작성 팝업
+	@Override
+	public CommentVO backoffice_insert_comment(String backoffice_no, String room_no, String comment_no) {
+		logger.info("backoffice_insert_comment...DAOImpl()...");
+
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("backoffice_no", backoffice_no);
+		map.put("room_no", room_no);
+		map.put("comment_no", comment_no);
+
+		CommentVO cvo2 = sqlSession.selectOne("SQL_SELECT_ONE_COMMENT_INFO", map);
+
+		return cvo2;
+	}
+	
+	//답변 작성
+	@Override
+	public int backoffice_insertOK_comment(String backoffice_no, CommentVO cvo) {
+		logger.info("backoffice_insertOK_comment...DAOImpl()...");
+
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("backoffice_no", backoffice_no);
+		map.put("room_no", cvo.getRoom_no());
+		cvo.setMother_no(cvo.getComment_no());
+		map.put("mother_no", cvo.getMother_no());
+		map.put("comment_content", cvo.getComment_content());
+
+		int result = sqlSession.insert("SQL_INSERT_QNA", map);
+		int flag = 0;
+		if (result==1) {
+				Map<String, String> map2 = new HashMap<String, String>();
+				map2.put("backoffice_no", backoffice_no);
+				map2.put("mother_no", cvo.getMother_no());
+				
+				flag = sqlSession.update("SQL_UPDATE_Q_STATE_T", map2);
+		}
+
+		return flag;
+	}
+
+	//답변 삭제
+	@Override
+	public int backoffice_deleteOK_comment(String backoffice_no, String comment_no, String mother_no) {
+		logger.info("backoffice_deleteOK_comment()...");
+		logger.info("{}", backoffice_no);
+		logger.info("{}", comment_no);
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("backoffice_no", backoffice_no);
+		map.put("comment_no", comment_no);
+
+		int result = sqlSession.update("SQL_DELETE_QNA_A", map);
+		int flag = 0;
+		if (result==1) {
+			Map<String, String> map2 = new HashMap<String, String>();
+			map2.put("backoffice_no", backoffice_no);
+			map2.put("mother_no", mother_no);
+			
+			flag = sqlSession.update("SQL_UPDATE_Q_STATE_F", map2);
+		}
+
+		return flag;
+	}
+
 
 }

@@ -7,13 +7,13 @@ public class ReviewVO implements Serializable {
 	private String review_no;
 	private String review_content;
 	private float review_point;
-	private Date review_date;
+	private String review_date;
 	private String user_image;
 	private String user_name;
 	
 	public ReviewVO() {}
 
-	public ReviewVO(String review_no, String review_content, float review_point, Date review_date, String user_image,
+	public ReviewVO(String review_no, String review_content, float review_point, String review_date, String user_image,
 			String user_name) {
 		super();
 		this.review_no = review_no;
@@ -48,11 +48,11 @@ public class ReviewVO implements Serializable {
 		this.review_point = review_point;
 	}
 
-	public Date getReview_date() {
+	public String getReview_date() {
 		return review_date;
 	}
 
-	public void setReview_date(Date review_date) {
+	public void setReview_date(String review_date) {
 		this.review_date = review_date;
 	}
 
@@ -130,6 +130,5 @@ public class ReviewVO implements Serializable {
 				+ review_point + ", review_date=" + review_date + ", user_image=" + user_image + ", user_name="
 				+ user_name + "]";
 	}
-	
-	
+
 }
