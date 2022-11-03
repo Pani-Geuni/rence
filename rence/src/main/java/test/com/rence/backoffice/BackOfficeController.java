@@ -221,8 +221,9 @@ public class BackOfficeController {
 	public String backoffice_logout(HttpServletRequest request, HttpServletResponse response) {
 		logger.info("backoffice_logout()...");
 		
-		session.removeAttribute("backoffice_id");
+//		session.removeAttribute("backoffice_id");
 
+		session.invalidate();
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
 
