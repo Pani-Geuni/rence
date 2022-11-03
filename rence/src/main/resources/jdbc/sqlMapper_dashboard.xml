@@ -26,7 +26,22 @@
 	</select>
   	
   	<select id="SQL_SELECT_ONE_PAYMENT_SUMMARY" resultType="test.com.rence.dashboard.model.SalesSettlementSummaryVO">
-  		select sales_total, sales_cancel from sales_view where trunc(payment_date)=trunc(SYSDATE) and backoffice_no=#{backoffice_no}
+  		<![CDATA[
+  		select sales_total, sales_cancel from(
+			select ROW_NUMBER() OVER(PARTITION BY backoffice_no ORDER BY backoffice_no ASC ) no, backoffice_no, 
+			(select NVL(sum(p.payment_total),0) from paymentinfo p left outer join roominfo rm on p.room_no=rm.room_no where p.payment_state='T' and ((rm.room_type='desk') or (rm.room_type like 'meeting%') and p.backoffice_no=#{backoffice_no}))+
+			(select NVL(sum(p.payment_total*0.8),0) from paymentinfo p left outer join roominfo rm on p.room_no=rm.room_no where p.payment_state='F' and p.sales_state='T' and ((rm.room_type='desk') or (rm.room_type like 'meeting%')and p.backoffice_no=#{backoffice_no}))+ 
+			(select NVL(sum(payment_total),0) from paymentinfo p left outer join roominfo rm on p.room_no=rm.room_no where p.sales_state='T' and rm.room_type='office' and p.backoffice_no='B1002')+
+			(select NVL(sum(payment_total*0.2),0) from paymentinfo p left outer join roominfo rm on p.room_no=rm.room_no where p.payment_state='F' and ((rm.room_type='desk') or (rm.room_type like 'meeting%'))and p.backoffice_no=#{backoffice_no}) as sales_total, 
+			(select (
+			(select NVL(sum(payment_total),0) from paymentinfo p left outer join reserveinfo rv on p.reserve_no=rv.reserve_no where payment_state='T' and (sysdate-payment_date)*24<=1 and rv.backoffice_no=#{backoffice_no} and rv.reserve_state='cancel')
+			+(select NVL(sum(payment_total*0.2),0) from paymentinfo p left outer join reserveinfo rv on p.reserve_no=rv.reserve_no where payment_state='F' and ((sysdate-payment_date)*24<=1) and rv.backoffice_no=#{backoffice_no} and rv.reserve_state='cancel')
+			+(select NVL(sum(payment_total*0.8),0) from paymentinfo p left outer join reserveinfo rv on p.reserve_no=rv.reserve_no where ((sysdate-payment_date)*24>1) and rv.backoffice_no=#{backoffice_no} and rv.reserve_state='cancel')) sales_cancel
+			from paymentinfo p left outer join reserveinfo rv on p.reserve_no=rv.reserve_no
+			where rv.reserve_state='cancel') as sales_cancel
+			from paymentinfo where backoffice_no=#{backoffice_no} and trunc(payment_date)=trunc(SYSDATE))A 
+		where A.no=1 ;
+		]]> 
   	</select>
   	
   	<select id="SQL_SELECT_ONE_ROOM_SUMMARY" resultType="test.com.rence.dashboard.model.RoomSummaryVO">

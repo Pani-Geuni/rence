@@ -90,8 +90,10 @@ public class MasterController {
 	public String master_logout(HttpServletRequest request, HttpServletResponse response) {
 		logger.info("master_logout()...");
 		
-		session.removeAttribute("master_id");
+//		session.removeAttribute("master_id");
 
+		session.invalidate();
+		
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
 
