@@ -270,4 +270,39 @@ $(function () {
     $('#host-delete-popup').addClass('blind');
     $('.popup-background:eq(0)').addClass('blind');
   });
+
+  // 삭제 요청 버튼
+  $("#delete-host-btn").on('click', function(){
+    $.ajax({
+      url : "/rence/backoffice_setting_delete",
+      type : "POST",
+      dataType : 'json',
+      data : {
+        backoffice_no : $.cookie("backoffice_no")
+      },
+      success : function(res) {
+          // 호스트 삭제 성공
+          if(res.result == 1){
+            $("#check-now-pw").prop("check", true);
+            $("#modify-pw-now").attr("readonly", true);
+            $("#modify-pw-now").addClass("readOnly");
+          }else{
+            $(".popup-background:eq(0)").removeClass("blind");
+            $("#common-alert-popup").removeClass("blind");
+            $(".common-alert-txt").text("남은 예약이 존재하여 삭제할 수 없습니다.");
+          }
+      },
+      error : function() {
+          $(".popup-background:eq(1)").removeClass("blind");
+          $("#common-alert-popup").removeClass("blind");
+          $(".common-alert-txt").text("오류 발생으로 인해 처리에 실패하였습니다.");
+      }
+    });
+  });
+
+  /** 호스트 로그아웃 요청 버튼 */
+  $('#btn-host-logout').on("click" ,function(){
+    $('.popup-background:eq(0)').removeClass('blind');
+    $('#logout-popup').removeClass('blind');
+  });
 });
