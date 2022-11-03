@@ -82,8 +82,8 @@
 				<div class="check_wrap">
 					<textarea id="backoffice_info" name="backoffice_info" placeholder="공간 소개를 입력해 주세요"></textarea>
 					<div class="b_info_txt_length_wrap">
-						<span class="b_info_txt_length"></span>
-						<span>/500</span>
+						<span class="b_info_txt_length">0</span>
+						<span>&nbsp;/ 500</span>
 					</div>
 				</div>
 			</div>
@@ -479,9 +479,9 @@
 				<p>공간 사진</p>
 	
 				<div class="filebox">
-	              <input class="upload-name" value="" placeholder="첨부 파일" />
+	              <input class="upload-name" value="" placeholder="첨부파일(.jpg/.jpeg/.png)" />
 	              <label for="multipartFile_room">파일찾기</label>
-	              <input type="file" id="multipartFile_room" name="multipartFile_room" accept=".jpg, .jpeg, .png" multiple />
+	              <input type="file" id="multipartFile_room" name="multipartFile_room" accept=".jpg, .jpeg, .png" multiple="multiple" />
 	            </div>
 	          	<input type="file" id="multipartFile_host" name="multipartFile_host" style="display: none;"/>
           </div>

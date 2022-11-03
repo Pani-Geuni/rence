@@ -153,13 +153,22 @@ $(function () {
     
     /* 대표전화번호 1588 등 */
     var telExp2 =/^(1544|1566|1577|1588|1644|1688)-?([0-9]{4})$/;
-
+    
     if(!telExp.test($("#backoffice_tel").val().trim()) && !telExp2.test($("#backoffice_tel").val().trim())){
       $(".warning-text:eq(1)").removeClass("blind");
     }else{
       $(".warning-text:eq(1)").addClass("blind");
     }
 
+  });
+
+
+  $("#backoffice_info").on("keydown keyup", function(){
+    $(".b_info_txt_length").text($(this).val().length);
+
+    if($(this).val().length > 500){
+      $(this).val($(this).val().substring(0,500));
+    }
   });
 
 
