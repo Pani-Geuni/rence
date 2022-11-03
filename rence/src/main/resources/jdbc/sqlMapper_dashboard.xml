@@ -95,19 +95,20 @@
   	</select>
   	
   	<select id="SQL_SELECT_ALL_SALES" resultType="test.com.rence.dashboard.model.SalesSettlementPreVO">
-  		select TO_CHAR(reserve_sdate, 'YYYY-MM-DD HH24:MI:SS') as reserve_sdate, TO_CHAR(reserve_edate, 'YYYY-MM-DD HH24:MI:SS') as reserve_edate, room_name, actual_payment, payment_state, sales_state from(
-			select ROW_NUMBER() OVER(PARTITION BY rv.reserve_no ORDER BY rv.reserve_no ASC ) no, reserve_sdate, reserve_edate, room_name, actual_payment, payment_state, sales_state, rv.backoffice_no
+  		select TO_CHAR(reserve_sdate, 'YYYY-MM-DD HH24:MI:SS') as reserve_sdate, TO_CHAR(reserve_edate, 'YYYY-MM-DD HH24:MI:SS') as reserve_edate, room_name, actual_payment, payment_state, sales_state, payment_no, room_no 
+        from(
+			select ROW_NUMBER() OVER(PARTITION BY rv.reserve_no ORDER BY rv.reserve_no ASC ) no, reserve_sdate, reserve_edate, room_name, actual_payment, payment_state, sales_state, rv.backoffice_no, payment_no, room_no
 			from reserveinfo rv left outer join paymentinfo p on rv.reserve_no=p.reserve_no
 			left outer join roominfo rm on p.room_no=rm.room_no)A
-		where A.no=1 and backoffice_no=#{backoffice_no} order by reserve_sdate desc
-  	</select>
+		where A.no=1 and backoffice_no=#{backoffice_no} order by reserve_sdate desc  	
+	</select>
   	
   	<update id="SQL_UPDATE_SALES_STATE_T" parameterType="test.com.rence.dashboard.model.SalesSettlementVO">
-  		update paymentinfo set sales_state='T' where backoffice_no=#{backoffice_no} and room_no=#{room_no}
+  		update paymentinfo set sales_state='T' where backoffice_no=#{backoffice_no} and room_no=#{room_no} and payment_no=#{payment_no}
   	</update>
   	
   	<update id="SQL_UPDATE_MILEAGE_SUCCESS" parameterType="test.com.rence.user.model.UserMileageVO">
-  		update mileage set mileage_state= 'T' where mileage_no=#{mileage_no};
+  		 update mileage set mileage_state= 'T' where mileage_no in (select mileage_no from paymentinfo where payment_no=#{payment_no} and payment_state='T' and mileage_state='W');
   	</update>
   	
   	<select id="SQL_SELECT_ALL_ROOM" resultType="test.com.rence.dashboard.model.RoomVO">

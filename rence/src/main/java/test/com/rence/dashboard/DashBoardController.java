@@ -326,6 +326,7 @@ public class DashBoardController {
 		model.addAttribute("svo", svo);
 		model.addAttribute("s_vos", svos);
 		model.addAttribute("cnt", svos.size());
+		model.addAttribute("sales_date",sales_date);
 		return ".dash_board/sales_day";
 	}
 
@@ -380,28 +381,30 @@ public class DashBoardController {
 	}
 
 	/**
-	 * 환경설정에서 비밀번호 수정
+	 * 환경설정에서 비밀번호 수정 --> jsonObject 
 	 */
 	@RequestMapping(value = "/backoffice_update_pw", method = RequestMethod.GET)
-	public String backoffice_update_pw(BackOfficeVO bvo) {
+	@ResponseBody
+	public JSONObject backoffice_update_pw(BackOfficeVO bvo) {
 		logger.info("backoffice_update_pw ()...");
 		logger.info("{}", bvo);
+		
+		JSONObject jsonObject = new JSONObject();
 
 		// 비밀번호 일치 여부 확인
 		BackOfficeVO bvo2 = service.backoffice_select_pw(bvo);
 
-		String rt = "";
 		if (bvo2 != null) {
 			logger.info("successed...");
-			rt = "redirect:backoffice_setting_pw";
+			jsonObject.put("result", "1");
 		}
 
 		else {
 			logger.info("failed...");
-			rt = "backoffice/setting";
+			jsonObject.put("result", "0");
 		}
 
-		return rt;
+		return jsonObject;
 	}
 
 	/**

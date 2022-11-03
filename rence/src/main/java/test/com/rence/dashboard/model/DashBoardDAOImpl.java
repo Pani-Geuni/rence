@@ -165,7 +165,8 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("backoffice_no", backoffice_no);
 		map.put("room_no", room_no);
-
+		map.put("payment_no", payment_no);
+		
 		int result = sqlSession.update("SQL_UPDATE_SALES_STATE_T", map);
 		int flag =0;
 		if (result==1) {
