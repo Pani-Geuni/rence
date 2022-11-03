@@ -95,7 +95,7 @@
                 <input type="button" id="login-btn" value="로그인">
                 <div class="txt-btn-wrap">
                     <span id="go-find-pw" class="txt-btn">비밀번호 찾기</span>
-					<span class="txt-btn login-close">창닫기</span>
+					<span id="host-login-close" class="txt-btn login-close">창닫기</span>
                 </div>
             </section>
         </div>
