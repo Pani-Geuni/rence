@@ -96,13 +96,13 @@ $(function(){
 
 	// 신청 호스트 수락 버튼 클릭
 	$('#btn-grant-host').click(function() {
-		$('.popup-background').removeClass('blind');
+		$('.popup-background:eq(0)').removeClass('blind');
 		$('#grant-popup').removeClass('blind');
 	})
 	
 	$('#grant-closeBtn').click(function() {
 		$('#grant-popup').addClass('blind');
-		$('.popup-background').addClass('blind');
+		$('.popup-background:eq(0)').addClass('blind');
 	})
 	
 	$('#grant-btn').click(function() {
@@ -136,13 +136,13 @@ $(function(){
 	
 	// 신청 호스트 거절 버튼 클릭
 	$('#btn-refuse-host').click(function() {
-		$('.popup-background').removeClass('blind');
+		$('.popup-background:eq(0)').removeClass('blind');
 		$('#refuse-popup').removeClass('blind');
 	})
 	
 	$('#refuse-closeBtn').click(function() {
 		$('#refuse-popup').addClass('blind');
-		$('.popup-background').addClass('blind');
+		$('.popup-background:eq(0)').addClass('blind');
 	})
 	
 	$('#refuse-btn').click(function() {
