@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -24,6 +26,7 @@ public class UserFAOimpl implements UserFAO {
 		if ((vo.getMultipartFile().getSize() > 0)) {
 			logger.info("{} byte", vo.getMultipartFile().getOriginalFilename());
 			vo.setUser_image(vo.getMultipartFile().getOriginalFilename());
+			
 			String dir_path = context.getRealPath("resources/upload");
 			logger.info(dir_path);
 
@@ -49,7 +52,7 @@ public class UserFAOimpl implements UserFAO {
 
 		else {
 			if (vo.getUser_image() == null) {
-				vo.setUser_image("img_0001.png");
+				vo.setUser_image("img_host_001.jpg");
 			}
 
 		}
