@@ -4,39 +4,39 @@
 $(function () {
 
   /** 로고 버튼 클릭 시 메인 페이지 이동 **/ 
-  $('.logo-mku').click(function () {
+  $('.logo-mku').click(function(){
     location.href = '/rence/backoffice_landing';
   });
 
   /** 로그인 전 헤더 메뉴 */
-  $('#before_hostMenu').click(function () {
+  $('#before_hostMenu').click(function(){
     $('#before_login>.custom-select-host').toggleClass('blind');
   });
   /** 로그인 후 헤더 메뉴 */
-  $('#after_hostMenu').click(function () {
+  $('#after_hostMenu').click(function(){
     $('#after_login>.custom-select-host').toggleClass('blind');
   });
   
 
   /** 로그인 메뉴 - 로그인 팝업 띄움 */
-  $('#go-login').click(function () {
+  $('#go-login').click(function(){
     $('#before_login>.custom-select-host').addClass('blind');
     $('.popup-background:eq(0)').removeClass('blind');
     $('#login-section').removeClass('blind');
   });
   
   /** RENCE 페이지 이동 메뉴 */
-  $('#go-user-home').click(function () {
+  $('#go-user-home').click(function(){
     location.href = '/rence/';
   });
   
-  /** RENCE 페이지 이동 메뉴 */
-  $('#go-backOffice').click(function () {
+  /** 공간등록신청 메뉴 */
+  $('#go-backOffice').click(function(){
     location.href = '/rence/backoffice_insert';
   });
   
   /** 호스트 메인 페이지 이동 */
-  $('.btn-start-hosting').click(function () {
+  $('.btn-start-hosting').click(function(){
     if($.cookie("backoffice_no") != undefined)
       location.href = '/rence/backoffice_main?backoffice_no=' + $.cookie("backoffice_no");
     else{

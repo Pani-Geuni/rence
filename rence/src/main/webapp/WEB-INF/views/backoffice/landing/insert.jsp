@@ -41,7 +41,7 @@
 				<div>
 					<input type="email" id="backoffice_email" name="backoffice_email"
 						placeholder="사업자 이메일을 입력해 주세요" />
-					<button id="btn-certification">인증번호 보내기</button>
+					<button id="btn-certification">인증번호 발송</button>
 				</div>
 			</div>
 			<div class="inputWrap email">
@@ -57,14 +57,12 @@
 				<div class="input-location">
 					<div>
 						<input type="text" id="zipcode" name="zipcode" placeholder="우편번호" />
-						<input id="find-zipcode" type="button" value="우편번호 찾기" />
+						<input id="find-zipcode" onclick="sample4_execDaumPostcode()" type="button" value="우편번호 찾기" />
 					</div>
 
-					<input type="text" id="roadname_address" name="roadname_address"
-						placeholder="도로명주소" /> <br /> <input type="text"
-						id="number_address" name="number_address" placeholder="지번주소" />
-					<br /> <input type="text" id="detail_address"
-						name="detail_address" placeholder="상세주소" />
+					<input type="text" id="roadname_address" name="roadname_address" placeholder="도로명주소" readonly /> <br /> 
+					<input type="text" id="number_address" name="number_address" placeholder="지번주소" readonly /> <br /> 
+					<input type="text" id="detail_address" name="detail_address" placeholder="상세주소" />
 				</div>
 				<!-- END input-location -->
 			</div>

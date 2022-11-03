@@ -5,6 +5,7 @@
 <%@ page import="java.util.*"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +34,43 @@
 
 	<!-- timepicker library script -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+	
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+	    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+	    function sample4_execDaumPostcode() {
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+ 	            	var roadAddr = data.roadAddress; // 도로명 주소 변수
+	            	var auto_roadAddr = data.autoRoadAddress; // 도로명 주소 변수
+	            	var extraRoadAddr = ''; // 참고 항목 변수
 
+	                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                    extraRoadAddr += data.bname;
+	                }
+	                // 건물명이 있고, 공동주택일 경우 추가한다.
+	                if(data.buildingName !== '' && data.apartment === 'Y'){
+	                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	                }
+	                
+	                console.log(roadAddr);
+
+	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	                $('#zipcode').val(data.zonecode);
+	                
+	                if(roadAddr.length > 0)
+	                	$('#roadname_address').val(roadAddr);
+	                else
+	                	$('#roadname_address').val(auto_roadAddr);
+	                	
+	                $('#number_address').val(data.jibunAddress);
+	
+	            }
+	        }).open();
+	    }
+	</script>
 </head>
 <body>
 	<div class="pageWrap">
@@ -83,9 +120,9 @@
 	          <span class="find-guide-txt">사업자 등록 번호를 입력해 주세요.</span>
 	          <input
 	            type="text"
-	            id="find-pw-id"
+	            id="find-pw-backoffice-code"
 	            class="find-popup-input"
-	            placeholder="비밀번호를 입력하세요."
+	            placeholder="사업자 등록 번호를 입력하세요."
 	          />
 	        </div>
 	      </section>
@@ -98,36 +135,13 @@
 	        />
 	        <input
 	          type="button"
-	          id=""
+	          id="find-pw-close"
 	          class="find-pw-close"
 	          value="창닫기"
 	        />
 	      </section>
 	    </div>
 	    <!-- END FIND-PW SECTION -->
-        
-
-        <!-- START FIND-PW SECTION -->
-        <div id="find-pw-section" class="find-section blind">
-            <section class="find-popup-logo-section">
-                <span>비밀번호 찾기</span>
-            </section>
-            <section class="find-popup-input-section">
-                <div class="email-wrap">
-                    <span class="find-guide-txt">회원가입 시 입력한 이메일을 입력해주세요.</span>
-                    <input type="email" id="find-pw-email" class="find-popup-input" placeholder="이메일을 입력하세요." autocomplete="off"/>
-                </div>
-                <div>
-                    <span class="find-guide-txt">회원가입 시 입력한 아이디를 입력해 주세요.</span>
-                    <input type="text" id="find-pw-id" class="find-popup-input" placeholder="아이디를 입력하세요." autocomplete="off"/>
-                </div>
-            </section>
-            <section class="find-popup-btn-section">
-                <input type="button" id="find-pw-btn" class="find-btn" value="비밀번호 찾기">
-                <input type="button" id="find-pw-close" class="p-close" value="창닫기">
-            </section>
-        </div>
-        <!-- END FIND-PW SECTION -->
 
 		<!-- START LOGOUT CONFIRM POPUP -->
 		<div id="logout-popup" class="confirm-popup blind">
