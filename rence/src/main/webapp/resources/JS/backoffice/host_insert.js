@@ -105,8 +105,7 @@ $(function () {
   $("#type_checkbox_desk, #type_checkbox_meeting_room").click(function(){
     $("#type_checkbox_office").attr("disabled", true);
     $("#type_checkbox_office").siblings("label").css("text-decoration", "line-through");
-    console.log($("#type_checkbox_desk").is(':checked'));
-    console.log($("#type_checkbox_meeting_room").is(':checked'));
+
     if(!$("#type_checkbox_desk").is(':checked') && !$("#type_checkbox_meeting_room").is(':checked')){
       $("#type_checkbox_office").attr("disabled", false);
       $("#type_checkbox_office").siblings("label").css("text-decoration", "none");
@@ -132,6 +131,7 @@ $(function () {
 
   /** 호스트 신청 버튼 클릭 */ 
   $("#submit").click(function(){
+    // 1. 필수 input / textarea 입력되었는지 확인
     if(
       $("#owner_name").val().trim().length > 0 && $("#backoffice_id").val().trim().length > 0 && 
       $("#backoffice_name").val().trim().length > 0 && $("#company_name").val().trim().length > 0 &&
@@ -139,19 +139,29 @@ $(function () {
       $("#auth_code").val().trim().length > 0 && $("#zipcode").val().trim().length > 0 && 
       $("#backoffice_info").val().trim().length > 0
     ){
-      var desk_checked = $('#type_checkbox_desk').is(':checked');
-      var meeting_room_checked = $('#type_checkbox_meeting_room').is(':checked');
-      var office_checked = $('#type_checkbox_office').is(':checked');
+      // 2. 이메일 인증 완료 되었는지 확인
+      if($("#btn-certification").prop("check") && $("#btn-check-certification").prop("check")){
 
-      if (desk_checked || meeting_room_checked || office_checked) {
-        $('submit-application').submit();
-      } else {
+        // 3. 공간 타입을 선택했는지 확인
+        var desk_checked = $('#type_checkbox_desk').is(':checked');
+        var meeting_room_checked = $('#type_checkbox_meeting_room').is(':checked');
+        var office_checked = $('#type_checkbox_office').is(':checked');
+  
+        if (desk_checked || meeting_room_checked || office_checked) {
+          // $('#insertForm').submit();
+          $("#real-submit").click();
+        } else {
+          $(".popup-background:eq(1)").removeClass("blind");
+          $("#common-alert-popup").removeClass("blind");
+          $(".common-alert-txt").text("공간 타입을 선택해주세요.");
+        }
+          
+      }else{
         $(".popup-background:eq(1)").removeClass("blind");
         $("#common-alert-popup").removeClass("blind");
-        $(".common-alert-txt").text("공간 타입을 선택해주세요.");
+        $(".common-alert-txt").text("이메일 인증을 완료해주세요.");
       }
     }
-    // 필수 사항 미입력 존재 시
     else{
       if($("#owner_name").val().trim().length == 0){
         $("#owner_name").addClass("null-input-border");
@@ -176,6 +186,8 @@ $(function () {
       }
       if($("#zipcode").val().trim().length == 0){
         $("#zipcode").addClass("null-input-border");
+        $("#roadname_address").addClass("null-input-border");
+        $("#number_address").addClass("null-input-border");
       }
       if($("#backoffice_info").val().trim().length == 0){
         $("#backoffice_info").addClass("null-input-border");
@@ -236,7 +248,7 @@ $(function () {
       if($("#auth_code").val().trim().length > 0){
         $.ajax({
           url:"/rence/backoffice_authOK",
-          type : "GET",
+          type : "POST",
           dataType : 'json',
           data : {
             backoffice_email : $("#backoffice_email").val().trim(),
