@@ -10,7 +10,7 @@
 			<h1>호스트 신청하기</h1>
 		</div>
 
-		<form action="/rence/backoffice_insertOK" id="insertForm" method="POST" enctype="multipart/form-data">
+		<form action="backoffice_insertOK" id="insertForm" method="POST" enctype="multipart/form-data">
 			<div class="inputWrap">
 				<p>사업자 이름</p>
 				<input type="text" id="owner_name" name="owner_name"
@@ -480,6 +480,7 @@
 
 			<div class="submit">
 				<input type="button" id="submit" class="submit-application" value="호스트 신청하기">
+				<input type="submit" id="real-submit" class="submit-application" value="호스트 신청하기" style="display:none;">
 			</div>
 		</form>
 	</div>
