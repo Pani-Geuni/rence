@@ -10,7 +10,7 @@
 			<h1>호스트 신청하기</h1>
 		</div>
 
-		<form action="backoffice_insertOK" method="POST" enctype="multipart/form-data">
+		<form action="/rence/backoffice_insertOK" id="insertForm" method="POST" enctype="multipart/form-data">
 			<div class="inputWrap">
 				<p>사업자 이름</p>
 				<input type="text" id="owner_name" name="owner_name"
@@ -41,22 +41,21 @@
 				<div>
 					<input type="email" id="backoffice_email" name="backoffice_email"
 						placeholder="사업자 이메일을 입력해 주세요" />
-					<button id="btn-certification">인증번호 발송</button>
+					<input type="button" id="btn-certification" value="인증번호 발송">
 				</div>
 			</div>
 			<div class="inputWrap email">
 				<p>사업자 이메일 확인</p>
 				<div>
-					<input type="text" id="auth_code" name="auth_code"
-						placeholder="인증 번호를 입력하세요" />
-					<button id="btn-check-certification">인증번호 확인</button>
+					<input type="text" id="auth_code" name="auth_code" placeholder="인증 번호를 입력하세요" />
+					<input type="button" id="btn-check-certification" value="인증번호 확인">
 				</div>
 			</div>
 			<div class="inputWrap location">
 				<p>사업장 위치</p>
 				<div class="input-location">
 					<div>
-						<input type="text" id="zipcode" name="zipcode" placeholder="우편번호" />
+						<input type="text" id="zipcode" name="zipcode" placeholder="우편번호" readonly/>
 						<input id="find-zipcode" onclick="sample4_execDaumPostcode()" type="button" value="우편번호 찾기" />
 					</div>
 
@@ -68,11 +67,11 @@
 			</div>
 			<!-- END inputWrap location  -->
 
-			<div class="inputWrap">
-				<p>사업체 태그</p>
-				<input type="text" id="backoffice_tag" name="backoffice_tag"
-					placeholder="사업체의 태그를 입력해 주세요" />
-			</div>
+<!-- 			<div class="inputWrap"> -->
+<!-- 				<p>사업체 태그</p> -->
+<!-- 				<input type="text" id="backoffice_tag" name="backoffice_tag" -->
+<!-- 					placeholder="사업체의 태그를 입력해 주세요" /> -->
+<!-- 			</div> -->
 
 			<div class="inputWrap info">
 				<p>사업체 소개</p>
@@ -469,19 +468,18 @@
 
 			<div class="inputWrap">
 				<p>공간 사진</p>
-
+	
 				<div class="filebox">
 	              <input class="upload-name" value="" placeholder="첨부 파일" />
 	              <label for="multipartFile_room">파일찾기</label>
 	              <input type="file" id="multipartFile_room" name="multipartFile_room" accept=".jpg, .jpeg, .png" multiple />
 	            </div>
-	          <input type="file" id="multipartFile_host" name="multipartFile_host" style="display: none;"/>
+	          	<input type="file" id="multipartFile_host" name="multipartFile_host" style="display: none;"/>
           </div>
           <!-- END inputWrap image -->
 
 			<div class="submit">
-				<button type="submit" id="submit-application"
-					class="submit-application">호스트 신청하기</button>
+				<input type="button" id="submit" class="submit-application" value="호스트 신청하기">
 			</div>
 		</form>
 	</div>
