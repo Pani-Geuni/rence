@@ -69,7 +69,9 @@ public class UserController {
 			session.setAttribute("user_id", uvo2.getUser_id());
 			
 			Cookie cookie = new Cookie("user_no", uvo2.getUser_no()); // 고유번호 쿠키 저장
+			Cookie cookie2 = new Cookie("user_image", uvo2.getUser_image()); // 고유번호 쿠키 저장
 			response.addCookie(cookie);
+			response.addCookie(cookie2);
 
 			logger.info("User Login success.....");
 			jsonObject.put("result", "1"); // 로그인 성공

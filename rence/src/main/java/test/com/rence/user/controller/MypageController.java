@@ -205,7 +205,7 @@ public class MypageController {
 	 * 마이페이지 -프로필 수정
 	 */
 	@RequestMapping(value = "/user_img_updateOK", method = RequestMethod.POST)
-	public String user_img_updateOK(UserVO uvo, HttpServletRequest request ) {
+	public String user_img_updateOK(UserVO uvo, HttpServletRequest request, HttpServletResponse response ) {
 		logger.info("user_img_updateOK()...");
 		logger.info("result: {}", uvo);
 		
@@ -223,6 +223,9 @@ public class MypageController {
 		// 사진(파일)업로드
 		uvo = fileuploadService.FileuploadOK(uvo);
 		logger.info("fileresult: {}", uvo);
+		
+		Cookie cookie2 = new Cookie("user_image", uvo.getUser_image()); // 고유번호 쿠키 저장
+		response.addCookie(cookie2);
 
 		int result = service.user_img_updateOK(uvo);
 
@@ -247,7 +250,6 @@ public class MypageController {
 			logger.info("user_secede successed...");
 			jsonObject.put("result", "1");
 			
-			//쿠키 삭제
 			Cookie[] cookies = request.getCookies(); // 모든 쿠키의 정보를 cookies에 저장
 			if (cookies != null) { // 쿠키가 한개라도 있으면 실행
 				for (int i = 0; i < cookies.length; i++) {
