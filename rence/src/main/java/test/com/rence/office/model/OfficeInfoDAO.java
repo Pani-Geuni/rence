@@ -1,5 +1,6 @@
 package test.com.rence.office.model;
 
+import java.text.ParseException;
 import java.util.List;
 
 public interface OfficeInfoDAO {
@@ -13,4 +14,6 @@ public interface OfficeInfoDAO {
 	public List<OfficeCommentsVO> select_all_comment(String backoffice_no);
 	
 	public List<OfficeReviewVO> select_all_review(String backoffice_no);
+	
+	public int check_reserve(OfficeReserveVO vo) throws ParseException;
 }

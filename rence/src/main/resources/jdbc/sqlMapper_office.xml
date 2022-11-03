@@ -195,6 +195,11 @@
 		from backofficeoperatingtime
 		where backoffice_no=#{backoffice_no}
 	</select>
+	<select id="SQL_SELECT_ONE_OPERATING_TIME_STRING" resultType="test.com.rence.office.model.OfficeOperatingTimeVO">
+		select *
+		from backofficeoperatingtime
+		where backoffice_no=#{backoffice_no}
+	</select>
 	
 	<!-- 공간 예약 타입(예약 방) 불러오기 -->
 	<select id="SQL_SELECT_ALL_ROOM_INFO" resultType="test.com.rence.office.model.OfficeRoomVO">
@@ -229,4 +234,24 @@
 		where backoffice_no=#{backoffice_no}
 	</select>
 	
+	<!-- 해당 날짜와 공간에 맞는 모든 예약 정보 불러오기 -->
+	<select id="SQL_CHECK_RESERVE" resultType="test.com.rence.office.model.OfficeReserveVO" parameterType="Map">
+		select * 
+		from reserveinfo
+		where reserve_stime like #{sql_like_date} and (reserve_state='begin' or reserve_state='in_use' or reserve_state='false') and room_no=#{room_no}
+	</select>
+	
+	<!-- 예약한 공간(방) 정보 불러오기 -->
+	<select id="SQL_SELECT_ONE_ROOM_TYPE" resultType="test.com.rence.office.model.OfficeRoomVO">
+		select *
+		from roominfo
+		where room_no=#{room_no}
+	</select>
+	
+	<!-- 예약 정보 추가 -->
+	<insert id="SQL_INSERT_RESERVE" parameterType="test.com.rence.office.model.OfficeReserveVO_date">
+		insert into
+		reserveinfo(reserve_no, reserve_stime, reserve_etime, reserve_sdate, reserve_edate, reserve_state, room_no, user_no, backoffice_no, room_type)
+		values('RV'||seq_reserve.nextval, #{reserve_stime}, #{reserve_etime}, #{reserve_sdate}, #{reserve_edate}, 'false', #{room_no}, #{user_no}, #{backoffice_no}, #{room_type})
+	</insert>
 </mapper>

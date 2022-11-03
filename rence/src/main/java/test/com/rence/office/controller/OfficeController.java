@@ -1,9 +1,11 @@
 package test.com.rence.office.controller;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import test.com.rence.office.model.OfficeCommentsVO;
 import test.com.rence.office.model.OfficeInfoVO;
 import test.com.rence.office.model.OfficeOperatingTimeVO;
 import test.com.rence.office.model.OfficeOperatingTimeVO_date;
+import test.com.rence.office.model.OfficeReserveVO;
 import test.com.rence.office.model.OfficeReviewVO;
 import test.com.rence.office.model.OfficeRoomVO;
 import test.com.rence.office.service.OfficeService;
@@ -206,7 +209,7 @@ public class OfficeController {
 		List<OfficeRoomVO> rvos = service.select_all_room(backoffice_no);
 		
 		for (OfficeRoomVO vo : rvos) {
-			logger.info("vo name :: {}", info_map.changeType(vo.getRoom_type()));
+			logger.info("vo name :: {}", vo.getRoom_no());
 			vo.setRoom_name(info_map.changeType(vo.getRoom_type()));
 		}
 				
@@ -238,5 +241,27 @@ public class OfficeController {
 				
 		
 		return ".space/space_detail_introduce_office";
+	}
+	
+	// **********************
+	// 공간 예약 체크
+	// **********************
+	@RequestMapping(value = "/reserve_checkOK", method = RequestMethod.GET)
+	@ResponseBody
+	public JSONObject reserve_checkOK(OfficeReserveVO rvo) throws ParseException {
+		
+		JSONObject jsonObject = new JSONObject();
+		
+		logger.info("reserve_checkOK rvo :: {}", rvo);
+		
+		int result = service.check_reserve(rvo);
+		
+		if (result == 1) {
+			jsonObject.put("result", "1");
+		} else {
+			jsonObject.put("result", "0");
+		}
+		
+		return jsonObject;
 	}
 }
