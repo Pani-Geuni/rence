@@ -159,12 +159,13 @@
 		<!-- START DELETE CONFIRM POPUP -->
 		<div id="host-delete-popup" class="confirm-popup blind">
 			<section class="confirm-txt-section">
-				<span class="delete-txt"> 해당 공간을 정말 삭제하시겠습니까? <br />삭제하시면 다시
-					복구 할 수 없습니다
+				<span class="delete-txt"> 
+					해당 공간을 정말 삭제하시겠습니까? <br />
+					삭제하시면 다시 복구 할 수 없습니다
 				</span>
 			</section>
 			<section class="confirm-btn-section">
-				<div class="confirm-yesBtn">삭제</div>
+				<div id="delete-host-btn" class="confirm-yesBtn">삭제</div>
 				<div id="delete-closeBtn" class="confirm-noBtn">닫기</div>
 			</section>
 		</div>
@@ -196,17 +197,6 @@
 				<span>공간이 성공적으로 삭제 되었습니다.</span>
 			</section>
 			<section id="delete-success-alert-btn" class="alert-btn-section">
-				<span>확인</span>
-			</section>
-		</div>
-
-		<!-- START SUCCESS CUSTOM ALERT POPUP -->
-		<div id="delete-fail-alert-popup" class="alert-popup blind">
-			<section class="alert-txt-section">
-				<span>해당 공간에 예약이 있기 때문에 <br />공간 삭제가 불가능합니다.
-				</span>
-			</section>
-			<section id="delete-fail-alert-btn" class="alert-btn-section">
 				<span>확인</span>
 			</section>
 		</div>
