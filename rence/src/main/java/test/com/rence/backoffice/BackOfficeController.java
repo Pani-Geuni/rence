@@ -199,10 +199,12 @@ public class BackOfficeController {
 
 		if (bvo2 != null) {
 			session.setAttribute("backoffice_id", bvo2.getBackoffice_id());
-			Cookie cookie = new Cookie("backoffice_no", bvo2.getBackoffice_no());
+			Cookie cookie_no = new Cookie("backoffice_no", bvo2.getBackoffice_no());
+			Cookie cookie_profile = new Cookie("host_image", bvo2.getHost_image());
 			jsonObject.put("result", "1");
 			logger.info("successed...");
-			response.addCookie(cookie);
+			response.addCookie(cookie_no);
+			response.addCookie(cookie_profile);
 		} else {
 			logger.info("failed...");
 			jsonObject.put("result", "0");

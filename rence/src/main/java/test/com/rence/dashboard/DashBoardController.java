@@ -344,13 +344,13 @@ public class DashBoardController {
 	 */
 	@RequestMapping(value = "/backoffice_updateOK_sales", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject backoffice_updateOK_sales(String backoffice_no, String room_no) {
+	public JSONObject backoffice_updateOK_sales(String backoffice_no, String room_no, String payment_no) {
 		logger.info("backoffice_updateOK_sales ()...");
 		logger.info("{}", backoffice_no);
 
 		JSONObject jsonObject = new JSONObject();
 
-		int result = service.backoffice_updateOK_sales(backoffice_no, room_no);
+		int result = service.backoffice_updateOK_sales(backoffice_no, room_no, payment_no);
 
 		if (result == 1) {
 			logger.info("successed...");

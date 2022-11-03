@@ -96,9 +96,9 @@ public class DashBoardService {
 	}
 
 	//정산 상태 변경
-	public int backoffice_updateOK_sales(String backoffice_no, String room_no) {
+	public int backoffice_updateOK_sales(String backoffice_no, String room_no, String payment_no) {
 		logger.info("backoffice_updateOK_sales()...");
-		return dao.backoffice_updateOK_sales(backoffice_no,room_no);
+		return dao.backoffice_updateOK_sales(backoffice_no,room_no,payment_no);
 	}
 
 	//공간 관리 (리스트)

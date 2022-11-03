@@ -33,7 +33,7 @@ public interface DashBoardDAO {
 	
 	public int backoffice_setting_delete(BackOfficeVO bvo);
 
-	public int backoffice_updateOK_sales(String backoffice_no, String room_no);
+	public int backoffice_updateOK_sales(String backoffice_no, String room_no, String payment_no);
 
 	public List<RoomVO> dashboard_room_list(String backoffice_no);
 
