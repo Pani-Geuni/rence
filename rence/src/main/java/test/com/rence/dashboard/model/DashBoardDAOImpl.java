@@ -158,7 +158,7 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 
 	// 정산 상태 변경
 	@Override
-	public int backoffice_updateOK_sales(String backoffice_no, String room_no) {
+	public int backoffice_updateOK_sales(String backoffice_no, String room_no, String payment_no) {
 		logger.info("backoffice_updateOK_sales()...");
 		logger.info("{}", backoffice_no);
 
@@ -166,7 +166,13 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		map.put("backoffice_no", backoffice_no);
 		map.put("room_no", room_no);
 
-		int flag = sqlSession.update("SQL_UPDATE_SALES_STATE_T", map);
+		int result = sqlSession.update("SQL_UPDATE_SALES_STATE_T", map);
+		int flag =0;
+		if (result==1) {
+			Map<String, String> map2 = new HashMap<String, String>();
+			map2.put("payment_no", payment_no);
+			flag = sqlSession.update("SQL_UPDATE_MILEAGE_SUCCESS", map2);
+		}
 
 		return flag;
 	}
