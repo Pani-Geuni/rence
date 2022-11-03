@@ -300,9 +300,18 @@ $(function () {
     });
   });
 
-  /** 호스트 로그아웃 요청 버튼 */
+  /** 호스트 로그아웃 요청 버튼 -> 팝업 띄우기 **/
   $('#btn-host-logout').on("click" ,function(){
     $('.popup-background:eq(0)').removeClass('blind');
     $('#logout-popup').removeClass('blind');
+  });
+
+  /** 비밀번호 변경 요청 버튼*/
+  $("#btn-popup-confirm").on("click",function(){
+    if($(".input-check-pw").val().trim().length > 0){
+      location.href = "/rence/backoffice_update_pw?backoffice_no=" + $.cookie("backoffice_no") + "&backoffice_pw=" + CryptoJS.SHA256($("#login-pw").val().trim()).toString()
+    }else{
+      $(".input-check-pw").addClass("null-input-border");
+    }
   });
 });

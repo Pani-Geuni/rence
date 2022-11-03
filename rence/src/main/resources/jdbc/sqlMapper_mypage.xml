@@ -5,7 +5,8 @@
 <mapper namespace="test.com.rence.user">
 	<!-- 마이페이지 현재 예약 내역 페이지 - selectAll -->
 	<select id="SQL_SELECT_ALL_NOW_RESERVE" parameterType = "string" resultType="test.com.rence.user.model.MyPageReserveListVO">
-		select leftdb.reserve_no, leftdb.user_no, leftdb.reserve_sdate, leftdb.reserve_edate, leftdb.company_name, leftdb.roadname_address, leftdb.backoffice_image, p.payment_total from(
+		select leftdb.reserve_no, leftdb.user_no, leftdb.reserve_sdate, leftdb.reserve_edate, leftdb.company_name, leftdb.roadname_address, leftdb.backoffice_image, p.payment_total 
+		from(
 		    select r.reserve_no, r.user_no,r.reserve_sdate, r.reserve_edate, b.company_name, b.roadname_address, b.backoffice_image
 		    from reserveinfo r left join backofficeinfo b 
 		    on r.backoffice_no = b.backoffice_no

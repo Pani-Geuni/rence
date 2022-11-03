@@ -3,6 +3,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
+
+<%
+	Cookie[] cookies = request.getCookies(); //client에서 쿠키를 받아옴
+	
+	String host_image = "";
+	
+	if(cookies!=null){
+	    for(int i=0;i<cookies.length;i++){
+	        if(cookies[i].getName().equals("host_image")){
+	        	host_image = cookies[i].getValue();
+	        }
+	    }
+	}
+%>
     
  <section class ="headerWrap">
      <div class = "logo-section">
@@ -34,7 +48,7 @@
 	         <section id="after_login"  class="">
 	             <div id = "after_hostMenu" class ="hostMenu">
 	                 <img src="${path}/resources/IMG/header/user_menu.svg" alt="host_menu_img" class="host_menu_img"/>
-	                 <img src="${path}/resources/IMG/header/loopy.jpg" alt="host_profile_img" class="host_profile_img"/>
+	                 <img src="${path}/resources/upload/<%= host_image %>" alt="host_profile_img" class="host_profile_img"/>
 	             </div>
 	
 	             <!-- CUSTOM SELECT -->
