@@ -220,7 +220,7 @@ public class BackOfficeController {
 	@RequestMapping(value = "/backoffice_logout", method = RequestMethod.GET)
 	public String backoffice_logout(HttpServletRequest request, HttpServletResponse response) {
 		logger.info("backoffice_logout()...");
-		session = request.getSession();
+		
 		session.removeAttribute("backoffice_id");
 
 		Cookie[] cookies = request.getCookies();
