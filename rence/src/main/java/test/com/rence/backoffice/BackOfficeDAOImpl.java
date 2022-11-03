@@ -17,6 +17,11 @@ import org.springframework.stereotype.Repository;
 import test.com.rence.sendemail.AES256Util;
 import test.com.rence.sendemail.AuthVO;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
+import java.util.Base64.Decoder;
+import java.util.Base64.Encoder;
+
 @Repository
 public class BackOfficeDAOImpl implements BackOfficeDAO {
 	private static final Logger logger = LoggerFactory.getLogger(BackOfficeDAOImpl.class);
@@ -126,12 +131,15 @@ public class BackOfficeDAOImpl implements BackOfficeDAO {
 		logger.info("backoffice_settingOK_pw()...");
 		logger.info("{}", bvo);
 
-		String originText = bvo.getBackoffice_no();
+		//String originText = bvo.getBackoffice_no();
 
 		// backoffice_no decoding
-		String decText = aes.decryptAES("0123456789abcdefghij0123456789ab", originText);
+		//String decText = aes.decryptAES("0123456789abcdefghij0123456789ab", originText);
 		
-		bvo.setBackoffice_no(decText);
+		Decoder decoder = Base64.getDecoder();
+		byte[] decodedBytes2 = decoder.decode(bvo.getBackoffice_no());
+		
+		bvo.setBackoffice_no(new String(decodedBytes2));
 		
 		int flag = sqlSession.update("SQL_UPDATE_BACKOFFICE_SETTINGOK_PW",bvo);
 

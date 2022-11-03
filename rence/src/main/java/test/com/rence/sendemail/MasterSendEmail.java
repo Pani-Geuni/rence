@@ -18,6 +18,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
+import java.util.Base64.Decoder;
+import java.util.Base64.Encoder;
+
 import test.com.rence.backoffice.BackOfficeVO;
 
 @Component
@@ -33,16 +38,20 @@ public class MasterSendEmail {
 	//////////////////////////////////////////////////
 	// ******* (가입 승인) 비밀번호 초기화 링크 전송 *******//
 	/////////////////////////////////////////////////
-	public BackOfficeVO settingPw(BackOfficeVO bvo, EmailVO evo) {
-		
+	public BackOfficeVO settingPw(BackOfficeVO bvo, EmailVO evo) throws UnsupportedEncodingException {
 
-		String originText = bvo.getBackoffice_no();
+//		String originText = bvo.getBackoffice_no();
+//
+//		String encText = aes.encryptAES("0123456789abcdefghij0123456789ab", originText, false);
+//        System.out.println("encText (encodeBase64) : " + encText);
 
-		String encText = aes.encryptAES("0123456789abcdefghij0123456789ab", originText, false);
-        System.out.println("encText (encodeBase64) : " + encText);
-
-//		String encText = aes.encryptAES("0123456789abcdefghij0123456789ab", originText, true);
-//		logger.info("encText (encodeBase64URLSafeString) : " + encText);
+        
+        String target = bvo.getBackoffice_no();
+        byte[] targetBytes = target.getBytes("UTF-8");
+        
+        Encoder encoder = Base64.getEncoder();
+        
+        String encodedString = encoder.encodeToString(targetBytes);
 
 		// 이메일 제목, 내용 설정
 		evo.setSubject("[rence] 호스트 비밀번호 설정");
@@ -55,7 +64,7 @@ public class MasterSendEmail {
 			MimeMessage msg = javaMailSender.createMimeMessage();
 			msg.setSubject(evo.getSubject());
 			msg.setText("비밀번호 재설정 링크 : " + "http://localhost:8090/rence/backoffice_setting_pw?backoffice_no="
-					+ encText);
+					+ encodedString);
 			msg.setRecipient(RecipientType.TO, new InternetAddress(bvo.getBackoffice_email()));
 
 			
