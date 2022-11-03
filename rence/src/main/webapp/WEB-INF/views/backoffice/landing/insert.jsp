@@ -18,8 +18,11 @@
 			</div>
 			<div class="inputWrap">
 				<p>사업자 등록 번호</p>
-				<input type="text" id="backoffice_id" name="backoffice_id"
-					placeholder="사업자 등록 번호를 입력하세요 (- 포함)" />
+				<div class="check_wrap">
+					<input type="text" id="backoffice_id" name="backoffice_id"
+						placeholder="사업자 등록 번호를 입력하세요 (- 포함)" />
+					<span class="warning-text blind">형식에 맞지 않습니다.</span>
+				</div>
 			</div>
 			<div class="inputWrap">
 				<p>상호명</p>
@@ -33,14 +36,15 @@
 			</div>
 			<div class="inputWrap">
 				<p>사업자 전화번호</p>
-				<input type="tel" id="backoffice_tel" name="backoffice_tel"
-					placeholder="사업자 전화번호를 입력해 주세요 (- 포함)" />
+				<div class="check_wrap">
+					<input type="tel" id="backoffice_tel" name="backoffice_tel" placeholder="사업자 전화번호를 입력해 주세요. (- 포함)" />
+					<span class="warning-text blind">형식에 맞지 않습니다.</span>
+				</div>
 			</div>
 			<div class="inputWrap email">
 				<p>사업자 이메일</p>
 				<div>
-					<input type="email" id="backoffice_email" name="backoffice_email"
-						placeholder="사업자 이메일을 입력해 주세요" />
+					<input type="email" id="backoffice_email" name="backoffice_email" placeholder="사업자 이메일을 입력해 주세요" />
 					<input type="button" id="btn-certification" value="인증번호 발송">
 				</div>
 			</div>
@@ -75,8 +79,13 @@
 
 			<div class="inputWrap info">
 				<p>사업체 소개</p>
-				<textarea id="backoffice_info" name="backoffice_info"
-					placeholder="공간 소개를 입력해 주세요"></textarea>
+				<div class="check_wrap">
+					<textarea id="backoffice_info" name="backoffice_info" placeholder="공간 소개를 입력해 주세요"></textarea>
+					<div class="b_info_txt_length_wrap">
+						<span class="b_info_txt_length"></span>
+						<span>/500</span>
+					</div>
+				</div>
 			</div>
 			
 			<div class="inputWrap backoffice_type">
