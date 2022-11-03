@@ -88,7 +88,7 @@ public class MasterController {
 	@RequestMapping(value = "/master_logoutOK", method = RequestMethod.GET)
 	public String master_logout(HttpServletRequest request, HttpServletResponse response) {
 		logger.info("master_logout()...");
-		session = request.getSession();
+		
 		session.removeAttribute("master_id");
 
 		Cookie[] cookies = request.getCookies();

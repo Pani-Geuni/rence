@@ -107,13 +107,11 @@
   	</update>
   	
   	<update id="SQL_UPDATE_MILEAGE_SUCCESS" parameterType="test.com.rence.user.model.UserMileageVO">
-  		update (select * from userinfo u left outer join mileage m on u.user_no=m.user_no
-		left outer join paymentinfo p on m.mileage_no=p.mileage_no where payment_no=#{payment_no})
-		set mileage_total= mileage_total+mileage_change 
+  		update mileage set mileage_state= 'T' where mileage_no=#{mileage_no};
   	</update>
   	
   	<select id="SQL_SELECT_ALL_ROOM" resultType="test.com.rence.dashboard.model.RoomVO">
-  		select * from roominfo where backoffice_no=#{backoffice_no} order by reserve_sdate desc
+  		select * from roominfo where backoffice_no=#{backoffice_no} order by room_no asc
   	</select>
   	
   	<select id="SQL_SELECT_ONE_BACKOFFICE_INFO" resultType="test.com.rence.backoffice.BackOfficeVO">
