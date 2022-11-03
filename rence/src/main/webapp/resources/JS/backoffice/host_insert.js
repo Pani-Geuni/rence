@@ -19,6 +19,12 @@ $(function () {
     }
   });
 
+  // 빈 항목 팝업 닫기
+  $('#empty-fail-alert-btn').click(function(){
+    $('#fail-alert-popup').addClass('blind');
+    $('.popup-background:eq(0)').addClass('blind');
+  });
+
 
   // TIME PICKER
   $('.time-picker').timepicker({
@@ -129,72 +135,33 @@ $(function () {
   });
 
 
-  /** 호스트 신청 버튼 클릭 */ 
-  $("#submit").click(function(){
-    // 1. 필수 input / textarea 입력되었는지 확인
-    if(
-      $("#owner_name").val().trim().length > 0 && $("#backoffice_id").val().trim().length > 0 && 
-      $("#backoffice_name").val().trim().length > 0 && $("#company_name").val().trim().length > 0 &&
-      $("#backoffice_tel").val().trim().length > 0 && $("#backoffice_email").val().trim().length > 0 &&
-      $("#auth_code").val().trim().length > 0 && $("#zipcode").val().trim().length > 0 && 
-      $("#backoffice_info").val().trim().length > 0
-    ){
-      // 2. 이메일 인증 완료 되었는지 확인
-      if($("#btn-certification").prop("check") && $("#btn-check-certification").prop("check")){
-
-        // 3. 공간 타입을 선택했는지 확인
-        var desk_checked = $('#type_checkbox_desk').is(':checked');
-        var meeting_room_checked = $('#type_checkbox_meeting_room').is(':checked');
-        var office_checked = $('#type_checkbox_office').is(':checked');
-  
-        if (desk_checked || meeting_room_checked || office_checked) {
-          // $('#insertForm').submit();
-          $("#real-submit").click();
-        } else {
-          $(".popup-background:eq(1)").removeClass("blind");
-          $("#common-alert-popup").removeClass("blind");
-          $(".common-alert-txt").text("공간 타입을 선택해주세요.");
-        }
-          
-      }else{
-        $(".popup-background:eq(1)").removeClass("blind");
-        $("#common-alert-popup").removeClass("blind");
-        $(".common-alert-txt").text("이메일 인증을 완료해주세요.");
-      }
+  /** 사업자 번호 형식 맞는지 확인 */
+  $("#backoffice_id").on('keyup keydown', function(){
+    /* 사업자등록번호 */
+    var regExp = /^([0-9]{3})-?([0-9]{2})-?([0-9]{5})$/;
+    if(!regExp.test($("#backoffice_id").val().trim())){
+      $(".warning-text:eq(0)").removeClass("blind");
+    }else{
+      $(".warning-text:eq(0)").addClass("blind");
     }
-    else{
-      if($("#owner_name").val().trim().length == 0){
-        $("#owner_name").addClass("null-input-border");
-      }
-      if($("#backoffice_id").val().trim().length == 0){
-        $("#backoffice_id").addClass("null-input-border");
-      }
-      if($("#backoffice_name").val().trim().length == 0){
-        $("#backoffice_name").addClass("null-input-border");
-      }
-      if($("#company_name").val().trim().length == 0){
-        $("#company_name").addClass("null-input-border");
-      }
-      if($("#backoffice_tel").val().trim().length == 0){
-        $("#backoffice_tel").addClass("null-input-border");
-      }
-      if($("#backoffice_email").val().trim().length == 0){
-        $("#backoffice_email").addClass("null-input-border");
-      }
-      if($("#auth_code").val().trim().length == 0){
-        $("#auth_code").addClass("null-input-border");
-      }
-      if($("#zipcode").val().trim().length == 0){
-        $("#zipcode").addClass("null-input-border");
-        $("#roadname_address").addClass("null-input-border");
-        $("#number_address").addClass("null-input-border");
-      }
-      if($("#backoffice_info").val().trim().length == 0){
-        $("#backoffice_info").addClass("null-input-border");
-      }
+  });
+
+  /** 전화번호 형식 맞는지 확인 */
+  $("#backoffice_tel").on('keyup keydown', function(){
+    /* 유전 전화 + 휴대폰 번호 */
+    var telExp = /^(0[2-8][0-5]?|01[01346-9])-?([1-9]{1}[0-9]{2,3})-?([0-9]{4})$/;
+    
+    /* 대표전화번호 1588 등 */
+    var telExp2 =/^(1544|1566|1577|1588|1644|1688)-?([0-9]{4})$/;
+
+    if(!telExp.test($("#backoffice_tel").val().trim()) && !telExp2.test($("#backoffice_tel").val().trim())){
+      $(".warning-text:eq(1)").removeClass("blind");
+    }else{
+      $(".warning-text:eq(1)").addClass("blind");
     }
 
   });
+
 
   /** 인증번호 발송 버튼 클릭 **/
   $("#btn-certification").click(function(){
@@ -285,9 +252,74 @@ $(function () {
     }
   });
 
-  // 빈 항목 팝업 닫기
-  $('#empty-fail-alert-btn').click(function(){
-    $('#fail-alert-popup').addClass('blind');
-    $('.popup-background:eq(0)').addClass('blind');
-  })
+
+  /** 호스트 신청 버튼 클릭 */ 
+  $("#submit").click(function(){
+    // 1. 필수 input / textarea 입력되었는지 확인
+    if(
+      $("#owner_name").val().trim().length > 0 && $("#backoffice_id").val().trim().length > 0 && 
+      $("#backoffice_name").val().trim().length > 0 && $("#company_name").val().trim().length > 0 &&
+      $("#backoffice_tel").val().trim().length > 0 && $("#backoffice_email").val().trim().length > 0 &&
+      $("#auth_code").val().trim().length > 0 && $("#zipcode").val().trim().length > 0 && 
+      $("#backoffice_info").val().trim().length > 0
+    ){
+      // 2. 정규표현식을 모두 만족하는지 확인
+      if($(".warning-text:eq(0)").hasClass("blind") && $(".warning-text:eq(1)").hasClass("blind")){
+        // 3. 이메일 인증 완료 되었는지 확인
+        if($("#btn-certification").prop("check") && $("#btn-check-certification").prop("check")){
+          // 4. 공간 타입을 선택했는지 확인
+          var desk_checked = $('#type_checkbox_desk').is(':checked');
+          var meeting_room_checked = $('#type_checkbox_meeting_room').is(':checked');
+          var office_checked = $('#type_checkbox_office').is(':checked');
+    
+          if (desk_checked || meeting_room_checked || office_checked) {
+            $("#real-submit").click();
+          } else {
+            $(".popup-background:eq(1)").removeClass("blind");
+            $("#common-alert-popup").removeClass("blind");
+            $(".common-alert-txt").text("공간 타입을 선택해주세요.");
+          }
+            
+        }else{
+          $(".popup-background:eq(1)").removeClass("blind");
+          $("#common-alert-popup").removeClass("blind");
+          $(".common-alert-txt").text("이메일 인증을 완료해주세요.");
+        }
+      }
+
+    }
+    else{
+      if($("#owner_name").val().trim().length == 0){
+        $("#owner_name").addClass("null-input-border");
+      }
+      if($("#backoffice_id").val().trim().length == 0){
+        $("#backoffice_id").addClass("null-input-border");
+      }
+      if($("#backoffice_name").val().trim().length == 0){
+        $("#backoffice_name").addClass("null-input-border");
+      }
+      if($("#company_name").val().trim().length == 0){
+        $("#company_name").addClass("null-input-border");
+      }
+      if($("#backoffice_tel").val().trim().length == 0){
+        $("#backoffice_tel").addClass("null-input-border");
+      }
+      if($("#backoffice_email").val().trim().length == 0){
+        $("#backoffice_email").addClass("null-input-border");
+      }
+      if($("#auth_code").val().trim().length == 0){
+        $("#auth_code").addClass("null-input-border");
+      }
+      if($("#zipcode").val().trim().length == 0){
+        $("#zipcode").addClass("null-input-border");
+        $("#roadname_address").addClass("null-input-border");
+        $("#number_address").addClass("null-input-border");
+      }
+      if($("#backoffice_info").val().trim().length == 0){
+        $("#backoffice_info").addClass("null-input-border");
+      }
+    }
+
+  });
+
 });
