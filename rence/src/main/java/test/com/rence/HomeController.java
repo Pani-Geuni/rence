@@ -51,6 +51,8 @@ public class HomeController {
 		map.put("list", list);
 		model.addAttribute("res", map);
 		
+		logger.info("list_page : {}", map);
+		
 		return ".list";
 	}
 

@@ -7,14 +7,14 @@ public class ListVO {
 	String backoffice_tag;
 	String backoffice_image;
 	String min_room_price;
-	int avg_rating;
+	String avg_rating;
 	
 	
 	public ListVO() { }
 
 
 	public ListVO(String backoffice_no, String company_name, String roadname_address, String backoffice_tag,
-			String backoffice_image, String min_room_price, int avg_rating) {
+			String backoffice_image, String min_room_price, String avg_rating) {
 		super();
 		this.backoffice_no = backoffice_no;
 		this.company_name = company_name;
@@ -24,7 +24,6 @@ public class ListVO {
 		this.min_room_price = min_room_price;
 		this.avg_rating = avg_rating;
 	}
-
 
 
 	public String getBackoffice_no() {
@@ -87,23 +86,21 @@ public class ListVO {
 	}
 
 
-	public int getAvg_rating() {
+	public String getAvg_rating() {
 		return avg_rating;
 	}
 
 
-	public void setAvg_rating(int avg_rating) {
+	public void setAvg_rating(String avg_rating) {
 		this.avg_rating = avg_rating;
 	}
 
-	
-	
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + avg_rating;
+		result = prime * result + ((avg_rating == null) ? 0 : avg_rating.hashCode());
 		result = prime * result + ((backoffice_image == null) ? 0 : backoffice_image.hashCode());
 		result = prime * result + ((backoffice_no == null) ? 0 : backoffice_no.hashCode());
 		result = prime * result + ((backoffice_tag == null) ? 0 : backoffice_tag.hashCode());
@@ -123,7 +120,10 @@ public class ListVO {
 		if (getClass() != obj.getClass())
 			return false;
 		ListVO other = (ListVO) obj;
-		if (avg_rating != other.avg_rating)
+		if (avg_rating == null) {
+			if (other.avg_rating != null)
+				return false;
+		} else if (!avg_rating.equals(other.avg_rating))
 			return false;
 		if (backoffice_image == null) {
 			if (other.backoffice_image != null)
@@ -165,5 +165,5 @@ public class ListVO {
 				+ roadname_address + ", backoffice_tag=" + backoffice_tag + ", backoffice_image=" + backoffice_image
 				+ ", min_room_price=" + min_room_price + ", avg_rating=" + avg_rating + "]";
 	}
-	
+
 }
