@@ -239,6 +239,9 @@
 	display: flex;
 	flex-direction: column;
 	
+  position:relative;
+	
+	
 	margin-bottom: 20px;
 }
 
@@ -255,10 +258,20 @@
   height: 32px;
 
   padding: 0 8px;
-  
-
+ 
   border: 1px solid #e4e4e4;
   border-radius: 8px;
+}
+
+.pw-warning-text{
+  position: absolute;
+  top: 28px;
+  
+  margin-top: 4px;
+	margin-left: 4px;
+	
+	color: #FF5C5C;
+    font-size: 12px;
 }
 
 .btn-popup-group {
