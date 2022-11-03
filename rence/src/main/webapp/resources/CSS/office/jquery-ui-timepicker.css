@@ -79,6 +79,7 @@
     padding-top: 2px;
 }
 
+
 .ui-timepicker-div.ui-timepicker-oneLine dl {
     text-align: right;
 }
@@ -139,4 +140,8 @@ dl{
 .ui-datepicker-next.ui-corner-all{
     margin-top: 8.5px;
     margin-left: 10px;
+}
+
+.ui-timepicker-select.ui-state-default.ui-corner-all>option:not(:first-child){
+    display: none;
 }
