@@ -199,17 +199,7 @@
 		WHERE ROWNUM between 1 and 1
 	</select>
 
-
-	<!-- 마일리지상세 페이지에 정보 주기위해 정보가져오기 -->
-	<!-- user_detail_mileage_view 를 사용하는 쿼리 -->
-	<select id="SQL_SELECTALL_USER_MILEAGE"
-		resultType="test.com.rence.user.model.UserMileageVO" parameterType="hashmap">
-		select * from user_detail_mileage_view 
-		where user_no=#{user_no} order by no desc
-	</select>
-	
-	
-<!-- 	마일리지 상세페이지에서 적립 또는 사용한 내역만 보고 싶을때 -->
+	<!-- 	마일리지 상세페이지에서 적립 또는 사용한 내역만 보고 싶을때 -->
 	<select id="SQL_USER_MILEAGE_SEARCH_LIST"
 		resultType="test.com.rence.user.model.UserMileageVO" parameterType="hashmap">
 		select * from user_detail_mileage_view
@@ -225,6 +215,19 @@
 			 order by no desc
 		</if>
 	</select>
+
+
+
+	<!-- 마일리지상세 페이지에 정보 주기위해 정보가져오기 -->
+	<!-- user_detail_mileage_view 를 사용하는 쿼리 -->
+	<select id="SQL_SELECTALL_USER_MILEAGE"
+		resultType="test.com.rence.user.model.UserMileageVO" parameterType="hashmap">
+		select * from user_detail_mileage_view 
+		where user_no=#{user_no} order by no desc
+	</select>
+	
+	
+
 
 
 
