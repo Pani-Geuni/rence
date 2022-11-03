@@ -73,7 +73,7 @@
 	         <section id="after_login"  class="">
 	             <div id = "after_userMenu" class ="userMenu">
 	                 <img src="${path}/resources/IMG/header/user_menu.svg" alt="user_menu_img" class="user_menu_img"/>
-	                 <img src="${path}/resources/IMG/header/loopy.jpg" alt="user_profile_img" class="user_profile_img"/>
+	                 <img src="${path}/resources/upload/${umvo.user_image}" alt="user_profile_img" class="user_profile_img"/>
 	             </div>
 	
 	             <!-- CUSTOM SELECT -->
