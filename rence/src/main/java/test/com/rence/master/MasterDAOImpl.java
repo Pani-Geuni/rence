@@ -87,6 +87,8 @@ public class MasterDAOImpl implements MasterDAO {
 		
 		BackOfficeVO bvo2 = sqlSession.selectOne("SQL_SELECTONE_BACKOFFICE_DETAIL_M",bvo);
 		
+//		String[] option = bvo2.getBackoffice_option().split(",");
+		
 		return bvo2;
 	}
 }
