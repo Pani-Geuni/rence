@@ -1,5 +1,5 @@
 /**
- * @author 김예은
+ * @author 김예은, 전판근
  */
 $(function(){
   let test = 1;
@@ -80,22 +80,16 @@ $(function(){
       if($(".time-input:eq(0)").val() != '' && $(".time-input:eq(1)").val() != ''){
         // 예약 가능 확인 로직
 
-        // ================
-        // 예약 가능 테스트 코드
-        // ================
-        
         let query = location.search;
         let param = new URLSearchParams(query);
         let backoffice_no = param.get('backoffice_no');
         let room_no = $("#type-choice-value").attr("room_no");
         let reserve_stime = $(".time-input:eq(0)").val();
         let reserve_etime = $(".time-input:eq(1)").val();
-        
-        console.log("room no :: ", room_no);
-        
+                
         $.ajax({
         	url : "/rence/reserve_checkOK",
-        	type : "GET",
+        	type : "POST",
         	dataType : "json",
         	data : {
         		reserve_stime : reserve_stime,
@@ -109,7 +103,7 @@ $(function(){
         		
 				if (res.result == 1) {
 					console.log("success");
-					// location.href = "/rence/"
+					location.href = "/rence/payment_page"
 				} else if (res.result == 0) {
 					console.log("fail");
 					$(".fixed-popup").removeClass("blind");
@@ -122,9 +116,6 @@ $(function(){
         	
         });
         
-        // ==================
-        // 예약 가능 테스트 코드 끝
-        // ==================
       }
       // 예약 타입 선택 O, 체크인 or 체크아웃 시간 X
       else{

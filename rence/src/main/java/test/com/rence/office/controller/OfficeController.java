@@ -246,7 +246,7 @@ public class OfficeController {
 	// **********************
 	// 공간 예약 체크
 	// **********************
-	@RequestMapping(value = "/reserve_checkOK", method = RequestMethod.GET)
+	@RequestMapping(value = "/reserve_checkOK", method = RequestMethod.POST)
 	@ResponseBody
 	public JSONObject reserve_checkOK(OfficeReserveVO rvo) throws ParseException {
 		
@@ -263,5 +263,17 @@ public class OfficeController {
 		}
 		
 		return jsonObject;
+	}
+	
+	// **********************
+	// 공간 결제 페이지
+	// **********************
+	@RequestMapping(value = "/payment_page", method = RequestMethod.GET)
+	public String space_payment() {
+		
+		logger.info("space_payment()...");
+		
+		
+		return ".payment_page";
 	}
 }

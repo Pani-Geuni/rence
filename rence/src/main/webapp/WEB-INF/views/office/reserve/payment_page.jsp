@@ -203,8 +203,5 @@
                 </div>
             </section>
         </div>
-        <div id = "footerWrap">
-            <h5>© Golfzon Tech Academy, Inc. All rights reserved.</h5>
-        </div>
     </section>
 </div>
