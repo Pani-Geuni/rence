@@ -17,7 +17,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import test.com.rence.office.common.OfficeReserveCheck;
 
 @Repository
 public class OfficeInfoDAOImpl implements OfficeInfoDAO {
