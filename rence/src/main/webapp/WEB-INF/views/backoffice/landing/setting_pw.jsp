@@ -12,11 +12,11 @@
 		<div class="input-group">
 			<div class="input-item">
 				<input name="backoffice_pw" id="input-update-pw" class="input-update-pw" type="password" placeholder="새로운 비밀번호를 입력해 주세요." />
-				<span class="warning-text"></span>
+				<span class="pw-warning-text blind"></span>
 			</div>
 			<div class="input-item"> 
 				<input name="backoffice_pw_check" id="input-update-pw-re" class="input-update-pw" type="password" placeholder="새로운 비밀번호를 다시 입력해 주세요." />
-				<span class="warning-text"></span>
+				<span class="pw-warning-text blind"></span>
 			</div>
 				
 		</div>

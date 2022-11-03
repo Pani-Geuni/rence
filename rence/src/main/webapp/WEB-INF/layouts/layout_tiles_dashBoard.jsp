@@ -42,6 +42,9 @@
 <script src="${path}/resources/JS/backoffice/number_comma.js"></script>
 <script src="${path}/resources/JS/backoffice/host_popup.js"></script>
 
+<script type="text/javascript" src="${path}/resources/JS/common/core.min.js"></script>
+<script type="text/javascript" src="${path}/resources/JS/common/sha256.min.js"></script>
+
 </head>
 <body class="bodyWrap">
 	<tiles:insertAttribute name="side" />

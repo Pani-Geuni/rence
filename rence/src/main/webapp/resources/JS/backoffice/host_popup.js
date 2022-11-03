@@ -306,12 +306,47 @@ $(function () {
     $('#logout-popup').removeClass('blind');
   });
 
-  /** 비밀번호 변경 요청 버튼*/
+
+  /** 비밀번호 변경 팝업 닫기 버튼*/
+  $("#btn-popup-close").on("click",function(){
+    $(".input-check-pw").removeClass("null-input-border");
+    $(".input-check-pw").val("");
+  });
+
+  /** 현재 비밀번호 일치 여부 확인 버튼*/
   $("#btn-popup-confirm").on("click",function(){
     if($(".input-check-pw").val().trim().length > 0){
-      location.href = "/rence/backoffice_update_pw?backoffice_no=" + $.cookie("backoffice_no") + "&backoffice_pw=" + CryptoJS.SHA256($("#login-pw").val().trim()).toString()
+      $.ajax({
+        url : "/rence/backoffice_update_pw",
+        type : "GET",
+        dataType : 'json',
+        data : {
+          backoffice_no : $.cookie("backoffice_no"),
+          backoffice_pw : CryptoJS.SHA256($(".input-check-pw").val().trim()).toString()
+        },
+        success : function(res) {
+            // 현재 비밀번호 일치 성공
+            if(res.result == 1){
+              location.href="/rence/backoffice_setting_pw?backoffice_no=" + window.btoa($.cookie("backoffice_no"));
+            }else if(res.result == 0){
+              $(".popup-background:eq(1)").removeClass("blind");
+              $("#common-alert-popup").removeClass("blind");
+              $(".common-alert-txt").text("일치하지않는 비밀번호입니다.");
+
+              $(".input-check-pw").removeClass("null-input-border");
+              $(".input-check-pw").val("");
+            }
+        },
+        error : function() {
+            $(".popup-background:eq(1)").removeClass("blind");
+            $("#common-alert-popup").removeClass("blind");
+            $(".common-alert-txt").text("오류 발생으로 인해 처리에 실패하였습니다.");
+        }
+      });
     }else{
       $(".input-check-pw").addClass("null-input-border");
     }
   });
+
+
 });
