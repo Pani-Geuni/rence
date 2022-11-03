@@ -142,7 +142,6 @@ public class MypageController2 {
 	public String question_list(String user_no, Model model) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<QuestionVO> list = service.select_all_question(user_no);
-		
 		if(list != null) {
 			for(QuestionVO vo : list) {
 				QuestionVO vo2 = service.select_one_answer(vo.getComment_no());
