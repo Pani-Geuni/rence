@@ -26,6 +26,7 @@ import test.com.rence.office.model.OfficeOperatingTimeVO_date;
 import test.com.rence.office.model.OfficeReserveVO;
 import test.com.rence.office.model.OfficeReviewVO;
 import test.com.rence.office.model.OfficeRoomVO;
+import test.com.rence.office.model.PaymentInfoVO;
 import test.com.rence.office.service.OfficeService;
 
 @Controller
@@ -256,8 +257,12 @@ public class OfficeController {
 		
 		int result = service.check_reserve(rvo);
 		
+		String reserve_no = service.select_one_last_reserve(rvo.getUser_no());
+		logger.info("reserve_no :: {}", reserve_no);
+		
 		if (result == 1) {
 			jsonObject.put("result", "1");
+			jsonObject.put("reserve_no", reserve_no);
 		} else {
 			jsonObject.put("result", "0");
 		}
@@ -269,10 +274,24 @@ public class OfficeController {
 	// 공간 결제 페이지
 	// **********************
 	@RequestMapping(value = "/payment_page", method = RequestMethod.GET)
-	public String space_payment() {
+	public String space_payment(OfficeReserveVO rvo, Model model) {
 		
 		logger.info("space_payment()...");
 		
+		logger.info("reserve no :: {}", rvo.getReserve_no());
+		String reserve_no = rvo.getReserve_no();
+		
+		PaymentInfoVO pvo = service.select_one_final_payment_info(reserve_no);
+		OfficeInfoMap info_map = new OfficeInfoMap();
+		
+		pvo.setRoom_type(info_map.changeType(pvo.getRoom_type()));
+		List<String> splitImage = info_map.splitImage(pvo.getBackoffice_image());
+		String room_first_image = splitImage.get(0);
+		pvo.setBackoffice_image(room_first_image);
+		
+		logger.info("result pvo :: {}", pvo);
+		
+		model.addAttribute("pvo", pvo);
 		
 		return ".payment_page";
 	}

@@ -15,6 +15,7 @@ import test.com.rence.office.model.OfficeOperatingTimeVO_date;
 import test.com.rence.office.model.OfficeReserveVO;
 import test.com.rence.office.model.OfficeReviewVO;
 import test.com.rence.office.model.OfficeRoomVO;
+import test.com.rence.office.model.PaymentInfoVO;
 
 @Service
 public class OfficeService {
@@ -73,6 +74,22 @@ public class OfficeService {
 		int result = dao.check_reserve(vo);
 		
 		return result;
+	}
+	
+	public String select_one_last_reserve(String user_no) {
+		logger.info("select_one_last_reserve");
+		
+		String reserve_no = dao.select_one_last_reserve(user_no);
+		
+		return reserve_no;
+	}
+	
+	public PaymentInfoVO select_one_final_payment_info(String reserve_no) {
+		logger.info("select_one_final_payment_info");
+		
+		PaymentInfoVO vo = dao.select_one_final_payment_info(reserve_no);
+		
+		return vo;
 	}
 	
 }

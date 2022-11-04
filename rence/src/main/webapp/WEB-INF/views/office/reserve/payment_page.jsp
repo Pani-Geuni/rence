@@ -17,23 +17,23 @@
                         <img src="${path}/resources/IMG/reserve-list/default-space.svg" alt="result-img" class="reserve-info-img" />
                     </section>
                     <section class="reserve-info-txt">
-                        <span class="info-company-name">오라운트 스터디룸</span>
+                        <span class="info-company-name">${ pvo.company_name }</span>
                         <ul class="info-li-wrap">
                             <li class="info-li">
                                 <label class="info-label">공간 타입</label>
-                                <span class="info-text">데스크</span>
+                                <span class="info-text">${ pvo.room_type }</span>
                             </li>
                             <li class="info-li">
                                 <label class="info-label">예약 날짜</label>
-                                <span class="info-text">2022.10.30 10:00 ~ 2022.10.30 12:00</span>
+                                <span class="info-text">${ pvo.reserve_stime } ~ ${ pvo.reserve_etime }</span>
                             </li>
                             <li class="info-li">
                                 <label class="info-label">공간 이름</label>
-                                <span class="info-text">101호 1인 데스크</span>
+                                <span class="info-text">${ pvo.room_name }</span>
                             </li>
                             <li class="info-li">
                                 <label class="info-label">공간 가격</label>
-                                <span class="info-text">10,000원/시간</span>
+                                <span class="info-text">${ pvo.room_price }원/시간</span>
                             </li>
                         </ul>
                     </section>
@@ -47,19 +47,19 @@
                             <li class="host-info-li">
                                 <label class="uh-label">예약자</label>
                                 <span class="uh-text">
-                                    <input type="text" id="" class="pay-input" value="김예은" readonly/>
+                                    <input type="text" id="" class="pay-input" value="${ pvo.user_name }" readonly/>
                                 </span>
                             </li>
                             <li class="host-info-li">
                                 <label  class="uh-label">연락처</label>
                                 <span class="uh-text">
-                                    <input type="text" id="" class="pay-input" value="01040685633" readonly/>
+                                    <input type="text" id="" class="pay-input" value="${ pvo.user_tel }" readonly/>
                                 </span>
                             </li>
                             <li class="host-info-li">
                                 <label  class="uh-label">이메일</label>
                                 <span class="uh-text">
-                                    <input type="text" id="" class="pay-input" value="abcd@naver.com" readonly/>
+                                    <input type="text" id="" class="pay-input" value="${ pvo.user_email }" readonly/>
                                 </span>
                             </li>
                         </ul>
@@ -71,15 +71,15 @@
                         <ul>
                             <li class="host-info-li">
                                 <label class="uh-label">사업자명</label>
-                                <span class="uh-text">오라운트</span>
+                                <span class="uh-text">${ pvo.owner_name }</span>
                             </li>
                             <li class="host-info-li">
                                 <label  class="uh-label">위치</label>
-                                <span class="uh-text">경기도 광주시 오포읍 양벌로 320-4 (오라운트)</span>
+                                <span class="uh-text">${ pvo.roadname_address } (${ pvo.detail_address })</span>
                             </li>
                             <li class="host-info-li">
                                 <label  class="uh-label">연락처</label>
-                                <span class="uh-text">010-1234-5678 aaa@gmail.com</span>
+                                <span class="uh-text">${ pvo.backoffice_tel } ${ pvo.backoffice_email }</span>
                             </li>
                         </ul>
                     </div>
@@ -154,7 +154,7 @@
                                 나의 마일리지 : 
                             </label>
                             <span>
-                                1,200원
+                                ${ pvo.mileage_total }원
                             </span>
                         </div>
                     </section>
@@ -167,19 +167,19 @@
                         <ul class="payment-info-li-wrap">
                             <li class="info-li">
                                 <label class="info-label">공간 타입</label>
-                                <span class="info-text">데스크</span>
+                                <span class="info-text">${ pvo.room_type }</span>
                             </li>
                             <li class="info-li">
                                 <label class="info-label">예약 날짜</label>
-                                <span class="info-text">2022.10.30 10:00 ~ 2022.10.30 12:00</span>
+                                <span class="info-text">${ pvo.reserve_stime } ~ ${ pvo.reserve_etime }</span>
                             </li>
                             <li class="info-li">
                                 <label class="info-label">공간 이름</label>
-                                <span class="info-text">101호 1인 데스크</span>
+                                <span class="info-text">${ pvo.room_name }</span>
                             </li>
                             <li class="info-li">
                                 <label class="info-label">공간 가격</label>
-                                <span class="info-text">10,000원/시간</span>
+                                <span class="info-text">${ pvo.room_price }원/시간</span>
                             </li>
                         </ul>
                     </section>

@@ -103,7 +103,7 @@ $(function(){
         		
 				if (res.result == 1) {
 					console.log("success");
-					location.href = "/rence/payment_page"
+					location.href = "/rence/payment_page?reserve_no=" + res.reserve_no;
 				} else if (res.result == 0) {
 					console.log("fail");
 					$(".fixed-popup").removeClass("blind");

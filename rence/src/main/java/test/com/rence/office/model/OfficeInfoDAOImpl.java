@@ -83,6 +83,28 @@ public class OfficeInfoDAOImpl implements OfficeInfoDAO {
 		return flag;
 	}
 	
+	@Override
+	public String select_one_last_reserve(String user_no) {
+		
+		logger.info("select_one_last_reserve()....");
+		
+		OfficeReserveVO_date rvo_d = sqlSession.selectOne("SQL_SELECT_ONE_RESERVE_NO", user_no);
+		
+		String reserve_no = rvo_d.getReserve_no();
+		
+		return reserve_no;
+	}
+	
+	
+	@Override
+	public PaymentInfoVO select_one_final_payment_info(String reserve_no) {
+
+		logger.info("select_one_last_reserve()....");
+		
+		PaymentInfoVO pvo = sqlSession.selectOne("SQL_SELECT_ONE_FINAL_RESERVE_INFO", reserve_no);
+		
+		return pvo;
+	}
 
 	
 	// *****************
@@ -869,5 +891,4 @@ public class OfficeInfoDAOImpl implements OfficeInfoDAO {
 
 		return flag;
 	}
-
 }

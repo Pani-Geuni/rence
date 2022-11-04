@@ -16,4 +16,8 @@ public interface OfficeInfoDAO {
 	public List<OfficeReviewVO> select_all_review(String backoffice_no);
 	
 	public int check_reserve(OfficeReserveVO vo) throws ParseException;
+	
+	public String select_one_last_reserve(String user_no);
+	
+	public PaymentInfoVO select_one_final_payment_info(String reserve_no);
 }
