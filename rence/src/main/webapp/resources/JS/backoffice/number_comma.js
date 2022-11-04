@@ -51,9 +51,9 @@ $(function () {
       .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   );
 
-  $('#room-price').text(
-    $('#room-price')
-      .text()
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-  );
+  $('.room-price').each(function (index, value) {
+  	let price = $(value).text();
+  	
+  	$(this).text(price.replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+  });
 })

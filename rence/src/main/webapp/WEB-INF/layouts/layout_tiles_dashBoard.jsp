@@ -96,7 +96,7 @@
 				<div class="room-input-wrap">
 					<p>가격을 입력해 주세요.</p>
 					<input type="number" name="room_price" id="input-price-name"
-						class="room-input" placeholder="월 단위 가격을 입력해 주세요." value="" />
+						class="room-input" placeholder="가격을 입력해 주세요.(숫자만 입력 가능)" value="" />
 				</div>
 			</section>
 			<!-- room-popup-input-section -->
@@ -116,16 +116,14 @@
 			<section class="room-popup-input-section">
 				<div class="room-input-wrap">
 					<p>공간 이름</p>
-					<input type="text" name="room_name" id="input-room-name"
+					<input type="text" name="room_name" id="m-input-room-name"
 						class="room-input" placeholder="공간 이름을 입력해 주세요" />
 				</div>
 				<div class="room-input-wrap">
 					<p>공간 타입</p>
-					<input type="hidden" name="room_type" id="edit_room_type"
-						class="room_type" value="" />
-					<div class="room-type-select" id="room-type-select">
-						<button name="room_type" id="edit-room-type-label"
-							class="room-type-label">타입을 선택해 주세요</button>
+					<input type="hidden" name="room_type" id="m-edit_room_type" class="room_type" value="" />
+					<div class="room-type-select" id="m-room-type-select">
+						<button name="room_type" id="m-edit-room-type-label" class="room-type-label">타입을 선택해 주세요</button>
 						<ul class="edit-type-select-list blind">
 							<li class="edit-type-select-item">데스크</li>
 							<li class="edit-type-select-item">4인 회의실</li>
@@ -140,7 +138,7 @@
 				<div class="room-input-wrap">
 					<p>가격을 입력해 주세요.</p>
 					<input type="number" name="room_price" id="input-price-name"
-						class="room-input" placeholder="월 단위 가격을 입력해 주세요." value="" />
+						class="room-input" placeholder="가격을 입력해 주세요.(숫자만 입력 가능)" value="" />
 				</div>
 			</section>
 			<!-- room-popup-input-section -->
