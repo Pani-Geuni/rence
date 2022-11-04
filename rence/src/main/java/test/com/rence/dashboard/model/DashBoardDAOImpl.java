@@ -285,7 +285,7 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 
 		List<CommentListVO> qvos = sqlSession.selectList("SQL_SELECT_ALL_Q", backoffice_no);
 		if (qvos!=null) {
-			for (int i = 0; i < qvos.size(); i++) {
+			for (int i = 1; i < qvos.size(); i++) {
 				Map<String, String> map = new HashMap<String, String>();
 				map.put("backoffice_no", backoffice_no);
 				map.put("mother_no", qvos.get(i).getComment_no());
