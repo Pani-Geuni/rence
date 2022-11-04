@@ -6,13 +6,12 @@
 package test.com.rence.dashboard.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class CommentListVO implements Serializable {
 	private String comment_no;
 	private String answer_no;
 	private String user_no;
-	private String romm_name;
+	private String room_name;
 	private String comment_date;
 	private String comment_content;
 	private String answer_date;
@@ -23,13 +22,13 @@ public class CommentListVO implements Serializable {
 	public CommentListVO() {}
 
 
-	public CommentListVO(String comment_no, String answer_no, String user_no, String romm_name, String comment_date,
+	public CommentListVO(String comment_no, String answer_no, String user_no, String room_name, String comment_date,
 			String comment_content, String answer_date, String answer_content, String comment_state) {
 		super();
 		this.comment_no = comment_no;
 		this.answer_no = answer_no;
 		this.user_no = user_no;
-		this.romm_name = romm_name;
+		this.room_name = room_name;
 		this.comment_date = comment_date;
 		this.comment_content = comment_content;
 		this.answer_date = answer_date;
@@ -68,13 +67,13 @@ public class CommentListVO implements Serializable {
 	}
 
 
-	public String getRomm_name() {
-		return romm_name;
+	public String getroom_name() {
+		return room_name;
 	}
 
 
-	public void setRomm_name(String romm_name) {
-		this.romm_name = romm_name;
+	public void setroom_name(String room_name) {
+		this.room_name = room_name;
 	}
 
 
@@ -139,7 +138,7 @@ public class CommentListVO implements Serializable {
 		result = prime * result + ((comment_date == null) ? 0 : comment_date.hashCode());
 		result = prime * result + ((comment_no == null) ? 0 : comment_no.hashCode());
 		result = prime * result + ((comment_state == null) ? 0 : comment_state.hashCode());
-		result = prime * result + ((romm_name == null) ? 0 : romm_name.hashCode());
+		result = prime * result + ((room_name == null) ? 0 : room_name.hashCode());
 		result = prime * result + ((user_no == null) ? 0 : user_no.hashCode());
 		return result;
 	}
@@ -189,10 +188,10 @@ public class CommentListVO implements Serializable {
 				return false;
 		} else if (!comment_state.equals(other.comment_state))
 			return false;
-		if (romm_name == null) {
-			if (other.romm_name != null)
+		if (room_name == null) {
+			if (other.room_name != null)
 				return false;
-		} else if (!romm_name.equals(other.romm_name))
+		} else if (!room_name.equals(other.room_name))
 			return false;
 		if (user_no == null) {
 			if (other.user_no != null)
@@ -206,7 +205,7 @@ public class CommentListVO implements Serializable {
 	@Override
 	public String toString() {
 		return "CommentListVO [comment_no=" + comment_no + ", answer_no=" + answer_no + ", user_no=" + user_no
-				+ ", romm_name=" + romm_name + ", comment_date=" + comment_date + ", comment_content=" + comment_content
+				+ ", room_name=" + room_name + ", comment_date=" + comment_date + ", comment_content=" + comment_content
 				+ ", answer_date=" + answer_date + ", answer_content=" + answer_content + ", comment_state="
 				+ comment_state + "]";
 	}
