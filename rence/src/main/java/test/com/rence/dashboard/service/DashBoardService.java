@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import test.com.rence.backoffice.BackOfficeVO;
+import test.com.rence.dashboard.model.CommentListVO;
 import test.com.rence.dashboard.model.CommentSummaryVO;
 import test.com.rence.dashboard.model.CommentVO;
 import test.com.rence.dashboard.model.DashBoardDAO;
@@ -144,7 +145,7 @@ public class DashBoardService {
 	}
 
 	//문의 리스트
-	public List<CommentVO> backoffice_qna_selectAll(String backoffice_no) {
+	public List<CommentListVO> backoffice_qna_selectAll(String backoffice_no) {
 		logger.info("backoffice_qna_selectAll()...");
 		return dao.backoffice_qna_selectAll(backoffice_no);
 	}

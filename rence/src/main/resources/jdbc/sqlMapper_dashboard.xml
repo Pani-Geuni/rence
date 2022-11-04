@@ -210,16 +210,16 @@
  		insert into roominfo(room_no,room_name,room_type,backoffice_no,room_price) values('RM'||seq_room.nextval,#{room_name},#{room_type},#{backoffice_no},
  		
   		<if test="room_type == 'desk'">
-  			'10000')
+  			10000)
   		</if>
   		<if test="room_type == 'meeting_04'">
-  			'20000')
+  			20000)
   		</if>
   		<if test="room_type == 'meeting_06'">
-  			'30000')
+  			30000)
   		</if>
   		<if test="room_type == 'meeting_10'">
-  			'50000')
+  			50000)
   		</if>
   		<if test="room_type == 'office'">
   			#{room_price})
@@ -229,16 +229,16 @@
  	<update id="SQL_UPDATE_ROOM" parameterType="test.com.rence.dashboard.model.RoomVO">
  		update roominfo set room_name=#{room_name}, room_type=#{room_type}, room_price=
  		<if test="room_type == 'desk'">
-  			'10000'
+  			10000
   		</if>
   		<if test="room_type == 'meeting_04'">
-  			'20000'
+  			20000
   		</if>
   		<if test="room_type == 'meeting_06'">
-  			'30000'
+  			30000
   		</if>
   		<if test="room_type == 'meeting_10'">
-  			'50000'
+  			50000
   		</if>
   		<if test="room_type == 'office'">
   			#{room_price}
@@ -263,14 +263,15 @@
   		select * from roominfo where backoffice_no=#{backoffice_no} and room_no=#{room_no}
   	</select>
   	
-  	<select id="SQL_SELECT_ALL_QNA" resultType="test.com.rence.dashboard.model.CommentVO">
-  		select * from (select ROW_NUMBER() OVER(PARTITION BY c.comment_no ORDER BY c.comment_no ASC ) no,
-		c.comment_no, c.mother_no, c.host_no, c.user_no, c.comment_content, TO_CHAR(c.comment_date, 'YYYY-MM-DD HH24:MI:SS') as comment_date, rm.room_name, c.comment_state
+  	<select id="SQL_SELECT_ALL_Q" resultType="test.com.rence.dashboard.model.CommentListVO">
+  		select comment_no, user_no, comment_content, TO_CHAR(comment_date, 'YYYY-MM-DD HH24:MI:SS') as comment_date, room_name, comment_state
 		from comments c left outer join roominfo rm on c.room_no=rm.room_no
-		left outer join backofficeinfo b on rm.backoffice_no=b.backoffice_no
-		where c.backoffice_no=#{backoffice_no} 
-		START WITH comment_no = least(comment_no)
-		CONNECT BY PRIOR comment_no = mother_no) A where A.no=1
+		where c.backoffice_no=#{backoffice_no} and mother_no is null
+  	</select>
+  	
+  	<select id="SQL_SELECT_ALL_A" resultType="test.com.rence.dashboard.model.CommentListVO">
+  		select comment_no as answer_no, comment_content as answer_content, TO_CHAR(comment_date, 'YYYY-MM-DD HH24:MI:SS') as answer_date
+		from comments where backoffice_no=#{backoffice_no} and mother_no=#{mother_no}
   	</select>
   	
   	<select id="SQL_SELECT_ONE_COMMENT_INFO" resultType="test.com.rence.dashboard.model.CommentVO">
