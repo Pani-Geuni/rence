@@ -114,7 +114,7 @@ public class UserController {
 		JSONObject jsonObject = new JSONObject();
 
 		UserVO uvo2 = service.user_email_select(vo);
-
+		logger.info("uvo2: {}", uvo2);
 		if (uvo2 != null) {
 			uvo2 = authSendEmail.findId(uvo2, evo); // 유저의 메일로 아이디 전송
 
