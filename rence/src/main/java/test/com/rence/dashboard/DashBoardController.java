@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import test.com.rence.backoffice.BackOfficeVO;
+import test.com.rence.dashboard.model.CommentListVO;
 import test.com.rence.dashboard.model.CommentSummaryVO;
 import test.com.rence.dashboard.model.CommentVO;
 import test.com.rence.dashboard.model.ReserveSummaryVO;
@@ -115,7 +116,7 @@ public class DashBoardController {
 	 */
 	@RequestMapping(value = "/backoffice_insertOK_room ", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject backoffice_insertOK_room(String backoffice_no, RoomVO rvo) {
+	public JSONObject backoffice_insertOK_room(RoomVO rvo,String backoffice_no) {
 		logger.info("backoffice_insertOK_room ()...");
 		logger.info("{}", backoffice_no);
 
@@ -177,7 +178,7 @@ public class DashBoardController {
 	 */
 	@RequestMapping(value = "/backoffice_updateOK_room ", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject backoffice_updateOK_room(String backoffice_no, RoomVO rvo) {
+	public JSONObject backoffice_updateOK_room(RoomVO rvo,String backoffice_no) {
 		logger.info("backoffice_updateOK_room ()...");
 		logger.info("{}", backoffice_no);
 
@@ -231,7 +232,7 @@ public class DashBoardController {
 	public String dashboard_qna(Model model, String backoffice_no) {
 		logger.info("backoffice_qna ()...");
 		logger.info("{}", backoffice_no);
-		List<CommentVO> qvos = service.backoffice_qna_selectAll(backoffice_no);
+		List<CommentListVO> qvos = service.backoffice_qna_selectAll(backoffice_no);
 		model.addAttribute("q_vos", qvos);
 		model.addAttribute("cnt", qvos.size());
 		return ".dash_board/qna_list";

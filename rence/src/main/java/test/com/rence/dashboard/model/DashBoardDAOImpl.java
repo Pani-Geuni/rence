@@ -278,10 +278,27 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 
 	//QnA 리스트
 	@Override
-	public List<CommentVO> backoffice_qna_selectAll(String backoffice_no) {
+	public List<CommentListVO> backoffice_qna_selectAll(String backoffice_no) {
 		logger.info("backoffice_qna_q_selectAll...DAOImpl()...");
 
-		List<CommentVO> qvos = sqlSession.selectList("SQL_SELECT_ALL_QNA", backoffice_no);
+		List<CommentListVO> qvos = sqlSession.selectList("SQL_SELECT_ALL_Q", backoffice_no);
+		if (qvos!=null) {
+			for (int i = 0; i < qvos.size(); i++) {
+				Map<String, String> map = new HashMap<String, String>();
+				map.put("backoffice_no", backoffice_no);
+				map.put("mother_no", qvos.get(i).getComment_no());
+				List<CommentListVO> avos = sqlSession.selectList("SQL_SELECT_ALL_A", map);
+				if (avos!=null) {
+					for (int j = 0; j < avos.size(); j++) {
+						if (qvos.get(i).getComment_no()==avos.get(j).getAnswer_no()) {
+							qvos.get(i).setAnswer_no(avos.get(j).getComment_no());
+							qvos.get(i).setAnswer_content(avos.get(j).getComment_content());
+							qvos.get(i).setAnswer_date(avos.get(j).getComment_date());
+						}
+					}
+				}
+			}
+		}
 		
 		return qvos;
 	}

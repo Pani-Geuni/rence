@@ -49,7 +49,7 @@ public interface DashBoardDAO {
 
 	public RoomVO select_one_room_info(String backoffice_no, String room_no);
 
-	public List<CommentVO> backoffice_qna_selectAll(String backoffice_no);
+	public List<CommentListVO> backoffice_qna_selectAll(String backoffice_no);
 
 	public int backoffice_insertOK_comment(String backoffice_no, CommentVO cvo);
 
