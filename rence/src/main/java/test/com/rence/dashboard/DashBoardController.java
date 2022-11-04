@@ -298,6 +298,7 @@ public class DashBoardController {
 		List<ReserveVO> rvos = service.backoffice_reserve_selectAll(backoffice_no, reserve_state);
 		model.addAttribute("r_vos", rvos);
 		model.addAttribute("cnt", rvos.size());
+		model.addAttribute("reserve_state", reserve_state);
 		return ".dash_board/reserve_list";
 	}
 
