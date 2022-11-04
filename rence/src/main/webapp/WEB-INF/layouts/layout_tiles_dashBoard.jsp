@@ -40,6 +40,7 @@
 
 <script src="${path}/resources/JS/backoffice/dashboard.js"></script>
 <script src="${path}/resources/JS/backoffice/host_popup.js"></script>
+<script src="${path}/resources/JS/backoffice/reserve-list.js"></script>
 
 <script type="text/javascript" src="${path}/resources/JS/common/core.min.js"></script>
 <script type="text/javascript" src="${path}/resources/JS/common/sha256.min.js"></script>

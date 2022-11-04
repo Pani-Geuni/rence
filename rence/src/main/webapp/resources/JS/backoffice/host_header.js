@@ -53,7 +53,7 @@ $(function () {
 
   /** 호스트 마이페이지 */
   $('#go-myPage').click(function () {
-    $('#after_login>.custom-select-host').addClass('blind')
+    $('#after_login>.custom-select-host').addClass('blind');
     location.href = '/rence/go_my_page';
   });
   
@@ -120,7 +120,7 @@ $(function () {
               $(".common-alert-txt").text("비밀번호 변경에 실패하였습니다.");
             }
           },
-          error: function (error) {
+          error: function () {
             $(".popup-background:eq(1)").removeClass("blind");
             $("#common-alert-popup").removeClass("blind");
             $(".common-alert-txt").text("비밀번호 변경에 실패하였습니다.");

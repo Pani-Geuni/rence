@@ -271,7 +271,7 @@ $(function () {
     $('.popup-background:eq(0)').addClass('blind');
   });
 
-  // 삭제 요청 버튼
+  /** 삭제 요청 버튼 **/
   $("#delete-host-btn").on('click', function(){
     $.ajax({
       url : "/rence/backoffice_setting_delete",
@@ -283,9 +283,9 @@ $(function () {
       success : function(res) {
           // 호스트 삭제 성공
           if(res.result == 1){
-            $("#check-now-pw").prop("check", true);
-            $("#modify-pw-now").attr("readonly", true);
-            $("#modify-pw-now").addClass("readOnly");
+            $(".popup-background:eq(0)").removeClass("blind");
+            $("#common-alert-popup").removeClass("blind");
+            $(".common-alert-txt").text("마스터에게 삭제 요청되었습니다.");
           }else{
             $(".popup-background:eq(0)").removeClass("blind");
             $("#common-alert-popup").removeClass("blind");
@@ -347,6 +347,5 @@ $(function () {
       $(".input-check-pw").addClass("null-input-border");
     }
   });
-
 
 });

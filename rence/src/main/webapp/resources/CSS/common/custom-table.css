@@ -5,6 +5,11 @@
   width: 100%;
 }
 
+.custom-table * {
+	font-family: "HallymGothic";
+	font-weight: 900;
+}
+
 .ct-header {
   display: flex;
   justify-content: space-around;
@@ -46,6 +51,8 @@
   border-radius: 8px;
 
   font-size: 10px;
+  font-weight : 700 !important;
+  letter-spacing : 0.4px;
   color: #ffffff;
   background-color: #b2a4ff;
 
