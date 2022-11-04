@@ -275,7 +275,8 @@
   	</select>
   	
   	<select id="SQL_SELECT_ONE_COMMENT_INFO" resultType="test.com.rence.dashboard.model.CommentVO">
-  		select * from comments where backoffice_no=#{backoffice_no} and room_no=#{room_no} and comment_no=#{comment_no}
+  		select comment_no,mother_no,comment_state,room_name,comment_content, TO_CHAR(comment_date, 'YYYY-MM-DD HH24:MI:SS') as comment_date, c.room_no,
+        c.backoffice_no, user_no, host_no, writer  from comments c left outer join roominfo rm on c.room_no=rm.room_no where c.backoffice_no=#{backoffice_no} and c.room_no=#{room_no} and comment_no=#{comment_no}
   	</select>
   	
   	<insert id="SQL_INSERT_QNA" parameterType="test.com.rence.dashboard.model.CommentVO">
