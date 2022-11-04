@@ -82,6 +82,9 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		map.put("reserve_state", reserve_state);
 
 		List<ReserveVO> rvos = sqlSession.selectList("SQL_SELECT_ALL_B_RESERVE", map);
+		if (rvos!=null) {
+			sqlSession.update("SQL_UPDATE_B_RESERVE_STATE", backoffice_no);
+		}
 
 		return rvos;
 	}

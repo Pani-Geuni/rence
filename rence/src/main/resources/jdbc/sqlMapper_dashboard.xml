@@ -84,6 +84,10 @@
   		)A where A.no=1
   	</select>
   	
+  	<update id="SQL_UPDATE_B_RESERVE_STATE" parameterType="test.com.rence.dashboard.model.ReserveVO">
+  		update reserveinfo set reserve_state='T' where backoffice_no=#{backoffice_no} and room_no=#{room_no} and payment_no=#{payment_no}
+  	</update>
+  	
   	<select id="SQL_SELECT_ALL_B_RESERVE_SEARCH" resultType="test.com.rence.dashboard.model.ReserveVO" parameterType="hashmap">
   		select * from (
 			select ROW_NUMBER() OVER(PARTITION BY rv.reserve_no ORDER BY rv.reserve_no ASC ) no, rv.reserve_no, TO_CHAR(reserve_sdate, 'YYYY-MM-DD HH24:MI:SS') as reserve_sdate, TO_CHAR(reserve_edate, 'YYYY-MM-DD HH24:MI:SS') as reserve_edate, rm.room_name, u.user_name, u.user_tel, u.user_email, p.actual_payment, p.payment_state, reserve_state

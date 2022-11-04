@@ -78,11 +78,11 @@ public class DashBoardController {
 	}
 
 	/**
-	 * 공간 추가/수정 팝업
+	 * 공간 추가 팝업
 	 */
 	@RequestMapping(value = "/backoffice_insert_room ", method = RequestMethod.GET)
 	@ResponseBody
-	public JSONObject backoffice_insert_room(String backoffice_no, String room_no) {
+	public JSONObject backoffice_insert_room(String backoffice_no) {
 		logger.info("backoffice_insertOK_room ()...");
 		logger.info("{}", backoffice_no);
 
@@ -96,11 +96,6 @@ public class DashBoardController {
 			type_list = info_map.splitType(bvo.getBackoffice_type());
 		} else {
 			type_list.add("타입 없음");
-		}
-
-		if (room_no != null) {
-			RoomVO rmvo = service.select_one_room_info(backoffice_no, room_no);
-			jsonObject.put("rmvo", rmvo);
 		}
 
 		jsonObject.put("room_type", type_list);
@@ -134,6 +129,35 @@ public class DashBoardController {
 		return jsonObject;
 	}
 
+	/**
+	 * 공간 수정 팝업
+	 */
+	@RequestMapping(value = "/backoffice_update_room ", method = RequestMethod.GET)
+	@ResponseBody
+	public JSONObject backoffice_update_room(String backoffice_no, String room_no) {
+		logger.info("backoffice_update_room ()...");
+		logger.info("{}", backoffice_no);
+
+		JSONObject jsonObject = new JSONObject();
+		OfficeInfoMap info_map = new OfficeInfoMap();
+
+		BackOfficeVO bvo = service.select_one_backoffice_info(backoffice_no);
+		List<String> type_list = new ArrayList<String>();
+
+		if (bvo.getBackoffice_type() != null) {
+			type_list = info_map.splitType(bvo.getBackoffice_type());
+		} else {
+			type_list.add("타입 없음");
+		}
+		
+		RoomVO rmvo = service.select_one_room_info(backoffice_no, room_no);
+		jsonObject.put("rmvo", rmvo);
+
+		jsonObject.put("room_type", type_list);
+
+		return jsonObject;
+	}
+	
 	/**
 	 * 공간 수정
 	 */
