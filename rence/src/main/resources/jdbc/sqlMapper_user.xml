@@ -66,7 +66,7 @@
 
 
 	<!-- 회원가입시 인증번호 동일한지 체크 -->
-<!-- 	과거 인증코드는 인증이 안되도록 함 -->
+	<!-- 과거 인증코드는 인증이 안되도록 함 -->
 	<select id="SQL_SELECT_USER_AUTHOK" parameterType="hashmap"
 		resultType="test.com.rence.sendemail.AuthVO">
 		 SELECT * FROM
@@ -110,7 +110,8 @@
 	<!-- 아이디 찾기에서 이메일 가져오기 -->
 	<select id="SQL_SELECT_EMAIL"
 		resultType="test.com.rence.user.model.UserVO">
-		select * from userinfo where user_email=#{user_email}
+		select * from userinfo 
+		where user_state='Y' and user_email=#{user_email}
 	</select>
 
 
@@ -118,7 +119,7 @@
 	<!-- and 연산자를 통해서 아이디와 이메일 모두가 존재하여야 select가 가능함 -->
 	<select id="SQL_SELECT_USER_ID_EMAIL"
 		resultType="test.com.rence.user.model.UserVO">
-		select * from userinfo where user_id=#{user_id} and
+		select * from userinfo where user_state='Y' and user_id=#{user_id} and
 		user_email=#{user_email}
 	</select>
 

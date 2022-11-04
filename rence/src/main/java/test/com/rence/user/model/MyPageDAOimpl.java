@@ -57,6 +57,7 @@ public class MyPageDAOimpl implements MyPageDAO {
 	@Override
 	public List<MyPage_ReviewVO> select_all_review(String user_no) {
 		List<MyPage_ReviewVO> list = sqlSession.selectList("SQL_SELECT_ALL_REVIEW", user_no);		
+		logger.info("list: {}",list);
 		
 		return list;
 	}
