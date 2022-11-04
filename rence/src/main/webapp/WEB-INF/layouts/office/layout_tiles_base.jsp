@@ -117,11 +117,11 @@
                     <input type="text" id="join-name" class="join-popup-input" placeholder="이름" autocomplete="off"/>
                 </div>
                 <div class="input-wrap">
-                    <input type="text" id="join-tel" class="join-popup-input" placeholder="전화번호(-없이 입력)" autocomplete="off"/>
+                    <input type="number" id="join-tel" class="join-popup-input" placeholder="전화번호(-없이 입력)" autocomplete="off"/>
                     <span class="warning-text blind">-없이 입력하세요.</span>
                 </div>
                 <div class="input-wrap">
-                    <input type="text" id="join-birth" class="join-popup-input" placeholder="생년월일(숫자로만 입력)" autocomplete="off"/>
+                    <input type="number" id="join-birth" class="join-popup-input" placeholder="생년월일(숫자로만 입력)" autocomplete="off"/>
                     <span class="warning-text blind">숫자로만 입력가능합니다.</span>
                 </div>
             </section>
