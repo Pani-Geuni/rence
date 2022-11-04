@@ -187,11 +187,11 @@
                         <ul class="payment-info-li-wrap">
                             <li class="info-li">
                                 <label class="pay-info-label">총 결제 금액</label>
-                                <span class="pay-info-text">40,000원</span>
+                                <span class="pay-info-text">${ payment_all }원</span>
                             </li>
                             <li class="info-li">
                                 <label class="pay-info-label">마일리지 예상 적립 금액</label>
-                                <span class="pay-info-text">200원</span>
+                                <span class="pay-info-text">${ earned_mileage }원</span>
                             </li>
                         </ul>
                     </section>

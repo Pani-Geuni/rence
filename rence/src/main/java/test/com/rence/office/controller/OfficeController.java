@@ -3,6 +3,7 @@ package test.com.rence.office.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.json.simple.JSONObject;
@@ -274,7 +275,7 @@ public class OfficeController {
 	// 공간 결제 페이지
 	// **********************
 	@RequestMapping(value = "/payment_page", method = RequestMethod.GET)
-	public String space_payment(OfficeReserveVO rvo, Model model) {
+	public String space_payment(OfficeReserveVO rvo, Model model) throws ParseException {
 		
 		logger.info("space_payment()...");
 		
@@ -291,7 +292,27 @@ public class OfficeController {
 		
 		logger.info("result pvo :: {}", pvo);
 		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		
+		Date sdate = formatter.parse(pvo.getReserve_stime());
+		Date edate = formatter.parse(pvo.getReserve_etime());
+		
+		// 사용자 총 예약 시간
+		long diffHour = (edate.getTime() - sdate.getTime()) / 3600000;
+		
+		// 전체 결제할 금액
+		int payment_all = (int) diffHour * pvo.getRoom_price();
+		// 보증금
+		int payment_deposit = (int) (payment_all * 0.2);
+		int earned_mileage = (int) (payment_all * 0.05);
+		
+		logger.info("diffHour :: {}", diffHour);
+		
 		model.addAttribute("pvo", pvo);
+		model.addAttribute("payment_all", payment_all);
+		model.addAttribute("payment_deposit", payment_deposit);
+		model.addAttribute("earned_mileage", earned_mileage);
+		
 		
 		return ".payment_page";
 	}
