@@ -275,11 +275,11 @@
   	</select>
   	
   	<select id="SQL_SELECT_ONE_COMMENT_INFO" resultType="test.com.rence.dashboard.model.CommentVO">
-  		select * from comments where backoffice_no=#{backoffice_no} and room_no=#{room_no} and content_no=#{comment_no}
+  		select * from comments where backoffice_no=#{backoffice_no} and room_no=#{room_no} and comment_no=#{comment_no}
   	</select>
   	
   	<insert id="SQL_INSERT_QNA" parameterType="test.com.rence.dashboard.model.CommentVO">
- 		insert into comments(comments_no, room_no, backoffice_no, mother_no, comment_content, comment_date, writer, comment_state, host_no) 
+ 		insert into comments(comment_no, room_no, backoffice_no, mother_no, comment_content, comment_date, writer, comment_state, host_no) 
 		value ('C'||seq_comments.nextval,#{room_no},#{backoffice_no},#{mother_no},#{comment_content}, sysdate, '관리자', 'T', #{backoffice_no})
  	</insert>
   	
