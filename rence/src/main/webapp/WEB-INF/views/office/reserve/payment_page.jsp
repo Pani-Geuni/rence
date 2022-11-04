@@ -128,7 +128,7 @@
                             </div>
                             <div class="payment-method">
                                 <div class="custom-radio">
-                                    <div class="inner-radio choice-radio"></div>
+                                    <div class="inner-radio"></div>
                                 </div>
                                 <span class="payment-method-text">후불 결제</span>
                             </div>
@@ -187,11 +187,11 @@
                         <ul class="payment-info-li-wrap">
                             <li class="info-li">
                                 <label class="pay-info-label">총 결제 금액</label>
-                                <span id="payment_all" class="pay-info-text" payment_all="${ payment_all }">${ payment_all }원</span>
+                                <span id="payment_all" class="pay-info-text" payment_total="${payment_all}">${ payment_all }원</span>
                             </li>
                             <li class="info-li">
                                 <label class="pay-info-label">마일리지 예상 적립 금액</label>
-                                <span id="earned_mileage" class="pay-info-text" earned_mileage="${ earned_mileage }">${ earned_mileage }원</span>
+                                <span id="earned_mileage" class="pay-info-text" earned_mileage="${earned_mileage}">${ earned_mileage }원</span>
                             </li>
                         </ul>
                     </section>

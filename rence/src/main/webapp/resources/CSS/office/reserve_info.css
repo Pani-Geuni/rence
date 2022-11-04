@@ -338,6 +338,8 @@
     height: 8px;
 
     border-radius: 100%;
+    
+    cursor: pointer;
 }
 .choice-radio{
     background-color: #42C2FF;
