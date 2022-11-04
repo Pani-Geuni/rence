@@ -41,8 +41,8 @@
           <ul class="reserve-filter-list">
             <li id="reserve-all" class="reserve-item <c:if test="${reserve_state eq 'all'}">active</c:if>">전체</li>
             <li id="reserve-ing" class="reserve-item <c:if test="${reserve_state eq 'in_use'}">active</c:if>">예약중</li>
-            <li id="reserve-cancel" class="reserve-item <c:if test="${reserve_state eq 'end'}">active</c:if>">취소</li>
-            <li id="reserve-end" class="reserve-item <c:if test="${reserve_state eq 'cancel'}">active</c:if>">종료</li>
+            <li id="reserve-cancel" class="reserve-item <c:if test="${reserve_state eq 'cancle'}">active</c:if>">취소</li>
+            <li id="reserve-end" class="reserve-item <c:if test="${reserve_state eq 'end'}">active</c:if>">종료</li>
           </ul>
         </section>
         <!-- END reserve-header -->
@@ -75,7 +75,6 @@
 	                  	<c:if test="${vos.reserve_state eq 'end'}">reserve-cancel</c:if>
 	                  	<c:if test="${vos.reserve_state eq 'cancel'}">reserve-end</c:if>
 	               	  ">
-	                  	취소
 	                  	<c:if test="${vos.reserve_state eq 'begin'}">이용전</c:if>
 	                  	<c:if test="${vos.reserve_state eq 'in_use'}">이용중</c:if>
 	                  	<c:if test="${vos.reserve_state eq 'end'}">이용완료</c:if>
