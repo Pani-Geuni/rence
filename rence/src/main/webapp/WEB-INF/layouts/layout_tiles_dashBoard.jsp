@@ -16,24 +16,15 @@
 	href="${path}/resources/CSS/common/custom-table.css" />
 
 
-<link rel="stylesheet"
-	href="${path}/resources/CSS/dash-board/dash-commons.css" />
-<link rel="stylesheet"
-	href="${path}/resources/CSS/dash-board/left-side-menu.css" />
-<link rel="stylesheet"
-	href="${path}/resources/CSS/dash-board/dash-board.css" />
-<link rel="stylesheet"
-	href="${path}/resources/CSS/dash-board/dash-space-list.css" />
-<link rel="stylesheet"
-	href="${path}/resources/CSS/dash-board/dash-qna-list.css" />
-<link rel="stylesheet"
-	href="${path}/resources/CSS/dash-board/dash-review-list.css" />
-<link rel="stylesheet"
-	href="${path}/resources/CSS/dash-board/dash-reserve-list.css" />
-<link rel="stylesheet"
-	href="${path}/resources/CSS/dash-board/dash-sales-list.css" />
-<link rel="stylesheet"
-	href="${path}/resources/CSS/dash-board/dash-settings.css" />
+<link rel="stylesheet" href="${path}/resources/CSS/dash-board/dash-commons.css" />
+<link rel="stylesheet" href="${path}/resources/CSS/dash-board/left-side-menu.css" />
+<link rel="stylesheet" href="${path}/resources/CSS/dash-board/dash-board.css" />
+<link rel="stylesheet" href="${path}/resources/CSS/dash-board/dash-space-list.css" />
+<link rel="stylesheet" href="${path}/resources/CSS/dash-board/dash-qna-list.css" />
+<link rel="stylesheet" href="${path}/resources/CSS/dash-board/dash-review-list.css" />
+<link rel="stylesheet" href="${path}/resources/CSS/dash-board/dash-reserve-list.css" />
+<link rel="stylesheet" href="${path}/resources/CSS/dash-board/dash-sales-list.css" />
+<link rel="stylesheet" href="${path}/resources/CSS/dash-board/dash-settings.css" />
 
 <script src="${path}/resources/JS/common/jquery-3.6.1.min.js"></script>
 <script src="${path}/resources/JS/common/jquery.cookie.js"></script>
@@ -41,6 +32,8 @@
 <script src="${path}/resources/JS/backoffice/dashboard.js"></script>
 <script src="${path}/resources/JS/backoffice/host_popup.js"></script>
 <script src="${path}/resources/JS/backoffice/reserve-list.js"></script>
+
+<script src="${path}/resources/JS/backoffice/number_comma.js"></script>
 
 <script type="text/javascript" src="${path}/resources/JS/common/core.min.js"></script>
 <script type="text/javascript" src="${path}/resources/JS/common/sha256.min.js"></script>

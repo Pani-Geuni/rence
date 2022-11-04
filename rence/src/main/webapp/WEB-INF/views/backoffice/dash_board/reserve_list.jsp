@@ -16,14 +16,11 @@
           <div class="searchBar-section">
             <div class="searchBar-wrap">
               <div id="type" class="sb_1 type">
-                <span>타입</span>
+<!--                 <span>타입</span> -->
+                <span>예약자</span>
               </div>
               <div class="sb_2">
-                <input
-                  type="text"
-                  placeholder="검색어를 입력하세요."
-                  id="input_searchBar"
-                />
+                <input type="text" placeholder="검색어를 입력하세요." id="input_searchBar" />
               </div>
 
               <!-- CUSTOM SELECT -->
@@ -100,7 +97,7 @@
             </div>
             <!-- END ct-body -->
 
-            <ul class="pagination blind">
+            <ul class="pagination blind blind">
 				<li class="page-item">
 					<button>
 						<img src="${path}/resources/IMG/dash-board/ico-double-left.svg" alt="-10" />

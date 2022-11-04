@@ -92,7 +92,7 @@
 		</div>
 		<!-- END qna-item -->
 
-		<ul class="pagination">
+		<ul class="pagination blind">
 			<li class="page-item">
 				<button>
 					<img src="${path}/resources/IMG/dash-board/ico-double-left.svg" alt="-10" />
