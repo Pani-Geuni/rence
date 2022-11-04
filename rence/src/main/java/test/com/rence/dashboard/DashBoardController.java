@@ -87,13 +87,17 @@ public class DashBoardController {
 		logger.info("{}", backoffice_no);
 
 		JSONObject jsonObject = new JSONObject();
-		OfficeInfoMap info_map = new OfficeInfoMap();
 
 		BackOfficeVO bvo = service.select_one_backoffice_info(backoffice_no);
 		List<String> type_list = new ArrayList<String>();
 
 		if (bvo.getBackoffice_type() != null) {
-			type_list = info_map.splitType(bvo.getBackoffice_type());
+			String[] type_split = bvo.getBackoffice_type().split(",");
+			
+			for (int i=0; i < type_split.length; i++) {
+				type_list.add(type_split[i]);
+			}
+			
 		} else {
 			type_list.add("타입 없음");
 		}
@@ -139,19 +143,28 @@ public class DashBoardController {
 		logger.info("{}", backoffice_no);
 
 		JSONObject jsonObject = new JSONObject();
-		OfficeInfoMap info_map = new OfficeInfoMap();
 
 		BackOfficeVO bvo = service.select_one_backoffice_info(backoffice_no);
 		List<String> type_list = new ArrayList<String>();
 
 		if (bvo.getBackoffice_type() != null) {
-			type_list = info_map.splitType(bvo.getBackoffice_type());
+			String[] type_split = bvo.getBackoffice_type().split(",");
+			
+			for (int i=0; i < type_split.length; i++) {
+				type_list.add(type_split[i]);
+			}
+			
 		} else {
 			type_list.add("타입 없음");
 		}
 		
 		RoomVO rmvo = service.select_one_room_info(backoffice_no, room_no);
 		jsonObject.put("rmvo", rmvo);
+//		if (rmvo!=null) {
+//			jsonObject.put("rmvo", rmvo);
+//		}else {
+//			jsonObject.put("result", "0");
+//		}
 
 		jsonObject.put("room_type", type_list);
 
