@@ -103,7 +103,7 @@ public class BackOfficeController {
 		ovo2 = operatingTime.operatingTime(ovo, ovo2);
 
 		//meeting_room->04,06,10
-		String type = vo.getBackoffice_type().replace("meeting_room", "meeting_04,meeting_06,meet_10");
+		String type = vo.getBackoffice_type().replace("meeting_room", "meeting_04,meeting_06,meeting_10");
 		vo.setBackoffice_type(type);
 
 		// 백오피스 insert

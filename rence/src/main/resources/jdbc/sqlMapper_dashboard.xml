@@ -84,7 +84,7 @@
   		)A where A.no=1
   	</select>
   	
- <!--   	<update id="SQL_UPDATE_B_RESERVE_STATE" parameterType="test.com.rence.dashboard.model.ReserveVO_date">
+<!--    	<update id="SQL_UPDATE_B_RESERVE_STATE" parameterType="test.com.rence.dashboard.model.ReserveVO_date">
   		update reserveinfo set reserve_state = 
   		
   		<if test="now &lt; reserve_sdate">
@@ -212,13 +212,13 @@
   		<if test="room_type == 'desk'">
   			'10000')
   		</if>
-  		<if test="room_type == 'meet_04'">
+  		<if test="room_type == 'meeting_04'">
   			'20000')
   		</if>
-  		<if test="room_type == 'meet_06'">
+  		<if test="room_type == 'meeting_06'">
   			'30000')
   		</if>
-  		<if test="room_type == 'meet_10'">
+  		<if test="room_type == 'meeting_10'">
   			'50000')
   		</if>
   		<if test="room_type == 'office'">
@@ -231,13 +231,13 @@
  		<if test="room_type == 'desk'">
   			'10000'
   		</if>
-  		<if test="room_type == 'meet_04'">
+  		<if test="room_type == 'meeting_04'">
   			'20000'
   		</if>
-  		<if test="room_type == 'meet_06'">
+  		<if test="room_type == 'meeting_06'">
   			'30000'
   		</if>
-  		<if test="room_type == 'meet_10'">
+  		<if test="room_type == 'meeting_10'">
   			'50000'
   		</if>
   		<if test="room_type == 'office'">
