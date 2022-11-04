@@ -278,22 +278,12 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 
 	//QnA 리스트
 	@Override
-	public List<CommentVO> backoffice_qna_q_selectAll(String backoffice_no) {
+	public List<CommentVO> backoffice_qna_selectAll(String backoffice_no) {
 		logger.info("backoffice_qna_q_selectAll...DAOImpl()...");
 
-		List<CommentVO> qvos = sqlSession.selectList("SQL_SELECT_ALL_QNA_Q", backoffice_no);
+		List<CommentVO> qvos = sqlSession.selectList("SQL_SELECT_ALL_QNA", backoffice_no);
 		
 		return qvos;
-	}
-	
-	//QnA 리스트
-	@Override
-	public List<CommentVO> backoffice_qna_a_selectAll(String backoffice_no) {
-		logger.info("backoffice_qna_a_selectAll...DAOImpl()...");
-		
-		List<CommentVO> avos = sqlSession.selectList("SQL_SELECT_ALL_QNA_A", backoffice_no);
-		
-		return avos;
 	}
 
 	//답변 작성 팝업

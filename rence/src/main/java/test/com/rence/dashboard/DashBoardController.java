@@ -231,10 +231,8 @@ public class DashBoardController {
 	public String dashboard_qna(Model model, String backoffice_no) {
 		logger.info("backoffice_qna ()...");
 		logger.info("{}", backoffice_no);
-		List<CommentVO> qvos = service.backoffice_qna_q_selectAll(backoffice_no);
-		List<CommentVO> avos = service.backoffice_qna_a_selectAll(backoffice_no);
+		List<CommentVO> qvos = service.backoffice_qna_selectAll(backoffice_no);
 		model.addAttribute("q_vos", qvos);
-		model.addAttribute("a_vos", avos);
 		model.addAttribute("cnt", qvos.size());
 		return ".dash_board/qna_list";
 	}

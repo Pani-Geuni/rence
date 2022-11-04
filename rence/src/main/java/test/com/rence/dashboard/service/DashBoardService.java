@@ -144,15 +144,9 @@ public class DashBoardService {
 	}
 
 	//문의 리스트
-	public List<CommentVO> backoffice_qna_q_selectAll(String backoffice_no) {
+	public List<CommentVO> backoffice_qna_selectAll(String backoffice_no) {
 		logger.info("backoffice_qna_selectAll()...");
-		return dao.backoffice_qna_q_selectAll(backoffice_no);
-	}
-	
-	//답변 리스트
-	public List<CommentVO> backoffice_qna_a_selectAll(String backoffice_no) {
-		logger.info("backoffice_qna_selectAll()...");
-		return dao.backoffice_qna_a_selectAll(backoffice_no);
+		return dao.backoffice_qna_selectAll(backoffice_no);
 	}
 	
 	//답변 작성 팝업

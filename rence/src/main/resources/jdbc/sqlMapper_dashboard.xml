@@ -84,16 +84,16 @@
   		)A where A.no=1
   	</select>
   	
-<!--    	<update id="SQL_UPDATE_B_RESERVE_STATE" parameterType="test.com.rence.dashboard.model.ReserveVO_date">
+<!--     	<update id="SQL_UPDATE_B_RESERVE_STATE" parameterType="test.com.rence.dashboard.model.ReserveVO_date">
   		update reserveinfo set reserve_state = 
   		
-  		<if test="now &lt; reserve_sdate">
+  		<if test="now lt reserve_sdate">
   			'begin'
   		</if>
   		<if test="now between reserve_sdate and reserve_edate">
 			'in_use'
 		</if>
-		<if test="now &gt; reserve_edate">
+		<if test="now gt reserve_edate">
 			'end'
 		</if>
 		and backoffice_no=#{backoffice_no}
@@ -263,28 +263,14 @@
   		select * from roominfo where backoffice_no=#{backoffice_no} and room_no=#{room_no}
   	</select>
   	
-  	<select id="SQL_SELECT_ALL_QNA_Q" resultType="test.com.rence.dashboard.model.CommentVO">
-  		select comment_no,comment_state, room_name, comment_content, TO_CHAR(comment_date, 'YYYY-MM-DD HH24:MI:SS') as comment_date
-		from (
-			select ROW_NUMBER() OVER(PARTITION BY c.comment_no ORDER BY c.comment_no ASC ) no, 
-			c.comment_no, c.user_no, c.comment_content, c.comment_date, rm.room_name, c.comment_state
-			from userinfo u left outer join comments c on u.user_no=c.user_no
-			left outer join roominfo rm on c.room_no=rm.room_no
-			left outer join backofficeinfo b on rm.backoffice_no=b.backoffice_no
-			where b.backoffice_no=#{backoffice_no})A
-		where A.no=1
-  	</select>
-  	
-  	<select id="SQL_SELECT_ALL_QNA_A" resultType="test.com.rence.dashboard.model.CommentVO">
-  		select comment_no,mother_no, room_name, comment_content, TO_CHAR(comment_date, 'YYYY-MM-DD HH24:MI:SS') as comment_date
-		from (
-			select ROW_NUMBER() OVER(PARTITION BY c.comment_no ORDER BY c.comment_no ASC ) no, 
-			c.comment_no, c.mother_no, c.host_no, c.comment_content, c.comment_date, rm.room_name, c.comment_state
-			from userinfo u left outer join comments c on u.user_no=c.user_no
-			left outer join roominfo rm on c.room_no=rm.room_no
-			left outer join backofficeinfo b on rm.backoffice_no=b.backoffice_no
-			where b.backoffice_no=#{backoffice_no})A
-		where A.no=1
+  	<select id="SQL_SELECT_ALL_QNA" resultType="test.com.rence.dashboard.model.CommentVO">
+  		select * from (select ROW_NUMBER() OVER(PARTITION BY c.comment_no ORDER BY c.comment_no ASC ) no,
+		c.comment_no, c.mother_no, c.host_no, c.user_no, c.comment_content, TO_CHAR(c.comment_date, 'YYYY-MM-DD HH24:MI:SS') as comment_date, rm.room_name, c.comment_state
+		from comments c left outer join roominfo rm on c.room_no=rm.room_no
+		left outer join backofficeinfo b on rm.backoffice_no=b.backoffice_no
+		where c.backoffice_no=#{backoffice_no} 
+		START WITH comment_no = least(comment_no)
+		CONNECT BY PRIOR comment_no = mother_no) A where A.no=1
   	</select>
   	
   	<select id="SQL_SELECT_ONE_COMMENT_INFO" resultType="test.com.rence.dashboard.model.CommentVO">
