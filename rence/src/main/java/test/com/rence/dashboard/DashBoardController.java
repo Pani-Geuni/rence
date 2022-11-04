@@ -217,7 +217,7 @@ public class DashBoardController {
 
 		else {
 			logger.info("failed...");
-			jsonObject.put("result", "0");
+			jsonObject.put("result", "0");  //남은 예약이 있을 시
 		}
 
 		return jsonObject;

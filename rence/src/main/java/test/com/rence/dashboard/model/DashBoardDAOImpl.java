@@ -9,6 +9,9 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -82,8 +85,12 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		map.put("reserve_state", reserve_state);
 
 		List<ReserveVO> rvos = sqlSession.selectList("SQL_SELECT_ALL_B_RESERVE", map);
-//		if (rvos!=null) {
-//			sqlSession.update("SQL_UPDATE_B_RESERVE_STATE", backoffice_no);
+//		if (rvos!=null) {	        
+//			  	Map<String, String> map2 = new HashMap<String, String>();
+//				map2.put("backoffice_no", backoffice_no);
+//				map2.put("now", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+//		 
+//			sqlSession.update("SQL_UPDATE_B_RESERVE_STATE", map);
 //		}
 
 		return rvos;
