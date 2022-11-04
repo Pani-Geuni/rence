@@ -9,12 +9,12 @@ public class RoomVO {
 	private String room_no;
 	private String room_type;
 	private String room_name;
-	private int room_price;
+	private Integer room_price;
 	private String backoffice_no;
 	
 	public RoomVO() {}
 
-	public RoomVO(String room_no, String room_type, String room_name, int room_price, String backoffice_no) {
+	public RoomVO(String room_no, String room_type, String room_name, Integer room_price, String backoffice_no) {
 		super();
 		this.room_no = room_no;
 		this.room_type = room_type;
@@ -47,11 +47,11 @@ public class RoomVO {
 		this.room_name = room_name;
 	}
 
-	public int getRoom_price() {
+	public Integer getRoom_price() {
 		return room_price;
 	}
 
-	public void setRoom_price(int room_price) {
+	public void setRoom_price(Integer room_price) {
 		this.room_price = room_price;
 	}
 
@@ -70,7 +70,7 @@ public class RoomVO {
 		result = prime * result + ((backoffice_no == null) ? 0 : backoffice_no.hashCode());
 		result = prime * result + ((room_name == null) ? 0 : room_name.hashCode());
 		result = prime * result + ((room_no == null) ? 0 : room_no.hashCode());
-		result = prime * result + room_price;
+		result = prime * result + ((room_price == null) ? 0 : room_price.hashCode());
 		result = prime * result + ((room_type == null) ? 0 : room_type.hashCode());
 		return result;
 	}
@@ -99,7 +99,10 @@ public class RoomVO {
 				return false;
 		} else if (!room_no.equals(other.room_no))
 			return false;
-		if (room_price != other.room_price)
+		if (room_price == null) {
+			if (other.room_price != null)
+				return false;
+		} else if (!room_price.equals(other.room_price))
 			return false;
 		if (room_type == null) {
 			if (other.room_type != null)
@@ -114,5 +117,6 @@ public class RoomVO {
 		return "RoomVO [room_no=" + room_no + ", room_type=" + room_type + ", room_name=" + room_name + ", room_price="
 				+ room_price + ", backoffice_no=" + backoffice_no + "]";
 	}
+
 
 }

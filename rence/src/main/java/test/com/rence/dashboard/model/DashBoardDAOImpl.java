@@ -211,7 +211,7 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		
 		rvo.setBackoffice_no(backoffice_no);
 
-		int flag = sqlSession.update("SQL_INSERT_ROOM", rvo);
+		int flag = sqlSession.insert("SQL_INSERT_ROOM", rvo);
 
 		return flag;
 	}
@@ -249,7 +249,7 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		map.put("backoffice_no", backoffice_no);
 		map.put("room_no", room_no);
 
-		int flag = sqlSession.update("SQL_DELETE_ROOM", map);
+		int flag = sqlSession.delete("SQL_DELETE_ROOM", map);
 
 		return flag;
 	}
@@ -353,7 +353,7 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		map.put("backoffice_no", backoffice_no);
 		map.put("comment_no", comment_no);
 
-		int result = sqlSession.update("SQL_DELETE_QNA_A", map);
+		int result = sqlSession.delete("SQL_DELETE_QNA_A", map);
 		int flag = 0;
 		if (result==1) {
 			Map<String, String> map2 = new HashMap<String, String>();
