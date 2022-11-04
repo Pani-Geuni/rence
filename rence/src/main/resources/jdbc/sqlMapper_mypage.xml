@@ -12,7 +12,7 @@
 		    on r.backoffice_no = b.backoffice_no
 		) leftdb left join paymentinfo p
 		on leftdb.reserve_no = p.reserve_no
-		where leftdb.user_no = #{user_no} AND sysdate <![CDATA[<=]]> leftdb.reserve_edate
+		where leftdb.user_no = #{user_no} AND p.payment_total is not null AND sysdate <![CDATA[<=]]> leftdb.reserve_edate
 	</select>
 	
 	<!-- 마이페이지 과거 예약 내역 페이지 - selectAll -->
@@ -23,7 +23,7 @@
 		    on r.backoffice_no = b.backoffice_no
 		) leftdb left join paymentinfo p
 		on leftdb.reserve_no = p.reserve_no
-		where leftdb.user_no = #{user_no} AND sysdate <![CDATA[>]]> leftdb.reserve_edate
+		where leftdb.user_no = #{user_no} AND p.payment_total is not null AND sysdate <![CDATA[>]]> leftdb.reserve_edate
 	</select>
 	
 	<!-- 마이페이지 후기 내역 페이지 - selectAll -->
