@@ -208,13 +208,15 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		logger.info("backoffice_insertOK_room()...");
 		logger.info("{}", backoffice_no);
 		logger.info("{}", rvo);
+		
+		rvo.setBackoffice_no(backoffice_no);
 
 		int flag = sqlSession.update("SQL_INSERT_ROOM", rvo);
 
 		return flag;
 	}
 
-	// 공간 추가/수정 팝업
+	// 백오피스 타입 -> 공간 타입
 	@Override
 	public BackOfficeVO select_one_backoffice_info(String backoffice_no) {
 		logger.info("select_one_backoffice_info...DAOImpl()...");
@@ -252,6 +254,20 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		return flag;
 	}
 
+	//공간 정보
+	@Override
+	public RoomVO select_one_room_info(String backoffice_no, String room_no) {
+		logger.info("select_one_room_info...DAOImpl()...");
+		
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("backoffice_no", backoffice_no);
+		map.put("room_no", room_no);
+		
+		RoomVO rmvo = sqlSession.selectOne("SQL_SELECT_ONE_ROOM_INFO", map);
+		
+		return rmvo;
+	}
+	
 	// 후기 리스트
 	@Override
 	public List<ReviewVO> backoffice_review_selectAll(String backoffice_no) {
@@ -262,26 +278,13 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		return rvvos;
 	}
 
-	//공간 정보
-	@Override
-	public RoomVO select_one_room_info(String backoffice_no, String room_no) {
-		logger.info("select_one_room_info...DAOImpl()...");
-
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("backoffice_no", backoffice_no);
-		map.put("room_no", room_no);
-
-		RoomVO rmvo = sqlSession.selectOne("SQL_SELECT_ONE_ROOM_INFO", map);
-
-		return rmvo;
-	}
-
 	//QnA 리스트
 	@Override
 	public List<CommentListVO> backoffice_qna_selectAll(String backoffice_no) {
 		logger.info("backoffice_qna_q_selectAll...DAOImpl()...");
 
 		List<CommentListVO> qvos = sqlSession.selectList("SQL_SELECT_ALL_Q", backoffice_no);
+		logger.info("ssss:{}",qvos);
 		if (qvos!=null) {
 			for (int i = 0; i < qvos.size(); i++) {
 				Map<String, String> map = new HashMap<String, String>();
@@ -289,16 +292,20 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 				map.put("mother_no", qvos.get(i).getComment_no());
 				List<CommentListVO> avos = sqlSession.selectList("SQL_SELECT_ALL_A", map);
 				if (avos!=null) {
-					for (int j = 0; j < avos.size(); j++) {
-						if (qvos.get(i).getComment_no()==avos.get(j).getAnswer_no()) {
-							qvos.get(i).setAnswer_no(avos.get(j).getComment_no());
-							qvos.get(i).setAnswer_content(avos.get(j).getComment_content());
-							qvos.get(i).setAnswer_date(avos.get(j).getComment_date());
-						}
-					}
+					logger.info("ssssssssssssssssssssjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj::::{}",avos);
+			
+							qvos.get(i).setAnswer_no(avos.get(i).getAnswer_no());
+							qvos.get(i).setAnswer_content(avos.get(i).getAnswer_content());
+							qvos.get(i).setAnswer_date(avos.get(i).getAnswer_date());
+							
+						
+					
 				}
 			}
-		}
+			logger.info("ssssssssssssssssssssssssssssss:{}", qvos);
+		} 
+		logger.info("ssssssssssssssssssssssssssssss:{}", qvos);
+		
 		
 		return qvos;
 	}
