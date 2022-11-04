@@ -33,7 +33,7 @@
                             </li>
                             <li class="info-li">
                                 <label class="info-label">공간 가격</label>
-                                <span class="info-text">${ pvo.room_price }원/시간</span>
+                                <span class="info-text room_price">${ pvo.room_price }원/시간</span>
                             </li>
                         </ul>
                     </section>
@@ -153,7 +153,7 @@
                             <label>
                                 나의 마일리지 : 
                             </label>
-                            <span>
+                            <span id="my-mileage">
                                 ${ pvo.mileage_total }원
                             </span>
                         </div>
@@ -179,7 +179,7 @@
                             </li>
                             <li class="info-li">
                                 <label class="info-label">공간 가격</label>
-                                <span class="info-text">${ pvo.room_price }원/시간</span>
+                                <span class="info-text room_price">${ pvo.room_price }원/시간</span>
                             </li>
                         </ul>
                     </section>
@@ -187,11 +187,11 @@
                         <ul class="payment-info-li-wrap">
                             <li class="info-li">
                                 <label class="pay-info-label">총 결제 금액</label>
-                                <span class="pay-info-text">${ payment_all }원</span>
+                                <span id="payment_all" class="pay-info-text" payment_all="${ payment_all }">${ payment_all }원</span>
                             </li>
                             <li class="info-li">
                                 <label class="pay-info-label">마일리지 예상 적립 금액</label>
-                                <span class="pay-info-text">${ earned_mileage }원</span>
+                                <span id="earned_mileage" class="pay-info-text" earned_mileage="${ earned_mileage }">${ earned_mileage }원</span>
                             </li>
                         </ul>
                     </section>

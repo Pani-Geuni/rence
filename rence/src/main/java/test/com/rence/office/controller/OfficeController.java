@@ -302,15 +302,12 @@ public class OfficeController {
 		
 		// 전체 결제할 금액
 		int payment_all = (int) diffHour * pvo.getRoom_price();
-		// 보증금
-		int payment_deposit = (int) (payment_all * 0.2);
 		int earned_mileage = (int) (payment_all * 0.05);
 		
 		logger.info("diffHour :: {}", diffHour);
 		
 		model.addAttribute("pvo", pvo);
 		model.addAttribute("payment_all", payment_all);
-		model.addAttribute("payment_deposit", payment_deposit);
 		model.addAttribute("earned_mileage", earned_mileage);
 		
 		

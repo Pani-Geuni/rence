@@ -22,6 +22,7 @@
     <script src="${path}/resources/JS/common/jquery.cookie.js"></script>
     <script src="${path}/resources/JS/office/header.js"></script>
     <script src="${path}/resources/JS/office/user_popup.js"></script>
+    <script src="${path}/resources/JS/office/payment_page.js"></script>
 </head>
 <body>
 	<div class ="pageWrap">
