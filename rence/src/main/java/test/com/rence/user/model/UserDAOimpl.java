@@ -170,7 +170,6 @@ public class UserDAOimpl implements UserDAO {
 			sha_random_pw = sha256.encrypt(uvo.getUser_pw()); // 랜덤난수로 초기화비밀번호 생성한뒤 암호화
 			logger.info("SHA 256 OK!!", uvo.getUser_pw());
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		logger.info("sha_random_pw: {}", sha_random_pw);
@@ -260,7 +259,7 @@ public class UserDAOimpl implements UserDAO {
 		
 		
 		List<UserMileageVO> vos = sqlSession.selectList("SQL_SELECTALL_USER_MILEAGE", uvo);
-		logger.info("user_mileage_selectAll().....OK");
+//		logger.info("user_mileage_selectAll().....OK");
 		return vos;
 	}
 	
@@ -277,12 +276,6 @@ public class UserDAOimpl implements UserDAO {
 		logger.info("user_mileage_search_list().....OK");
 		return vos;
 	}
-	
-	
-	
-	
-
-	
 	
 
 }// end class
