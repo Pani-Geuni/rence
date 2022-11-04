@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
@@ -41,7 +40,7 @@
           <ul class="reserve-filter-list">
             <li id="reserve-all" class="reserve-item <c:if test="${reserve_state eq 'all'}">active</c:if>">전체</li>
             <li id="reserve-ing" class="reserve-item <c:if test="${reserve_state eq 'in_use'}">active</c:if>">예약중</li>
-            <li id="reserve-cancel" class="reserve-item <c:if test="${reserve_state eq 'cancle'}">active</c:if>">취소</li>
+            <li id="reserve-cancel" class="reserve-item <c:if test="${reserve_state eq 'cancel'}">active</c:if>">취소</li>
             <li id="reserve-end" class="reserve-item <c:if test="${reserve_state eq 'end'}">active</c:if>">종료</li>
           </ul>
         </section>
@@ -96,7 +95,7 @@
             </div>
             <!-- END ct-body -->
 
-            <ul class="pagination blind blind">
+            <ul class="pagination blind">
 				<li class="page-item">
 					<button>
 						<img src="${path}/resources/IMG/dash-board/ico-double-left.svg" alt="-10" />

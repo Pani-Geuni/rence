@@ -47,9 +47,9 @@
 			<div class="ct-body-cell qna">
 				<button class="ct-body-btn qna-edit">답변 수정</button>
 			</div>
-			<!-- END ct-body-cell -->
 		</div>
-		<div class="detail-qna-wrap">
+		<!-- END ct-body-row -->
+		<div class="detail-qna-wrap blind">
             <div class="question-section">
               <h5 class="question-title">Q.</h5>
               <p class="question-content">
@@ -78,29 +78,6 @@
             <!-- END answer-section -->
           </div>
           <!-- deatil-qna-wrap -->
-		<!-- END ct-body-row -->
-		<div class="ct-body-row qna">
-			<div class="ct-body-cell qna">
-				<p class="qna-process false">미처리</p>
-			</div>
-			<div class="ct-body-cell qna">
-				<p>101호 개인 스터디름</p>
-			</div>
-			<div class="ct-body-cell qna">
-				<p>문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용문의내용 문의내용 문의내용 문의내용 문의내용
-					문의내용 문의내용문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용문의내용 문의내용 문의내용 문의내용 문의내용
-					문의내용 문의내용문의내용 문의내용 문의내용 문의내용</p>
-			</div>
-			<div class="ct-body-cell qna">
-				<p>2022.10.26</p>
-			</div>
-			<div class="ct-body-cell qna">
-				<button class="ct-body-btn qna-add">답변 달기</button>
-			</div>
-			<!-- END ct-body-cell -->
-		</div>
-		<!-- END ct-body-row -->
-
 		<!-- END custom-table -->
 
 		<ul class="pagination blind">

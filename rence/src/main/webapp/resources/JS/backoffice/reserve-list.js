@@ -13,7 +13,7 @@ $(function() {
           reserve_state = "in_use";
           break;
         case "취소" :
-          reserve_state = "cancle";
+          reserve_state = "cancel";
           break;
         case "종료" :
           reserve_state = "end";
@@ -34,7 +34,7 @@ $(function() {
           reserve_state = "in_use";
           break;
         case "취소" :
-          reserve_state = "cancle";
+          reserve_state = "cancel";
           break;
         case "종료" :
           reserve_state = "end";

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 
 <div class="titleSection">
 	<h1>공간 관리</h1>
@@ -16,74 +19,37 @@
 
 <div class="boardWrap">
 	<div class="room-list">
-		<div class="room-item">
-			<div class="item-header">
-				<p>101호 1인 데스크</p>
-				<div class="item-buttons">
-					<button class="btn-room-edit">수정</button>
-					<button class="btn-room-delete">삭제</button>
+		<c:forEach var="vos" items="${rm_vos}">
+			<div class="room-item">
+				<div class="item-header">
+					<p>
+						${vos.room_name}&nbsp;
+						<c:if test="${vos.room_type eq 'desk'}">(1인 데스크)</c:if>
+						<c:if test="${vos.room_type eq 'meeting_04'}">(4인 회의실)</c:if>
+						<c:if test="${vos.room_type eq 'meeting_06'}">(6인 회의실)</c:if>
+						<c:if test="${vos.room_type eq 'meeting_10'}">(10인 회의실)</c:if>
+						<c:if test="${vos.room_type eq 'office'}">(오피스)</c:if>
+					</p>
+					<div class="item-buttons">
+						<button class="btn-room-edit" idx="${vos.room_no}">수정</button>
+						<button class="btn-room-delete" idx="${vos.room_no}">삭제</button>
+					</div>
+					<!-- END item-buttons -->
 				</div>
-				<!-- END item-buttons -->
-			</div>
-			<!-- END item-header -->
-			<div class="item-body">
-				<p id="room-type">데스크</p>
-				<span id="room-price">10000</span>
-			</div>
-			<!-- END item-body -->
-		</div>
-		<!-- END room-item -->
-		<div class="room-item">
-			<div class="item-header">
-				<p>101호 1인 데스크</p>
-				<div class="item-buttons">
-					<button class="btn-room-edit">수정</button>
-					<button class="btn-room-delete">삭제</button>
+				<!-- END item-header -->
+				<div class="item-body">
+					<p id="room-type">
+						<c:if test="${vos.room_type eq 'desk'}">데스크</c:if>
+						<c:if test="${vos.room_type eq 'meeting_04'}">회의실</c:if>
+						<c:if test="${vos.room_type eq 'meeting_06'}">회의실</c:if>
+						<c:if test="${vos.room_type eq 'meeting_10'}">회의실</c:if>
+						<c:if test="${vos.room_type eq 'office'}">오피스</c:if>
+					</p>
+					<span id="room-price" class="room-price">${vos.room_price}</span>
 				</div>
-				<!-- END item-buttons -->
+				<!-- END item-body -->
 			</div>
-			<!-- END item-header -->
-			<div class="item-body">
-				<p id="room-type">데스크</p>
-				<span id="room-price">10000</span>
-			</div>
-			<!-- END item-body -->
-		</div>
-		<!-- END room-item -->
-		<div class="room-item">
-			<div class="item-header">
-				<p>101호 1인 데스크</p>
-				<div class="item-buttons">
-					<button class="btn-room-edit">수정</button>
-					<button class="btn-room-delete">삭제</button>
-				</div>
-				<!-- END item-buttons -->
-			</div>
-			<!-- END item-header -->
-			<div class="item-body">
-				<p id="room-type">데스크</p>
-				<span id="room-price">10000</span>
-			</div>
-			<!-- END item-body -->
-		</div>
-		<!-- END room-item -->
-		<div class="room-item">
-			<div class="item-header">
-				<p>101호 1인 데스크</p>
-				<div class="item-buttons">
-					<button class="btn-room-edit">수정</button>
-					<button class="btn-room-delete">삭제</button>
-				</div>
-				<!-- END item-buttons -->
-			</div>
-			<!-- END item-header -->
-			<div class="item-body">
-				<p id="room-type">데스크</p>
-				<span id="room-price">10000</span>
-			</div>
-			<!-- END item-body -->
-		</div>
-		<!-- END room-item -->
+		</c:forEach>
 	</div>
 	<!-- END room-list -->
 </div>

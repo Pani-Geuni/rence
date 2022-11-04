@@ -37,6 +37,7 @@
       break;
 
     case '/rence/backoffice_reserve':
+    case '/rence/backoffice_search_reserve':
       $('#menu-reserve').addClass('active');
       break;
 

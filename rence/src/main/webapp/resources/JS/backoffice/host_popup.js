@@ -197,28 +197,72 @@ $(function () {
     $('.popup-background:eq(0)').addClass('blind');
   });
 
+  /****** ********* *****/
+  /****** 공간 수정 *****/
+  /****** ********* *****/
+
+  // 수정 버튼 클릭 -> 수정 팝업 오픈
+  $('.btn-room-edit').on('click', function(){
+    $('.popup-background:eq(0)').removeClass('blind');
+    $('#room-edit-section').removeClass('blind');
+  });
+
+  // 수정 팝업 닫기 버튼 -> 수정 팝업 닫음
   $('#btn-edit-cancel').click(function(){
     $('.room_type').val('');
+    $("#input-room-name").val('');
+    $("#edit-room-type-label").val('타입을 선택해주세요.');
+
     $('#room-edit-section').addClass('blind');
     $('.popup-background:eq(0)').addClass('blind');
   });
-
-  $('.btn-room-edit').on('click', function(){
-    $('#room-edit-section').removeClass('blind');
-    $('.popup-background:eq(0)').addClass('blind');
+  
+  // 수정 팝업 - 공간 타입 선택 버튼 클릭
+  $('#m-edit-room-type-label').on('click', function(){
+    $('.edit-type-select-list').toggleClass('blind');
   });
 
+  // 수정 팝업 - 공간 타입 선택 후 처리
+  $('.edit-type-select-item').on('click', function(){
+    let type = $(this).text();
+    $('#m-edit_room_type').val(type);
+    $('#m-edit-room-type-label').text(type);
+    $('#m-edit-room-type-label').css('color', '#000000');
+    $('.edit-type-select-list').addClass('blind');
+  });
+
+  // 변경 버튼 클릭 -> 변경 로직
+  $('#btn-edit').click(function(){
+    if($("#m-input-room-name").val().trim().length > 0 && $("#input-price-name").val().trim().length > 0 && $('#m-edit_room_type').val().length > 0){
+      
+      $('.room_type').val('');
+      $('#room-edit-section').addClass('blind');
+      $('.popup-background:eq(0)').addClass('blind');
+    }else{
+      if($("#m-input-room-name").val().trim().length == 0){
+        $("#m-input-room-name").addClass("null-input-border");
+      }
+      if($("#input-price-name").val().trim().length == 0){
+        $("#input-price-name").addClass("null-input-border");
+      }
+      if($('.room_type').val().length == 0){
+        $("#room-type-select").addClass("null-input-border");
+      }
+    }
+  });
+
+
+  /****** ********* *****/
+  /****** 공간 삭제 *****/
+  /****** ********* *****/
+  // 삭제 버튼 클릭 -> 삭제 팝업 오픈
   $('.btn-room-delete').on('click', function(){
+    $('.popup-background:eq(0)').removeClass('blind');
     $('#delete-popup').removeClass('blind');
-    $('.popup-background:eq(0)').addClass('blind');
   });
 
   $('#insert-room-type-label').on('click', function(){
     $('.insert-type-select-list').toggleClass('blind');
-  });
-
-  $('#edit-room-type-label').on('click', function(){
-    $('.edit-type-select-list').toggleClass('blind');
   });
 
   $('.insert-type-select-item').on('click', function(){
@@ -229,16 +273,8 @@ $(function () {
     $('.insert-type-select-list').addClass('blind');
   });
 
-  $('.edit-type-select-item').on('click', function(){
-    let type = $(this).text();
-    $('.room_type').val(type);
-    $('#edit-room-type-label').text(type);
-    $('#edit-room-type-label').css('color', '#000000');
-    $('.edit-type-select-list').addClass('blind');
-  });
-
   // 리뷰 답글 작성
-  $('.qna-add').on('click', function(){
+  $('.review-add').on('click', function(){
     $('#comment-section').removeClass('blind');
     $('.popup-background:eq(0)').removeClass('blind');
   });
