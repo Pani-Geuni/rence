@@ -102,6 +102,10 @@ public class BackOfficeController {
 		// 운영시간
 		ovo2 = operatingTime.operatingTime(ovo, ovo2);
 
+		//meeting_room->04,06,10
+		String type = vo.getBackoffice_type().replace("meeting_room", "meeting_04,meeting_06,meet_10");
+		vo.setBackoffice_type(type);
+
 		// 백오피스 insert
 		BackOfficeVO bvo2 = service.backoffice_insertOK(vo);
 		logger.info("vo::::::::::::::::::::::::::{}", vo);
@@ -132,7 +136,8 @@ public class BackOfficeController {
 
 		// 이메일 중복 체크
 		BackOfficeVO emailCheck = service.backoffice_email_check(bvo);
-		if (emailCheck == null || emailCheck.getBackoffice_state().equals("X") || emailCheck.getBackoffice_state().equals("N")) {
+		if (emailCheck == null || emailCheck.getBackoffice_state().equals("X")
+				|| emailCheck.getBackoffice_state().equals("N")) {
 
 			avo.setUser_email(bvo.getBackoffice_email());
 
@@ -220,7 +225,7 @@ public class BackOfficeController {
 	@RequestMapping(value = "/backoffice_logout", method = RequestMethod.GET)
 	public String backoffice_logout(HttpServletRequest request, HttpServletResponse response) {
 		logger.info("backoffice_logout()...");
-		
+
 //		session.removeAttribute("backoffice_id");
 
 		session.invalidate();
@@ -254,7 +259,7 @@ public class BackOfficeController {
 		BackOfficeVO bvo2 = service.backoffice_id_email_select(bvo);
 
 		logger.info("bvo2 :: {}", bvo2);
-		
+
 		if (bvo2 != null) {
 			bvo2 = authSendEmail.findPw(bvo2, evo);
 
@@ -288,14 +293,15 @@ public class BackOfficeController {
 	 */
 	@RequestMapping(value = "/backoffice_settingOK_pw", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject backoffice_settingOK_pw(BackOfficeVO bvo, HttpServletRequest request, HttpServletResponse response) {
+	public JSONObject backoffice_settingOK_pw(BackOfficeVO bvo, HttpServletRequest request,
+			HttpServletResponse response) {
 		logger.info("backoffice_settingOK_pw ()...");
 		logger.info("{}", bvo);
-		
+
 		session = request.getSession();
 
 		int result = service.backoffice_settingOK_pw(bvo);
-		
+
 		JSONObject jsonObject = new JSONObject();
 
 		if (result == 1) {
@@ -309,13 +315,13 @@ public class BackOfficeController {
 				// 신청자의 메일에서 링크 페이지를 열고 수정 했을 때
 				logger.info("succeed...");
 				jsonObject.put("result", "1");
-				
+
 			}
-		} else if(result == 0){
+		} else if (result == 0) {
 			logger.info("fail...");
 			jsonObject.put("result", "0");
 		}
-		
+
 		return jsonObject;
 	}
 
