@@ -31,13 +31,9 @@
                 <!-- START TYPE SELECT -->
                 <div id="custom-type-select" class="type-select-wrap blind">
                   <ul class="type-select">
-                    <li id="type-list-desk" class="type-select-list">데스크</li>
-                    <li id="type-list-metting-room" class="type-select-list">
-                      회의실
-                    </li>
-                    <li id="type-list-office" class="type-select-list">
-                      오피스
-                    </li>
+                    <li id="type-list-desk" class="type-select-list" type="desk">데스크</li>
+                    <li id="type-list-metting-room" class="type-select-list" type="meeting-room">회의실</li>
+                    <li id="type-list-office" class="type-select-list" type="office">오피스</li>
                   </ul>
                 </div>
                 <!-- END TYPE SELECT -->
@@ -46,10 +42,10 @@
           </div>
 
           <ul class="reserve-filter-list">
-            <li id="reserve-all" class="reserve-item active">전체</li>
-            <li id="reserve-ing" class="reserve-item">예약중</li>
-            <li id="reserve-cancel" class="reserve-item">취소</li>
-            <li id="reserve-end" class="reserve-item">종료</li>
+            <li id="reserve-all" class="reserve-item <c:if test="${reserve_state eq 'all'}">active</c:if>">전체</li>
+            <li id="reserve-ing" class="reserve-item <c:if test="${reserve_state eq 'in_use'}">active</c:if>">예약중</li>
+            <li id="reserve-cancel" class="reserve-item <c:if test="${reserve_state eq 'end'}">active</c:if>">취소</li>
+            <li id="reserve-end" class="reserve-item <c:if test="${reserve_state eq 'cancel'}">active</c:if>">종료</li>
           </ul>
         </section>
         <!-- END reserve-header -->
@@ -69,73 +65,42 @@
             <!-- END ct-header -->
 
             <div class="ct-body">
-              <div class="ct-body-row reserve">
-                <div class="ct-body-cell">
-                  2022.10.27 10:00 ~ <br />2022.10.17 14:00
-                </div>
-                <div class="ct-body-cell">
-                  <button class="ct-body-btn reserve-cancel">취소</button>
-                </div>
-                <div class="ct-body-cell">101호 개인 스터디름</div>
-                <div class="ct-body-cell">전판근</div>
-                <div class="ct-body-cell">010-1234-5678</div>
-                <div class="ct-body-cell">qwerasdf@gmail.com</div>
-                <div class="ct-body-cell reserve-price">40000</div>
-                <div class="ct-body-cell">선결제</div>
-              </div>
-              <!-- END ct-body-row reserve -->
-
-              <div class="ct-body-row reserve">
-                <div class="ct-body-cell">
-                  2022.10.27 10:00 ~ <br />2022.10.17 14:00
-                </div>
-                <div class="ct-body-cell">
-                  <button class="ct-body-btn reserve-doing">진행중</button>
-                </div>
-                <div class="ct-body-cell">101호 개인 스터디름</div>
-                <div class="ct-body-cell">전판근</div>
-                <div class="ct-body-cell">010-1234-5678</div>
-                <div class="ct-body-cell">qwerasdf@gmail.com</div>
-                <div class="ct-body-cell reserve-price">40000</div>
-                <div class="ct-body-cell">선결제</div>
-              </div>
-              <!-- END ct-body-row reserve -->
-
-              <div class="ct-body-row reserve">
-                <div class="ct-body-cell">
-                  2022.10.27 10:00 ~ <br />2022.10.17 14:00
-                </div>
-                <div class="ct-body-cell">
-                  <button class="ct-body-btn reserve-ing">예약중</button>
-                </div>
-                <div class="ct-body-cell">101호 개인 스터디름</div>
-                <div class="ct-body-cell">전판근</div>
-                <div class="ct-body-cell">010-1234-5678</div>
-                <div class="ct-body-cell">qwerasdf@gmail.com</div>
-                <div class="ct-body-cell reserve-price">40000</div>
-                <div class="ct-body-cell">선결제</div>
-              </div>
-              <!-- END ct-body-row reserve -->
-
-              <div class="ct-body-row reserve">
-                <div class="ct-body-cell">
-                  2022.10.27 10:00 ~ <br />2022.10.17 14:00
-                </div>
-                <div class="ct-body-cell">
-                  <button class="ct-body-btn reserve-end">종료</button>
-                </div>
-                <div class="ct-body-cell">101호 개인 스터디름</div>
-                <div class="ct-body-cell">전판근</div>
-                <div class="ct-body-cell">010-1234-5678</div>
-                <div class="ct-body-cell">qwerasdf@gmail.com</div>
-                <div class="ct-body-cell reserve-price">40000</div>
-                <div class="ct-body-cell">선결제</div>
-              </div>
-              <!-- END ct-body-row reserve -->
+	            <c:forEach var="vos" items="${r_vos}">
+	              <!-- START ct-body-row reserve -->
+	              <div class="ct-body-row reserve">
+	                <div class="ct-body-cell">
+	                  ${vos.reserve_sdate} ~ <br />${vos.reserve_edate}
+	                </div>
+	                <div class="ct-body-cell">
+	                  <button class="ct-body-btn 
+	                  	<c:if test="${vos.reserve_state eq 'begin'}">reserve-ing</c:if>
+	                  	<c:if test="${vos.reserve_state eq 'in_use'}">reserve-doing</c:if>
+	                  	<c:if test="${vos.reserve_state eq 'end'}">reserve-cancel</c:if>
+	                  	<c:if test="${vos.reserve_state eq 'cancel'}">reserve-end</c:if>
+	               	  ">
+	                  	취소
+	                  	<c:if test="${vos.reserve_state eq 'begin'}">이용전</c:if>
+	                  	<c:if test="${vos.reserve_state eq 'in_use'}">이용중</c:if>
+	                  	<c:if test="${vos.reserve_state eq 'end'}">이용완료</c:if>
+	                  	<c:if test="${vos.reserve_state eq 'cancel'}">취소</c:if>
+	                  </button>
+	                </div>
+	                <div class="ct-body-cell">${vos.room_name}</div>
+	                <div class="ct-body-cell">${vos.user_name}</div>
+	                <div class="ct-body-cell">${vos.user_tel}</div>
+	                <div class="ct-body-cell">${vos.user_email}</div>
+	                <div class="ct-body-cell reserve-price">${vos.actual_payment}</div>
+	                <div class="ct-body-cell">
+	                	<c:if test="${vos.payment_state eq 'T'}">선결제</c:if>
+	                	<c:if test="${vos.payment_state eq 'F'}">후불제</c:if>
+	                </div>
+	              </div>
+	              <!-- END ct-body-row reserve -->
+	            </c:forEach>
             </div>
             <!-- END ct-body -->
 
-            <ul class="pagination">
+            <ul class="pagination blind">
 				<li class="page-item">
 					<button>
 						<img src="${path}/resources/IMG/dash-board/ico-double-left.svg" alt="-10" />

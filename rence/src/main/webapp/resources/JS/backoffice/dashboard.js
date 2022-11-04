@@ -90,15 +90,15 @@
   // 공간 관리 mini-nav
   // ****************
   $('#mini-nav-list').click(function(){
-    location.href = '/rence/backoffice_room';
+    location.href = '/rence/backoffice_room?backoffice_no=' + $.cookie("backoffice_no");
   });
 
   $('#mini-nav-qna').click(function(){
-    location.href = '/rence/backoffice_qna';
+    location.href = '/rence/backoffice_qna?backoffice_no=' + $.cookie("backoffice_no");
   });
 
   $('#mini-nav-review').click(function(){
-    location.href = '/rence/backoffice_review';
+    location.href = '/rence/backoffice_review?backoffice_no=' + $.cookie("backoffice_no");
   });
 
   // ****************
