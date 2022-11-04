@@ -21,7 +21,7 @@ public interface DashBoardDAO {
 
 	public List<ReserveVO> backoffice_reserve_selectAll(String backoffice_no, String reserve_state);
 
-	public List<ReserveVO> backoffice_search_reserve(String backoffice_no, String searchword);
+	public List<ReserveVO> backoffice_search_reserve(String backoffice_no, String searchword,String reserve_state);
 
 	public SalesSettlementPreVO backoffice_sales_selectOne(String backoffice_no, String sales_date);
 

@@ -87,11 +87,12 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 	}
 
 	@Override
-	public List<ReserveVO> backoffice_search_reserve(String backoffice_no, String searchword) {
+	public List<ReserveVO> backoffice_search_reserve(String backoffice_no, String searchword, String reserve_state) {
 		logger.info("backoffice_search_reserve...DAOImpl()...");
 
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("backoffice_no", backoffice_no);
+		map.put("reserve_state", reserve_state);
 		map.put("searchword", "%" + searchword + "%");
 
 		List<ReserveVO> rvos = sqlSession.selectList("SQL_SELECT_ALL_B_RESERVE_SEARCH", map);
