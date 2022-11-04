@@ -56,6 +56,12 @@ public class SalesSettlementSummaryVO implements Serializable {
 	}
 
 	@Override
+	public String toString() {
+		return "SalesSettlementSummaryVO [sales_no=" + sales_no + ", sales_income=" + sales_income + ", sales_total="
+				+ sales_total + ", sales_cancel=" + sales_cancel + "]";
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -89,10 +95,6 @@ public class SalesSettlementSummaryVO implements Serializable {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "PaymentSummaryVO [sales_no=" + sales_no + ", sales_income=" + sales_income + ", sales_total="
-				+ sales_total + ", sales_cancel=" + sales_cancel + "]";
-	}
+
 	
 }

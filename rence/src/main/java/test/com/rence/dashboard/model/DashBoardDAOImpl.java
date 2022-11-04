@@ -54,13 +54,10 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		logger.info("payment_summary_selectOne...DAOImpl()...");
 
 		SalesSettlementSummaryVO svo = sqlSession.selectOne("SQL_SELECT_ONE_PAYMENT_SUMMARY", backoffice_no);
+		logger.info("임플임플::::::::",(svo.getSales_total()));
+		logger.info("임플임플::::::::",(svo.getSales_cancel()));
 		if (svo != null) {
 			svo.setSales_income(svo.getSales_total() - svo.getSales_cancel());
-
-			DecimalFormat df = new DecimalFormat("###,###");
-			svo.setSales_income(Integer.parseInt(df.format(svo.getSales_income())));
-			svo.setSales_total(Integer.parseInt(df.format(svo.getSales_total())));
-			svo.setSales_cancel(Integer.parseInt(df.format(svo.getSales_cancel())));
 		}
 
 		return svo;
