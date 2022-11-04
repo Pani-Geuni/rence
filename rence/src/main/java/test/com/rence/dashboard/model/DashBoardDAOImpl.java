@@ -284,7 +284,6 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		logger.info("backoffice_qna_q_selectAll...DAOImpl()...");
 
 		List<CommentListVO> qvos = sqlSession.selectList("SQL_SELECT_ALL_Q", backoffice_no);
-		logger.info("ssss:{}",qvos);
 		if (qvos!=null) {
 			for (int i = 0; i < qvos.size(); i++) {
 				Map<String, String> map = new HashMap<String, String>();
@@ -292,19 +291,12 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 				map.put("mother_no", qvos.get(i).getComment_no());
 				List<CommentListVO> avos = sqlSession.selectList("SQL_SELECT_ALL_A", map);
 				if (avos!=null) {
-					logger.info("ssssssssssssssssssssjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj::::{}",avos);
-			
 							qvos.get(i).setAnswer_no(avos.get(i).getAnswer_no());
 							qvos.get(i).setAnswer_content(avos.get(i).getAnswer_content());
 							qvos.get(i).setAnswer_date(avos.get(i).getAnswer_date());
-							
-						
-					
 				}
 			}
-			logger.info("ssssssssssssssssssssssssssssss:{}", qvos);
 		} 
-		logger.info("ssssssssssssssssssssssssssssss:{}", qvos);
 		
 		
 		return qvos;

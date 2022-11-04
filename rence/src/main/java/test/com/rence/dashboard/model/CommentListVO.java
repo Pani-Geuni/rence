@@ -17,13 +17,14 @@ public class CommentListVO implements Serializable {
 	private String answer_date;
 	private String answer_content;
 	private String comment_state;
+	private String room_no;
 
 	
 	public CommentListVO() {}
 
 
 	public CommentListVO(String comment_no, String answer_no, String user_no, String room_name, String comment_date,
-			String comment_content, String answer_date, String answer_content, String comment_state) {
+			String comment_content, String answer_date, String answer_content, String comment_state, String room_no) {
 		super();
 		this.comment_no = comment_no;
 		this.answer_no = answer_no;
@@ -34,6 +35,7 @@ public class CommentListVO implements Serializable {
 		this.answer_date = answer_date;
 		this.answer_content = answer_content;
 		this.comment_state = comment_state;
+		this.room_no = room_no;
 	}
 
 
@@ -67,12 +69,12 @@ public class CommentListVO implements Serializable {
 	}
 
 
-	public String getroom_name() {
+	public String getRoom_name() {
 		return room_name;
 	}
 
 
-	public void setroom_name(String room_name) {
+	public void setRoom_name(String room_name) {
 		this.room_name = room_name;
 	}
 
@@ -127,6 +129,18 @@ public class CommentListVO implements Serializable {
 	}
 
 
+	public String getRoom_no() {
+		return room_no;
+	}
+
+
+	public void setRoom_no(String room_no) {
+		this.room_no = room_no;
+	}
+
+
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -139,6 +153,7 @@ public class CommentListVO implements Serializable {
 		result = prime * result + ((comment_no == null) ? 0 : comment_no.hashCode());
 		result = prime * result + ((comment_state == null) ? 0 : comment_state.hashCode());
 		result = prime * result + ((room_name == null) ? 0 : room_name.hashCode());
+		result = prime * result + ((room_no == null) ? 0 : room_no.hashCode());
 		result = prime * result + ((user_no == null) ? 0 : user_no.hashCode());
 		return result;
 	}
@@ -193,6 +208,11 @@ public class CommentListVO implements Serializable {
 				return false;
 		} else if (!room_name.equals(other.room_name))
 			return false;
+		if (room_no == null) {
+			if (other.room_no != null)
+				return false;
+		} else if (!room_no.equals(other.room_no))
+			return false;
 		if (user_no == null) {
 			if (other.user_no != null)
 				return false;
@@ -207,8 +227,9 @@ public class CommentListVO implements Serializable {
 		return "CommentListVO [comment_no=" + comment_no + ", answer_no=" + answer_no + ", user_no=" + user_no
 				+ ", room_name=" + room_name + ", comment_date=" + comment_date + ", comment_content=" + comment_content
 				+ ", answer_date=" + answer_date + ", answer_content=" + answer_content + ", comment_state="
-				+ comment_state + "]";
+				+ comment_state + ", room_no=" + room_no + "]";
 	}
+
 
 
 }
