@@ -84,9 +84,20 @@
   		)A where A.no=1
   	</select>
   	
-  	<update id="SQL_UPDATE_B_RESERVE_STATE" parameterType="test.com.rence.dashboard.model.ReserveVO">
-  		update reserveinfo set reserve_state='T' where backoffice_no=#{backoffice_no} and room_no=#{room_no} and payment_no=#{payment_no}
-  	</update>
+<!--   	<update id="SQL_UPDATE_B_RESERVE_STATE" parameterType="test.com.rence.dashboard.model.ReserveVO_date">
+  		update reserveinfo set reserve_state = 
+  		
+  		<if test="sysdate &lt; reserve_sdate">
+  			'begin'
+  		</if>
+  		<if test="sysdate between reserve_sdate and reserve_edate">
+			'in_use'
+		</if>
+		<if test="sysdate > reserve_edate">
+			'end'
+		</if>
+		and backoffice_no=#{backoffice_no}
+  	</update> -->
   	
   	<select id="SQL_SELECT_ALL_B_RESERVE_SEARCH" resultType="test.com.rence.dashboard.model.ReserveVO" parameterType="hashmap">
   		select * from (
@@ -218,19 +229,19 @@
  	<update id="SQL_UPDATE_ROOM" parameterType="test.com.rence.dashboard.model.RoomVO">
  		update roominfo set room_name=#{room_name}, room_type=#{room_type}, room_price=
  		<if test="room_type == 'desk'">
-  			'10000')
+  			'10000'
   		</if>
   		<if test="room_type == 'meet_04'">
-  			'20000')
+  			'20000'
   		</if>
   		<if test="room_type == 'meet_06'">
-  			'30000')
+  			'30000'
   		</if>
   		<if test="room_type == 'meet_10'">
-  			'50000')
+  			'50000'
   		</if>
   		<if test="room_type == 'office'">
-  			#{room_price})
+  			#{room_price}
   		</if>
   		where backoffice_no=#{backoffice_no} and room_no=#{room_no}
  	</update>
