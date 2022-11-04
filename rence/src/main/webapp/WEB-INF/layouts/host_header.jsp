@@ -54,7 +54,6 @@
 	             <!-- CUSTOM SELECT -->
 	             <div class = "custom-select-host blind">
 	                 <ul class="host-select-wrap">
-	                     <li id = "go-myPage" class="host-select-list">마이페이지</li>
 	                     <li id = "go-backOffice" class="host-select-list">공간등록신청</li>
 	                     <li id = "go-logOut" class="host-select-list">로그아웃</li>
 	                 </ul>
