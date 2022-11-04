@@ -18,9 +18,9 @@
 </div>
 <!-- END titleSection -->
 
-<div class="boardWrap qna">
-	<div class="qna-list">
-		<div class="qna-item">
+<div class="boardWrap review">
+	<div class="review-list">
+		<div class="review-item">
 			<div>
 				<img class="profile-image" src="${path}/resources/IMG/header/loopy.jpg"
 					alt="profile image" />
@@ -42,9 +42,9 @@
 			</div>
 			<!-- END review-main -->
 		</div>
-		<!-- END qna-item -->
+		<!-- END review-item -->
 
-		<div class="qna-item">
+		<div class="review-item">
 			<div>
 				<img class="profile-image" src="${path}/resources/IMG/header/loopy.jpg"
 					alt="profile image" />
@@ -66,9 +66,9 @@
 			</div>
 			<!-- END review-main -->
 		</div>
-		<!-- END qna-item -->
+		<!-- END review-item -->
 
-		<div class="qna-item">
+		<div class="review-item">
 			<div>
 				<img class="profile-image" src="${path}/resources/IMG/header/loopy.jpg"
 					alt="profile image" />
@@ -90,7 +90,7 @@
 			</div>
 			<!-- END review-main -->
 		</div>
-		<!-- END qna-item -->
+		<!-- END review-item -->
 
 		<ul class="pagination blind">
 			<li class="page-item">
@@ -121,5 +121,5 @@
 		</ul>
 		<!-- END pagination -->
 	</div>
-	<!-- END qna-list -->
+	<!-- END review-list -->
 </div>
