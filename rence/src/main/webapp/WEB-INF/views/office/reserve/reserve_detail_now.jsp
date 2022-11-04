@@ -44,27 +44,46 @@
             </section>
             <!-- END RESERVE-INFO-SECTION  -->
             
-            <!-- START UH-INFO-SECTION  -->
-            <section class="uh-info-section">
-                <span class="person-type-title">호스트 정보</span>
-                <div class="uh-info-wrap">
-                    <ul>
-                        <li class="host-info-li">
-                            <label class="uh-label">사업자명</label>
-                            <span class="uh-text">${res.info_obj.backoffice_name}</span>
-                        </li>
-                        <li class="host-info-li">
-                            <label  class="uh-label">위치</label>
-                            <span class="uh-text">${res.info_obj.full_address}</span>
-                        </li>
-                        <li class="host-info-li">
-                            <label  class="uh-label">연락처</label>
-                            <span class="uh-text">${res.info_obj.backoffice_tel} ${res.info_obj.backoffice_email}</span>
-                        </li>
-                    </ul>
-                </div>
+            <section class="user-host-info-section">
+                <section class="uh-info-section">
+                    <span class="person-type-title">예약자 정보</span>
+                    <div class="uh-info-wrap">
+                        <ul>
+                            <li class="host-info-li">
+                                <label class="uh-label">예약자</label>
+                                <span class="uh-text">${res.user_obj.user_name}</span>
+                            </li>
+                            <li class="host-info-li">
+                                <label  class="uh-label">연락처</label>
+                                <span class="uh-text">${res.user_obj.user_tel}</span>
+                            </li>
+                            <li class="host-info-li">
+                                <label  class="uh-label">이메일</label>
+                                <span class="uh-text">${res.user_obj.user_email}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section class="uh-info-section">
+                    <span class="person-type-title">호스트 정보</span>
+                    <div class="uh-info-wrap">
+                        <ul>
+                            <li class="host-info-li">
+                                <label class="uh-label">사업자명</label>
+                                <span class="uh-text">${res.info_obj.backoffice_name}</span>
+                            </li>
+                            <li class="host-info-li">
+                                <label  class="uh-label">위치</label>
+                                <span class="uh-text">${res.info_obj.full_address}</span>
+                            </li>
+                            <li class="host-info-li">
+                                <label  class="uh-label">연락처</label>
+                                <span class="uh-text">${res.info_obj.backoffice_tel} ${res.info_obj.backoffice_email}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
             </section>
-            <!-- END UH-INFO-SECTION  -->
             
             <!-- START CAREFUL-INFO-SECTION  -->
             <section  class="careful-info-section">

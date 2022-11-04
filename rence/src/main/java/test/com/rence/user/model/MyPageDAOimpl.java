@@ -23,7 +23,7 @@ public class MyPageDAOimpl implements MyPageDAO {
 		
 		if(list != null) {
 			for(MyPageReserveListVO vo : list) {
-				DecimalFormat dc = new DecimalFormat("###,###,###,###");	
+				DecimalFormat dc = new DecimalFormat("###,###,###,###");
 				String ch = dc.format(Integer.parseInt(vo.getPayment_total()));
 				vo.setPayment_total(ch);
 				
