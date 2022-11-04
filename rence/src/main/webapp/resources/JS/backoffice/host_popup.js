@@ -203,22 +203,81 @@ $(function () {
 
   // 수정 버튼 클릭 -> 수정 팝업 오픈
   $('.btn-room-edit').on('click', function(){
-    $('.popup-background:eq(0)').removeClass('blind');
-    $('#room-edit-section').removeClass('blind');
+    $.ajax({
+      url:"/rence/backoffice_update_room",
+        type : "POST",
+        dataType : 'json',
+        data : {
+          backoffice_no : $.cookie("backoffice_no"),
+          room_no : $(this).attr("idx")
+        },
+        success : function(res) {
+          $('.popup-background:eq(0)').removeClass('blind');
+          $('#room-edit-section').removeClass('blind');
+          $("#btn-edit").attr("idx", $(this).attr("idx"));
+
+          $('#m-edit_room_type').val(res.rmvo.room_type);
+          $("#m-input-room-name").val(res.rmvo.room_name);
+          $("#m-input-price-name").val(res.rmvo.room_price);
+          $("#m-edit-room-type-label").val(res.rmvo.room_type);
+
+          for(var i = 0; i < res.room_type.length; i++){
+            var sample = $(".edit-type-select-item:eq(0)").clone();
+            sample.removeClass("blind");
+            
+            if(res.room_type[i] == 'desk') sample.text("데스크");
+            else if(res.room_type[i] == 'meet_04') sample.text("미팅룸(4인)");
+            else if(res.room_type[i] == 'meet_06') sample.text("미팅룸(6인)");
+            else if(res.room_type[i] == 'meet_10') sample.text("미팅룸(10인)");
+            else if(res.room_type[i] == 'office') sample.text("오피스");
+
+            $(".edit-type-select-list").append(sample);
+          }
+        },
+        error : function(error) {
+          $(".popup-background:eq(1)").removeClass("blind");
+          $("#common-alert-popup").removeClass("blind");
+          $(".common-alert-txt").text("오류 발생으로 인해 처리에 실패하였습니다.");
+        }
+    });
   });
 
   // 수정 팝업 닫기 버튼 -> 수정 팝업 닫음
   $('#btn-edit-cancel').click(function(){
-    $('.room_type').val('');
-    $("#input-room-name").val('');
-    $("#edit-room-type-label").val('타입을 선택해주세요.');
+    // input 초기화
+    $('#m-edit_room_type').val('');
+    $("#m-input-room-name").val('');
+    $("#m-input-price-name").val("");
+    $("#m-edit-room-type-label").val('타입을 선택해주세요.');
+
+    // 경고 테두리 초기화
+    $("#m-input-room-name").removeClass("null-input-border");
+    $("#m-input-price-name").removeClass("null-input-border");
+    $("#m-room-type-select").removeClass("null-input-border");
 
     $('#room-edit-section').addClass('blind');
     $('.popup-background:eq(0)').addClass('blind');
   });
+
+  // 인풋 창 클릭 시 경고 테두리 초기화
+  $('.room-input').click(function(){
+    $(this).removeClass("null-input-border");
+  });
+
+  // 공간 가격 정규표현식 사용
+  $("#m-input-price-name").on("keyup keydown", function(){
+    let check = /^[0-9]+$/;
+
+    if(!check.test($("#m-input-price-name").val().trim())){
+      $(this).siblings(".r-input-warning").removeClass("blind");
+    }else{
+      $(this).siblings(".r-input-warning").addClass("blind");
+    }
+  });
   
   // 수정 팝업 - 공간 타입 선택 버튼 클릭
   $('#m-edit-room-type-label').on('click', function(){
+    $("#m-room-type-select").removeClass("null-input-border");
     $('.edit-type-select-list').toggleClass('blind');
   });
 
@@ -233,20 +292,62 @@ $(function () {
 
   // 변경 버튼 클릭 -> 변경 로직
   $('#btn-edit').click(function(){
-    if($("#m-input-room-name").val().trim().length > 0 && $("#input-price-name").val().trim().length > 0 && $('#m-edit_room_type').val().length > 0){
-      
-      $('.room_type').val('');
+    // 입력값 not null인지 확인
+    if($("#m-input-room-name").val().trim().length > 0 && $("#m-input-price-name").val().trim().length > 0 && $('#m-edit_room_type').val().length > 0){
+      $.ajax({
+        url:"/rence/backoffice_auth",
+          type : "GET",
+          dataType : 'json',
+          data : {
+            backoffice_email : $("#backoffice_email").val().trim()
+          },
+          success : function(res) {
+              // 이메일 중복 성공
+              if(res.result == 1){
+                  $("#btn-certification").prop("check", true);
+                  $("#btn-certification").val("인증완료");
+                  $("#backoffice_email").attr("readonly", true);
+                  $("#backoffice_email").addClass("readOnly");
+
+                  $(".popup-background:eq(1)").removeClass("blind");
+                  $("#common-alert-popup").removeClass("blind");
+                  $(".common-alert-txt").text("이메일로 인증번호를 발송하였습니다.");
+              }else{
+                  $(".popup-background:eq(1)").removeClass("blind");
+                  $("#common-alert-popup").removeClass("blind");
+                  $(".common-alert-txt").text("이미 존재하는 이메일입니다.");
+              }
+          },
+          error : function(error) {
+              console.log(error);
+              $(".popup-background:eq(1)").removeClass("blind");
+              $("#common-alert-popup").removeClass("blind");
+              $(".common-alert-txt").text("오류 발생으로 인해 처리에 실패하였습니다.");
+          }
+      });
+
+      // input 초기화
+      $('#m-edit_room_type').val('');
+      $("#m-input-room-name").val('');
+      $("#m-input-price-name").val("");
+      $("#m-edit-room-type-label").val('타입을 선택해주세요.');
+
+      // 경고 테두리 초기화
+      $("#m-input-room-name").removeClass("null-input-border");
+      $("#m-input-price-name").removeClass("null-input-border");
+      $("#m-room-type-select").removeClass("null-input-border");
+
       $('#room-edit-section').addClass('blind');
       $('.popup-background:eq(0)').addClass('blind');
     }else{
       if($("#m-input-room-name").val().trim().length == 0){
         $("#m-input-room-name").addClass("null-input-border");
       }
-      if($("#input-price-name").val().trim().length == 0){
-        $("#input-price-name").addClass("null-input-border");
+      if($("#m-input-price-name").val().trim().length == 0){
+        $("#m-input-price-name").addClass("null-input-border");
       }
-      if($('.room_type').val().length == 0){
-        $("#room-type-select").addClass("null-input-border");
+      if($('#m-edit_room_type').val().length == 0){
+        $("#m-room-type-select").addClass("null-input-border");
       }
     }
   });

@@ -20,105 +20,56 @@
 
 <div class="boardWrap review">
 	<div class="review-list">
-		<div class="review-item">
-			<div>
-				<img class="profile-image" src="${path}/resources/IMG/header/loopy.jpg"
-					alt="profile image" />
-			</div>
-			<!-- END profile Image -->
-			<div class="review-main">
-				<div class="review-header">
-					<p id="user-name" class="user-name">팡근</p>
-					<span id="review-point" class="review-point">5</span>
+		<c:forEach var="vos" items="${rv_vos}">
+			<div class="review-item">
+				<div>
+					<img class="profile-image" src="${path}/resources/upload/${vos.user_image}" alt="profile image" />
 				</div>
-				<!-- END review-header -->
-				<div class="review-content">
-					<pre>
-혼자 공부할 때 너무 좋아요 !혼자 공부할 때 너무 좋아요 !혼자공부할 때 너무 좋아요 !혼자 공부할 때 너무 좋아요 !혼자 공부할때 너무 좋아요 !혼자 공부할 때 너무 좋아요 !혼자 공부할 때 너무좋아요 !혼자 공부할 때 너무 좋아요 !혼자 공부할 때 너무 좋아요 !너무좋아요 !혼자 공부할 때 너무 좋아요 !혼자 공부할 때 너무 좋아요 !너무좋아요 !혼자 공부할 때 너무 좋아요 !혼자 공부할 때 너무 좋아요 !너무좋아요 !혼자 공부할 때 너무 좋아요 !
-              </pre>
+				<!-- END profile Image -->
+				<div class="review-main">
+					<div class="review-header">
+						<p id="user-name" class="user-name">${vos.user_name}</p>
+						<span id="review-point" class="review-point">${vos.review_point}</span>
+					</div>
+					<!-- END review-header -->
+					<div class="review-content">
+						<pre>${vos.review_content}</pre>
+					</div>
+					<!-- END review-content -->
+					<span id="review-date" class="review-date">${vos.review_date}</span>
 				</div>
-				<!-- END review-content -->
-				<span id="review-date" class="review-date">2022.10.27</span>
+				<!-- END review-main -->
 			</div>
-			<!-- END review-main -->
-		</div>
-		<!-- END review-item -->
+			<!-- END review-item -->
+		</c:forEach>
 
-		<div class="review-item">
-			<div>
-				<img class="profile-image" src="${path}/resources/IMG/header/loopy.jpg"
-					alt="profile image" />
-			</div>
-			<!-- END profile Image -->
-			<div class="review-main">
-				<div class="review-header">
-					<p id="user-name" class="user-name">팡근</p>
-					<span id="review-point" class="review-point">5</span>
-				</div>
-				<!-- END review-header -->
-				<div class="review-content">
-					<pre>
-혼자 공부할 때 너무 좋아요 !혼자 공부할 때 너무 좋아요 !혼자공부할 때 너무 좋아요 !혼자 공부할 때 너무 좋아요 !혼자 공부할때 너무 좋아요 !혼자 공부할 때 너무 좋아요 !혼자 공부할 때 너무좋아요 !혼자 공부할 때 너무 좋아요 !혼자 공부할 때 너무 좋아요 !
-              </pre>
-				</div>
-				<!-- END review-content -->
-				<span id="review-date" class="review-date">2022.10.27</span>
-			</div>
-			<!-- END review-main -->
-		</div>
-		<!-- END review-item -->
-
-		<div class="review-item">
-			<div>
-				<img class="profile-image" src="${path}/resources/IMG/header/loopy.jpg"
-					alt="profile image" />
-			</div>
-			<!-- END profile Image -->
-			<div class="review-main">
-				<div class="review-header">
-					<p id="user-name" class="user-name">팡근</p>
-					<span id="review-point" class="review-point">5</span>
-				</div>
-				<!-- END review-header -->
-				<div class="review-content">
-					<pre>
-혼자 공부할 때 너무 좋아요 !혼자 공부할 때 너무 좋아요 !
-              </pre>
-				</div>
-				<!-- END review-content -->
-				<span id="review-date" class="review-date">2022.10.27</span>
-			</div>
-			<!-- END review-main -->
-		</div>
-		<!-- END review-item -->
-
-		<ul class="pagination blind">
-			<li class="page-item">
-				<button>
-					<img src="${path}/resources/IMG/dash-board/ico-double-left.svg" alt="-10" />
-				</button>
-			</li>
-			<li class="page-item">
-				<button>
-					<img src="${path}/resources/IMG/dash-board/ico-left.svg" alt="-1" />
-				</button>
-			</li>
-			<li class="page-item"><button>1</button></li>
-			<li class="page-item"><button>2</button></li>
-			<li class="page-item"><button>3</button></li>
-			<li class="page-item"><button>4</button></li>
-			<li class="page-item"><button>5</button></li>
-			<li class="page-item">
-				<button>
-					<img src="${path}/resources/IMG/dash-board/ico-right.svg" alt="+1" />
-				</button>
-			</li>
-			<li class="page-item">
-				<button>
-					<img src="${path}/resources/IMG/dash-board/ico-double-right.svg" alt="+10" />
-				</button>
-			</li>
-		</ul>
+<!-- 		<ul class="pagination blind"> -->
+<!-- 			<li class="page-item"> -->
+<!-- 				<button> -->
+<%-- 					<img src="${path}/resources/IMG/dash-board/ico-double-left.svg" alt="-10" /> --%>
+<!-- 				</button> -->
+<!-- 			</li> -->
+<!-- 			<li class="page-item"> -->
+<!-- 				<button> -->
+<%-- 					<img src="${path}/resources/IMG/dash-board/ico-left.svg" alt="-1" /> --%>
+<!-- 				</button> -->
+<!-- 			</li> -->
+<!-- 			<li class="page-item"><button>1</button></li> -->
+<!-- 			<li class="page-item"><button>2</button></li> -->
+<!-- 			<li class="page-item"><button>3</button></li> -->
+<!-- 			<li class="page-item"><button>4</button></li> -->
+<!-- 			<li class="page-item"><button>5</button></li> -->
+<!-- 			<li class="page-item"> -->
+<!-- 				<button> -->
+<%-- 					<img src="${path}/resources/IMG/dash-board/ico-right.svg" alt="+1" /> --%>
+<!-- 				</button> -->
+<!-- 			</li> -->
+<!-- 			<li class="page-item"> -->
+<!-- 				<button> -->
+<%-- 					<img src="${path}/resources/IMG/dash-board/ico-double-right.svg" alt="+10" /> --%>
+<!-- 				</button> -->
+<!-- 			</li> -->
+<!-- 		</ul> -->
 		<!-- END pagination -->
 	</div>
 	<!-- END review-list -->

@@ -125,11 +125,7 @@
 					<div class="room-type-select" id="m-room-type-select">
 						<button name="room_type" id="m-edit-room-type-label" class="room-type-label">타입을 선택해 주세요</button>
 						<ul class="edit-type-select-list blind">
-							<li class="edit-type-select-item">데스크</li>
-							<li class="edit-type-select-item">4인 회의실</li>
-							<li class="edit-type-select-item">6인 회의실</li>
-							<li class="edit-type-select-item">10인 회의실</li>
-							<li class="edit-type-select-item">오피스</li>
+							<li class="edit-type-select-item blind">데스크</li>
 						</ul>
 					</div>
 					<!-- END room-type-select -->
@@ -137,8 +133,10 @@
 				<!-- END room-type-wrap -->
 				<div class="room-input-wrap">
 					<p>가격을 입력해 주세요.</p>
-					<input type="number" name="room_price" id="input-price-name"
-						class="room-input" placeholder="가격을 입력해 주세요.(숫자만 입력 가능)" value="" />
+					<div>
+						<input type="number" name="room_price" id="m-input-price-name" class="room-input" placeholder="가격을 입력해 주세요.(숫자만 입력 가능)" value="" />
+						<span class="r-input-warning blind">숫자만 입력가능합니다.</span>
+					</div>
 				</div>
 			</section>
 			<!-- room-popup-input-section -->
