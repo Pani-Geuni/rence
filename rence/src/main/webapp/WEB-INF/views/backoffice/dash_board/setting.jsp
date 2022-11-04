@@ -43,7 +43,7 @@
 </div>
 <!-- END boardWrap -->
 <div class="btn-group-settings">
-	<button id="btn-host-delete" class="btn-host-delete">업체 삭제 요청</button>
+	<button id="host-delete" class="btn-host-delete">업체 삭제 요청</button>
 	<button id="btn-host-logout" class="btn-host-delete">로그아웃</button>
 </div>
 <!-- END btn-group-settings -->

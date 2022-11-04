@@ -83,11 +83,7 @@
 						<button name="room_type" id="insert-room-type-label"
 							class="room-type-label">타입을 선택해 주세요</button>
 						<ul class="insert-type-select-list blind">
-							<li class="insert-type-select-item">데스크</li>
-							<li class="insert-type-select-item">4인 회의실</li>
-							<li class="insert-type-select-item">6인 회의실</li>
-							<li class="insert-type-select-item">10인 회의실</li>
-							<li class="insert-type-select-item">오피스</li>
+							<li class="insert-type-select-item blind"></li>
 						</ul>
 					</div>
 					<!-- END room-type-select -->
