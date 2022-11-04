@@ -28,7 +28,7 @@
 		<tiles:insertAttribute name="header" />
 		<section class ="contentWrap">
 			<tiles:insertAttribute name="content" />
-			<tiles:insertAttribute name="footer" />
+<%-- 			<tiles:insertAttribute name="footer" /> --%>
 		</section>
 	</div>
 	
