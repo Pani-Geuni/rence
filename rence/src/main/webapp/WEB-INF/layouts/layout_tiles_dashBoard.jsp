@@ -160,6 +160,20 @@
 			</section>
 		</div>
 		<!-- END DELETE FONFIRM POPUP -->
+		
+		<!-- START DELETE CONFIRM POPUP -->
+		<div id="answer-delete-popup" class="confirm-popup blind">
+			<section class="confirm-txt-section">
+				<span class="delete-txt"> 
+					답글을 삭제하시겠습니까?
+				</span>
+			</section>
+			<section class="confirm-btn-section">
+				<div id="delete-answer-btn" class="confirm-yesBtn">삭제</div>
+				<div id="delete-answer-closeBtn" class="confirm-noBtn">닫기</div>
+			</section>
+		</div>
+		<!-- END DELETE FONFIRM POPUP -->
 
 		<!-- START SUCCESS CUSTOM ALERT POPUP -->
 		<div id="insert-success-alert-popup" class="alert-popup blind">
@@ -199,11 +213,11 @@
 			<section class="user-comment-section">
 				<div class="user-comment-title">
 					<h5>문의 공간</h5>
-					<p>101호 개인 스터디룸</p>
+					<p id="q_room_name">101호 개인 스터디룸</p>
 				</div>
 				<div class="user-comment-content">
 					<h5>문의 내용</h5>
-					<pre>
+					<pre id="user_comment">
 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 </pre>
 				</div>
 			</section>
@@ -215,7 +229,7 @@
 
 			<div class="button-group">
 				<button class="btn-comment-cancel">취소</button>
-				<button class="btn-comment-confirm">등록</button>
+				<button id="h_comment_insert" class="btn-comment-confirm">등록</button>
 			</div>
 		</div>
 		<!-- END popup-background blind -->

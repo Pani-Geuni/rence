@@ -29,56 +29,59 @@
 		</div>
 		<!-- END ct-header -->
 
-		<div class="ct-body-row qna">
-			<div class="ct-body-cell qna">
-				<p class="qna-process true">처리</p>
+		<c:forEach var="vos" items="${q_vos}">
+			<div class="ct-body-row qna">
+				<div class="ct-body-cell qna">
+					<p class="qna-process 
+						<c:if test="${vos.comment_state eq 'T'}">true</c:if>
+						<c:if test="${vos.comment_state eq 'F'}">false</c:if>
+					">
+						<c:if test="${vos.comment_state eq 'T'}">처리</c:if>
+						<c:if test="${vos.comment_state eq 'F'}">미처리</c:if>
+					</p>
+				</div>
+				<div class="ct-body-cell qna">
+					<p>${vos.room_name}</p>
+				</div>
+				<div class="ct-body-cell qna">
+					<p>${vos.comment_content}</p>
+				</div>
+				<div class="ct-body-cell qna">
+					<p>${vos.comment_date}</p>
+				</div>
+				<div class="ct-body-cell qna">
+					<button class="ct-body-btn
+						<c:if test="${vos.comment_state eq 'T'}">qna-delete</c:if>
+						<c:if test="${vos.comment_state eq 'F'}">qna-add</c:if>"
+						comment_no="${vos.comment_no}" room_no = "${vos.room_no}" answer_no = "${vos.answer_no}"
+					>
+						<c:if test="${vos.comment_state eq 'T'}">답변 삭제</c:if>
+						<c:if test="${vos.comment_state eq 'F'}">답변 작성</c:if>
+					</button>
+				</div>
 			</div>
-			<div class="ct-body-cell qna">
-				<p>101호 개인 스터디름</p>
-			</div>
-			<div class="ct-body-cell qna">
-				<p>문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용문의내용 문의내용 문의내용 문의내용 문의내용
-					문의내용 문의내용문의내용 문의내용 문의내용 문의내용 문의내용 문의내용 문의내용문의내용 문의내용 문의내용 문의내용 문의내용
-					문의내용 문의내용문의내용 문의내용 문의내용 문의내용</p>
-			</div>
-			<div class="ct-body-cell qna">
-				<p>2022.10.27</p>
-			</div>
-			<div class="ct-body-cell qna">
-				<button class="ct-body-btn qna-edit">답변 수정</button>
-			</div>
-		</div>
-		<!-- END ct-body-row -->
-		<div class="detail-qna-wrap blind">
-            <div class="question-section">
-              <h5 class="question-title">Q.</h5>
-              <p class="question-content">
-                문의내용 문의내용 문의내용 문의내용 문의내용 문의내용
-                문의내용문의내용 문의내용 문의내용 문의내용 문의내용 문의내용
-                문의내용문의내용 문의내용 문의내용 문의내용 문의내용 문의내용
-                문의내용문의내용 문의내용 문의내용 문의내용 문의내용 문의내용
-                문의내용문의내용 문의내용 문의내용 문의내용
-              </p>
-            </div>
-            <!-- END question-section -->
-            <div class="answer-section">
-              <div class="answer-title-section">
-                <h5 class="answer-title">A.</h5>
-                <p class="answer-date">작성일 | 2022-11-04 10:00:47</p>
-              </div>
-              <p class="answer-content">
-                답변 내용 답변 내용 답변 내용 답변 내용 답변 내용 답변 내용 답변
-                내용 답변 내용 답변 내용 답변 내용 답변 내용 답변 내용 답변 내용
-                답변 내용 답변 내용 답변 내용 답변 내용 답변 내용 답변 내용 답변
-                내용 답변 내용 답변 내용 답변 내용 답변 내용 답변 내용 답변 내용
-                답변 내용 답변 내용 답변 내용 답변 내용 답변 내용 답변 내용 답변
-                내용 답변 내용 답변 내용 답변 내용 답변 내용 답변 내용
-              </p>
-            </div>
-            <!-- END answer-section -->
-          </div>
-          <!-- deatil-qna-wrap -->
-		<!-- END custom-table -->
+			<!-- END ct-body-row -->
+			<div class="detail-qna-wrap blind">
+	            <div class="question-section">
+	              <h5 class="question-title">Q.</h5>
+	              <p class="question-content">
+	                ${vos.comment_content}
+	              </p>
+	            </div>
+	            <!-- END question-section -->
+	            <c:if test="${vos.answer_content ne null}">
+		            <div class="answer-section">
+		              <div class="answer-title-section">
+		                <h5 class="answer-title">A.</h5>
+		                <p class="answer-date">작성일 | ${vos.answer_date}</p>
+		              </div>
+		              <p class="answer-content">
+		                ${vos.answer_content}
+		              </p>
+		            </div>
+	            </c:if>
+	          </div>
+		</c:forEach>
 
 		<ul class="pagination blind">
 			<li class="page-item">
