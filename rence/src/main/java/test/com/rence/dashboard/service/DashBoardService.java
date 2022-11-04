@@ -60,9 +60,9 @@ public class DashBoardService {
 	}
 
 	//예약 관리 검색 (예약자)
-	public List<ReserveVO> backoffice_search_reserve(String backoffice_no, String searchword) {
+	public List<ReserveVO> backoffice_search_reserve(String backoffice_no, String searchword, String reserve_state) {
 		logger.info("backoffice_search_reserve()...");
-		return dao.backoffice_search_reserve(backoffice_no, searchword);
+		return dao.backoffice_search_reserve(backoffice_no, searchword,reserve_state);
 	}
 	
 	//환경설정 페이지 출력

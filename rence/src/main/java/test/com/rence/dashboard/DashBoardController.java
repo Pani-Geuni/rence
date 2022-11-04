@@ -306,12 +306,13 @@ public class DashBoardController {
 	 * 예약 관리(리스트-검색)
 	 */
 	@RequestMapping(value = "/backoffice_search_reserve", method = RequestMethod.GET)
-	public String dashboard_reserve_search(Model model, String backoffice_no, String searchword) {
+	public String dashboard_reserve_search(Model model, String backoffice_no, String searchword, String reserve_state) {
 		logger.info("backoffice_search_reserve ()...");
 		logger.info("{}", backoffice_no);
-		List<ReserveVO> rvos = service.backoffice_search_reserve(backoffice_no, searchword);
+		List<ReserveVO> rvos = service.backoffice_search_reserve(backoffice_no, searchword, reserve_state);
 		model.addAttribute("r_vos", rvos);
 		model.addAttribute("cnt", rvos.size());
+		model.addAttribute("reserve_state", reserve_state);
 		return ".dash_board/reserve_list";
 	}
 

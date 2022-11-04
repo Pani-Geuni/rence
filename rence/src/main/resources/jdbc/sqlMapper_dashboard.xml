@@ -56,7 +56,7 @@
   	
   	<select id="SQL_SELECT_ALL_B_RESERVE" resultType="test.com.rence.dashboard.model.ReserveVO" parameterType="hashmap">
   		select * from (
-			select ROW_NUMBER() OVER(PARTITION BY rv.reserve_no ORDER BY rv.reserve_no ASC ) no, rv.reserve_no, TO_CHAR(reserve_sdate, 'YYYY-MM-DD HH24:MI:SS') as reserve_sdate, TO_CHAR(reserve_edate, 'YYYY-MM-DD HH24:MI:SS') as reserve_edate, rm.room_name, u.user_name, u.user_tel, u.user_email, p.actual_payment, p.payment_state
+			select ROW_NUMBER() OVER(PARTITION BY rv.reserve_no ORDER BY rv.reserve_no ASC ) no, rv.reserve_no, TO_CHAR(reserve_sdate, 'YYYY-MM-DD HH24:MI:SS') as reserve_sdate, TO_CHAR(reserve_edate, 'YYYY-MM-DD HH24:MI:SS') as reserve_edate, rm.room_name, u.user_name, u.user_tel, u.user_email, p.actual_payment, p.payment_state, reserve_state
 			from reserveinfo rv left outer join roominfo rm on rv.room_no=rm.room_no 
 			left outer join paymentinfo p on rm.room_no=p.room_no
 			left outer join userinfo u on p.user_no=u.user_no 
@@ -86,12 +86,24 @@
   	
   	<select id="SQL_SELECT_ALL_B_RESERVE_SEARCH" resultType="test.com.rence.dashboard.model.ReserveVO" parameterType="hashmap">
   		select * from (
-			select ROW_NUMBER() OVER(PARTITION BY rv.reserve_no ORDER BY rv.reserve_no ASC ) no, rv.reserve_no, TO_CHAR(reserve_sdate, 'YYYY-MM-DD HH24:MI:SS') as reserve_sdate, TO_CHAR(reserve_edate, 'YYYY-MM-DD HH24:MI:SS') as reserve_edate, rm.room_name, u.user_name, u.user_tel, u.user_email, p.actual_payment, p.payment_state
+			select ROW_NUMBER() OVER(PARTITION BY rv.reserve_no ORDER BY rv.reserve_no ASC ) no, rv.reserve_no, TO_CHAR(reserve_sdate, 'YYYY-MM-DD HH24:MI:SS') as reserve_sdate, TO_CHAR(reserve_edate, 'YYYY-MM-DD HH24:MI:SS') as reserve_edate, rm.room_name, u.user_name, u.user_tel, u.user_email, p.actual_payment, p.payment_state, reserve_state
 			from reserveinfo rv left outer join roominfo rm on rv.room_no=rm.room_no 
 			left outer join paymentinfo p on rm.room_no=p.room_no
 			left outer join userinfo u on p.user_no=u.user_no 
-			where rv.backoffice_no=#{backoffice_no} and rv.reserve_state !='false' and u.user_name like #{searchword} order by reserve_sdate asc )A
-		where A.no=1
+			where rv.backoffice_no=#{backoffice_no} and rv.reserve_state !='false' and u.user_name like #{searchword}
+			<if test="reserve_state == 'all'">
+  			order by reserve_sdate desc
+  			</if>
+  			<if test="reserve_state == 'in_use'">
+  			and (reserve_state ='begin' or reserve_state ='in_use') order by reserve_sdate desc
+  			</if>
+  			<if test="reserve_state == 'end'">
+  			and reserve_state ='end' order by reserve_sdate desc
+  			</if>
+  			<if test="reserve_state == 'cancel'">
+  			and reserve_state ='cancel' order by reserve_sdate desc
+  			</if>
+			)A where A.no=1
   	</select>
   	
   	<select id="SQL_SELECT_SALES" resultType="test.com.rence.dashboard.model.SalesSettlementPreVO">
