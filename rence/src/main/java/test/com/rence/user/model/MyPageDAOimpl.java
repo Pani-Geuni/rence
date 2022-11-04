@@ -96,7 +96,7 @@ public class MyPageDAOimpl implements MyPageDAO {
 		
 		if(vo != null) {
 			if(vo.getRoom_type().equals("office")) vo.setRoom_type("오피스");
-			if(vo.getRoom_type().equals("desk")) vo.setRoom_type("desk");
+			if(vo.getRoom_type().equals("desk")) vo.setRoom_type("데스크");
 			if(vo.getRoom_type().equals("meeting_room")) vo.setRoom_type("회의룸");
 			
 			DecimalFormat dc = new DecimalFormat("###,###,###,###");	
