@@ -87,13 +87,13 @@
 <!--   	<update id="SQL_UPDATE_B_RESERVE_STATE" parameterType="test.com.rence.dashboard.model.ReserveVO_date">
   		update reserveinfo set reserve_state = 
   		
-  		<if test="sysdate &lt; reserve_sdate">
+  		<if test="now &lt; reserve_sdate">
   			'begin'
   		</if>
-  		<if test="sysdate between reserve_sdate and reserve_edate">
+  		<if test="now between reserve_sdate and reserve_edate">
 			'in_use'
 		</if>
-		<if test="sysdate > reserve_edate">
+		<if test="now &gt; reserve_edate">
 			'end'
 		</if>
 		and backoffice_no=#{backoffice_no}
@@ -247,7 +247,7 @@
  	</update>
  	
  	<delete id="SQL_DELETE_ROOM" parameterType="hashmap">
- 		DELETE FROM roominfo where backoffice_no=#{backoffice_no} and room_no=#{room_no}
+ 		DELETE FROM roominfo where backoffice_no=#{backoffice_no} and room_no=#{room_no} and room_no not in (select room_no from reserveinfo where backoffice_no=#{backoffice_no} and room_no=#{room_no} and (reserve_state='begin' or reserve_state='in_use'))
  	</delete>
  	
  	<select id="SQL_SELECT_ALL_REVIEW_LIST" resultType="test.com.rence.dashboard.model.ReviewVO">
