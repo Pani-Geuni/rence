@@ -189,14 +189,14 @@
 <!-- 	마일리지상세페이지에 총마일리지 정보제공 -->
 	<select id="SQL_SELECTONE_USER_MILEAGE"
 		resultType="test.com.rence.user.model.UserMileageVO">
-		select *
-		from(
-		select * 
-		from mileage 
-		where user_no=#{user_no}
-		order by mileage_no desc
-		)
-		WHERE ROWNUM between 1 and 1
+			select *
+			from(
+			select * 
+			from mileage 
+			where mileage_state !='W' and user_no=#{user_no}  
+			order by mileage_no desc
+			)
+			WHERE ROWNUM between 1 and 1
 	</select>
 
 	<!-- 	마일리지 상세페이지에서 적립 또는 사용한 내역만 보고 싶을때 -->
