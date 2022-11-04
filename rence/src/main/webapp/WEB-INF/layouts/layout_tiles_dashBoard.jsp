@@ -91,8 +91,10 @@
 				<!-- END room-type-wrap -->
 				<div class="room-input-wrap">
 					<p>가격을 입력해 주세요.</p>
-					<input type="number" name="room_price" id="input-price-name"
-						class="room-input" placeholder="가격을 입력해 주세요.(숫자만 입력 가능)" value="" />
+					<div>
+						<input type="number" name="room_price" id="input-price-name" class="room-input" placeholder="가격을 입력해 주세요.(숫자만 입력 가능)" value="" />
+						<span class="r-input-warning blind">숫자만 입력가능합니다.</span>
+					</div>
 				</div>
 			</section>
 			<!-- room-popup-input-section -->
