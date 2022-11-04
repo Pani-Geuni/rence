@@ -106,34 +106,70 @@
 			)A where A.no=1
   	</select>
   	
-  	<select id="SQL_SELECT_SALES" resultType="test.com.rence.dashboard.model.SalesSettlementPreVO">
-  		select * from sales_view where backoffice_no=#{backoffice_no}
+  	<select id="SQL_SELECT_ONE_SALES" resultType="test.com.rence.dashboard.model.SalesSettlementPreVO">
+  		<![CDATA[
+  		select NVL(sum(sales_total),0) as sales_total, NVL(sum(sales_cancel),0) as sales_cancel from(
+
+		select ROW_NUMBER() OVER(PARTITION BY backoffice_no ORDER BY backoffice_no ASC ) no, backoffice_no, (select NVL(sum(
+		(select NVL(sum(p.payment_total),0) from paymentinfo p left outer join roominfo rm on p.room_no=rm.room_no where p.payment_state='T' and ((rm.room_type='desk') or (rm.room_type like 'meeting%') and p.backoffice_no=#{backoffice_no}))+
+		(select NVL(sum(p.payment_total*0.8),0) from paymentinfo p left outer join roominfo rm on p.room_no=rm.room_no where p.payment_state='F' and p.sales_state='T' and ((rm.room_type='desk') or (rm.room_type like 'meeting%')and p.backoffice_no=#{backoffice_no}))+ 
+		(select NVL(sum(payment_total),0) from paymentinfo p left outer join roominfo rm on p.room_no=rm.room_no where p.sales_state='T' and rm.room_type='office' and p.backoffice_no=#{backoffice_no})+
+		(select NVL(sum(payment_total*0.2),0) from paymentinfo p left outer join roominfo rm on p.room_no=rm.room_no where p.payment_state='F' and ((rm.room_type='desk') or (rm.room_type like 'meeting%'))and p.backoffice_no=#{backoffice_no}) 
+ 		),0) as sales_total from paymentinfo) as sales_total,
+
+		(select NVL(sum(
+		(select NVL(sum(payment_total),0) from paymentinfo p left outer join reserveinfo rv on p.reserve_no=rv.reserve_no where payment_state='T' and (sysdate-payment_date)*24<=1 and rv.backoffice_no=#{backoffice_no} and rv.reserve_state='cancel')
+		+(select NVL(sum(payment_total*0.2),0) from paymentinfo p left outer join reserveinfo rv on p.reserve_no=rv.reserve_no where payment_state='F' and ((sysdate-payment_date)*24<=1) and rv.backoffice_no=#{backoffice_no} and rv.reserve_state='cancel')
+		+(select NVL(sum(payment_total*0.8),0) from paymentinfo p left outer join reserveinfo rv on p.reserve_no=rv.reserve_no where ((sysdate-payment_date)*24>1) and rv.backoffice_no=#{backoffice_no} and rv.reserve_state='cancel')
+		),0) as sales_cancel from paymentinfo) as sales_cancel
+		from paymentinfo where backoffice_no=#{backoffice_no} 
+		]]> 
   		<if test="sales_date == 'day'">
   			and trunc(payment_date)=trunc(SYSDATE)
   		</if>
   		<if test="sales_date == 'week'">
-  			and trunc(payment_date) between add_months(trunc(SYSDATE),-1) and trunc(SYSDATE)
-  		</if>
-  		<if test="sales_date == 'month'">
   			and trunc(payment_date) between trunc(SYSDATE) - interval '7' day and trunc(SYSDATE)
   		</if>
-  		union
-  		select * from sales_view where backoffice_no=#{backoffice_no}
+  		<if test="sales_date == 'month'">
+  			and trunc(payment_date) between add_months(trunc(SYSDATE),-1) and trunc(SYSDATE)
+  		</if>
+  		)A 
+		where A.no=1
+		union
+  		<![CDATA[
+  		select NVL(sum(pre_sales_total),0) as pre_sales_total, NVL(sum(pre_sales_cancel),0) as pre_sales_cancel from(
+
+		select ROW_NUMBER() OVER(PARTITION BY backoffice_no ORDER BY backoffice_no ASC ) no, backoffice_no, (select NVL(sum(
+		(select NVL(sum(p.payment_total),0) from paymentinfo p left outer join roominfo rm on p.room_no=rm.room_no where p.payment_state='T' and ((rm.room_type='desk') or (rm.room_type like 'meeting%') and p.backoffice_no=#{backoffice_no}))+
+		(select NVL(sum(p.payment_total*0.8),0) from paymentinfo p left outer join roominfo rm on p.room_no=rm.room_no where p.payment_state='F' and p.sales_state='T' and ((rm.room_type='desk') or (rm.room_type like 'meeting%')and p.backoffice_no=#{backoffice_no}))+ 
+		(select NVL(sum(payment_total),0) from paymentinfo p left outer join roominfo rm on p.room_no=rm.room_no where p.sales_state='T' and rm.room_type='office' and p.backoffice_no=#{backoffice_no})+
+		(select NVL(sum(payment_total*0.2),0) from paymentinfo p left outer join roominfo rm on p.room_no=rm.room_no where p.payment_state='F' and ((rm.room_type='desk') or (rm.room_type like 'meeting%'))and p.backoffice_no=#{backoffice_no}) 
+ 		),0) as pre_sales_total from paymentinfo) as pre_sales_total,
+
+		(select NVL(sum(
+		(select NVL(sum(payment_total),0) from paymentinfo p left outer join reserveinfo rv on p.reserve_no=rv.reserve_no where payment_state='T' and (sysdate-payment_date)*24<=1 and rv.backoffice_no=#{backoffice_no} and rv.reserve_state='cancel')
+		+(select NVL(sum(payment_total*0.2),0) from paymentinfo p left outer join reserveinfo rv on p.reserve_no=rv.reserve_no where payment_state='F' and ((sysdate-payment_date)*24<=1) and rv.backoffice_no=#{backoffice_no} and rv.reserve_state='cancel')
+		+(select NVL(sum(payment_total*0.8),0) from paymentinfo p left outer join reserveinfo rv on p.reserve_no=rv.reserve_no where ((sysdate-payment_date)*24>1) and rv.backoffice_no=#{backoffice_no} and rv.reserve_state='cancel')
+		),0) as pre_sales_cancel from paymentinfo) as pre_sales_cancel
+		from paymentinfo where backoffice_no=#{backoffice_no} 
+		]]> 
   		<if test="sales_date == 'day'">
-  			and trunc(payment_date)=trunc(SYSDATE)
+  			and trunc(payment_date)=trunc(SYSDATE)-1
   		</if>
   		<if test="sales_date == 'week'">
-  			and trunc(payment_date) between trunc(SYSDATE) - interval '7' day and trunc(SYSDATE)
+  			and trunc(payment_date) between trunc(SYSDATE) - interval '14' day and trunc(SYSDATE) - interval '7' day
   		</if>
   		<if test="sales_date == 'month'">
-  			and trunc(payment_date) between add_months(trunc(SYSDATE),-1) and trunc(SYSDATE)
+  			and trunc(payment_date) between add_months(trunc(SYSDATE),-2) and add_months(trunc(SYSDATE),-1)
   		</if>
+  		)A 
+		where A.no=1
   	</select>
   	
   	<select id="SQL_SELECT_ALL_SALES" resultType="test.com.rence.dashboard.model.SalesSettlementPreVO">
   		select TO_CHAR(reserve_sdate, 'YYYY-MM-DD HH24:MI:SS') as reserve_sdate, TO_CHAR(reserve_edate, 'YYYY-MM-DD HH24:MI:SS') as reserve_edate, room_name, actual_payment, payment_state, sales_state, payment_no, room_no 
         from(
-			select ROW_NUMBER() OVER(PARTITION BY rv.reserve_no ORDER BY rv.reserve_no ASC ) no, reserve_sdate, reserve_edate, room_name, actual_payment, payment_state, sales_state, rv.backoffice_no, payment_no, room_no
+			select ROW_NUMBER() OVER(PARTITION BY rv.reserve_no ORDER BY rv.reserve_no ASC ) no, reserve_sdate, reserve_edate, room_name, actual_payment, payment_state, sales_state, rv.backoffice_no, payment_no, rv.room_no
 			from reserveinfo rv left outer join paymentinfo p on rv.reserve_no=p.reserve_no
 			left outer join roominfo rm on p.room_no=rm.room_no)A
 		where A.no=1 and backoffice_no=#{backoffice_no} order by reserve_sdate desc  	

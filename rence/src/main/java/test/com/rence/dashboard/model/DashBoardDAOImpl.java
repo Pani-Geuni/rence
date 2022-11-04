@@ -140,9 +140,15 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		map.put("backoffice_no", backoffice_no);
 		map.put("reserve_state", sales_date);
 
-		SalesSettlementPreVO svos = sqlSession.selectOne("SQL_SELECT_ONE_SALES", map);
+		SalesSettlementPreVO svo = sqlSession.selectOne("SQL_SELECT_ONE_SALES", map);
+		
+		if (svo != null) {
+			svo.setSales_income(svo.getSales_total() - svo.getSales_cancel());
+			svo.setPre_sales_income(svo.getPre_sales_total()-svo.getPre_sales_cancel());
+			svo.setSales_gap(svo.getPre_sales_income()-svo.getSales_income());
+		}
 
-		return svos;
+		return svo;
 	}
 
 	@Override
