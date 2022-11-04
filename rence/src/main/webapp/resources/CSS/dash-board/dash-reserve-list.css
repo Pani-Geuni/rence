@@ -27,7 +27,7 @@
 	justify-content: center;
 	align-items: center;
 	font-size: 15px;
-	width: 20%;
+	width: 25%;
 	border-right: 2px solid #2ee49d;
 	cursor: pointer;
 }
@@ -36,7 +36,7 @@
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	width: 80%;
+	width: 75%;
 	cursor: pointer;
 }
 
@@ -84,7 +84,7 @@
 .type-select-wrap * {
 	font-family: "HallymGothic";
 	font-weight: 900;
-	font-size: 13px;
+	font-size: 14px;
 }
 
 .type-select-list {
