@@ -121,21 +121,20 @@ public class OfficeInfoDAOImpl implements OfficeInfoDAO {
 		int mileage_change = (int) (pvo.getPayment_total() * 0.05);
 		
 		OfficeMileageVO mvo2 = new OfficeMileageVO();
-		int mileage_total = mvo.getMileage_total() + mileage_change;
-		
-		System.out.println("=================");
-		logger.info("mvo mileage_total :: {}", mvo.getMileage_total());
-		logger.info("mileage_change :: {}", mileage_change);
-		logger.info("mileage_total :: {}", mileage_total);
-		System.out.println("=================");
-		mvo2.setMileage_total(mileage_total);
-		mvo2.setUser_no(pvo.getUser_no());
+		int mileage_total = 0;
 		
 		if (pvo.getUse_mileage() == 0) {
 			mvo2.setMileage_state("W");
+			 mileage_total = mvo.getMileage_total() + mileage_change;
 		} else {
 			mvo2.setMileage_state("F");
+			mileage_total = mvo.getMileage_total() - mileage_change;
 		}
+		
+		mvo2.setMileage_total(mileage_total);
+		mvo2.setUser_no(pvo.getUser_no());
+		
+		
 		
 		mvo2.setMileage_change(mileage_change);
 		
