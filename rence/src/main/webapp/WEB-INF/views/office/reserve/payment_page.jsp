@@ -146,14 +146,14 @@
                     <section class="mileage-payment">
                         <div class="mileage-line-wrap">
                             <label class="mileage-label">사용할 마일리지</label>
-                            <input type="text" id="use-mileage" class="use-mileage-input"/>
+                            <input type="text" id="use-mileage" class="use-mileage-input" numberOnly/>
                             <input type="button" class="use-mileage-btn" value="마일리지 사용"/>
                         </div>
                         <div class="my-mileage-wrap">
                             <label>
                                 나의 마일리지 : 
                             </label>
-                            <span id="my-mileage">
+                            <span id="my-mileage" my-mileage="${pvo.mileage_total}">
                                 ${ pvo.mileage_total }원
                             </span>
                         </div>
@@ -187,11 +187,11 @@
                         <ul class="payment-info-li-wrap">
                             <li class="info-li">
                                 <label class="pay-info-label">총 결제 금액</label>
-                                <span id="payment_all" class="pay-info-text" payment_total="${payment_all}">${ payment_all }원</span>
+                                <span id="payment_all" class="pay-info-text" payment_all="${payment_all}">${ payment_all }</span>
                             </li>
                             <li class="info-li">
                                 <label class="pay-info-label">마일리지 예상 적립 금액</label>
-                                <span id="earned_mileage" class="pay-info-text" earned_mileage="${earned_mileage}">${ earned_mileage }원</span>
+                                <span id="earned_mileage" class="pay-info-text" earned_mileage="${earned_mileage}">${ earned_mileage }</span>
                             </li>
                         </ul>
                     </section>

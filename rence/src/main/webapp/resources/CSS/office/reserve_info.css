@@ -432,6 +432,11 @@
     letter-spacing: 0.5px;
 }
 
+#payment_all::after,
+#earned_mileage::after {
+	content: '원';
+}
+
 .pay-mileage-section{
     display: flex;
     border-top: 2px solid #e4e4e4;
