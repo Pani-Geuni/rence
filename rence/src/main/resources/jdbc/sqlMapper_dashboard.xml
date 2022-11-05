@@ -195,7 +195,7 @@
   	</update>
   	
   	<update id="SQL_UPDATE_MILEAGE_SUCCESS" parameterType="test.com.rence.user.model.UserMileageVO">
-  		 update mileage set mileage_state= 'T' where mileage_no in (select mileage_no from paymentinfo where payment_no=#{payment_no} and payment_state='T' and mileage_state='W')
+  		 update mileage set mileage_state= 'T' where mileage_no in (select mileage_no from paymentinfo where payment_no=#{payment_no} and sales_state='T' and mileage_state='W')
   	</update>
   	
   	<select id="SQL_SELECT_ALL_ROOM" resultType="test.com.rence.dashboard.model.RoomVO">
@@ -284,7 +284,7 @@
 		values ('C'||seq_comments.nextval,#{room_no},#{backoffice_no},#{mother_no},#{comment_content}, sysdate, '관리자', 'T', #{backoffice_no})
  	</insert>
   	
-  	<delete id="SQL_DELETE_QNA_A" parameterType="hashmap">
+  	<delete id="SQL_DELETE_QNA_A" parameterType="test.com.rence.dashboard.model.CommentVO">
  		DELETE FROM comments where backoffice_no=#{backoffice_no} and comment_no=#{comment_no}
  	</delete>
  	

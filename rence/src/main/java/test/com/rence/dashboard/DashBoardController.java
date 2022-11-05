@@ -91,10 +91,13 @@ public class DashBoardController {
 
 		BackOfficeVO bvo = service.select_one_backoffice_info(backoffice_no);
 		RoomVO rmvo = new RoomVO();
-		rmvo.setRoom_type(bvo.getBackoffice_type());
+//		rmvo.setRoom_type(bvo.getBackoffice_type());
 		
-		List<String> type_list = new ArrayList<String>();
+		String type = bvo.getBackoffice_type().replace("meeting_room", "meeting_04,meeting_06,meeting_10");
+		rmvo.setRoom_type(type);
 
+		List<String> type_list = new ArrayList<String>();
+		
 		if (rmvo.getRoom_type() != null) {
 			String[] type_split = rmvo.getRoom_type().split(",");
 			
@@ -150,7 +153,10 @@ public class DashBoardController {
 
 		BackOfficeVO bvo = service.select_one_backoffice_info(backoffice_no);
 		RoomVO rmvo = new RoomVO();
-		rmvo.setRoom_type(bvo.getBackoffice_type());
+//		rmvo.setRoom_type(bvo.getBackoffice_type());
+		
+		String type = bvo.getBackoffice_type().replace("meeting_room", "meeting_04,meeting_06,meeting_10");
+		rmvo.setRoom_type(type);
 		
 		List<String> type_list = new ArrayList<String>();
 
