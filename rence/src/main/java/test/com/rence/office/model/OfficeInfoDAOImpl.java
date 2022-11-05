@@ -111,11 +111,40 @@ public class OfficeInfoDAOImpl implements OfficeInfoDAO {
 		
 		logger.info("reserve_paymentOK()....");
 		
+		
 		int flag = 0;
 		int result_payment = sqlSession.insert("SQL_INSERT_PAYMENT", pvo);
 		int result_update_reserve_state = sqlSession.update("SQL_UPDATE_RESERVE_STATE", pvo.getReserve_no());
 		
-		flag = result_payment & result_update_reserve_state;
+		
+		OfficeMileageVO mvo = sqlSession.selectOne("SQL_SELECT_ONE_RECENT_MILEAGE", pvo.getUser_no());
+		int mileage_change = (int) (pvo.getPayment_total() * 0.05);
+		
+		OfficeMileageVO mvo2 = new OfficeMileageVO();
+		int mileage_total = mvo.getMileage_total() + mileage_change;
+		
+		System.out.println("=================");
+		logger.info("mvo mileage_total :: {}", mvo.getMileage_total());
+		logger.info("mileage_change :: {}", mileage_change);
+		logger.info("mileage_total :: {}", mileage_total);
+		System.out.println("=================");
+		mvo2.setMileage_total(mileage_total);
+		mvo2.setUser_no(pvo.getUser_no());
+		
+		if (pvo.getUse_mileage() == 0) {
+			mvo2.setMileage_state("W");
+		} else {
+			mvo2.setMileage_state("F");
+		}
+		
+		mvo2.setMileage_change(mileage_change);
+		
+		OfficePaymentVO pvo2 = sqlSession.selectOne("SQL_SELECT_ONE_RECENT_PAYMENT", pvo.getUser_no());
+		mvo2.setPayment_no(pvo2.getPayment_no());
+		
+		int result_mileage = sqlSession.insert("SQL_INSERT_MILEAGE_CHANGED", mvo2);
+		
+		flag = result_payment & result_update_reserve_state & result_mileage;
 		
 		return flag;
 	}
