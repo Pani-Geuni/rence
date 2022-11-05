@@ -198,7 +198,7 @@
                 </div>
             </section>
             <section class="btn-section">
-                <div class="pay-btn">
+                <div id="pay-btn" class="pay-btn">
                     <span>결제하기</span>
                 </div>
             </section>

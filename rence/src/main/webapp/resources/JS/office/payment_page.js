@@ -139,7 +139,7 @@ $(function() {
 		$("#payment_all").attr("payment_all", actual_payment); */
 	});
 	
-	$(".pay-btn").click(function() {
+	$("#pay-btn").click(function() {
 		let full_url = $(location).attr("href");
 		let reserve_no = full_url.split("reserve_no=")[1];
 	
