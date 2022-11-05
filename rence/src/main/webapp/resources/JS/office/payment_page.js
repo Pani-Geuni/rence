@@ -101,19 +101,21 @@ $(function() {
 	
 	$(".use-mileage-btn").click(function() {
 		let actual_payment = payment_all;
-		let my_mileage = $("#my-mileage").attr("my-mileage");
-		let use_mileage = $("#use-mileage").val();
+		let my_mileage = $("#my-mileage").attr("my-mileage");	// 내가 가진 마일리지
+		let use_mileage = $("#use-mileage").val();				// 사용할 마일리지 
 		
 		// 가진 마일리지보다 많이 사용할 때
-		if (use_mileage > my_mileage) {
+		// 마일리지 잠시 홀드
+		/* if (use_mileage > my_mileage) {
 			
 			$("#use-mileage").val("");
 			actual_payment = payment_all;
 			$("#payment_all").text(actual_payment);
 			
-		} else {
+		} else if (use_mileage <= my_mileage) {
 			// 가진 마일리지보다 적게 사용할 때
-		
+			console.log("use_mileage :: ", use_mileage);
+			console.log("my_mileage :: ", my_mileage);
 			if (use_mileage == 0 || use_mileage == "") {
 				actual_payment = payment_all;
 			} else {
@@ -129,6 +131,6 @@ $(function() {
 		      .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 		);
 			
-		$("#payment_all").attr("payment_all", actual_payment);
+		$("#payment_all").attr("payment_all", actual_payment); */
 	});
 })
