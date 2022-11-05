@@ -284,21 +284,25 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		logger.info("backoffice_qna_q_selectAll...DAOImpl()...");
 
 		List<CommentListVO> qvos = sqlSession.selectList("SQL_SELECT_ALL_Q", backoffice_no);
+		logger.info("Question:{}",qvos);
 		if (qvos!=null) {
-			for (int i = 1; i < qvos.size(); i++) {
+			for (int i = 0; i < qvos.size(); i++) {
 				Map<String, String> map = new HashMap<String, String>();
 				map.put("backoffice_no", backoffice_no);
 				map.put("mother_no", qvos.get(i).getComment_no());
 				List<CommentListVO> avos = sqlSession.selectList("SQL_SELECT_ALL_A", map);
-			 logger.info("aaaaaaaaaaaaaaa:{}",avos);
+				logger.info("Answer:{}",avos);
 				
 				if (avos!=null) {
-							qvos.get(i).setAnswer_no(avos.get(i).getComment_no());
-							qvos.get(i).setAnswer_content(avos.get(i).getComment_content());
-							qvos.get(i).setAnswer_date(avos.get(i).getComment_date());
+					for (int j = 0; j < avos.size(); j++) {
+						
+							qvos.get(i).setAnswer_no(avos.get(j).getComment_no());
+							qvos.get(i).setAnswer_content(avos.get(j).getComment_content());
+							qvos.get(i).setAnswer_date(avos.get(j).getComment_date());
+					}
 				}
 			}
-		} logger.info("sssssssssssssssss:{}",qvos);
+		} logger.info("Question&+Answer:{}",qvos);
 		
 		
 		return qvos;
@@ -327,7 +331,7 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("backoffice_no", backoffice_no);
 		map.put("room_no", cvo.getRoom_no());
-		cvo.setMother_no(cvo.getComment_no());
+		//cvo.setMother_no(cvo.getComment_no());
 		map.put("mother_no", cvo.getMother_no());
 		map.put("comment_content", cvo.getComment_content());
 
