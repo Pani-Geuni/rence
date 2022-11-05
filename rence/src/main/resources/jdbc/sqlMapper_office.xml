@@ -289,4 +289,18 @@
 		    )
 		where reserve_no=#{reserve_no} and rownum=1
 	</select>
+	
+	<!-- 결제 정보 insert -->
+	<insert id="SQL_INSERT_PAYMENT" parameterType="test.com.rence.office.model.OfficePaymentVO">
+		insert into
+		paymentinfo(payment_no, payment_total, use_mileage, actual_payment, payment_state, payment_date, room_no, user_no, reserve_no, sales_state, backoffice_no, payment_method)
+		values('P'||seq_payment.nextval, #{payment_total}, #{use_mileage}, #{actual_payment}, #{payment_state}, SYSDATE, #{room_no}, #{user_no}, #{reserve_no}, #{sales_state}, #{backoffice_no}, #{payment_method})
+	</insert>
+	
+	<!-- 결제 성공 시 예약 상태 변경 -->
+	<update id="SQL_UPDATE_RESERVE_STATE">
+		update reserveinfo
+		set reserve_state='begin'
+		where reserve_no=#{reserve_no}
+	</update>
 </mapper>

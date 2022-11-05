@@ -24,6 +24,7 @@ import test.com.rence.office.model.OfficeCommentsVO;
 import test.com.rence.office.model.OfficeInfoVO;
 import test.com.rence.office.model.OfficeOperatingTimeVO;
 import test.com.rence.office.model.OfficeOperatingTimeVO_date;
+import test.com.rence.office.model.OfficePaymentVO;
 import test.com.rence.office.model.OfficeReserveVO;
 import test.com.rence.office.model.OfficeReviewVO;
 import test.com.rence.office.model.OfficeRoomVO;
@@ -312,5 +313,29 @@ public class OfficeController {
 		
 		
 		return ".payment_page";
+	}
+	
+	@RequestMapping(value = "/reserve_paymentOK", method = RequestMethod.POST)
+	@ResponseBody
+	public JSONObject reserve_paymentOK(OfficePaymentVO pvo, Model model) {
+		JSONObject jsonObject = new JSONObject();
+		
+		PaymentInfoVO pvo2 = service.select_one_final_payment_info(pvo.getReserve_no());
+		pvo.setRoom_no(pvo2.getRoom_no());
+		pvo.setBackoffice_no(pvo2.getBackoffice_no());
+		pvo.setSales_state("F");
+		
+		logger.info("reserve_paymentOK()..");
+		logger.info("********** pvo :: {}", pvo);
+		
+		int result = service.reserve_paymentOK(pvo);
+		
+		if (result == 1) {
+			jsonObject.put("result", "1");			
+		} else {
+			jsonObject.put("result", "0");
+		}
+		
+		return jsonObject;
 	}
 }

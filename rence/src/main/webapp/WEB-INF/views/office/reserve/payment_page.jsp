@@ -47,7 +47,7 @@
                             <li class="host-info-li">
                                 <label class="uh-label">예약자</label>
                                 <span class="uh-text">
-                                    <input type="text" id="" class="pay-input" value="${ pvo.user_name }" readonly/>
+                                    <input type="text" id="user_name" class="pay-input" value="${ pvo.user_name }" readonly/>
                                 </span>
                             </li>
                             <li class="host-info-li">
@@ -138,7 +138,7 @@
                                 <div class="custom-radio">
                                     <div class="inner-radio choice-radio"></div>
                                 </div>
-                                <span class="payment-method-text">토스 결제</span>
+                                <span class="payment-method-text">카카오페이 결제</span>
                             </div>
                         </span>
                     </section>
@@ -146,7 +146,7 @@
                     <section class="mileage-payment">
                         <div class="mileage-line-wrap">
                             <label class="mileage-label">사용할 마일리지</label>
-                            <input type="text" id="use-mileage" class="use-mileage-input" numberOnly/>
+                            <input type="text" id="use-mileage" class="use-mileage-input" value="0" numberOnly/>
                             <input type="button" class="use-mileage-btn" value="마일리지 사용"/>
                         </div>
                         <div class="my-mileage-wrap">

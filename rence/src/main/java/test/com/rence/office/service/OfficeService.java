@@ -12,6 +12,7 @@ import test.com.rence.office.model.OfficeCommentsVO;
 import test.com.rence.office.model.OfficeInfoDAO;
 import test.com.rence.office.model.OfficeInfoVO;
 import test.com.rence.office.model.OfficeOperatingTimeVO_date;
+import test.com.rence.office.model.OfficePaymentVO;
 import test.com.rence.office.model.OfficeReserveVO;
 import test.com.rence.office.model.OfficeReviewVO;
 import test.com.rence.office.model.OfficeRoomVO;
@@ -92,4 +93,11 @@ public class OfficeService {
 		return vo;
 	}
 	
+	public int reserve_paymentOK(OfficePaymentVO pvo) {
+		logger.info("reserve_paymentOK");
+		
+		int result = dao.reserve_paymentOK(pvo);
+		
+		return result; 
+	}
 }

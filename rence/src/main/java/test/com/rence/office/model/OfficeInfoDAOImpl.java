@@ -105,6 +105,20 @@ public class OfficeInfoDAOImpl implements OfficeInfoDAO {
 		
 		return pvo;
 	}
+	
+	@Override
+	public int reserve_paymentOK(OfficePaymentVO pvo) {
+		
+		logger.info("reserve_paymentOK()....");
+		
+		int flag = 0;
+		int result_payment = sqlSession.insert("SQL_INSERT_PAYMENT", pvo);
+		int result_update_reserve_state = sqlSession.update("SQL_UPDATE_RESERVE_STATE", pvo.getReserve_no());
+		
+		flag = result_payment & result_update_reserve_state;
+		
+		return flag;
+	}
 
 	
 	// *****************

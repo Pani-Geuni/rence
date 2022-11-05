@@ -20,4 +20,6 @@ public interface OfficeInfoDAO {
 	public String select_one_last_reserve(String user_no);
 	
 	public PaymentInfoVO select_one_final_payment_info(String reserve_no);
+	
+	public int reserve_paymentOK(OfficePaymentVO pvo);
 }
