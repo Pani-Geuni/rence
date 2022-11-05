@@ -338,6 +338,8 @@
     height: 8px;
 
     border-radius: 100%;
+    
+    cursor: pointer;
 }
 .choice-radio{
     background-color: #42C2FF;
@@ -428,6 +430,11 @@
     font-size: 25px;
     font-weight: 600;
     letter-spacing: 0.5px;
+}
+
+#payment_all::after,
+#earned_mileage::after {
+	content: '원';
 }
 
 .pay-mileage-section{

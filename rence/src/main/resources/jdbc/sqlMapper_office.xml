@@ -253,4 +253,77 @@
 		reserveinfo(reserve_no, reserve_stime, reserve_etime, reserve_sdate, reserve_edate, reserve_state, room_no, user_no, backoffice_no, room_type)
 		values('RV'||seq_reserve.nextval, #{reserve_stime}, #{reserve_etime}, #{reserve_sdate}, #{reserve_edate}, 'false', #{room_no}, #{user_no}, #{backoffice_no}, #{room_type})
 	</insert>
+	
+	<!-- 예약 확인 후 결제를 위한 reserve_no 불러오기 -->
+	<select id="SQL_SELECT_ONE_RESERVE_NO" resultType="test.com.rence.office.model.OfficeReserveVO_date">
+		select * from (
+			select *
+			from reserveinfo
+			where user_no=#{user_no}
+			order by reserve_no desc
+		)
+		where rownum=1
+	</select>
+	
+	<!-- 결제 전, 최종 예약 정보 불러오기 -->
+	<select id="SQL_SELECT_ONE_FINAL_RESERVE_INFO" resultType="test.com.rence.office.model.PaymentInfoVO">
+		select * from (
+		    select
+		        rv.reserve_no, TO_CHAR(rv.reserve_stime, 'YYYY-MM-DD HH24:MI') as reserve_stime, TO_CHAR(rv.reserve_etime, 'YYYY-MM-DD HH24:MI') as reserve_etime, 
+		        rv.room_no, rv.user_no, rv.backoffice_no,
+		        r.room_name, r.room_type, r.room_price,
+		        u.user_name, u.user_tel, u.user_email,
+		        b.backoffice_image, b.company_name,
+		        b.owner_name, b.roadname_address, b.detail_address, b.backoffice_tel, b.backoffice_email,
+		        m.mileage_total
+		    from reserveinfo rv
+		    left join roominfo r
+		    on rv.room_no = r.room_no
+		    left join userinfo u
+		    on rv.user_no = u.user_no
+		    left join backofficeinfo b
+		    on rv.backoffice_no = b.backoffice_no
+		    left join mileage m
+		    on u.user_no = m.user_no
+		    order by m.mileage_total desc
+		    )
+		where reserve_no=#{reserve_no} and rownum=1
+	</select>
+	
+	<!-- 결제 정보 insert -->
+	<insert id="SQL_INSERT_PAYMENT" parameterType="test.com.rence.office.model.OfficePaymentVO">
+		insert into
+		paymentinfo(payment_no, payment_total, use_mileage, actual_payment, payment_state, payment_date, room_no, user_no, reserve_no, sales_state, backoffice_no, payment_method)
+		values('P'||seq_payment.nextval, #{payment_total}, #{use_mileage}, #{actual_payment}, #{payment_state}, SYSDATE, #{room_no}, #{user_no}, #{reserve_no}, #{sales_state}, #{backoffice_no}, #{payment_method})
+	</insert>
+	
+	<!-- 결제 성공 시 예약 상태 변경 -->
+	<update id="SQL_UPDATE_RESERVE_STATE">
+		update reserveinfo
+		set reserve_state='begin'
+		where reserve_no=#{reserve_no}
+	</update>
+	
+	<!-- 결제 성공 시 payment_no 가져오기 -->
+	<select id="SQL_SELECT_ONE_RECENT_PAYMENT" resultType="test.com.rence.office.model.OfficePaymentVO">
+		select *
+		from paymentinfo
+		where user_no=#{user_no} and rownum=1
+		order by payment_no desc
+	</select>
+	
+	<!-- 사용자의 마일리지 가져오기 -->
+	<select id="SQL_SELECT_ONE_RECENT_MILEAGE" resultType="test.com.rence.office.model.OfficeMileageVO">
+		select *
+		from mileage
+		where user_no=#{user_no} and rownum=1
+		order by mileage_no desc
+	</select>
+	
+	<!-- 결제 성공 시 마일리지 사용 내역 변경 -->
+	<insert id="SQL_INSERT_MILEAGE_CHANGED" parameterType="test.com.rence.office.model.OfficeMileageVO">
+		insert into
+		mileage(mileage_no, mileage_total, mileage_state, user_no, mileage_change, payment_no)
+		values('M'||seq_mileage.nextval, #{mileage_total}, #{mileage_state}, #{user_no}, #{mileage_change}, #{payment_no})
+	</insert>
 </mapper>

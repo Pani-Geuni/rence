@@ -3,6 +3,7 @@ package test.com.rence.office.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.json.simple.JSONObject;
@@ -23,9 +24,11 @@ import test.com.rence.office.model.OfficeCommentsVO;
 import test.com.rence.office.model.OfficeInfoVO;
 import test.com.rence.office.model.OfficeOperatingTimeVO;
 import test.com.rence.office.model.OfficeOperatingTimeVO_date;
+import test.com.rence.office.model.OfficePaymentVO;
 import test.com.rence.office.model.OfficeReserveVO;
 import test.com.rence.office.model.OfficeReviewVO;
 import test.com.rence.office.model.OfficeRoomVO;
+import test.com.rence.office.model.PaymentInfoVO;
 import test.com.rence.office.service.OfficeService;
 
 @Controller
@@ -256,8 +259,12 @@ public class OfficeController {
 		
 		int result = service.check_reserve(rvo);
 		
+		String reserve_no = service.select_one_last_reserve(rvo.getUser_no());
+		logger.info("reserve_no :: {}", reserve_no);
+		
 		if (result == 1) {
 			jsonObject.put("result", "1");
+			jsonObject.put("reserve_no", reserve_no);
 		} else {
 			jsonObject.put("result", "0");
 		}
@@ -269,11 +276,66 @@ public class OfficeController {
 	// 공간 결제 페이지
 	// **********************
 	@RequestMapping(value = "/payment_page", method = RequestMethod.GET)
-	public String space_payment() {
+	public String space_payment(OfficeReserveVO rvo, Model model) throws ParseException {
 		
 		logger.info("space_payment()...");
 		
+		logger.info("reserve no :: {}", rvo.getReserve_no());
+		String reserve_no = rvo.getReserve_no();
+		
+		PaymentInfoVO pvo = service.select_one_final_payment_info(reserve_no);
+		OfficeInfoMap info_map = new OfficeInfoMap();
+		
+		pvo.setRoom_type(info_map.changeType(pvo.getRoom_type()));
+		List<String> splitImage = info_map.splitImage(pvo.getBackoffice_image());
+		String room_first_image = splitImage.get(0);
+		pvo.setBackoffice_image(room_first_image);
+		
+		logger.info("result pvo :: {}", pvo);
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		
+		Date sdate = formatter.parse(pvo.getReserve_stime());
+		Date edate = formatter.parse(pvo.getReserve_etime());
+		
+		// 사용자 총 예약 시간
+		long diffHour = (edate.getTime() - sdate.getTime()) / 3600000;
+		
+		// 전체 결제할 금액
+		int payment_all = (int) diffHour * pvo.getRoom_price();
+		int earned_mileage = (int) (payment_all * 0.05);
+		
+		logger.info("diffHour :: {}", diffHour);
+		
+		model.addAttribute("pvo", pvo);
+		model.addAttribute("payment_all", payment_all);
+		model.addAttribute("earned_mileage", earned_mileage);
+		
 		
 		return ".payment_page";
+	}
+	
+	@RequestMapping(value = "/reserve_paymentOK", method = RequestMethod.POST)
+	@ResponseBody
+	public JSONObject reserve_paymentOK(OfficePaymentVO pvo, Model model) {
+		JSONObject jsonObject = new JSONObject();
+		
+		PaymentInfoVO pvo2 = service.select_one_final_payment_info(pvo.getReserve_no());
+		pvo.setRoom_no(pvo2.getRoom_no());
+		pvo.setBackoffice_no(pvo2.getBackoffice_no());
+		pvo.setSales_state("F");
+		
+		logger.info("reserve_paymentOK()..");
+		logger.info("********** pvo :: {}", pvo);
+		
+		int result = service.reserve_paymentOK(pvo);
+		
+		if (result == 1) {
+			jsonObject.put("result", "1");			
+		} else {
+			jsonObject.put("result", "0");
+		}
+		
+		return jsonObject;
 	}
 }

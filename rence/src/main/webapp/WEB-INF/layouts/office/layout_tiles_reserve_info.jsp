@@ -19,9 +19,11 @@
 	<link rel="stylesheet" href="${path}/resources/CSS/common/footer.css" />
 
     <script src="${path}/resources/JS/common/jquery-3.6.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
     <script src="${path}/resources/JS/common/jquery.cookie.js"></script>
     <script src="${path}/resources/JS/office/header.js"></script>
     <script src="${path}/resources/JS/office/user_popup.js"></script>
+    <script src="${path}/resources/JS/office/payment_page.js"></script>
 </head>
 <body>
 	<div class ="pageWrap">

@@ -83,6 +83,70 @@ public class OfficeInfoDAOImpl implements OfficeInfoDAO {
 		return flag;
 	}
 	
+	@Override
+	public String select_one_last_reserve(String user_no) {
+		
+		logger.info("select_one_last_reserve()....");
+		
+		OfficeReserveVO_date rvo_d = sqlSession.selectOne("SQL_SELECT_ONE_RESERVE_NO", user_no);
+		
+		String reserve_no = rvo_d.getReserve_no();
+		
+		return reserve_no;
+	}
+	
+	
+	@Override
+	public PaymentInfoVO select_one_final_payment_info(String reserve_no) {
+
+		logger.info("select_one_last_reserve()....");
+		
+		PaymentInfoVO pvo = sqlSession.selectOne("SQL_SELECT_ONE_FINAL_RESERVE_INFO", reserve_no);
+		
+		return pvo;
+	}
+	
+	@Override
+	public int reserve_paymentOK(OfficePaymentVO pvo) {
+		
+		logger.info("reserve_paymentOK()....");
+		
+		
+		int flag = 0;
+		int result_payment = sqlSession.insert("SQL_INSERT_PAYMENT", pvo);
+		int result_update_reserve_state = sqlSession.update("SQL_UPDATE_RESERVE_STATE", pvo.getReserve_no());
+		
+		
+		OfficeMileageVO mvo = sqlSession.selectOne("SQL_SELECT_ONE_RECENT_MILEAGE", pvo.getUser_no());
+		int mileage_change = (int) (pvo.getPayment_total() * 0.05);
+		
+		OfficeMileageVO mvo2 = new OfficeMileageVO();
+		int mileage_total = 0;
+		
+		if (pvo.getUse_mileage() == 0) {
+			mvo2.setMileage_state("W");
+			 mileage_total = mvo.getMileage_total() + mileage_change;
+		} else {
+			mvo2.setMileage_state("F");
+			mileage_total = mvo.getMileage_total() - mileage_change;
+		}
+		
+		mvo2.setMileage_total(mileage_total);
+		mvo2.setUser_no(pvo.getUser_no());
+		
+		
+		
+		mvo2.setMileage_change(mileage_change);
+		
+		OfficePaymentVO pvo2 = sqlSession.selectOne("SQL_SELECT_ONE_RECENT_PAYMENT", pvo.getUser_no());
+		mvo2.setPayment_no(pvo2.getPayment_no());
+		
+		int result_mileage = sqlSession.insert("SQL_INSERT_MILEAGE_CHANGED", mvo2);
+		
+		flag = result_payment & result_update_reserve_state & result_mileage;
+		
+		return flag;
+	}
 
 	
 	// *****************
@@ -869,5 +933,4 @@ public class OfficeInfoDAOImpl implements OfficeInfoDAO {
 
 		return flag;
 	}
-
 }
