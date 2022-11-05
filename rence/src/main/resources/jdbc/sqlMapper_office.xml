@@ -269,7 +269,7 @@
 	<select id="SQL_SELECT_ONE_FINAL_RESERVE_INFO" resultType="test.com.rence.office.model.PaymentInfoVO">
 		select * from (
 		    select
-		        rv.reserve_no, TO_CHAR(rv.reserve_stime, 'YYYY-MM-DD HH:MI') as reserve_stime, TO_CHAR(rv.reserve_etime, 'YYYY-MM-DD HH:MI') as reserve_etime, 
+		        rv.reserve_no, TO_CHAR(rv.reserve_stime, 'YYYY-MM-DD HH24:MI') as reserve_stime, TO_CHAR(rv.reserve_etime, 'YYYY-MM-DD HH24:MI') as reserve_etime, 
 		        rv.room_no, rv.user_no, rv.backoffice_no,
 		        r.room_name, r.room_type, r.room_price,
 		        u.user_name, u.user_tel, u.user_email,
