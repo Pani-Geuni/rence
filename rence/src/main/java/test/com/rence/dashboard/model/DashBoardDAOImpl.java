@@ -290,13 +290,15 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 				map.put("backoffice_no", backoffice_no);
 				map.put("mother_no", qvos.get(i).getComment_no());
 				List<CommentListVO> avos = sqlSession.selectList("SQL_SELECT_ALL_A", map);
+			 logger.info("aaaaaaaaaaaaaaa:{}",avos);
+				
 				if (avos!=null) {
-							qvos.get(i).setAnswer_no(avos.get(i).getAnswer_no());
-							qvos.get(i).setAnswer_content(avos.get(i).getAnswer_content());
-							qvos.get(i).setAnswer_date(avos.get(i).getAnswer_date());
+							qvos.get(i).setAnswer_no(avos.get(i).getComment_no());
+							qvos.get(i).setAnswer_content(avos.get(i).getComment_content());
+							qvos.get(i).setAnswer_date(avos.get(i).getComment_date());
 				}
 			}
-		} 
+		} logger.info("sssssssssssssssss:{}",qvos);
 		
 		
 		return qvos;

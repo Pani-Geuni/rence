@@ -270,7 +270,7 @@
   	</select>
   	
   	<select id="SQL_SELECT_ALL_A" resultType="test.com.rence.dashboard.model.CommentListVO">
-  		select comment_no as answer_no, comment_content as answer_content, TO_CHAR(comment_date, 'YYYY-MM-DD HH24:MI:SS') as answer_date
+  		select comment_no, comment_content, TO_CHAR(comment_date, 'YYYY-MM-DD HH24:MI:SS') as comment_date
 		from comments where backoffice_no=#{backoffice_no} and mother_no=#{mother_no}
   	</select>
   	
