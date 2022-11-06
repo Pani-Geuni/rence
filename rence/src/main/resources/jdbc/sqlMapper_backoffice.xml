@@ -52,7 +52,7 @@
   	</select>
   	
   	<update id="SQL_UPDATE_BACKOFFICE_SETTINGOK_PW" parameterType="test.com.rence.backoffice.BackOfficeVO">
-  	UPDATE backofficeinfo SET backoffice_pw=#{backoffice_pw}where backoffice_no=#{backoffice_no}
+  	UPDATE backofficeinfo SET backoffice_pw=#{backoffice_pw} where backoffice_no=#{backoffice_no}
   	</update>
   	
   	<select id="SQL_SELECTONE_BACKOFFICE_SETTING" resultType="test.com.rence.backoffice.BackOfficeVO">
