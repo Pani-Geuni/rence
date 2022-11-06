@@ -46,19 +46,26 @@
 		
 		<link rel="stylesheet" href="${path}/resources/CSS/office/space-detail-introduce-office.css" />
 	    <script src="${path}/resources/JS/office/space_detail_introduce_office.js"></script>
-	    <script>
+    </c:if>
+    
+    <% Object is_login = session.getAttribute("user_id"); %>
+    <script>
+	    $(function(){
+			var is_login = "<%= is_login %>";
+			
 			$("#review-write-btn").click(function(){
-				if(${user_id} != null)
+				if(is_login != null)
+					console.log("널")
 					$("#review-popup").removeClass("blind");
 				else{
+					console.log("닛널")
 					$(".popup-background:eq(1)").removeClass("blind");
 		            $("#common-alert-popup").removeClass("blind");
 		            $(".common-alert-txt").text("로그인 후 이용가능한 기능입니다.");
 				}
 			});
-	    </script>
-    </c:if>
-    
+	    });
+    </script>
 </head>
 <body>
 	<div class ="pageWrap">
