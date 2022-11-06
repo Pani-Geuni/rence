@@ -54,11 +54,21 @@
 			var is_login = "<%= is_login %>";
 			
 			$("#review-write-btn").click(function(){
-				if(is_login != null)
-					console.log("널")
+				if(is_login != "null"){
 					$("#review-popup").removeClass("blind");
+				}
 				else{
-					console.log("닛널")
+					$(".popup-background:eq(1)").removeClass("blind");
+		            $("#common-alert-popup").removeClass("blind");
+		            $(".common-alert-txt").text("로그인 후 이용가능한 기능입니다.");
+				}
+			});
+			
+			$("#question-create-btn").click(function(){
+				if(is_login != "null"){
+				    $("#question-popup").removeClass("blind");
+				}
+				else{
 					$(".popup-background:eq(1)").removeClass("blind");
 		            $("#common-alert-popup").removeClass("blind");
 		            $(".common-alert-txt").text("로그인 후 이용가능한 기능입니다.");

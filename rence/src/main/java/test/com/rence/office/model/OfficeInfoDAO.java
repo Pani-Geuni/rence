@@ -3,7 +3,6 @@ package test.com.rence.office.model;
 import java.text.ParseException;
 import java.util.List;
 
-import test.com.rence.user.model.QuestionVO;
 import test.com.rence.user.model.ReviewVO;
 
 public interface OfficeInfoDAO {
@@ -29,4 +28,6 @@ public interface OfficeInfoDAO {
 	public int reserve_paymentOK(OfficePaymentVO pvo);
 	
 	public int insert_review(ReviewVO vo);
+	
+	public int insert_question(QuestionVO2 vo);
 }

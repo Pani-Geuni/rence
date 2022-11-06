@@ -713,10 +713,12 @@ $(function () {
         backoffice_no : $.cookie("backoffice_no")
       },
       success : function(res) {
+          console.log(res.result);
           // 호스트 삭제 성공
           if(res.result == 1){
             $('.popup-background:eq(0)').addClass('blind');
             $('#host-delete-popup').addClass('blind');
+
             $(".popup-background:eq(0)").removeClass("blind");
             $("#common-alert-popup").removeClass("blind");
             $(".common-alert-txt").text("마스터에게 삭제 요청되었습니다.");
