@@ -185,28 +185,15 @@
                                     <span id="review-select-choice" class="question-popup-select-value">
                                         타입을 선택해 주세요
                                     </span>
-                                    <img src="../IMG/space-introduce/full-dropdown.svg" alt="full-dropdown" class="full-dropdown"></img>
+                                    <img src="${path}/resources/IMG/space-introduce/full-dropdown.svg" alt="full-dropdown" class="full-dropdown"></img>
                                 </div>
 
                                 <ul class="question-popup-select blind">
-                                    <li class="question-popup-select-li">
-                                        101호 (1인 데스크)
-                                    </li>
-                                    <li class="question-popup-select-li">
-                                        102호 (1인 데스크)
-                                    </li>
-                                    <li class="question-popup-select-li">
-                                        103호 (4인 미팅룸)
-                                    </li>
-                                    <li class="question-popup-select-li">
-                                        104호 (1인 미팅룸)
-                                    </li>
-                                    <li class="question-popup-select-li">
-                                        104호 (1인 미팅룸)
-                                    </li>
-                                    <li class="question-popup-select-li">
-                                        104호 (1인 미팅룸)
-                                    </li>
+                                    <c:forEach var="vos" items="${rvos}">
+	                                    <li class="question-popup-select-li" idx="${vos.room_no}">
+	                                        ${vos.room_name}
+	                                    </li>
+	                                </c:forEach>
                                 </ul>
                             </section>
                             <section class="textarea-section">

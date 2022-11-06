@@ -147,7 +147,7 @@
 		<!-- END room-edit-section -->
 
 		<!-- START DELETE CONFIRM POPUP -->
-		<div id="host-delete-popup" class="confirm-popup blind">
+		<div id="space-delete-popup" class="confirm-popup blind">
 			<section class="confirm-txt-section">
 				<span class="delete-txt"> 
 					해당 공간을 정말 삭제하시겠습니까? <br />
@@ -155,7 +155,7 @@
 				</span>
 			</section>
 			<section class="confirm-btn-section">
-				<div id="delete-host-btn" class="confirm-yesBtn">삭제</div>
+				<div id="delete-space-btn" class="confirm-yesBtn">삭제</div>
 				<div id="delete-closeBtn" class="confirm-noBtn">닫기</div>
 			</section>
 		</div>
@@ -250,6 +250,20 @@
 			</div>
 		</div>
 		<!-- END popup-update-pw -->
+		
+		<!-- START DELETE CONFIRM POPUP -->
+		<div id="host-delete-popup" class="confirm-popup blind">
+			<section class="confirm-txt-section">
+				<span class="delete-txt"> 
+					탈퇴신청하시겠습니까?
+				</span>
+			</section>
+			<section class="confirm-btn-section">
+				<div id="delete-host-btn" class="confirm-yesBtn">삭제</div>
+				<div id="host-delete-closeBtn" class="confirm-noBtn">닫기</div>
+			</section>
+		</div>
+		<!-- END DELETE FONFIRM POPUP -->
 	</div>
 	<!-- END popup-background blind -->
 	

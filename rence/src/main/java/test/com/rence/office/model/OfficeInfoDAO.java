@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.List;
 
 import test.com.rence.user.model.QuestionVO;
+import test.com.rence.user.model.ReviewVO;
 
 public interface OfficeInfoDAO {
 
@@ -26,4 +27,6 @@ public interface OfficeInfoDAO {
 	public PaymentInfoVO select_one_final_payment_info(String reserve_no);
 	
 	public int reserve_paymentOK(OfficePaymentVO pvo);
+	
+	public int insert_review(ReviewVO vo);
 }
