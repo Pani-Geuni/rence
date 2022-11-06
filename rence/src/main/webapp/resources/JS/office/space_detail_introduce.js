@@ -175,9 +175,10 @@
   });
 
   /****** 문의 섹션 ******/
-  $("#question-create-btn").click(function(){
-    $("#question-popup").removeClass("blind");
-  });
+  // layout script로 이동
+  // $("#question-create-btn").click(function(){
+  //   $("#question-popup").removeClass("blind");
+  // });
 
   /****** 후기 섹션 ******/
   // layout script로 이동
@@ -326,6 +327,32 @@
         $(".question-popup-select-val-wrap:eq(1)").addClass("null-input-border");
       }
     }
+  });
+
+  /*** 별점 클릭 이벤트 ***/
+  $(".popup-star-li").click(function(){
+    // 별 초기화
+    $(".y-star").addClass("blind");
+    $(".g-star").removeClass("blind");
+
+    // 클릭한 별 파악
+    var last_idx = $(this).attr("id"); 
+
+    var arr = $(".popup-star-li");
+    console.log(arr);
+    console.log(arr.length);
+
+    for(var i = 0; i < arr.length; i++){
+      $(arr[i]).children(".y-star").removeClass("blind");
+      $(arr[i]).children(".g-star").addClass("blind");
+      console.log($(arr[i]).children(".y-star"));
+      console.log($(arr[i]).children(".g-star"));
+
+      if($(arr[i]).attr("id") == last_idx){
+        break;
+      }
+    }
+
   });
 
 

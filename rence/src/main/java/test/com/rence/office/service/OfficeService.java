@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import test.com.rence.office.model.OfficeCommentsVO;
 import test.com.rence.office.model.OfficeInfoDAO;
 import test.com.rence.office.model.OfficeInfoVO;
 import test.com.rence.office.model.OfficeOperatingTimeVO_date;
@@ -18,7 +17,7 @@ import test.com.rence.office.model.OfficeReserveVO;
 import test.com.rence.office.model.OfficeReviewVO;
 import test.com.rence.office.model.OfficeRoomVO;
 import test.com.rence.office.model.PaymentInfoVO;
-import test.com.rence.user.model.QuestionVO;
+import test.com.rence.office.model.QuestionVO2;
 import test.com.rence.user.model.ReviewVO;
 
 @Service
@@ -112,6 +111,12 @@ public class OfficeService {
 	
 	public int insert_review(ReviewVO vo) {
 		int result = dao.insert_review(vo);
+		
+		return result; 
+	}
+	
+	public int insert_question(QuestionVO2 vo) {
+		int result = dao.insert_question(vo);
 		
 		return result; 
 	}

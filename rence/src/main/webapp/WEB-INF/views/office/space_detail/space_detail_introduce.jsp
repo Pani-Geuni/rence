@@ -147,7 +147,7 @@
 								<c:if test="${cvo.answer_date ne null}">
 									<li class="quest-list">
 										<section>
-											<img src="${path}/resources/IMG/header/loopy.jpg" alt="write-user-img" class="write-user-img" />
+											<img src="${path}/resources/upload/img_host_001.jpg" alt="write-user-img" class="write-user-img" />
 										</section>
 										<section class="quest-content-section">
 											<ul class="quest-content-wrap">

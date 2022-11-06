@@ -29,6 +29,7 @@ import test.com.rence.office.model.OfficeReserveVO;
 import test.com.rence.office.model.OfficeReviewVO;
 import test.com.rence.office.model.OfficeRoomVO;
 import test.com.rence.office.model.PaymentInfoVO;
+import test.com.rence.office.model.QuestionVO2;
 import test.com.rence.office.service.OfficeService;
 import test.com.rence.user.model.ReviewVO;
 
@@ -353,7 +354,7 @@ public class OfficeController {
 		return jsonObject;
 	}
 	
-	@RequestMapping(value = "/insert_review", method = RequestMethod.POST)
+	@RequestMapping(value = "/insert_review", method = RequestMethod.GET)
 	@ResponseBody
 	public JSONObject insert_review(ReviewVO vo, Model model) {
 		JSONObject jsonObject = new JSONObject();
@@ -361,6 +362,25 @@ public class OfficeController {
 		int result = service.insert_review(vo);
 		
 		logger.info("insert_review()..");
+		logger.info("********** request :: {}", vo);
+		
+		if (result == 1) {
+			jsonObject.put("result", "1");			
+		} else {
+			jsonObject.put("result", "0");
+		}
+		
+		return jsonObject;
+	}
+	
+	@RequestMapping(value = "/insert_question", method = RequestMethod.GET)
+	@ResponseBody
+	public JSONObject insert_question(QuestionVO2 vo, Model model) {
+		JSONObject jsonObject = new JSONObject();
+		
+		int result = service.insert_question(vo);
+		
+		logger.info("insert_question()..");
 		logger.info("********** request :: {}", vo);
 		
 		if (result == 1) {
