@@ -114,7 +114,6 @@ public class OfficeController {
 		// **************
 		// backoffice 문의
 		// **************
-		Map<String, Object> map = new HashMap<String, Object>();
 		List<OfficeQuestionVO> cvos = service.select_all_comment(backoffice_no);
 		
 		if (cvos != null) {
@@ -130,8 +129,6 @@ public class OfficeController {
 			}
 		}
 		
-		map.put("cvos", cvos);
-
 		
 		// **************
 		// backoffice 후기
@@ -155,7 +152,7 @@ public class OfficeController {
 		model.addAttribute("rvos", rvos);
 		
 		// backoffice 문의
-		model.addAttribute("cvos", map);
+		model.addAttribute("cvos", cvos);
 		model.addAttribute("cvos_cnt", cvos.size());
 		
 		// backoffice 후기

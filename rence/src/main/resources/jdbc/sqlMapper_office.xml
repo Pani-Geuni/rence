@@ -232,7 +232,7 @@
 		on c.backoffice_no = b.backoffice_no 
 		left join roominfo r on c.room_no = r.room_no
         left join userinfo u on c.user_no = u.user_no
-		where c.mother_no is null and backoffice_no=#{backoffice_no}
+		where c.mother_no is null and c.backoffice_no=#{backoffice_no}
 		order by c.comment_no desc
 	</select>
 	
