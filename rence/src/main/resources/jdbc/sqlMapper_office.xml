@@ -331,10 +331,14 @@
 	
 	<!-- 결제 성공 시 payment_no 가져오기 -->
 	<select id="SQL_SELECT_ONE_RECENT_PAYMENT" resultType="test.com.rence.office.model.OfficePaymentVO">
-		select *
-		from paymentinfo
-		where user_no=#{user_no} and rownum=1
-		order by payment_no desc
+		select * from ( 
+		    select 
+		        payment_no, payment_total, use_mileage, actual_payment, payment_state, 
+		        payment_date, room_no, user_no, reserve_no, sales_state, backoffice_no, payment_method
+		    from paymentinfo
+			where user_no=#{user_no} 
+		    order by payment_no desc
+		) where rownum=1
 	</select>
 	
 	<!-- 사용자의 마일리지 가져오기 -->
