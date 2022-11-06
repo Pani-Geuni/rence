@@ -27,6 +27,7 @@ import test.com.rence.office.model.OfficeInfoVO;
 import test.com.rence.office.model.OfficeOperatingTimeVO;
 import test.com.rence.office.model.OfficeOperatingTimeVO_date;
 import test.com.rence.office.model.OfficePaymentVO;
+import test.com.rence.office.model.OfficeQuestionVO;
 import test.com.rence.office.model.OfficeReserveVO;
 import test.com.rence.office.model.OfficeReviewVO;
 import test.com.rence.office.model.OfficeRoomVO;
@@ -114,11 +115,11 @@ public class OfficeController {
 		// backoffice 문의
 		// **************
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<QuestionVO> cvos = service.select_all_comment(backoffice_no);
+		List<OfficeQuestionVO> cvos = service.select_all_comment(backoffice_no);
 		
 		if (cvos != null) {
-			for (QuestionVO vo : cvos) {
-				QuestionVO vo2 = service.select_one_answer(vo.getComment_no());
+			for (OfficeQuestionVO vo : cvos) {
+				OfficeQuestionVO vo2 = service.select_one_answer(vo.getComment_no());
 				if(vo2 != null) {
 					vo.setAnswer_content(vo2.getAnswer_content());
 					vo.setAnswer_date(vo2.getAnswer_date());

@@ -223,17 +223,21 @@
 	</select>
 	
 	<!-- 공간에 대해 질문한 내역 가져오기 -->
-	<select id="SQL_SELECT_ALL_QUESTION_BACKOFFICE" resultType="test.com.rence.user.model.QuestionVO">
-		select c.comment_no, b.company_name as backoffice_name, r.room_name, c.comment_content, c.comment_date
+	<select id="SQL_SELECT_ALL_QUESTION_BACKOFFICE" resultType="test.com.rence.office.model.OfficeQuestionVO">
+		select
+		    c.comment_no, c.comment_content, c.comment_date, 
+		    u.user_no, u.user_name, u.user_image,
+		    r.room_no, r.room_name
 		from backofficeinfo b right join comments c
 		on c.backoffice_no = b.backoffice_no 
 		left join roominfo r on c.room_no = r.room_no
+        left join userinfo u on c.user_no = u.user_no
 		where c.mother_no is null and backoffice_no=#{backoffice_no}
 		order by c.comment_no desc
 	</select>
 	
 	<!-- 공간 질문에 대한 답변 가져오기 -->
-	<select id="SQL_SELECT_ONE_ANSWER_BACKOFFICE" resultType="test.com.rence.user.model.QuestionVO">
+	<select id="SQL_SELECT_ONE_ANSWER_BACKOFFICE" resultType="test.com.rence.office.model.OfficeQuestionVO">
 		select c.comment_no, b.company_name as backoffice_name, r.room_name, c.comment_content as answer_content, c.comment_date as answer_date
 		from backofficeinfo b right join comments c
 		on c.backoffice_no = b.backoffice_no 

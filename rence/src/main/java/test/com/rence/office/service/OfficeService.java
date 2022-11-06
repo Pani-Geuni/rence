@@ -13,6 +13,7 @@ import test.com.rence.office.model.OfficeInfoDAO;
 import test.com.rence.office.model.OfficeInfoVO;
 import test.com.rence.office.model.OfficeOperatingTimeVO_date;
 import test.com.rence.office.model.OfficePaymentVO;
+import test.com.rence.office.model.OfficeQuestionVO;
 import test.com.rence.office.model.OfficeReserveVO;
 import test.com.rence.office.model.OfficeReviewVO;
 import test.com.rence.office.model.OfficeRoomVO;
@@ -54,16 +55,16 @@ public class OfficeService {
 		return vos;
 	}
 	
-	public List<QuestionVO> select_all_comment(String backoffice_no) {
+	public List<OfficeQuestionVO> select_all_comment(String backoffice_no) {
 		logger.info("select_all_comment()...");
 		
-		List<QuestionVO> vos = dao.select_all_comment(backoffice_no);
+		List<OfficeQuestionVO> vos = dao.select_all_comment(backoffice_no);
 		
 		return vos;
 	}
 	
-	public QuestionVO select_one_answer(String mother_no) {
-		QuestionVO vo = dao.select_one_answer(mother_no);
+	public OfficeQuestionVO select_one_answer(String mother_no) {
+		OfficeQuestionVO vo = dao.select_one_answer(mother_no);
 		
 		return vo;
 	}
