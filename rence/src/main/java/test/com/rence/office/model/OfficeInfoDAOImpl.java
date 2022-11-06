@@ -17,6 +17,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import test.com.rence.user.model.QuestionVO;
+
 
 @Repository
 public class OfficeInfoDAOImpl implements OfficeInfoDAO {
@@ -58,11 +60,18 @@ public class OfficeInfoDAOImpl implements OfficeInfoDAO {
 	}
 
 	@Override
-	public List<OfficeCommentsVO> select_all_comment(String backoffice_no) {
+	public List<QuestionVO> select_all_comment(String backoffice_no) {
 
-		List<OfficeCommentsVO> list = sqlSession.selectList("SQL_SELECT_ALL_COMMENTS_INFO", backoffice_no);
+		List<QuestionVO> list = sqlSession.selectList("SQL_SELECT_ALL_QUESTION_BACKOFFICE", backoffice_no);
 
 		return list;
+	}
+	
+	@Override
+	public QuestionVO select_one_answer(String mother_no){
+		QuestionVO vo = sqlSession.selectOne("SQL_SELECT_ONE_ANSWER_BACKOFFICE", mother_no);		
+		
+		return vo;
 	}
 
 	@Override
