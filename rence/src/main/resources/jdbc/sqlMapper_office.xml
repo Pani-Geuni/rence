@@ -211,11 +211,13 @@
 	<select id="SQL_SELECT_ALL_COMMENTS_INFO" resultType="test.com.rence.office.model.OfficeCommentsVO">
 		select * from (
 		    select 
-		        comment_no, mother_no, comment_content, comment_date, room_no,
-		        backoffice_no, u.user_no, user_image, user_name
+		        c.comment_no, c.mother_no, c.comment_content, c.comment_date, c.room_no, r.room_name,
+		        c.backoffice_no, u.user_no, user_image, user_name
 		    from comments  c
 		    left join userinfo u
-		    on c.user_no = u.user_no
+		    on c.user_no = u.user_no   
+            left join roominfo r
+            on c.room_no = r.room_no
 		)
 		where backoffice_no=#{backoffice_no}
 	</select>
