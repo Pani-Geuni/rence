@@ -60,16 +60,16 @@ public class OfficeInfoDAOImpl implements OfficeInfoDAO {
 	}
 
 	@Override
-	public List<QuestionVO> select_all_comment(String backoffice_no) {
+	public List<OfficeQuestionVO> select_all_comment(String backoffice_no) {
 
-		List<QuestionVO> list = sqlSession.selectList("SQL_SELECT_ALL_QUESTION_BACKOFFICE", backoffice_no);
+		List<OfficeQuestionVO> list = sqlSession.selectList("SQL_SELECT_ALL_QUESTION_BACKOFFICE", backoffice_no);
 
 		return list;
 	}
 	
 	@Override
-	public QuestionVO select_one_answer(String mother_no){
-		QuestionVO vo = sqlSession.selectOne("SQL_SELECT_ONE_ANSWER_BACKOFFICE", mother_no);		
+	public OfficeQuestionVO select_one_answer(String mother_no){
+		OfficeQuestionVO vo = sqlSession.selectOne("SQL_SELECT_ONE_ANSWER_BACKOFFICE", mother_no);		
 		
 		return vo;
 	}
