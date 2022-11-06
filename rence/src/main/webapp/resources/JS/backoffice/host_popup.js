@@ -497,12 +497,12 @@ $(function () {
   // 삭제 버튼 클릭 -> 삭제 팝업 오픈
   $('.btn-room-delete').on('click', function(){
     $('.popup-background:eq(0)').removeClass('blind');
-    $('#host-delete-popup').removeClass('blind');
-    $("#delete-host-btn").attr("idx", $(this).attr("idx"));
+    $('#space-delete-popup').removeClass('blind');
+    $("#delete-space-btn").attr("idx", $(this).attr("idx"));
   });
 
   // 공간 삭제 버튼 클릭 -> 삭제 로직 처리
-  $("#delete-host-btn").click(function(){
+  $("#delete-space-btn").click(function(){
     $.ajax({
       url:"/rence/backoffice_deleteOK_room",
         type : "POST",
@@ -514,7 +514,7 @@ $(function () {
         success : function(res) {
           $('.popup-background:eq(0)').addClass('blind');
           $('#host-delete-popup').addClass('blind');
-          $("#delete-host-btn").attr("idx", "");
+          $("#delete-space-btn").attr("idx", "");
 
           // 삭제 성공
           if(res.result == 1){
@@ -698,13 +698,13 @@ $(function () {
     $('.popup-background:eq(0)').removeClass('blind');
   });
 
-  $('#delete-closeBtn').on('click', function(){
+  $('#host-delete-closeBtn').on('click', function(){
     $('#host-delete-popup').addClass('blind');
     $('.popup-background:eq(0)').addClass('blind');
   });
 
   /** 삭제 요청 버튼 **/
-  $("#host-delete").on('click', function(){
+  $("#delete-host-btn").on('click', function(){
     $.ajax({
       url : "/rence/backoffice_setting_delete",
       type : "POST",
