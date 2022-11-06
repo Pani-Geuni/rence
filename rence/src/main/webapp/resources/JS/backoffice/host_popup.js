@@ -700,7 +700,7 @@ $(function () {
 
   $('#host-delete-closeBtn').on('click', function(){
     $('#host-delete-popup').addClass('blind');
-    $('.popup-background:eq(1)').addClass('blind');
+    $('.popup-background:eq(0)').addClass('blind');
   });
 
   /** 삭제 요청 버튼 **/
