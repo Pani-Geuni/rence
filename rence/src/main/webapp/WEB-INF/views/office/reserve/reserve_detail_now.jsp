@@ -163,7 +163,7 @@
             
             <!-- START BTN-SECTION  -->
             <section class="btn-section">
-                <div class="pay-btn" idx="${res.info_obj.reserve_no}">
+                <div id="pay-cancel-btn" class="pay-btn" idx="${res.info_obj.reserve_no}">
                     <span>예약 취소</span>
                 </div>
             </section>
