@@ -5,7 +5,7 @@
 <mapper namespace="test.com.rence">
   	
   	<select id="SQL_SELECT_BACKOFFICE_EMAIL" resultType="test.com.rence.backoffice.BackOfficeVO">
-  	SELECT * from backofficeinfo where backoffice_email=#{backoffice_email}
+  	SELECT * from backofficeinfo where backoffice_email=#{backoffice_email} and backoffice_state !='X'
   	</select>
 
 	<insert id="SQL_INSERT_BACKOFFICE_AUTH" parameterType="test.com.rence.sendemail.AuthVO">
@@ -30,7 +30,7 @@
 	</insert>
 	
 	<select id="SQL_SELECT_BACKOFFICE_NO" resultType="test.com.rence.backoffice.BackOfficeVO">
-  	SELECT * from backofficeinfo where backoffice_email=#{backoffice_email}
+  	SELECT * from backofficeinfo where backoffice_email=#{backoffice_email} and backoffice_state !='X'
   	</select>
 	
    	<insert id="SQL_INSERT_OPERRATING_TIME" parameterType="test.com.rence.backoffice.BackOfficeOperatingTimeVO_datetype">
