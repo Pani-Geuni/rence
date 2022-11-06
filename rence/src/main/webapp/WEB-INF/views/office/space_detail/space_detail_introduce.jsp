@@ -143,19 +143,21 @@
 											<li class="quest-content-list quest-content-date">${ cvo.comment_date }</li>
 										</ul>
 									</section>
-									<section class="answer-section">
+								</li>
+								<c:if test="${cvo.answer_date ne null}">
+									<li class="quest-list">
 										<section>
 											<img src="${path}/resources/IMG/header/loopy.jpg" alt="write-user-img" class="write-user-img" />
 										</section>
 										<section class="quest-content-section">
 											<ul class="quest-content-wrap">
 												<li class="quest-content-list quest-content-writer">HOST</li>
-<%-- 												<li class="quest-content-list quest-content">${ cvo.answerObject.comment_content }</li> --%>
-<%-- 												<li class="quest-content-list quest-content-date">${ cvo.answerObject.comment_date }</li> --%>
+												<li class="quest-content-list quest-content">${ cvo.answer_content}</li>
+												<li class="quest-content-list quest-content-date">${cvo.answer_date}</li>
 											</ul>
 										</section>
-									</section>
-								</li>
+									</li>
+								</c:if>
 							</c:forEach>
 						</ul>
 					</section>
@@ -179,20 +181,33 @@
                                 <span class="question-popup-small-title">문의할 공간 타입</span>
 
                                 <!-- select 열 때 open-select추가 -->
-                                <section class="quest-content-section">
-	                                <div class="question-popup-select-val-wrap">
-	                                    <span class="question-popup-select-value">
-	                                        선택했던 타입명
-	                                    </span>
-	                                </div>
-									<ul class="question-popup-select blind">
-		                                <c:forEach var="name" items="${room_name_list}">
-		                                    <li class="question-popup-select-li">
-		                                        ${name } dd
-		                                    </li>
-		                                </c:forEach>
-	                                </ul>
-								</section>
+                                <div class="question-popup-select-val-wrap">
+                                    <span id="review-select-choice" class="question-popup-select-value">
+                                        타입을 선택해 주세요
+                                    </span>
+                                    <img src="../IMG/space-introduce/full-dropdown.svg" alt="full-dropdown" class="full-dropdown"></img>
+                                </div>
+
+                                <ul class="question-popup-select blind">
+                                    <li class="question-popup-select-li">
+                                        101호 (1인 데스크)
+                                    </li>
+                                    <li class="question-popup-select-li">
+                                        102호 (1인 데스크)
+                                    </li>
+                                    <li class="question-popup-select-li">
+                                        103호 (4인 미팅룸)
+                                    </li>
+                                    <li class="question-popup-select-li">
+                                        104호 (1인 미팅룸)
+                                    </li>
+                                    <li class="question-popup-select-li">
+                                        104호 (1인 미팅룸)
+                                    </li>
+                                    <li class="question-popup-select-li">
+                                        104호 (1인 미팅룸)
+                                    </li>
+                                </ul>
                             </section>
                             <section class="textarea-section">
                                 <textarea id="review-write" class="question-write"></textarea>
