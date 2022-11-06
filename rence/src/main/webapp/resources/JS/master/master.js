@@ -175,13 +175,13 @@ $(function(){
 	
 	// 삭제 신청 호스트 버튼 클릭
 	$('#btn-delete-host').click(function() {
-		$('.popup-background').removeClass('blind');
+		$('.popup-background:eq(0)').removeClass('blind');
 		$('#delete-popup').removeClass('blind');
 	})
 	
 	$('#delete-closeBtn').click(function() {
 		$('#delete-popup').addClass('blind');
-		$('.popup-background').addClass('blind');
+		$('.popup-background:eq(0)').addClass('blind');
 	})
 	
 	$('#delete-btn').click(function() {
