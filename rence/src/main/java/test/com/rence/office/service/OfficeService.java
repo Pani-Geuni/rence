@@ -17,6 +17,7 @@ import test.com.rence.office.model.OfficeReserveVO;
 import test.com.rence.office.model.OfficeReviewVO;
 import test.com.rence.office.model.OfficeRoomVO;
 import test.com.rence.office.model.PaymentInfoVO;
+import test.com.rence.user.model.QuestionVO;
 
 @Service
 public class OfficeService {
@@ -53,12 +54,18 @@ public class OfficeService {
 		return vos;
 	}
 	
-	public List<OfficeCommentsVO> select_all_comment(String backoffice_no) {
+	public List<QuestionVO> select_all_comment(String backoffice_no) {
 		logger.info("select_all_comment()...");
 		
-		List<OfficeCommentsVO> vos = dao.select_all_comment(backoffice_no);
+		List<QuestionVO> vos = dao.select_all_comment(backoffice_no);
 		
 		return vos;
+	}
+	
+	public QuestionVO select_one_answer(String mother_no) {
+		QuestionVO vo = dao.select_one_answer(mother_no);
+		
+		return vo;
 	}
 	
 	public List<OfficeReviewVO> select_all_review(String backoffice_no) {

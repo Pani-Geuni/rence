@@ -3,6 +3,8 @@ package test.com.rence.office.model;
 import java.text.ParseException;
 import java.util.List;
 
+import test.com.rence.user.model.QuestionVO;
+
 public interface OfficeInfoDAO {
 
 	public OfficeInfoVO select_one_office_info(String backoffice_no);
@@ -11,7 +13,9 @@ public interface OfficeInfoDAO {
 	
 	public List<OfficeRoomVO> select_all_room(String backoffice_no);
 	
-	public List<OfficeCommentsVO> select_all_comment(String backoffice_no);
+	public List<QuestionVO> select_all_comment(String backoffice_no);
+	
+	public QuestionVO select_one_answer(String mother_no);
 	
 	public List<OfficeReviewVO> select_all_review(String backoffice_no);
 	

@@ -4,7 +4,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
@@ -30,6 +32,7 @@ import test.com.rence.office.model.OfficeReviewVO;
 import test.com.rence.office.model.OfficeRoomVO;
 import test.com.rence.office.model.PaymentInfoVO;
 import test.com.rence.office.service.OfficeService;
+import test.com.rence.user.model.QuestionVO;
 
 @Controller
 public class OfficeController {
@@ -108,9 +111,25 @@ public class OfficeController {
 		}
 		
 		// **************
-		// backoffice 후기
+		// backoffice 문의
 		// **************
-		List<OfficeCommentsVO> cvos = service.select_all_comment(backoffice_no);
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<QuestionVO> cvos = service.select_all_comment(backoffice_no);
+		
+		if (cvos != null) {
+			for (QuestionVO vo : cvos) {
+				QuestionVO vo2 = service.select_one_answer(vo.getComment_no());
+				if(vo2 != null) {
+					vo.setAnswer_content(vo2.getAnswer_content());
+					vo.setAnswer_date(vo2.getAnswer_date());
+					vo.setState("Y");
+				} else {
+					vo.setState("N");
+				}
+			}
+		}
+		
+		map.put("cvos", cvos);
 
 		
 		// **************
@@ -135,7 +154,7 @@ public class OfficeController {
 		model.addAttribute("rvos", rvos);
 		
 		// backoffice 문의
-		model.addAttribute("cvos", cvos);
+		model.addAttribute("cvos", map);
 		model.addAttribute("cvos_cnt", cvos.size());
 		
 		// backoffice 후기
