@@ -35,7 +35,7 @@
 				<ul class="container">
 					<c:forEach var="img_item" items="${ img_list }">
 						<li class="img">
-							<img src="${path}/resources/IMG/common/${ img_item }" class="company-img" />
+							<img src="${path}/resources/upload/${ img_item }" class="company-img" />
 						</li>
 					</c:forEach>
 				</ul>
@@ -59,9 +59,9 @@
 
 				<!-- 공간 소개 -->
 				<div class="space-description-wrap">
-					<span class="space-description"> 
-					${ ovo.backoffice_info }
-					</span>
+					<div class="space-description"> 
+						${ ovo.backoffice_info }
+					</div>
 
 					<div class="option-wrap">
 						<label class="section-title"> 옵션 </label>
@@ -130,7 +130,7 @@
                                 </div>
                             </section>
                             <section class="quest-popup-btn-section">
-                                <span id="question-create-btn" class="popup-create-btn">등록</span>
+                                <span id="question-createBtn" class="popup-create-btn">등록</span>
                                 <span id="question-close-btn" class="popup-close-btn">취소</span>
                             </section>
                         </div>
@@ -250,7 +250,7 @@
 				<section class="fixed-popup blind">
 					<div class="alert-popup">
 						<section class="alert-txt-section">
-							<span class="using-time-fail.txt"> 
+							<span class="using-time-fail-txt"> 
 								해당 시간 예약이 불가능합니다.<br>
 								<br>다른 시간대를 선택하여 주십시오.
 							</span>

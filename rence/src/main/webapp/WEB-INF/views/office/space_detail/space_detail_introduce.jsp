@@ -35,7 +35,7 @@
 				<ul class="container">
 					<c:forEach var="img_item" items="${ img_list }">
 						<li class="img">
-							<img src="${path}/resources/IMG/common/${ img_item }" class="company-img" />
+							<img src="${path}/resources/upload/${ img_item }" class="company-img" />
 						</li>
 					</c:forEach>
 				</ul>
@@ -59,9 +59,9 @@
 
 				<!-- 공간 소개 -->
 				<div class="space-description-wrap">
-					<span class="space-description"> 
-					${ ovo.backoffice_info }
-					</span>
+					<div class="space-description"> 
+						${ ovo.backoffice_info }
+					</div>
 
 					<div class="option-wrap">
 						<label class="section-title"> 옵션 </label>
@@ -108,18 +108,11 @@
                                 </div>
 
                                 <ul class="question-popup-select blind">
-                                    <li class="question-popup-select-li">
-                                        101호 (1인 데스크)
-                                    </li>
-                                    <li class="question-popup-select-li">
-                                        102호 (1인 데스크)
-                                    </li>
-                                    <li class="question-popup-select-li">
-                                        103호 (4인 미팅룸)
-                                    </li>
-                                    <li class="question-popup-select-li">
-                                        104호 (1인 미팅룸)
-                                    </li>
+                                    <c:forEach var="vos" items="${rvos}">
+	                                    <li class="question-popup-select-li" idx="${vos.room_no}">
+	                                        ${vos.room_name}
+	                                    </li>
+	                                </c:forEach>
                                 </ul>
                             </section>
                             <section class="textarea-section">
@@ -130,7 +123,7 @@
                                 </div>
                             </section>
                             <section class="quest-popup-btn-section">
-                                <span id="question-create-btn" class="popup-create-btn">등록</span>
+                                <span id="question-createBtn" class="popup-create-btn">등록</span>
                                 <span id="question-close-btn" class="popup-close-btn">취소</span>
                             </section>
                         </div>
@@ -150,7 +143,18 @@
 											<li class="quest-content-list quest-content-date">${ cvo.comment_date }</li>
 										</ul>
 									</section>
-									<section class="answer-section"></section>
+									<section class="answer-section">
+										<section>
+											<img src="${path}/resources/IMG/header/loopy.jpg" alt="write-user-img" class="write-user-img" />
+										</section>
+										<section class="quest-content-section">
+											<ul class="quest-content-wrap">
+												<li class="quest-content-list quest-content-writer">HOST</li>
+<%-- 												<li class="quest-content-list quest-content">${ cvo.answerObject.comment_content }</li> --%>
+<%-- 												<li class="quest-content-list quest-content-date">${ cvo.answerObject.comment_date }</li> --%>
+											</ul>
+										</section>
+									</section>
 								</li>
 							</c:forEach>
 						</ul>
@@ -175,11 +179,20 @@
                                 <span class="question-popup-small-title">문의할 공간 타입</span>
 
                                 <!-- select 열 때 open-select추가 -->
-                                <div class="question-popup-select-val-wrap">
-                                    <span class="question-popup-select-value">
-                                        선택했던 타입명
-                                    </span>
-                                </div>
+                                <section class="quest-content-section">
+	                                <div class="question-popup-select-val-wrap">
+	                                    <span class="question-popup-select-value">
+	                                        선택했던 타입명
+	                                    </span>
+	                                </div>
+									<ul class="question-popup-select blind">
+		                                <c:forEach var="name" items="${room_name_list}">
+		                                    <li class="question-popup-select-li">
+		                                        ${name } dd
+		                                    </li>
+		                                </c:forEach>
+	                                </ul>
+								</section>
                             </section>
                             <section class="textarea-section">
                                 <textarea id="review-write" class="question-write"></textarea>
@@ -254,7 +267,7 @@
 				<section class="fixed-popup blind">
 					<div class="alert-popup">
 						<section class="alert-txt-section">
-							<span class="using-time-fail.txt"> 
+							<span class="using-time-fail-txt"> 
 								해당 시간 예약이 불가능합니다.<br>
 								<br>다른 시간대를 선택하여 주십시오.
 							</span>

@@ -24,8 +24,13 @@ $(function(){
     });
 
     // 공간 소개 페이지 이동
-    $(".list-box").click(function () {
+    $(".list-box").click(function(){
         var backoffice_no = $(this).attr("idx");
-        location.href="/rence/space_introduce?backoffice_no="+backoffice_no+"&introduce_menu=info";
+        var type = location.href.split("?type=")[1].split("&")[0];
+        
+        if(type != "office")
+            location.href="/rence/space_introduce?backoffice_no="+backoffice_no+"&introduce_menu=info";
+        else 
+            location.href="/rence/space_introduce_office?backoffice_no="+backoffice_no+"&introduce_menu=info";
     });
 });
