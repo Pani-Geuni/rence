@@ -8,7 +8,8 @@ $(function () {
     $("#common-alert-popup").addClass("blind");
 
     if($(".common-alert-txt").text() == "수정이 완료되었습니다." || $(".common-alert-txt").text() == "공간이 추가되었습니다."
-      || $(".common-alert-txt").text() == "삭제가 완료되었습니다." || $(".common-alert-txt").text() == "답변을 삭제하였습니다."){
+      || $(".common-alert-txt").text() == "삭제가 완료되었습니다." || $(".common-alert-txt").text() == "답변을 삭제하였습니다."
+      || $(".common-alert-txt").text() == "답글이 등록되었습니다."){
       location.reload();
     }
   });
@@ -324,6 +325,12 @@ $(function () {
     }
   });
 
+  $("#insert-success-alert-btn").click(function(){
+    $(".popup-background:eq(0)").addClass("blind");
+    $("#insert-success-alert-popup").addClass("blind");
+
+    location.reload();
+  });
 
 
   /****** ********* *****/
@@ -533,21 +540,21 @@ $(function () {
   /** 문의 관련 팝업 **/ 
   /** ************* **/ 
   // 문의 클릭 시 자세히 보기
-  $(".ct-body-row.qna").click(function(e){
-    $(this).siblings(".detail-qna-wrap").toggleClass("blind");
-    e.stopImmediatePropagation();
+  $(".ct-body-row.qna").on('click', function(event){
+    $(this).next(".detail-qna-wrap").toggleClass("blind");
+    event.defaultPrevented;
   });
 
   // 문의 답글 삭제 요청
   $('.ct-body-btn.qna-delete').on('click', function(){
     $(".popup-background:eq(0)").removeClass("blind");
-    $("#host-delete-popup").removeClass("blind");
-    $("#delete-host-btn").attr("comment_no", $(this).attr("answer_no"));
-    $("#delete-host-btn").attr("mother_no", $(this).attr("comment_no"));
+    $("#answer-delete-popup").removeClass("blind");
+    $("#delete-answer-btn").attr("comment_no", $(this).attr("answer_no"));
+    $("#delete-answer-btn").attr("mother_no", $(this).attr("comment_no"));
   });
 
-  //
-  $("#delete-host-btn").click(function(){
+  // 답글 삭제 여부 컴펌창 - "삭제" 버튼 클릭
+  $("#delete-answer-btn").click(function(){
     $.ajax({
       url:"/rence/backoffice_deleteOK_comment",
       type : "POST",
@@ -577,6 +584,14 @@ $(function () {
     });
   });
 
+  // 답글 삭제 여부 컴펌창 - 닫기 버튼
+  $("#delete-answer-closeBtn").click(function(){
+    $(".popup-background:eq(0)").addClass("blind");
+    $("#answer-delete-popup").addClass("blind");
+    $("#delete-answer-btn").attr("comment_no", "");
+    $("#delete-answer-btn").attr("mother_no", "");
+  });
+
   // 문의 답글 작성
   $('.ct-body-btn.qna-add').on('click', function(){
     $.ajax({
@@ -589,7 +604,6 @@ $(function () {
         comment_no : $(this).attr("comment_no")
       },
       success : function(res) {
-        console.log(res);
         $("#q_room_name").text(res.cvo.room_name);
         $("#user_comment").text(res.cvo.comment_content);
         $("#h_comment_insert").attr("comment_no", res.cvo.comment_no);
@@ -598,8 +612,7 @@ $(function () {
         $('#comment-section').removeClass('blind');
         $('.popup-background:eq(0)').removeClass('blind');
       },
-      error : function(error) {
-          console.log(error);
+      error : function() {
           $(".popup-background:eq(1)").removeClass("blind");
           $("#common-alert-popup").removeClass("blind");
           $(".common-alert-txt").text("오류 발생으로 인해 처리에 실패하였습니다.");
@@ -607,6 +620,7 @@ $(function () {
     });
   });
 
+  // 문의 답글 작성 팝업 - 창닫기버튼
   $('.btn-comment-cancel').on('click', function(){
     $("#host-comment").val("");
     $(".now_txt_length").text("0");
@@ -615,6 +629,7 @@ $(function () {
     $('.popup-background:eq(0)').addClass('blind');
   });
 
+  // 문의 답글 작성 팝업 - 답글 추가 버튼
   $("#h_comment_insert").click(function(){
     if($("#host-comment").val().trim().length > 0){
       $.ajax({
@@ -656,6 +671,7 @@ $(function () {
     }
   });
 
+  // 답글 작성 시 글자수 제한
   $("#host-comment").on("keyup keydown", function(){
     $(".now_txt_length").text($(this).val().trim().length);
 
@@ -763,10 +779,12 @@ $(function () {
       $(".input-check-pw").addClass("null-input-border");
     }
   });
-
-
-
-
+  
+  
+  
+  /****************************** */
+  /***********FUNCTION*********** */
+  /****************************** */
 
   function insert(){
     $.ajax({
@@ -802,7 +820,7 @@ $(function () {
                 $(".insert-type-select-list").empty().append(sample);
 
                 $(".popup-background:eq(0)").removeClass("blind");
-                $("#edit-success-alert-popup").removeClass("blind");
+                $("#insert-success-alert-popup").removeClass("blind");
             }else{
                 $(".popup-background:eq(1)").removeClass("blind");
                 $("#common-alert-popup").removeClass("blind");
