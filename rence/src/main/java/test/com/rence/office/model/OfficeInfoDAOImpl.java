@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import test.com.rence.user.model.QuestionVO;
+import test.com.rence.user.model.ReviewVO;
 
 
 @Repository
@@ -941,5 +942,10 @@ public class OfficeInfoDAOImpl implements OfficeInfoDAO {
 		}
 
 		return flag;
+	}
+	
+	public int insert_review(ReviewVO vo) {
+		int result = sqlSession.insert("SQL_INSERT_REVIEW", vo);
+		return result;
 	}
 }

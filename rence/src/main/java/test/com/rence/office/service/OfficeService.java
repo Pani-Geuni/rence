@@ -19,6 +19,7 @@ import test.com.rence.office.model.OfficeReviewVO;
 import test.com.rence.office.model.OfficeRoomVO;
 import test.com.rence.office.model.PaymentInfoVO;
 import test.com.rence.user.model.QuestionVO;
+import test.com.rence.user.model.ReviewVO;
 
 @Service
 public class OfficeService {
@@ -105,6 +106,12 @@ public class OfficeService {
 		logger.info("reserve_paymentOK");
 		
 		int result = dao.reserve_paymentOK(pvo);
+		
+		return result; 
+	}
+	
+	public int insert_review(ReviewVO vo) {
+		int result = dao.insert_review(vo);
 		
 		return result; 
 	}

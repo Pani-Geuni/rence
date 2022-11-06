@@ -4,9 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
@@ -22,7 +20,6 @@ import test.com.rence.backoffice.BackOfficeVO;
 import test.com.rence.common.CustomDateFormatter;
 import test.com.rence.master.MasterController;
 import test.com.rence.office.common.OfficeInfoMap;
-import test.com.rence.office.model.OfficeCommentsVO;
 import test.com.rence.office.model.OfficeInfoVO;
 import test.com.rence.office.model.OfficeOperatingTimeVO;
 import test.com.rence.office.model.OfficeOperatingTimeVO_date;
@@ -33,7 +30,7 @@ import test.com.rence.office.model.OfficeReviewVO;
 import test.com.rence.office.model.OfficeRoomVO;
 import test.com.rence.office.model.PaymentInfoVO;
 import test.com.rence.office.service.OfficeService;
-import test.com.rence.user.model.QuestionVO;
+import test.com.rence.user.model.ReviewVO;
 
 @Controller
 public class OfficeController {
@@ -346,6 +343,25 @@ public class OfficeController {
 		logger.info("********** pvo :: {}", pvo);
 		
 		int result = service.reserve_paymentOK(pvo);
+		
+		if (result == 1) {
+			jsonObject.put("result", "1");			
+		} else {
+			jsonObject.put("result", "0");
+		}
+		
+		return jsonObject;
+	}
+	
+	@RequestMapping(value = "/insert_review", method = RequestMethod.POST)
+	@ResponseBody
+	public JSONObject insert_review(ReviewVO vo, Model model) {
+		JSONObject jsonObject = new JSONObject();
+		
+		int result = service.insert_review(vo);
+		
+		logger.info("insert_review()..");
+		logger.info("********** request :: {}", vo);
 		
 		if (result == 1) {
 			jsonObject.put("result", "1");			
