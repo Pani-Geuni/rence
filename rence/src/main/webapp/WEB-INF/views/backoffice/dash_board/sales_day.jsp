@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 
 <div class="titleSection">
 	<h1>정산</h1>
@@ -11,9 +14,11 @@
 		<div class="titleSection sales">
 			<h3>일일 정산</h3>
 			<ul class="sales-mini-nav">
-				<li id="sales-mini-nav-day" class="nav-item"><p>일일</p></li>
-				<li id="sales-mini-nav-week" class="nav-item"><p>주간</p></li>
-				<li id="sales-mini-nav-month" class="nav-item"><p>월간</p></li>
+				<li id="sales-mini-nav-day" class="nav-item <c:if test="${sales_date eq 'day'}">active</c:if>">
+					<p>일일</p>
+				</li>
+				<li id="sales-mini-nav-week" class="nav-item <c:if test="${sales_date eq 'week'}">active</c:if>"><p>주간</p></li>
+				<li id="sales-mini-nav-month" class="nav-item <c:if test="${sales_date eq 'month'}">active</c:if>"><p>월간</p></li>
 			</ul>
 			<!-- END mini-nav -->
 		</div>
@@ -21,16 +26,16 @@
 
 		<div id="today-sales" class="sales-state">
 			<div class="sales-item">
-				<p>매출 총이익</p>
-				<span id="sales-income" class="sales-price">340000</span>
+				<p>매출 순이익</p>
+				<span id="sales-income" class="sales-price">${svo.sales_income}</span>
 			</div>
 			<div class="sales-item">
 				<p>매출액</p>
-				<span id="sales-revenue" class="sales-price">410000</span>
+				<span id="sales-revenue" class="sales-price">${svo.sales_total}</span>
 			</div>
 			<div class="sales-item">
 				<p>취소 금액</p>
-				<span id="sales-cancel" class="sales-price">70000</span>
+				<span id="sales-cancel" class="sales-price">${svo.sales_cancel}</span>
 			</div>
 		</div>
 		<!-- END today-sales -->
@@ -38,15 +43,15 @@
 		<div id="yesterday-sales" class="sales-state">
 			<div class="sales-item">
 				<p>전일 매출 총이익</p>
-				<span id="sales-income" class="sales-price">340000</span>
+				<span id="sales-income" class="sales-price">${svo.pre_sales_income}</span>
 			</div>
 			<div class="sales-item">
 				<p>전일 매출액</p>
-				<span id="sales-revenue" class="sales-price">410000</span>
+				<span id="sales-revenue" class="sales-price">${svo.pre_sales_total}</span>
 			</div>
 			<div class="sales-item">
 				<p>전일 취소 금액</p>
-				<span id="sales-cancel" class="sales-price">70000</span>
+				<span id="sales-cancel" class="sales-price">${svo.pre_sales_cancel}</span>
 			</div>
 		</div>
 		<!-- END today-sales -->
@@ -54,7 +59,7 @@
 		<div class="sales-state">
 			<div class="sales-item">
 				<p>매출 차이</p>
-				<span>80000</span>
+				<span>${svo.sales_gap}</span>
 			</div>
 		</div>
 		<!--  -->
@@ -77,34 +82,31 @@
 			</div>
 			<!-- END ct-header -->
 			<div class="ct-body">
-				<div class="ct-body-row">
-					<div class="ct-body-cell">
-						2022.10.28 10:00 ~ <br />2022.10.28 14:00
+				<c:forEach var="vos" items="${s_vos}">
+					<div class="ct-body-row">
+						<div class="ct-body-cell">
+							${vos.reserve_sdate} ~ <br />${vos.reserve_edate}
+						</div>
+						<div class="ct-body-cell">${vos.room_name}</div>
+						<div class="ct-body-cell">
+							<p class="sales-price">${vos.actual_payment}</p>
+						</div>
+						<div class="ct-body-cell">
+							<c:if test="${vos.sales_state eq 'T'}">완료</c:if>
+							<c:if test="${vos.sales_state eq 'F'}">미완료</c:if>
+						</div>
+						<div class="ct-body-cell">
+							<button class="ct-body-btn
+								<c:if test="${vos.sales_state eq 'T'}">end=true</c:if>
+								<c:if test="${vos.sales_state eq 'F'}">end=false</c:if>
+							">
+								<c:if test="${vos.sales_state eq 'T'}">완료</c:if>
+								<c:if test="${vos.sales_state eq 'F'}">미완료</c:if>
+							</button>
+						</div>
 					</div>
-					<div class="ct-body-cell">101호 개인 스터디룸</div>
-					<div class="ct-body-cell">
-						<p class="sales-price">40000</p>
-					</div>
-					<div class="ct-body-cell">선결제</div>
-					<div class="ct-body-cell">
-						<button class="ct-body-btn">미완료</button>
-					</div>
-				</div>
-				<!-- END ct-body-row -->
-				<div class="ct-body-row">
-					<div class="ct-body-cell">
-						2022.10.28 10:00 ~ <br />2022.10.28 14:00
-					</div>
-					<div class="ct-body-cell">101호 개인 스터디룸</div>
-					<div class="ct-body-cell">
-						<p class="sales-price">40000</p>
-					</div>
-					<div class="ct-body-cell">선결제</div>
-					<div class="ct-body-cell">
-						<button class="ct-body-btn">미완료</button>
-					</div>
-				</div>
-				<!-- END ct-body-row -->
+					<!-- END ct-body-row -->
+				</c:forEach>
 			</div>
 			<!-- END ct-body -->
 		</div>
