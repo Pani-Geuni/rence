@@ -181,7 +181,7 @@
 		where A.no=1
   	</select>
   	
-  	<select id="SQL_SELECT_ALL_SALES" resultType="test.com.rence.dashboard.model.SalesSettlementPreVO">
+  	<select id="SQL_SELECT_ALL_SALES" resultType="test.com.rence.dashboard.model.SalesSettlementVO">
   		select TO_CHAR(reserve_sdate, 'YYYY-MM-DD HH24:MI:SS') as reserve_sdate, TO_CHAR(reserve_edate, 'YYYY-MM-DD HH24:MI:SS') as reserve_edate, room_name, actual_payment, payment_state, sales_state, payment_no, room_no 
         from(
 			select ROW_NUMBER() OVER(PARTITION BY rv.reserve_no ORDER BY rv.reserve_no ASC ) no, reserve_sdate, reserve_edate, room_name, actual_payment, payment_state, sales_state, rv.backoffice_no, payment_no, rv.room_no
