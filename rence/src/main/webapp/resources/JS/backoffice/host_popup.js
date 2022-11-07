@@ -711,16 +711,17 @@ $(function () {
         room_no : $(this).attr("room_no")
       },
       success : function(res) {
-          // 이메일 중복 성공
-          if(res.result == 1){
-              $(".popup-background:eq(1)").removeClass("blind");
-              $("#common-alert-popup").removeClass("blind");
-              $(".common-alert-txt").text("정산처리되었습니다.");
-          }else{
-              $(".popup-background:eq(1)").removeClass("blind");
-              $("#common-alert-popup").removeClass("blind");
-              $(".common-alert-txt").text("정산처리에 실패하였습니다.");
-          }
+        console.log(res.result);
+        
+        if(res.result == 1){
+            $(".popup-background:eq(1)").removeClass("blind");
+            $("#common-alert-popup").removeClass("blind");
+            $(".common-alert-txt").text("정산처리되었습니다.");
+        }else{
+            $(".popup-background:eq(1)").removeClass("blind");
+            $("#common-alert-popup").removeClass("blind");
+            $(".common-alert-txt").text("정산처리에 실패하였습니다.");
+        }
       },
       error : function(error) {
           console.log(error);

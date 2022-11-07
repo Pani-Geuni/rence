@@ -92,8 +92,8 @@
 							<p class="sales-price">${vos.actual_payment}</p>
 						</div>
 						<div class="ct-body-cell">
-							<c:if test="${vos.sales_state eq 'T'}">완료</c:if>
-							<c:if test="${vos.sales_state eq 'F'}">미완료</c:if>
+							<c:if test="${vos.payment_state eq 'T'}">선결제</c:if>
+							<c:if test="${vos.payment_state eq 'F'}">후결제</c:if>
 						</div>
 						<div class="ct-body-cell">
 							<button class="ct-body-btn is_sales_btn"
