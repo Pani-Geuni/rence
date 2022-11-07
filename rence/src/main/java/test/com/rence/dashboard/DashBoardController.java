@@ -401,7 +401,7 @@ public class DashBoardController {
 		JSONObject jsonObject = new JSONObject();
 
 		int result = service.backoffice_updateOK_sales(backoffice_no, room_no, payment_no);
-
+		logger.info( "integerereretrer", Integer.toString(result));
 		if (result == 1) {
 			logger.info("successed...");
 			jsonObject.put("result", "1");
