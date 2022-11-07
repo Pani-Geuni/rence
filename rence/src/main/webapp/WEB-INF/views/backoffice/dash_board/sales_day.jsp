@@ -98,7 +98,7 @@
 						<div class="ct-body-cell">
 							<button class="ct-body-btn is_sales_btn"
 								<c:if test="${vos.sales_state eq 'T'}">end="true"</c:if>
-								<c:if test="${vos.sales_state eq 'F'}">end="false"</c:if>
+								<c:if test="${vos.sales_state eq 'F'}">end="false" payment_no=${vos.payment_no} room_no=${vos.room_no}</c:if>
 							>
 								<c:if test="${vos.sales_state eq 'T'}">완료</c:if>
 								<c:if test="${vos.sales_state eq 'F'}">미완료</c:if>

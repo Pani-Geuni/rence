@@ -9,7 +9,7 @@ $(function () {
 
     if($(".common-alert-txt").text() == "수정이 완료되었습니다." || $(".common-alert-txt").text() == "공간이 추가되었습니다."
       || $(".common-alert-txt").text() == "삭제가 완료되었습니다." || $(".common-alert-txt").text() == "답변을 삭제하였습니다."
-      || $(".common-alert-txt").text() == "답글이 등록되었습니다."){
+      || $(".common-alert-txt").text() == "답글이 등록되었습니다."|| $(".common-alert-txt").text() == "정산처리되었습니다."){
       location.reload();
     }
   });
@@ -687,6 +687,57 @@ $(function () {
     }
   });
 
+
+  /** *********************** **/ 
+          /** 정산 관련 **/ 
+  /** *********************** **/
+  $(".is_sales_btn").click(function(){
+    if($(this).attr("end") == "false"){
+      $('.popup-background:eq(0)').removeClass('blind');
+      $("#calculate-popup").removeClass("blind");
+      $("#calculate-btn").attr("room_no", $(this).attr("room_no"));
+      $("#calculate-btn").attr("payment_no", $(this).attr("payment_no"));
+    }
+  });
+
+  $("#calculate-btn").click(function(){
+    $.ajax({
+      url:"/rence/backoffice_updateOK_sales",
+      type : "POST",
+      dataType : 'json',
+      data : {
+        backoffice_no : $.cookie("backoffice_no"),
+        payment_no : $(this).attr("payment_no"),
+        room_no : $(this).attr("room_no")
+      },
+      success : function(res) {
+          // 이메일 중복 성공
+          if(res.result == 1){
+              $(".popup-background:eq(1)").removeClass("blind");
+              $("#common-alert-popup").removeClass("blind");
+              $(".common-alert-txt").text("정산처리되었습니다.");
+          }else{
+              $(".popup-background:eq(1)").removeClass("blind");
+              $("#common-alert-popup").removeClass("blind");
+              $(".common-alert-txt").text("정산처리에 실패하였습니다.");
+          }
+      },
+      error : function(error) {
+          console.log(error);
+          $(".popup-background:eq(1)").removeClass("blind");
+          $("#common-alert-popup").removeClass("blind");
+          $(".common-alert-txt").text("오류 발생으로 인해 처리에 실패하였습니다.");
+      }            
+  });
+  });
+
+  $("#calculate-closeBtn").click(function(){
+    $('.popup-background:eq(0)').addClass('blind');
+    $("#calculate-popup").addClass("blind");
+  });
+
+
+
   /** *********************** **/ 
   /** 환경 설정 부분 팝업 관련 **/ 
   /** *********************** **/ 
@@ -726,11 +777,11 @@ $(function () {
             $('.popup-background:eq(0)').addClass('blind');
             $('#host-delete-popup').addClass('blind');
 
-            $(".popup-background:eq(1)").removeClass("blind");
+            $(".popup-background:eq(0)").removeClass("blind");
             $("#common-alert-popup").removeClass("blind");
             $(".common-alert-txt").text("마스터에게 삭제 요청되었습니다.");
           }else{
-            $(".popup-background:eq(1)").removeClass("blind");
+            $(".popup-background:eq(0)").removeClass("blind");
             $("#common-alert-popup").removeClass("blind");
             $(".common-alert-txt").text("남은 예약이 존재하여 삭제할 수 없습니다.");
           }
