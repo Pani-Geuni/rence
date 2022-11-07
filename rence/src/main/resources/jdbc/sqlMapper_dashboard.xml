@@ -27,7 +27,7 @@
   	
   	<select id="SQL_SELECT_ONE_PAYMENT_SUMMARY" resultType="test.com.rence.dashboard.model.SalesSettlementSummaryVO">
   		<![CDATA[
-  		select NVL(sales_total,0) as sales_total, NVL(sales_cancel,0) as sales_cancel from (
+  		select NVL(sum(sales_total),0) as sales_total, NVL(sum(sales_cancel),0) as sales_cancel from (
 
 		select ROW_NUMBER() OVER(PARTITION BY backoffice_no ORDER BY backoffice_no ASC ) no,
 		(select NVL(sum(	
