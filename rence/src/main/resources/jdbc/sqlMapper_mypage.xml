@@ -71,7 +71,7 @@
 	<!-- 예약 정보 불러오기 -->
 	<select id="SQL_SELECT_ONE_RESERVE_INFO" resultType="test.com.rence.user.model.ReserveInfoVO">
 		select r.reserve_no, b.company_name, r.room_type, r.reserve_sdate, r.reserve_edate, rm.room_name, rm.room_price,
-		        b.backoffice_name, b.roadname_address || b.detail_address as full_address, b.backoffice_tel,
+		        b.backoffice_name, b.backoffice_image, b.roadname_address || b.detail_address as full_address, b.backoffice_tel,
 		         b.backoffice_email, p.payment_total, p.actual_payment, m.mileage_change
 		from reserveinfo r left join backofficeinfo b
 		on r.backoffice_no = b.backoffice_no

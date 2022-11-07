@@ -96,7 +96,7 @@
 							<c:if test="${vos.sales_state eq 'F'}">미완료</c:if>
 						</div>
 						<div class="ct-body-cell">
-							<button class="ct-body-btn
+							<button class="ct-body-btn is_sales_btn
 								<c:if test="${vos.sales_state eq 'T'}">end=true</c:if>
 								<c:if test="${vos.sales_state eq 'F'}">end=false</c:if>
 							">
