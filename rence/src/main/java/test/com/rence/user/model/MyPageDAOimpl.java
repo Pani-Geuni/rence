@@ -119,6 +119,10 @@ public class MyPageDAOimpl implements MyPageDAO {
 			
 			String rp = dc.format(Integer.parseInt(vo.getRoom_price()));
 			vo.setRoom_price(rp);
+			
+			if(vo.getBackoffice_image().contains(",")) {
+				vo.setBackoffice_image(vo.getBackoffice_image().split(",")[0]);
+			}
 		}
 		
 		return vo;

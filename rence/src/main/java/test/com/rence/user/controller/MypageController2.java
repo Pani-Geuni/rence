@@ -66,7 +66,7 @@ public class MypageController2 {
 	}
 	
 	/**
-	 * 예약 리스트 이동 - 현재
+	 * 상세 예약 페이지 이동 - 현재
 	 */
 	@RequestMapping(value = "/reserve_info", method = RequestMethod.GET)
 	public String reserve_info(String reserve_no, Model model, HttpServletRequest request) {
@@ -92,7 +92,7 @@ public class MypageController2 {
 	}
 	
 	/**
-	 * 예약 리스트 이동 - 과거
+	 * 상세 예약 페이지 이동 - 과거
 	 */
 	@RequestMapping(value = "/reserved_info", method = RequestMethod.GET)
 	public String reserved_info(String reserve_no, Model model, HttpServletRequest request) {
