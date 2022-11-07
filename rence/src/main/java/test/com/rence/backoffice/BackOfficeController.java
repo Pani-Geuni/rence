@@ -23,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import test.com.rence.sendemail.AuthVO;
 import test.com.rence.sendemail.BackOfficeSendEmail;
@@ -81,14 +82,14 @@ public class BackOfficeController {
 	 * @throws ParseException
 	 */
 	@RequestMapping(value = "/backoffice_insertOK", method = RequestMethod.POST)
-	public String backoffice_insertOK(BackOfficeVO vo, BackOfficeOperatingTimeVO ovo) throws ParseException {
+	public String backoffice_insertOK(BackOfficeVO vo, BackOfficeOperatingTimeVO ovo,MultipartHttpServletRequest mtfRequest) throws ParseException {
 
 		BackOfficeOperatingTimeVO_datetype ovo2 = new BackOfficeOperatingTimeVO_datetype();
 
 		logger.info("vo::::::::::::::::::::::::::{}", vo);
 
 		// 공간 이미지, 호스트 이미지
-		vo = fileService.backoffice_image_upload(vo);
+		vo = fileService.backoffice_image_upload(vo,mtfRequest);
 		logger.info("filupload room:{}", vo);
 		vo = fileService.host_image_upload(vo);
 		logger.info("filupload host:{}", vo);

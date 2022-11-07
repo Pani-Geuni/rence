@@ -12,6 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Repository
 public class BackOfficeFAOImpl implements BackOfficeFAO {
@@ -19,42 +21,55 @@ public class BackOfficeFAOImpl implements BackOfficeFAO {
 
 	@Autowired
 	ServletContext context;
+//	@Autowired
+//	MultipartHttpServletRequest mtfRequest;
 
 	@Override
-	public BackOfficeVO backoffice_fileupload(BackOfficeVO vo) {
+	public BackOfficeVO backoffice_fileupload(BackOfficeVO vo, MultipartHttpServletRequest mtfRequest) {
 		logger.info("{} byte", vo.getMultipartFile_room().getSize());
 
 		if (vo.getMultipartFile_room().getSize() > 0) {
 			logger.info("{} byte", vo.getMultipartFile_room().getOriginalFilename());
-			List<String> imgs = new ArrayList<String>();
-			String bimg = "";
-			for (int i = 0; i < imgs.size(); i++) {
-				imgs.add(vo.getMultipartFile_room().getOriginalFilename());
-				bimg = imgs.stream().collect(Collectors.joining(","));
-			}
-
-			vo.setBackoffice_image(bimg);
-		} else {
-			if(vo.getBackoffice_image()==null) {
-			vo.setBackoffice_image("img_room_001.jpg");
-			}
+			List<MultipartFile> imgs = mtfRequest.getFiles("multipartFile_room");
+			logger.info("ssssssssssssssssssssssssssssssssssssssssss:::::::::{}",imgs);
 
 			String dir_path = context.getRealPath("resources/upload");
 			logger.info(dir_path);
+			for (MultipartFile mf : imgs) {
 
-			File saveFile = new File(dir_path + "/", vo.getBackoffice_image());
+				vo.setBackoffice_image(mf.getOriginalFilename());
 
-//			String formmatName = vo.getBackoffice_image().substring(vo.getBackoffice_image().lastIndexOf(".") + 1);
-//			logger.info("formmatName:{}", formmatName);
+				String originFileName = mf.getOriginalFilename(); // 원본 파일 명
+				long fileSize = mf.getSize(); // 파일 사이즈
 
-			try {
-				vo.getMultipartFile_room().transferTo(saveFile);
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+				System.out.println("originFileName : " + originFileName);
+				System.out.println("fileSize : " + fileSize);
+
+				String saveFile = dir_path +"/"+ originFileName;
+				try {
+					mf.transferTo(new File(saveFile));
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
-		
+			
+
+		} else if (vo.getBackoffice_image() == null) {
+				vo.setBackoffice_image("img_room_001.jpg");
+				String dir_path = context.getRealPath("resources/upload");
+				logger.info(dir_path);
+
+				File saveFile = new File(dir_path + "/", vo.getBackoffice_image());
+				try {
+					vo.getMultipartFile_room().transferTo(saveFile);
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			
 		}
 		return vo;
 	}
@@ -68,7 +83,7 @@ public class BackOfficeFAOImpl implements BackOfficeFAO {
 
 			vo.setHost_image(vo.getMultipartFile_host().getOriginalFilename());
 		} else {
-			if(vo.getHost_image()==null) {
+			if (vo.getHost_image() == null) {
 				vo.setHost_image("img_host_001.jpg");
 			}
 			String dir_path = context.getRealPath("resources/upload");
@@ -86,7 +101,7 @@ public class BackOfficeFAOImpl implements BackOfficeFAO {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		
+
 		}
 		return vo;
 	}
