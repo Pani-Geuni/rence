@@ -203,7 +203,7 @@
                         <span class="modify-guide-txt">새 비밀번호 확인</span>
                         <span class="modify-error-txt blind">비밀번호 조건에 일치하지않습니다.</span>
                     </div>
-                    <input type="text" id="modify-pw-new" class="modify-popup-input" placeholder="비밀번호(영문+숫자+특수문자 = 8~10글자)"/>
+                    <input type="password" id="modify-pw-new" class="modify-popup-input" placeholder="비밀번호(영문+숫자+특수문자 = 8~10글자)"/>
                 </div>
 
                 <div>
@@ -211,7 +211,7 @@
                         <span class="modify-guide-txt">새 비밀번호 확인</span>
                         <span class="modify-error-txt blind">비밀번호가 일치하지않습니다.</span>
                     </div>
-                    <input type="text" id="modify-pw-renew" class="modify-popup-input" placeholder="변경할 비밀번호를 확인해 주세요."/>
+                    <input type="password" id="modify-pw-renew" class="modify-popup-input" placeholder="변경할 비밀번호를 확인해 주세요."/>
                 </div>
             </section>
             <section class="modify-popup-btn-section">
