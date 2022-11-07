@@ -155,7 +155,7 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		if (svo != null) {
 			svo.setSales_income(svo.getSales_total() - svo.getSales_cancel());
 			svo.setPre_sales_income(svo.getPre_sales_total()-svo.getPre_sales_cancel());
-			svo.setSales_gap(svo.getPre_sales_income()-svo.getSales_income());
+			svo.setSales_gap(svo.getSales_income()-svo.getPre_sales_income());
 		}
 
 		return svo;
