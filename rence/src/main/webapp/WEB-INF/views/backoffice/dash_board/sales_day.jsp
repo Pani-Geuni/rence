@@ -59,7 +59,7 @@
 		<div class="sales-state">
 			<div class="sales-item">
 				<p>매출 차이</p>
-				<span>${svo.sales_gap}</span>
+				<span id="sales-diff" class="sales-price">${svo.sales_gap}</span>
 			</div>
 		</div>
 		<!--  -->
