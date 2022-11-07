@@ -338,8 +338,6 @@
     height: 8px;
 
     border-radius: 100%;
-    
-    cursor: pointer;
 }
 .choice-radio{
     background-color: #42C2FF;
@@ -402,7 +400,7 @@
     margin-bottom: 50px;
 }
 .payment-info-wrap{
-    width: 686px;
+    width: 800px;
     border: 2px solid #2EE49D;
     padding: 0px 20px 9px 20px;
 }
@@ -410,7 +408,7 @@
     margin-bottom: 20px;
 }
 .payment-info-li-wrap{
-    width: 686px;
+    width: 790px;
     height: calc(100%-70px);
     padding-top: 20px;
 
@@ -430,11 +428,6 @@
     font-size: 25px;
     font-weight: 600;
     letter-spacing: 0.5px;
-}
-
-#payment_all::after,
-#earned_mileage::after {
-	content: '원';
 }
 
 .pay-mileage-section{
