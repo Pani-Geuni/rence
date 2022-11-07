@@ -187,10 +187,10 @@
     		and trunc(payment_date)=trunc(SYSDATE)  
    	 	</when>
  	 	<when test="sales_date == 'week'">
-  	  		and trunc(payment_date) between trunc(SYSDATE) - interval '7' day and trunc(SYSDATE)   
+  	  		and trunc(payment_date) between trunc(SYSDATE) - interval '7' day and trunc(SYSDATE)   and rownum=1
   	 	</when>
   	 	<when test="sales_date == 'month'">
-  	 		and trunc(payment_date) between add_months(trunc(SYSDATE),-1) and trunc(SYSDATE)
+  	 		and trunc(payment_date) between add_months(trunc(SYSDATE),-1) and trunc(SYSDATE) and rownum=1
   	 	</when>    
   		</choose>
   		
@@ -251,10 +251,10 @@
     		and trunc(payment_date)=trunc(SYSDATE)  
    	 	</when>
  	 	<when test="sales_date == 'week'">
-  	  		and trunc(payment_date) between trunc(SYSDATE) - interval '7' day and trunc(SYSDATE)   
+  	  		and trunc(payment_date) between trunc(SYSDATE) - interval '7' day and trunc(SYSDATE)  and rownum=1
   	 	</when>
   	 	<when test="sales_date == 'month'">
-  	 		and trunc(payment_date) between add_months(trunc(SYSDATE),-1) and trunc(SYSDATE)
+  	 		and trunc(payment_date) between add_months(trunc(SYSDATE),-1) and trunc(SYSDATE) and rownum=1
   	 	</when>    
   		</choose>
 		)as sales_cancel, 
@@ -302,10 +302,10 @@
     		and trunc(payment_date)=trunc(SYSDATE)-1
    	 	</when>
  	 	<when test="sales_date == 'week'">
-  	  		  and trunc(payment_date) between trunc(SYSDATE) - interval '14' day and trunc(SYSDATE) - interval '7' day
+  	  		  and trunc(payment_date) between trunc(SYSDATE) - interval '14' day and trunc(SYSDATE) - interval '7' day 
   	 	</when>
   	 	<when test="sales_date == 'month'">
-  	 		 and trunc(payment_date) between add_months(trunc(SYSDATE),-2) and add_months(trunc(SYSDATE),-1)
+  	 		 and trunc(payment_date) between add_months(trunc(SYSDATE),-2) and add_months(trunc(SYSDATE),-1) 
   	 	</when>    
   		</choose>)),0) as pre_sales_total
 		from paymentinfo
@@ -316,10 +316,10 @@
     		and trunc(payment_date)=trunc(SYSDATE)-1
    	 	</when>
  	 	<when test="sales_date == 'week'">
-  	  		  and trunc(payment_date) between trunc(SYSDATE) - interval '14' day and trunc(SYSDATE) - interval '7' day
+  	  		  and trunc(payment_date) between trunc(SYSDATE) - interval '14' day and trunc(SYSDATE) - interval '7' day and rownum=1
   	 	</when>
   	 	<when test="sales_date == 'month'">
-  	 		 and trunc(payment_date) between add_months(trunc(SYSDATE),-2) and add_months(trunc(SYSDATE),-1)
+  	 		 and trunc(payment_date) between add_months(trunc(SYSDATE),-2) and add_months(trunc(SYSDATE),-1) and rownum=1
   	 	</when>    
   		</choose>
   		
@@ -380,10 +380,10 @@
     		and trunc(payment_date)=trunc(SYSDATE)-1
    	 	</when>
  	 	<when test="sales_date == 'week'">
-  	  		  and trunc(payment_date) between trunc(SYSDATE) - interval '14' day and trunc(SYSDATE) - interval '7' day
+  	  		  and trunc(payment_date) between trunc(SYSDATE) - interval '14' day and trunc(SYSDATE) - interval '7' day and rownum=1
   	 	</when>
   	 	<when test="sales_date == 'month'">
-  	 		 and trunc(payment_date) between add_months(trunc(SYSDATE),-2) and add_months(trunc(SYSDATE),-1)
+  	 		 and trunc(payment_date) between add_months(trunc(SYSDATE),-2) and add_months(trunc(SYSDATE),-1) and rownum=1
   	 	</when>    
   		</choose>
 		)as pre_sales_cancel 

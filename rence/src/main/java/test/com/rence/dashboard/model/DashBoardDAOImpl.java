@@ -145,10 +145,21 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 	@Override
 	public SalesSettlementPreVO backoffice_sales_selectOne(String backoffice_no, String sales_date) {
 		logger.info("backoffice_sales_selectOne...DAOImpl()...");
+		logger.info(sales_date);
 
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("backoffice_no", backoffice_no);
 		map.put("sales_date", sales_date);
+		
+		if (sales_date=="day") {
+			logger.info("day...DAOImpl()...");
+		}
+		if (sales_date=="week") {
+			logger.info("week...DAOImpl()...");
+		}
+		if (sales_date=="month") {
+			logger.info("month...DAOImpl()...");
+		}
 
 		SalesSettlementPreVO svo = sqlSession.selectOne("SQL_SELECT_ONE_SALES", map);
 		
