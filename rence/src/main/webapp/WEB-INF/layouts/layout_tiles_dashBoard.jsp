@@ -264,6 +264,20 @@
 			</section>
 		</div>
 		<!-- END DELETE FONFIRM POPUP -->
+		
+		<!-- START CONFIRM POPUP -->
+		<div id="calculate-popup" class="confirm-popup blind">
+			<section class="confirm-txt-section">
+				<span class="delete-txt"> 
+					정산처리 하시겠습니까?
+				</span>
+			</section>
+			<section class="confirm-btn-section">
+				<div id="calculate-btn" class="confirm-yesBtn">예</div>
+				<div id="calculate-closeBtn" class="confirm-noBtn">아니오</div>
+			</section>
+		</div>
+		<!-- END DELETE FONFIRM POPUP -->
 	</div>
 	<!-- END popup-background blind -->
 	
