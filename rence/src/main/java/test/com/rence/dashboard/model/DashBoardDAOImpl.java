@@ -148,7 +148,7 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("backoffice_no", backoffice_no);
-		map.put("reserve_state", sales_date);
+		map.put("sales_date", sales_date);
 
 		SalesSettlementPreVO svo = sqlSession.selectOne("SQL_SELECT_ONE_SALES", map);
 		
@@ -184,13 +184,15 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		
 		int result = sqlSession.update("SQL_UPDATE_SALES_STATE_T", map);
 		int flag =0;
+		logger.info( "SQL_UPDATE_SALES_STATE_T:{}", Integer.toString(result));
 		if (result==1) {
 			Map<String, String> map2 = new HashMap<String, String>();
 			map2.put("payment_no", payment_no);
 			flag = sqlSession.update("SQL_UPDATE_MILEAGE_SUCCESS", map2);
+			logger.info( "SQL_UPDATE_MILEAGE_SUCCESS:{}", Integer.toString(flag));
 		}
 
-		return flag;
+		return result;
 	}
 
 	// 공간 관리 (리스트)
