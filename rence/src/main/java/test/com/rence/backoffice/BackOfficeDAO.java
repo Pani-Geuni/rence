@@ -29,6 +29,8 @@ public interface BackOfficeDAO {
 
 	public int backoffice_auth_delete(AuthVO avo2);
 
+	public int backoffice_resetOK_pw(BackOfficeVO bvo2);
+
 
 	
 }

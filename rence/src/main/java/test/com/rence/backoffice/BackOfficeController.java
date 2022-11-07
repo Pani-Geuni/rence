@@ -5,13 +5,8 @@
  */
 package test.com.rence.backoffice;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
@@ -27,7 +22,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import test.com.rence.sendemail.AuthVO;
@@ -243,10 +237,11 @@ public class BackOfficeController {
 
 	/**
 	 * 비밀번호 초기화(찾기), 이메일로 임시 비밀번호 전송
+	 * @throws UnsupportedEncodingException 
 	 */
 	@RequestMapping(value = "/backoffice_reset_pw", method = RequestMethod.GET)
 	@ResponseBody
-	public JSONObject backoffice_reset_pw(BackOfficeVO bvo, EmailVO evo) {
+	public JSONObject backoffice_reset_pw(BackOfficeVO bvo, EmailVO evo){
 		logger.info("backoffice_reset_pw ()...");
 		logger.info("{}", bvo);
 
@@ -260,7 +255,8 @@ public class BackOfficeController {
 			bvo2 = authSendEmail.findPw(bvo2, evo);
 
 			if (bvo2 != null) {
-				service.backoffice_settingOK_pw(bvo2);
+//				service.backoffice_settingOK_pw(bvo2); 
+				service.backoffice_resetOK_pw(bvo2); 
 				jsonObject.put("result", "1");
 
 			} else {
