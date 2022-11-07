@@ -9,6 +9,7 @@ public class ReserveInfoVO {
 	String room_name;
 	String room_price;
 	String backoffice_name;
+	String backoffice_image;
 	String full_address;
 	String backoffice_tel;
 	String backoffice_email;
@@ -24,9 +25,9 @@ public class ReserveInfoVO {
 
 
 	public ReserveInfoVO(String reserve_no, String company_name, String room_type, String reserve_sdate,
-			String reserve_edate, String room_name, String room_price, String backoffice_name, String full_address,
-			String backoffice_tel, String backoffice_email, String payment_total, String actual_payment,
-			String mileage_change) {
+			String reserve_edate, String room_name, String room_price, String backoffice_name, String backoffice_image,
+			String full_address, String backoffice_tel, String backoffice_email, String payment_total,
+			String actual_payment, String mileage_change) {
 		super();
 		this.reserve_no = reserve_no;
 		this.company_name = company_name;
@@ -36,6 +37,7 @@ public class ReserveInfoVO {
 		this.room_name = room_name;
 		this.room_price = room_price;
 		this.backoffice_name = backoffice_name;
+		this.backoffice_image = backoffice_image;
 		this.full_address = full_address;
 		this.backoffice_tel = backoffice_tel;
 		this.backoffice_email = backoffice_email;
@@ -125,6 +127,16 @@ public class ReserveInfoVO {
 	}
 
 
+	public String getBackoffice_image() {
+		return backoffice_image;
+	}
+
+
+	public void setBackoffice_image(String backoffice_image) {
+		this.backoffice_image = backoffice_image;
+	}
+
+
 	public String getFull_address() {
 		return full_address;
 	}
@@ -191,6 +203,7 @@ public class ReserveInfoVO {
 		int result = 1;
 		result = prime * result + ((actual_payment == null) ? 0 : actual_payment.hashCode());
 		result = prime * result + ((backoffice_email == null) ? 0 : backoffice_email.hashCode());
+		result = prime * result + ((backoffice_image == null) ? 0 : backoffice_image.hashCode());
 		result = prime * result + ((backoffice_name == null) ? 0 : backoffice_name.hashCode());
 		result = prime * result + ((backoffice_tel == null) ? 0 : backoffice_tel.hashCode());
 		result = prime * result + ((company_name == null) ? 0 : company_name.hashCode());
@@ -225,6 +238,11 @@ public class ReserveInfoVO {
 			if (other.backoffice_email != null)
 				return false;
 		} else if (!backoffice_email.equals(other.backoffice_email))
+			return false;
+		if (backoffice_image == null) {
+			if (other.backoffice_image != null)
+				return false;
+		} else if (!backoffice_image.equals(other.backoffice_image))
 			return false;
 		if (backoffice_name == null) {
 			if (other.backoffice_name != null)
@@ -294,11 +312,11 @@ public class ReserveInfoVO {
 	public String toString() {
 		return "ReserveInfoVO [reserve_no=" + reserve_no + ", company_name=" + company_name + ", room_type=" + room_type
 				+ ", reserve_sdate=" + reserve_sdate + ", reserve_edate=" + reserve_edate + ", room_name=" + room_name
-				+ ", room_price=" + room_price + ", backoffice_name=" + backoffice_name + ", full_address="
-				+ full_address + ", backoffice_tel=" + backoffice_tel + ", backoffice_email=" + backoffice_email
-				+ ", payment_total=" + payment_total + ", actual_payment=" + actual_payment + ", mileage_change="
-				+ mileage_change + "]";
+				+ ", room_price=" + room_price + ", backoffice_name=" + backoffice_name + ", backoffice_image="
+				+ backoffice_image + ", full_address=" + full_address + ", backoffice_tel=" + backoffice_tel
+				+ ", backoffice_email=" + backoffice_email + ", payment_total=" + payment_total + ", actual_payment="
+				+ actual_payment + ", mileage_change=" + mileage_change + "]";
 	}
-	
-	
+
+
 }
