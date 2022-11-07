@@ -1,5 +1,5 @@
 /**
- * @author : 전판근
+ * @author : 전판근, 김예은
  */
  $(function () {
   $('.logo-mku').click(function(){
@@ -106,14 +106,14 @@
   // 정산 관리 mini-nav
   // ****************
   $('#sales-mini-nav-day').click(function(){
-    location.href = '/rence/backoffice_day_sales';
+    location.href = '/rence/backoffice_day_sales?backoffice_no=' + $.cookie("backoffice_no") + "&sales_date=day";
   });
 
   $('#sales-mini-nav-week').click(function(){
-    location.href = '/rence/backoffice_week_sales';
+    location.href = '/rence/backoffice_day_sales?backoffice_no=' + $.cookie("backoffice_no") + "&sales_date=week";
   });
 
   $('#sales-mini-nav-month').click(function(){
-    location.href = '/rence/backoffice_month_sales';
+    location.href = '/rence/backoffice_day_sales?backoffice_no=' + $.cookie("backoffice_no") + "&sales_date=month";
   });
 });
