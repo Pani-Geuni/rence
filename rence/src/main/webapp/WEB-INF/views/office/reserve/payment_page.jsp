@@ -14,7 +14,7 @@
                 <span class="section-title">예약 정보</span>
                 <div class="reserve-info-wrap">
                     <section>
-                        <img src="${path}/resources/upload/${ pvo.backoffice_image }" class="company-img" />
+                        <img src="${path}/resources/upload/${ pvo.backoffice_image }" alt="result-img" class="reserve-info-img" />
                     </section>
                     <section class="reserve-info-txt">
                         <span class="info-company-name">${ pvo.company_name }</span>

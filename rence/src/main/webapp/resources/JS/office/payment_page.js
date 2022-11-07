@@ -79,7 +79,7 @@ $(function() {
 		$(".inner-radio:eq(1)").addClass("choice-radio");
 		
 		$("#payment_all").text(deposit);
-		$("#earned_mileage").text(deposit_earned_mileage);
+		$("#earned_mileage").text("0");
 		
 		$('#payment_all').text(
 	    $('#payment_all')
@@ -87,14 +87,14 @@ $(function() {
 	      .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 		);
 		
-		$('#earned_mileage').text(
+		/* $('#earned_mileage').text(
 		    $('#earned_mileage')
 		      .text()
 		      .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-		);
+		); */
 		
 		$("#payment_all").attr("payment_all", deposit);
-		$("#earned_mileage").attr("earned_mileage", deposit_earned_mileage);
+		$("#earned_mileage").attr("earned_mileage", 0);
 	});
 	
 	// *************
