@@ -33,31 +33,24 @@ public class OfficeService {
 	}
 	
 	public OfficeInfoVO select_one_office_info(String backoffice_no) {
-		logger.info("select_one_office_info()...");
 		OfficeInfoVO vo = dao.select_one_office_info(backoffice_no);
 		
 		return vo; 
 	}
 	
 	public OfficeOperatingTimeVO_date select_one_operating_time(String backoffice_no) {
-		logger.info("select_one_operating_time()...");
-		
 		OfficeOperatingTimeVO_date vo = dao.select_one_operating_time(backoffice_no);
 		
 		return vo;
 	}
 	
 	public List<OfficeRoomVO> select_all_room(String backoffice_no) {
-		logger.info("select_all_room()...");
-		
 		List<OfficeRoomVO> vos = dao.select_all_room(backoffice_no);
 		
 		return vos;
 	}
 	
 	public List<OfficeQuestionVO> select_all_comment(String backoffice_no) {
-		logger.info("select_all_comment()...");
-		
 		List<OfficeQuestionVO> vos = dao.select_all_comment(backoffice_no);
 		
 		return vos;
@@ -70,40 +63,30 @@ public class OfficeService {
 	}
 	
 	public List<OfficeReviewVO> select_all_review(String backoffice_no) {
-		logger.info("select_all_review()...");
-		
 		List<OfficeReviewVO> vos = dao.select_all_review(backoffice_no);
 		
 		return vos;
 	}
 	
 	public int check_reserve(OfficeReserveVO vo) throws ParseException {
-		logger.info("check_reserve()...");
-		
 		int result = dao.check_reserve(vo);
 		
 		return result;
 	}
 	
 	public String select_one_last_reserve(String user_no) {
-		logger.info("select_one_last_reserve");
-		
 		String reserve_no = dao.select_one_last_reserve(user_no);
 		
 		return reserve_no;
 	}
 	
 	public PaymentInfoVO select_one_final_payment_info(String reserve_no) {
-		logger.info("select_one_final_payment_info");
-		
 		PaymentInfoVO vo = dao.select_one_final_payment_info(reserve_no);
 		
 		return vo;
 	}
 	
 	public int reserve_paymentOK(OfficePaymentVO pvo) {
-		logger.info("reserve_paymentOK");
-		
 		int result = dao.reserve_paymentOK(pvo);
 		
 		return result; 

@@ -85,8 +85,6 @@ public class OfficeInfoDAOImpl implements OfficeInfoDAO {
 	@Override
 	public int check_reserve(OfficeReserveVO vo) throws ParseException {
 
-		logger.info("check_reserve()...");
-		
 		int flag = reserve_check(vo);
 
 		return flag;
@@ -108,8 +106,6 @@ public class OfficeInfoDAOImpl implements OfficeInfoDAO {
 	@Override
 	public PaymentInfoVO select_one_final_payment_info(String reserve_no) {
 
-		logger.info("select_one_last_reserve()....");
-		
 		PaymentInfoVO pvo = sqlSession.selectOne("SQL_SELECT_ONE_FINAL_RESERVE_INFO", reserve_no);
 		
 		return pvo;
@@ -117,8 +113,6 @@ public class OfficeInfoDAOImpl implements OfficeInfoDAO {
 	
 	@Override
 	public int reserve_paymentOK(OfficePaymentVO pvo) {
-		
-		logger.info("reserve_paymentOK()....");
 		
 		
 		int flag = 0;

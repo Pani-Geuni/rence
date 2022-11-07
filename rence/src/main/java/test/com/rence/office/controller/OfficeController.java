@@ -1,3 +1,7 @@
+/**
+ * @author 전판근
+ */
+
 package test.com.rence.office.controller;
 
 import java.text.ParseException;
@@ -49,8 +53,6 @@ public class OfficeController {
 	public String space_intruduce(BackOfficeVO bvo, String introduce_menu, Model model) {
 		
 		OfficeInfoMap info_map = new OfficeInfoMap();
-		
-		logger.info("space_introduce()...");
 		
 		String backoffice_no = bvo.getBackoffice_no();
 		
@@ -171,8 +173,6 @@ public class OfficeController {
 		
 		OfficeInfoMap info_map = new OfficeInfoMap();
 		
-		logger.info("space_introduce()...");
-		
 		String backoffice_no = bvo.getBackoffice_no();
 		
 		// ******************
@@ -227,19 +227,13 @@ public class OfficeController {
 		List<OfficeRoomVO> rvos = service.select_all_room(backoffice_no);
 		
 		for (OfficeRoomVO vo : rvos) {
-			logger.info("vo name :: {}", vo.getRoom_no());
 			vo.setRoom_name(info_map.changeType(vo.getRoom_type()));
 		}
-				
-		logger.info("rvos :: {}", rvos);
 		
 		// **************
 		// backoffice 후기
 		// **************
 		List<OfficeReviewVO> revos = service.select_all_review(backoffice_no);
-		
-		logger.info("revos :: {}", revos);
-		logger.info("revos :: {}", revos.size());
 		
 		
 		// backoffice 기본 정보
@@ -270,12 +264,9 @@ public class OfficeController {
 		
 		JSONObject jsonObject = new JSONObject();
 		
-		logger.info("reserve_checkOK rvo :: {}", rvo);
-		
 		int result = service.check_reserve(rvo);
 		
 		String reserve_no = service.select_one_last_reserve(rvo.getUser_no());
-		logger.info("reserve_no :: {}", reserve_no);
 		
 		if (result == 1) {
 			jsonObject.put("result", "1");
@@ -293,9 +284,6 @@ public class OfficeController {
 	@RequestMapping(value = "/payment_page", method = RequestMethod.GET)
 	public String space_payment(OfficeReserveVO rvo, Model model) throws ParseException {
 		
-		logger.info("space_payment()...");
-		
-		logger.info("reserve no :: {}", rvo.getReserve_no());
 		String reserve_no = rvo.getReserve_no();
 		
 		PaymentInfoVO pvo = service.select_one_final_payment_info(reserve_no);
@@ -305,8 +293,6 @@ public class OfficeController {
 		List<String> splitImage = info_map.splitImage(pvo.getBackoffice_image());
 		String room_first_image = splitImage.get(0);
 		pvo.setBackoffice_image(room_first_image);
-		
-		logger.info("result pvo :: {}", pvo);
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		
@@ -320,7 +306,6 @@ public class OfficeController {
 		int payment_all = (int) diffHour * pvo.getRoom_price();
 		int earned_mileage = (int) (payment_all * 0.05);
 		
-		logger.info("diffHour :: {}", diffHour);
 		
 		model.addAttribute("pvo", pvo);
 		model.addAttribute("payment_all", payment_all);
@@ -340,8 +325,6 @@ public class OfficeController {
 		pvo.setBackoffice_no(pvo2.getBackoffice_no());
 		pvo.setSales_state("F");
 		
-		logger.info("reserve_paymentOK()..");
-		logger.info("********** pvo :: {}", pvo);
 		
 		int result = service.reserve_paymentOK(pvo);
 		
@@ -361,8 +344,6 @@ public class OfficeController {
 		
 		int result = service.insert_review(vo);
 		
-		logger.info("insert_review()..");
-		logger.info("********** request :: {}", vo);
 		
 		if (result == 1) {
 			jsonObject.put("result", "1");			
