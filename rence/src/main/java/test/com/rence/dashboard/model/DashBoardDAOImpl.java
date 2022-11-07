@@ -166,6 +166,7 @@ public class DashBoardDAOImpl implements DashBoardDAO {
 		logger.info("backoffice_sales_selectAll...DAOImpl()...");
 
 		List<SalesSettlementVO> svos = sqlSession.selectList("SQL_SELECT_ALL_SALES", backoffice_no);
+		logger.info("ssssssssssssssssssssssssss{}",svos);
 
 		return svos;
 	}

@@ -375,6 +375,7 @@ public class DashBoardController {
 		List<SalesSettlementVO> svos = service.backoffice_sales_selectAll(backoffice_no);
 		model.addAttribute("s_vos", svos);
 		model.addAttribute("cnt", svos.size());
+		logger.info("svossvossvos:::{}",svos);
 		return ".dash_board/sales_day";
 	}
 
