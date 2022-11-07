@@ -87,7 +87,7 @@
 
 		<div class="custom-table">
 			<div class="ct-header">
-				<div class="ct-header-cell">날짜</div>
+				<div class="ct-header-cell">예약 날짜</div>
 				<div class="ct-header-cell">대여 공간</div>
 				<div class="ct-header-cell">결제 금액</div>
 				<div class="ct-header-cell">결제 방식</div>
