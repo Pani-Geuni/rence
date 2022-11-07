@@ -86,5 +86,11 @@ public class BackOfficeService {
 		
 	}
 
+	//비밀번호 찾기 후 저장
+	public int backoffice_resetOK_pw(BackOfficeVO bvo2){
+		logger.info("backoffice_resetOK_pw()...");
+		return dao.backoffice_resetOK_pw(bvo2);
+	}
+
 
 }
