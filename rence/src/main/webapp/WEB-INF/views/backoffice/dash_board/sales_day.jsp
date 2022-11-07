@@ -14,9 +14,7 @@
 		<div class="titleSection sales">
 			<h3>일일 정산</h3>
 			<ul class="sales-mini-nav">
-				<li id="sales-mini-nav-day" class="nav-item <c:if test="${sales_date eq 'day'}">active</c:if>">
-					<p>일일</p>
-				</li>
+				<li id="sales-mini-nav-day" class="nav-item <c:if test="${sales_date eq 'day'}">active</c:if>"><p>일일</p></li>
 				<li id="sales-mini-nav-week" class="nav-item <c:if test="${sales_date eq 'week'}">active</c:if>"><p>주간</p></li>
 				<li id="sales-mini-nav-month" class="nav-item <c:if test="${sales_date eq 'month'}">active</c:if>"><p>월간</p></li>
 			</ul>
@@ -42,15 +40,30 @@
 
 		<div id="yesterday-sales" class="sales-state">
 			<div class="sales-item">
-				<p>전일 매출 총이익</p>
+				<p>
+					<c:if test="${sales_date eq 'day'}">전일</c:if>
+					<c:if test="${sales_date eq 'week'}">전주</c:if>
+					<c:if test="${sales_date eq 'month'}">전월</c:if>
+				 	매출 총이익
+				 </p>
 				<span id="sales-income" class="sales-price">${svo.pre_sales_income}</span>
 			</div>
 			<div class="sales-item">
-				<p>전일 매출액</p>
+				<p>
+					<c:if test="${sales_date eq 'day'}">전일</c:if>
+					<c:if test="${sales_date eq 'week'}">전주</c:if>
+					<c:if test="${sales_date eq 'month'}">전월</c:if>
+					매출액
+				</p>
 				<span id="sales-revenue" class="sales-price">${svo.pre_sales_total}</span>
 			</div>
 			<div class="sales-item">
-				<p>전일 취소 금액</p>
+				<p>
+					<c:if test="${sales_date eq 'day'}">전일</c:if>
+					<c:if test="${sales_date eq 'week'}">전주</c:if>
+					<c:if test="${sales_date eq 'month'}">전월</c:if>
+					취소 금액
+				</p>
 				<span id="sales-cancel" class="sales-price">${svo.pre_sales_cancel}</span>
 			</div>
 		</div>
