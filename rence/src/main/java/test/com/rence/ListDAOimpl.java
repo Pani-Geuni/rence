@@ -42,6 +42,7 @@ public class ListDAOimpl implements ListDAO {
 				DecimalFormat dc = new DecimalFormat("###,###,###,###");	
 				String ch = dc.format(Integer.parseInt(vo.getMin_room_price()));
 				vo.setMin_room_price(ch);
+				vo.setAvg_rating(Double.toString((Math.round(Double.parseDouble(vo.getAvg_rating())*100)/100.0)));
 				
 				if(vo.getRoadname_address().contains(" ")) {
 					String road_name = vo.getRoadname_address().split(" ")[0] + " " + vo.getRoadname_address().split(" ")[1];
@@ -84,6 +85,7 @@ public class ListDAOimpl implements ListDAO {
 				DecimalFormat dc = new DecimalFormat("###,###,###,###");	
 				String ch = dc.format(Integer.parseInt(vo.getMin_room_price()));
 				vo.setMin_room_price(ch);
+				vo.setAvg_rating(Double.toString((Math.round(Double.parseDouble(vo.getAvg_rating())*100)/100.0)));
 				
 				if(vo.getRoadname_address().contains(" ")) {
 					String road_name = vo.getRoadname_address().split(" ")[0] + " " + vo.getRoadname_address().split(" ")[1];
