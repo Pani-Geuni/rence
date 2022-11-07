@@ -27,6 +27,10 @@ public class MyPageDAOimpl implements MyPageDAO {
 				String ch = dc.format(Integer.parseInt(vo.getPayment_total()));
 				vo.setPayment_total(ch);
 				
+				if(vo.getBackoffice_image().contains(",")) {
+					vo.setBackoffice_image(vo.getBackoffice_image().split(",")[0]);
+				}
+				
 				String road_name = vo.getRoadname_address().split(" ")[0] + " " + vo.getRoadname_address().split(" ")[1];
 				vo.setRoadname_address(road_name);
 			}
@@ -44,6 +48,10 @@ public class MyPageDAOimpl implements MyPageDAO {
 				DecimalFormat dc = new DecimalFormat("###,###,###,###");	
 				String ch = dc.format(Integer.parseInt(vo.getPayment_total()));
 				vo.setPayment_total(ch);
+				
+				if(vo.getBackoffice_image().contains(",")) {
+					vo.setBackoffice_image(vo.getBackoffice_image().split(",")[0]);
+				}
 				
 				String road_name = vo.getRoadname_address().split(" ")[0] + " " + vo.getRoadname_address().split(" ")[1];
 				vo.setRoadname_address(road_name);
