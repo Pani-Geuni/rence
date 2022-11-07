@@ -116,9 +116,14 @@ public class OfficeInfoDAOImpl implements OfficeInfoDAO {
 		
 		
 		int flag = 0;
+		
+		if (pvo.getPayment_state().equals("F")) {
+			int payment_total = pvo.getActual_payment() * 5;
+			pvo.setPayment_total(payment_total);
+		}
+		
 		int result_payment = sqlSession.insert("SQL_INSERT_PAYMENT", pvo);
 		int result_update_reserve_state = sqlSession.update("SQL_UPDATE_RESERVE_STATE", pvo.getReserve_no());
-		
 		
 		OfficeMileageVO mvo = sqlSession.selectOne("SQL_SELECT_ONE_RECENT_MILEAGE", pvo.getUser_no());
 		int mileage_change = (int) (pvo.getPayment_total() * 0.05);
