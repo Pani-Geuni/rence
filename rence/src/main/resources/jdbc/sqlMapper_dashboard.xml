@@ -404,7 +404,7 @@
 	</select>
   	
   	<update id="SQL_UPDATE_SALES_STATE_T" parameterType="test.com.rence.dashboard.model.SalesSettlementVO">
-  		update paymentinfo set sales_state='T' where backoffice_no=#{backoffice_no} and room_no=#{room_no} and payment_no=#{payment_no}
+  		update paymentinfo set sales_state='T', payment_date=sysdate where backoffice_no=#{backoffice_no} and room_no=#{room_no} and payment_no=#{payment_no}
   	</update>
   	
   	<update id="SQL_UPDATE_MILEAGE_SUCCESS" parameterType="test.com.rence.user.model.UserMileageVO">
