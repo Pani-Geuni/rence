@@ -250,7 +250,6 @@ public class OfficeController {
 		
 		// backoffice 운영 공간
 		model.addAttribute("rvos", rvos);
-				
 		
 		return ".space/space_detail_introduce_office";
 	}
