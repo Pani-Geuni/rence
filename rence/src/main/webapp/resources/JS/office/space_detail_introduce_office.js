@@ -1,8 +1,17 @@
 /**
- * @author 김예은
+ * @author 김예은, 전판근
  */
-$(function(){
+ $(function(){
   let test = 1;
+
+  $("#common-alert-btn").click(function(){
+    $(".popup-background:eq(1)").addClass("blind");
+    $("#common-alert-popup").addClass("blind");
+
+    if($(".common-alert-txt").text() == "성공적으로 문의가 등록되었습니다." || $(".common-alert-txt").text() == "성공적으로 후기가 등록되었습니다."){
+      location.reload();
+    }
+  });
 
   /***** ************** *****/ 
   /***** 슬라이드 이미지 *****/ 
@@ -41,7 +50,7 @@ $(function(){
     ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 텍스트
     ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 Tooltip
     ,minDate: new Date() //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-});                   
+});      
 
 
   /***** *** ******* *****/ 
@@ -101,7 +110,7 @@ $(function(){
   /*** 예약 가능 여부 버튼 클릭 ***/
   $("#check_available").click(function(){
     // 예약 타입 선택 O
-    if($(".type-border-txt").prop("check")){
+    if($(".type-border-txt").prop("check") == true){
       if($(".time-input:eq(0)").val() != '' && $(".time-input:eq(1)").val() != ''){
         // 예약 가능 확인 로직
       }
@@ -146,16 +155,6 @@ $(function(){
     }
   });
 
-  /****** 문의 섹션 ******/
-  $("#question-create-btn").click(function(){
-    $("#question-popup").removeClass("blind");
-  });
-
-  /****** 후기 섹션 ******/
-  $("#review-write-btn").click(function(){
-    $("#review-popup").removeClass("blind");
-  });
-
 
   /***** *** ******** *****/ 
   /***** REVIEW POPUP *****/ 
@@ -166,16 +165,58 @@ $(function(){
     $("#review-write").val("");
     // 글자수 초기화
     $(".review-length").text("0");
-    //선택한 셀렉트 값 초기화
-    $("#question-select-choice").text
+
+    $("#review-write").removeClass("null-input-border");
+    $(".question-popup-select-val-wrap:eq(1)").removeClass("null-input-border");
+    $(".question-popup-select-val-wrap:eq(1)").removeClass("open-select");
+    
+    $("#review-select-choice").text("타입을 선택해 주세요");
+    $("#review-select-choice").attr("choice_idx", "");
+    $("#question-select-choice").attr("choice", "");
+    $(".question-popup-select:eq(1)").addClass("blind");
+    
     // 팝업 닫기
     $("#review-popup").addClass("blind");
   });
 
-  /** 이미지 등록 버튼 클릭 이벤트 */
-  $(".review-upload-btn").click(function(){
-    $(".file").click();
+  /*** 후기 작성 경고 테두리 제거  ***/
+  $("#review-write").click(function(){
+    $("#review-write").removeClass("null-input-border");
   });
+
+  $(".question-popup-select-val-wrap:eq(1)").click(function(){
+    if($(".question-popup-select:eq(1)").hasClass("blind")){
+      $(".question-popup-select-val-wrap:eq(1)").addClass("open-select");
+      $(".question-popup-select:eq(1)").removeClass("blind");
+      $(".question-popup-select-val-wrap:eq(1)").removeClass("null-input-border");
+    }
+    else{
+      $(".question-popup-select-val-wrap:eq(1)").removeClass("open-select");
+      $(".question-popup-select:eq(1)").addClass("blind");
+    }
+  });
+
+  /** 팝업 셀렉트 리스트 클릭 이벤트 */
+  $(".question-popup-select-li").click(function(){
+    $("#review-select-choice").val($(this).val());
+    $(".question-popup-select").addClass("blind");
+    $(".question-popup-select").removeClass("open-select");
+  });
+
+  /** 팝업 셀렉트 리스트 클릭 이벤트 */
+  $("#review-popup").on("click", ".question-popup-select-li", function(){
+    $("#review-select-choice").text($(this).text());
+    $("#review-select-choice").attr("choice", "true");
+    $("#review-select-choice").attr("choice_idx", $(this).attr("idx"));
+
+    $(".question-popup-select-val-wrap:eq(1)").removeClass("open-select");
+    $(".question-popup-select:eq(1)").addClass("blind");
+  });
+  
+  /** 이미지 등록 버튼 클릭 이벤트 */
+  // $(".review-upload-btn").click(function(){
+  //   $(".file").click();
+  // });
 
   /** 이미지 등록 시 파일명 SHOW */
   // $(".file").on('change',function(){
@@ -191,6 +232,70 @@ $(function(){
       $(this).val($(this).val().substring(0,500));
     }
     $(".review-length").text($(this).val().length);
+  });
+
+  $("#review-create-btn").click(function(){
+    if($("#review-select-choice").attr("choice") == "true" && $("#review-write").val().trim().length > 0){
+      var point = 0;
+      for(var i = 0; i<5; i++){
+          if($(".g-star").hasClass("blind")) point++;
+      }
+
+      $.ajax({
+        url : "/rence/insert_review",
+        type : "GET",
+        dataType : 'json',
+        data : {
+            user_no : $.cookie("user_no"),
+            backoffice_no : location.href.split("backoffice_no=")[1].split("&")[0],
+            room_no : $("#review-select-choice").attr("choice_idx"),
+            review_point : point,
+            review_content : $("#review-write").val().trim()
+        },
+        success : function(res) {
+            if(res.result == 1){
+              // TEXTAREA 초기화
+              $("#review-write").val("");
+              // 글자수 초기화
+              $(".review-length").text("0");
+
+              $("#review-write").removeClass("null-input-border");
+              $(".question-popup-select-val-wrap:eq(1)").removeClass("null-input-border");
+              $(".question-popup-select-val-wrap:eq(1)").removeClass("open-select");
+              
+              $("#review-select-choice").text("타입을 선택해 주세요");
+              $("#review-select-choice").attr("choice_idx", "");
+              $("#question-select-choice").attr("choice", "");
+              $(".question-popup-select:eq(1)").addClass("blind");
+              
+              // 팝업 닫기
+              $("#review-popup").addClass("blind");
+
+              $(".popup-background:eq(1)").removeClass("blind");
+              $("#common-alert-popup").removeClass("blind");
+              $(".common-alert-txt").text("성공적으로 후기가 등록되었습니다.");
+            }else{
+              $(".popup-background:eq(1)").removeClass("blind");
+              $("#common-alert-popup").removeClass("blind");
+              $(".common-alert-txt").text("비밀번호가 일치하지않습니다.");
+            }
+        },
+        error : function(error) {
+            console.log(error);
+            $(".popup-background:eq(1)").removeClass("blind");
+            $("#common-alert-popup").removeClass("blind");
+            $(".common-alert-txt").text("오류 발생으로 인해 처리에 실패하였습니다.");
+        }
+    });
+    }
+    else{
+      if($("#review-write").val().trim().length == 0){
+        $("#review-write").addClass("null-input-border");
+      }
+      if($("#review-select-choice").attr("choice") != "true"){
+        $(".question-popup-select-val-wrap:eq(1)").addClass("null-input-border");
+      }
+    }
   });
 
   /*** 별점 클릭 이벤트 ***/
@@ -215,7 +320,6 @@ $(function(){
       if($(arr[i]).attr("id") == last_idx){
         break;
       }
-      console.log("in");
     }
 
   });
@@ -224,6 +328,7 @@ $(function(){
   /***** ************** *****/ 
   /***** QUESTION POPUP *****/ 
   /***** ************** *****/
+
   /*** 팝업 닫기 버튼 클릭  ***/
   $("#question-close-btn").click(function(){
     // TEXTAREA 초기화
@@ -231,14 +336,24 @@ $(function(){
     // 글자수 초기화
     $(".qna-length").text("0");
 
-    $(".question-popup-select").addClass("blind");
-    $(".question-popup-select-value").text("타입을 선택해 주세요");
-    $(".question-popup-select-val-wrap").removeClass("open-select");
+    $("#question-write").removeClass("null-input-border");
+    $(".question-popup-select-val-wrap:eq(0)").removeClass("null-input-border");
+    $(".question-popup-select-val-wrap:eq(0)").removeClass("open-select");
+    
+    $("#question-select-choice").text("타입을 선택해 주세요");
+    $("#question-select-choice").attr("choice_idx", "");
+    $("#question-select-choice").attr("choice", "");
+    $(".question-popup-select:eq(0)").addClass("blind");
     
     // 팝업 닫기
     $("#question-popup").addClass("blind");
   });
 
+  /*** 문의 작성 경고 테두리 제거  ***/
+  $("#question-write").click(function(){
+    $("#question-write").removeClass("null-input-border");
+  });
+  
   /*** 문의 작성 글자수 제한  ***/
   $("#question-write").on("keydown keyup", function(){
     if($(this).val().length > 500){
@@ -247,23 +362,79 @@ $(function(){
     $(".qna-length").text($(this).val().length);
   });
 
-  $("#question-popup").click(".question-popup-select-val-wrap", function(){
-    if($(".question-popup-select").hasClass("blind")){
-      $(".question-popup-select-val-wrap").addClass("open-select");
-      $(".question-popup-select").removeClass("blind");
+  $(".question-popup-select-val-wrap:eq(0)").click(function(){
+    if($(".question-popup-select:eq(0)").hasClass("blind")){
+      $(".question-popup-select-val-wrap:eq(0)").addClass("open-select");
+      $(".question-popup-select:eq(0)").removeClass("blind");
+      $(".question-popup-select-val-wrap:eq(0)").removeClass("null-input-border");
     }
     else{
-      $(".question-popup-select-val-wrap").removeClass("open-select");
-      $(".question-popup-select").addClass("blind");
+      $(".question-popup-select-val-wrap:eq(0)").removeClass("open-select");
+      $(".question-popup-select:eq(0)").addClass("blind");
     }
   });
 
   /** 팝업 셀렉트 리스트 클릭 이벤트 */
-  $(".question-popup-select-li").click(function(e){
-    e.preventDefault();
-
+  $("#question-popup").on("click", ".question-popup-select-li", function(){
     $("#question-select-choice").text($(this).text());
-    $(".question-popup-select-val-wrap").removeClass("open-select");
-    $(".question-popup-select").addClass("blind");
+    $("#question-select-choice").attr("choice", "true");
+    $("#question-select-choice").attr("choice_idx", $(this).attr("idx"));
+
+    $(".question-popup-select-val-wrap:eq(0)").removeClass("open-select");
+    $(".question-popup-select:eq(0)").addClass("blind");
+  });
+
+  $("#question-createBtn").click(function(){
+    if($("#question-select-choice").attr("choice") == "true" && $("#question-write").val().trim().length > 0){
+        $.ajax({
+          url : "/rence/insert_question",
+          type : "GET",
+          dataType : 'json',
+          data : {
+              user_no : $.cookie("user_no"),
+              backoffice_no : location.href.split("backoffice_no=")[1].split("&")[0],
+              room_no : $("#question-select-choice").attr("choice_idx"),
+              comment_content : $("#question-write").val().trim()
+          },
+          success : function(res) {
+              if(res.result == 1){
+                $(".qna-length").text("0");
+                $("#question-write").val("");
+
+                $(".question-popup-select-val-wrap:eq(0)").removeClass("null-input-border");
+                $("#question-write").removeClass("null-input-border");
+                
+                $("#question-select-choice").text("타입을 선택해 주세요");
+                $("#question-select-choice").attr("choice_idx", "");
+                $("#question-select-choice").attr("choice", "");
+                
+                $(".question-popup-select-val-wrap:eq(0)").removeClass("open-select");
+                $(".question-popup-select:eq(0)").addClass("blind");
+                $("#question-popup").addClass("blind");
+
+                $(".popup-background:eq(1)").removeClass("blind");
+                $("#common-alert-popup").removeClass("blind");
+                $(".common-alert-txt").text("성공적으로 문의가 등록되었습니다.");
+              }else{
+                $(".popup-background:eq(1)").removeClass("blind");
+                $("#common-alert-popup").removeClass("blind");
+                $(".common-alert-txt").text("비밀번호가 일치하지않습니다.");
+              }
+          },
+          error : function() {
+              $(".popup-background:eq(1)").removeClass("blind");
+              $("#common-alert-popup").removeClass("blind");
+              $(".common-alert-txt").text("오류 발생으로 인해 처리에 실패하였습니다.");
+          }
+      });
+      }
+      else{
+        if($("#question-write").val().trim().length == 0){
+          $("#question-write").addClass("null-input-border");
+        }
+        if($("#question-select-choice").attr("choice") != "true"){
+          $(".question-popup-select-val-wrap:eq(0)").addClass("null-input-border");
+        }
+    }
   });
 });

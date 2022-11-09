@@ -86,7 +86,7 @@
 				<div class="question-wrap blind">
 					<section class="question-wrap-title">
 						<section class="question-left">
-							<span class="big-title">문의</span> <span class="small-title">3개</span>
+							<span class="big-title">문의</span> <span class="small-title">${cvos_cnt}개</span>
 						</section>
 						<section id="question-create-btn" class="question-right">
 							<span>문의하기</span>
@@ -108,18 +108,11 @@
                                 </div>
 
                                 <ul class="question-popup-select blind">
-                                    <li class="question-popup-select-li">
-                                        101호 (1인 데스크)
-                                    </li>
-                                    <li class="question-popup-select-li">
-                                        102호 (1인 데스크)
-                                    </li>
-                                    <li class="question-popup-select-li">
-                                        103호 (4인 미팅룸)
-                                    </li>
-                                    <li class="question-popup-select-li">
-                                        104호 (1인 미팅룸)
-                                    </li>
+                                    <c:forEach var="vos" items="${rvos}">
+	                                    <li class="question-popup-select-li" idx="${vos.room_no}">
+	                                        ${vos.room_name}
+	                                    </li>
+	                                </c:forEach>
                                 </ul>
                             </section>
                             <section class="textarea-section">
@@ -138,19 +131,34 @@
 
 					<section class="quest-list-section">
 						<ul class="quest-list-wrap">
-							<li class="quest-list">
-								<section>
-									<img src="${path}/resources/IMG/header/loopy.jpg" alt="write-user-img" class="write-user-img" />
-								</section>
-								<section class="quest-content-section">
-									<ul class="quest-content-wrap">
-										<li class="quest-content-list quest-content-writer">팡근</li>
-										<li class="quest-content-list quest-content">장기 예약 문의도 가능할까요?</li>
-										<li class="quest-content-list quest-content-date">2022.10.21</li>
-									</ul>
-								</section>
-								<section class="answer-section"></section>
-							</li>
+							<c:forEach var="cvo" items="${ cvos }">
+								<li class="quest-list">
+									<section>
+										<img src="${path}/resources/IMG/header/loopy.jpg" alt="write-user-img" class="write-user-img" />
+									</section>
+									<section class="quest-content-section">
+										<ul class="quest-content-wrap">
+											<li class="quest-content-list quest-content-writer">${ cvo.user_name }</li>
+											<li class="quest-content-list quest-content">${ cvo.comment_content }</li>
+											<li class="quest-content-list quest-content-date">${ cvo.comment_date }</li>
+										</ul>
+									</section>
+								</li>
+								<c:if test="${cvo.answer_date ne null}">
+									<li class="quest-list">
+										<section>
+											<img src="${path}/resources/upload/img_host_001.jpg" alt="write-user-img" class="write-user-img" />
+										</section>
+										<section class="quest-content-section">
+											<ul class="quest-content-wrap">
+												<li class="quest-content-list quest-content-writer">HOST</li>
+												<li class="quest-content-list quest-content">${ cvo.answer_content}</li>
+												<li class="quest-content-list quest-content-date">${cvo.answer_date}</li>
+											</ul>
+										</section>
+									</li>
+								</c:if>
+							</c:forEach>
 						</ul>
 					</section>
 				</div>
@@ -159,7 +167,7 @@
 				<div id="review-wrap" class="question-wrap blind">
 					<section class="question-wrap-title">
 						<section class="question-left">
-							<span class="big-title">후기</span> <span class="small-title">3개</span>
+							<span class="big-title">후기</span> <span class="small-title">${review_cnt}개</span>
 						</section>
 						<section id="review-write-btn" class="question-right">
 							<span>후기쓰기</span>
@@ -174,10 +182,19 @@
 
                                 <!-- select 열 때 open-select추가 -->
                                 <div class="question-popup-select-val-wrap">
-                                    <span class="question-popup-select-value">
-                                        선택했던 타입명
+                                    <span id="review-select-choice" class="question-popup-select-value">
+                                        타입을 선택해 주세요
                                     </span>
+                                    <img src="${path}/resources/IMG/space-introduce/full-dropdown.svg" alt="full-dropdown" class="full-dropdown"></img>
                                 </div>
+
+                                <ul class="question-popup-select blind">
+                                    <c:forEach var="vos" items="${rvos}">
+	                                    <li class="question-popup-select-li" idx="${vos.room_no}">
+	                                        ${vos.room_name}
+	                                    </li>
+	                                </c:forEach>
+                                </ul>
                             </section>
                             <section class="textarea-section">
                                 <textarea id="review-write" class="question-write"></textarea>
@@ -220,25 +237,27 @@
 
 					<section class="quest-list-section">
 						<ul class="quest-list-wrap">
-							<li class="quest-list">
-								<section>
-									<img src="${path}/resources/IMG/header/loopy.jpg" alt="write-user-img" class="write-user-img" />
-								</section>
-								<section class="quest-content-section">
-									<ul class="quest-content-wrap">
-										<li class="quest-content-list quest-content-writer">
-											<span class="quest-writer">팡근</span> 
-											
-											<span class="review-star-wrap">
-												<img src="${path}/resources/IMG/common/star.svg" class="review-star-img" alt="review-star-img" /> 
-												<span class="review-star-num">4</span>
-											</span>
-										</li>
-										<li class="quest-content-list quest-content">혼자 공부할 때 너무 좋아요!</li>
-										<li class="quest-content-list quest-content-date">2022.10.21</li>
-									</ul>
-								</section>
-							</li>
+							<c:forEach var="revo" items="${ revos }">
+								<li class="quest-list">
+									<section>
+										<img src="${path}/resources/IMG/header/loopy.jpg" alt="write-user-img" class="write-user-img" />
+									</section>
+									<section class="quest-content-section">
+										<ul class="quest-content-wrap">
+											<li class="quest-content-list quest-content-writer">
+												<span class="quest-writer">${ revo.user_name }</span> 
+												
+												<span class="review-star-wrap">
+													<img src="${path}/resources/IMG/common/star.svg" class="review-star-img" alt="review-star-img" /> 
+													<span class="review-star-num">${ revo.review_point }</span>
+												</span>
+											</li>
+											<li class="quest-content-list quest-content">${ revo.review_content }</li>
+											<li class="quest-content-list quest-content-date">${ revo.review_date }</li>
+										</ul>
+									</section>
+								</li>
+							</c:forEach>
 						</ul>
 					</section>
 				</div>
