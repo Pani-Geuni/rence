@@ -17,7 +17,6 @@
 
 ## 기술 스택
 
-<hr>
 
 ### FRONT
 
@@ -28,11 +27,12 @@
 <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white">
 </span>
 <span>
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white">
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black">
 </span>
 <span>
 <img src="https://img.shields.io/badge/JQuery-0769AD?style=for-the-badge&logo=JQuery&logoColor=white">
 </span>
+<span>
 <img src="https://img.shields.io/badge/JSP-E4E4E4?style=for-the-badge&logo=JSP&logoColor=white">
 </span>
 
@@ -41,26 +41,24 @@
 ### BACK
 
 <span>
-<img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=OpenJDK&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=OpenJDK&logoColor=white"/>
 <span>
-<img src="https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=Oracle&logoColor=white">
+  <img src="https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=Oracle&logoColor=white">
 </span>
 <span>
-<span>
-<img src="https://img.shields.io/badge/Oracle_Cloud-F80000?style=for-the-badge&logo=OpenJDK&logoColor=white">
+  <img src="https://img.shields.io/badge/Oracle_Cloud-F80000?style=for-the-badge&logo=OpenJDK&logoColor=white">
 </span>
 <span>
-<span>
-<img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=Spring&logoColor=white">
+  <img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=Spring&logoColor=white">
 </span>
-
+<span>
+  <img src="https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=ApacheMaven&logoColor=white">
+</span>
 
 <br>
 <br>
 
 ## Tools
-
-<hr>
 
 <span>
 <img src="https://img.shields.io/badge/VisualStudioCode-5C2D91?style=for-the-badge&logo=VisualStudioCode&logoColor=white">
@@ -90,7 +88,7 @@
 <img src="https://img.shields.io/badge/GoogleDrive-4285F4?style=for-the-badge&logo=GoogleDrive&logoColor=white">
 </span>
 <span>
-<img src="https://img.shields.io/badge/ApacheTomcat-F8DC75?style=for-the-badge&logo=ApacheTomcat&logoColor=white">
+<img src="https://img.shields.io/badge/ApacheTomcat-F8DC75?style=for-the-badge&logo=ApacheTomcat&logoColor=black">
 </span>
 
 
@@ -99,8 +97,6 @@
 
 
 ## Authors
-
-<hr>
 
 - 전판근 (팀장)
   - UI/UX
@@ -126,9 +122,6 @@
 <br>
 
 ## 시나리오
-
-<hr>
-
 <br>
 
 ### 사용자 시나리오
@@ -147,7 +140,6 @@
 
 ## 클래스 다이어 그램
 
-<hr>
 <br>
 
 <img src="https://user-images.githubusercontent.com/22641134/201042210-db9d0cc8-99b9-40cc-b0d1-289387291db4.png">
@@ -158,7 +150,6 @@
 
 ## ERD
 
-<hr>
 <br>
 
 <img src="https://user-images.githubusercontent.com/22641134/201041746-084a2d5d-a558-4430-8c31-bb25d6dcfa36.png">
@@ -172,7 +163,6 @@
 
 ## 구현 기능
 
-<hr>
 <br>
 
 ### 사용자
@@ -190,8 +180,6 @@
 
 
 <br>
-<hr> 
-<br>
 
 ### 사용자 - 오피스
 
@@ -208,9 +196,6 @@
 - 공간 예약 Picker
 - 공간 예약 및 결제
 
-
-<br>
-<hr> 
 <br>
 
 ### 백오피스
@@ -229,8 +214,6 @@
   - 업체 삭제 요청
   - 로그아웃
 
-<br>
-<hr> 
 <br>
 
 ### 마스터
