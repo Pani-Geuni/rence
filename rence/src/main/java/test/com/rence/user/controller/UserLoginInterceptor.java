@@ -28,9 +28,7 @@ public class UserLoginInterceptor extends HandlerInterceptorAdapter {
 		String user_id = (String) session.getAttribute("user_id");
 		logger.info("session user_id: {}", session.getAttribute("user_id"));
 
-		//221027기준 유저의 기본적인 페이지 servlet 기입한 상태임. 
-		//추후 예약페이지나 기타페이지를 controller에서 구현후 추가 기입이 필요함 (추후 완료시 주석 제거하기!!!)
-		//221101기준 마이페이지외 상세 페이지 
+		 
 		if (sPath.equals("/go_my_page") ||sPath.equals("/selectOne") || sPath.equals("/secedeOK")
 			|| sPath.equals("/go_now_reserve") || sPath.equals("/go_before_reserve")
 			|| sPath.equals("/go_mileage") || sPath.equals("/mileage_search_list")
