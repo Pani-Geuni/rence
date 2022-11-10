@@ -778,11 +778,11 @@ $(function () {
             $('.popup-background:eq(0)').addClass('blind');
             $('#host-delete-popup').addClass('blind');
 
-            $(".popup-background:eq(0)").removeClass("blind");
+            $(".popup-background:eq(1)").removeClass("blind");
             $("#common-alert-popup").removeClass("blind");
             $(".common-alert-txt").text("마스터에게 삭제 요청되었습니다.");
           }else{
-            $(".popup-background:eq(0)").removeClass("blind");
+            $(".popup-background:eq(1)").removeClass("blind");
             $("#common-alert-popup").removeClass("blind");
             $(".common-alert-txt").text("남은 예약이 존재하여 삭제할 수 없습니다.");
           }
