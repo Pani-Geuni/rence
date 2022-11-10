@@ -35,13 +35,6 @@ public class BackOfficeService {
 		logger.info("backoffice_auth_insert()...");
 		return dao.backoffice_auth_insert(avo);
 	}
-
-	//인증번호 삽입 후, 결과 검색
-//	public AuthVO backoffice_auth_select(AuthVO avo) {
-//		logger.info("backoffice_auth_select()...");
-//		return dao.backoffice_auth_select(avo);
-//	}
-
 	
 	//인증 번호 검색
 	public AuthVO backoffice_authOK_select(String backoffice_email, String auth_code) {

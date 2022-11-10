@@ -130,12 +130,6 @@ public class BackOfficeDAOImpl implements BackOfficeDAO {
 		logger.info("backoffice_settingOK_pw()...");
 		logger.info("{}", bvo);
 
-		// String originText = bvo.getBackoffice_no();
-
-		// backoffice_no decoding
-		// String decText = aes.decryptAES("0123456789abcdefghij0123456789ab",
-		// originText);
-
 		Decoder decoder = Base64.getDecoder();
 		byte[] decodedBytes2 = decoder.decode(bvo.getBackoffice_no());
 

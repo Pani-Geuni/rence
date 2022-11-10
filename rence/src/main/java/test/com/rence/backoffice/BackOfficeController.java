@@ -1,6 +1,6 @@
 /**
  * 
- * @author 최진실, 전판근
+ * @author 최진실
  *
  */
 package test.com.rence.backoffice;
