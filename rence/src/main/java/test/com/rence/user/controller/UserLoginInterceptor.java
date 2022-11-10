@@ -1,4 +1,8 @@
-//로그인이 되지 않았을시 Intercept하여 로그인페이지로 이동할수 있도록 하는 기능의 구현
+/**
+	 * @author 강경석
+	 *  로그인이 되지 않았을시 Intercept하여 로그인페이지로 이동할수 있도록 하는 기능의 구현
+*/
+
 
 package test.com.rence.user.controller;
 
@@ -37,9 +41,7 @@ public class UserLoginInterceptor extends HandlerInterceptorAdapter {
 			|| sPath.equals("/reserve_detail_before") || sPath.equals("/reserve_detail_now")
 			|| sPath.equals("/user_logoutOK") || sPath.equals("")
 			|| sPath.equals("/reserve_list") || sPath.equals("/reserve_info") || sPath.equals("/reserved_info")
-//			|| sPath.equals("") || sPath.equals("")
-//			|| sPath.equals("") || sPath.equals("")
-//			|| sPath.equals("") || sPath.equals("")
+
 			)
 		{
 			//로그인이 되지 않으면 홈페이지로 이동

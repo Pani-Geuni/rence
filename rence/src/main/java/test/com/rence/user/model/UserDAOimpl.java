@@ -1,3 +1,7 @@
+/**
+	 * @author 강경석
+	
+*/
 package test.com.rence.user.model;
 
 import java.security.NoSuchAlgorithmException;

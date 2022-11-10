@@ -3,6 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="test.com.rence.user.model">
+
+
+<!-- 	 * @author 강경석 -->
+
 	<!-- 회원가입처리 SQL -->
 	<insert id="SQL_INSERT"
 		parameterType="test.com.rence.user.model.UserVO">
@@ -10,11 +14,10 @@
 		userinfo(user_no,user_id,user_pw,user_name,user_email,user_tel,user_birth,user_state)
 		values('U'||seq_user.nextval,#{user_id},#{user_pw},#{user_name},#{user_email},#{user_tel},#{user_birth},'Y')
 	</insert>
-	<!-- TO_DATE('#{user_birth}','YYYYMMDD') -->
 
 
 
-<!-- 	회원가입이후 마일리지테이블에 유저번호를 저장하기 위해서 정보추출 -->
+	<!--회원가입이후 마일리지테이블에 유저번호를 저장하기 위해서 정보추출 -->
 	<select id="SQL_USER_USERNO"
 		resultType="test.com.rence.user.model.UserVO">
 		select user_no
