@@ -64,7 +64,7 @@
 <img src="https://img.shields.io/badge/VisualStudioCode-5C2D91?style=for-the-badge&logo=VisualStudioCode&logoColor=white">
 </span>
 <span>
-<img src="https://img.shields.io/badge/STS3-6DB33F?style=for-the-badge&logo=Spring&logoColor=white">
+<img src="https://img.shields.io/badge/STS3-6DB33F?style=for-the-badge&logo=Sprin&logoColor=white">
 </span>
 <span>
 <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white">
