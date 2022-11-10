@@ -1,3 +1,7 @@
+/**
+ * @author 전판근
+ */
+
 package test.com.rence.common;
 
 import java.text.ParseException;
