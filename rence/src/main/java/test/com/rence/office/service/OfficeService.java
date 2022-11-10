@@ -1,3 +1,7 @@
+/**
+ * @author 전판근
+ */
+
 package test.com.rence.office.service;
 
 import java.text.ParseException;

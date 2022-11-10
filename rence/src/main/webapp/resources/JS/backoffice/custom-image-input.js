@@ -1,3 +1,7 @@
+/**
+ * @author : 김예은
+ */
+
 $(function () {
   /** 파일 추가할 시 */
   $("#multipartFile_room").change(function(){
