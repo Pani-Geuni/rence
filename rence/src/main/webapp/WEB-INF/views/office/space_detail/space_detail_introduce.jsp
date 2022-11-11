@@ -182,12 +182,12 @@
                             <span class="question-popup-title">후기 남기기</span>
 
                             <section class="question-popup-type-select-wrap">
-                                <span class="question-popup-small-title">문의할 공간 타입</span>
+                                <span class="question-popup-small-title">선택할 공간</span>
 
                                 <!-- select 열 때 open-select추가 -->
                                 <div class="question-popup-select-val-wrap">
                                     <span id="review-select-choice" class="question-popup-select-value">
-                                        타입을 선택해 주세요
+                                        공간 타입을 선택해 주세요
                                     </span>
                                     <img src="${path}/resources/IMG/space-introduce/full-dropdown.svg" alt="full-dropdown" class="full-dropdown"></img>
                                 </div>
