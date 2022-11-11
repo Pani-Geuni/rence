@@ -12,6 +12,8 @@
 
 <p>사용자는 필요한 사무 공간을 예약하고 이용하며, 공급자는 사무 공간을 등록 후 대여 서비스를 제공해주는 플랫폼</p>
 <p>프로젝트 기간 : 2022.10.24 ~ 2022.11.05</p>
+<a href="https://docs.google.com/presentation/d/13FWESe9lYRZf6vVU--uG0qgzJ8Ze2_ka/edit?usp=sharing&ouid=110413388413152403017&rtpof=true&sd=true">👉프로젝트 피피티 보러가기</a>
+
 <br>
 <br>
 
@@ -111,11 +113,11 @@
 - 김예은
   - 퍼블리싱 : User, Office
   - FRONT : User / Office / Back Office 
-  - BACK : User 
+  - BACK : User, Office
 
 - 최진실
   - DB 설계
-  - BACK : Back Office
+  - BACK : Back Office, Master
 
 
 <br>
